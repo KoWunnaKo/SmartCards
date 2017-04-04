@@ -1,0 +1,20 @@
+﻿SmartCardDesc
+
+
+winexe
+C#
+.cs
+C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\
+SmartCardDesc
+none
+false
+DEBUG;TRACE
+C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\App.xaml
+71237403469
+
+22-855871636
+121654848548
+Controls\UcCardInfo.xaml;Controls\UcInsertCard.xaml;Controls\UcUpdateCard.xaml;Controls\UcUserInfo.xaml;MainWindow.xaml;Views\ServiceManageWindow.xaml;Views\UserInfoWindow.xaml;
+
+False
+

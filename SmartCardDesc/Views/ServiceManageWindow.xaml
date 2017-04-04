@@ -1,0 +1,518 @@
+﻿<Window x:Class="SmartCardDesc.Views.ServiceManageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Интерфейс с ИНФОКОМ" Height="600" Width="685">
+    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+        <TabControl HorizontalAlignment="Stretch"  
+    		VerticalAlignment="Top" Height="500">
+            <TabItem Header="Информация пользователя">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <TextBlock Text="Ввести параметры"></TextBlock>
+                        <Border BorderBrush="Blue" BorderThickness="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ид Пользователя" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="0" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Токен" 
+                                       Grid.Row="1" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="1" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                            </Grid>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right">
+                            <Button Content="Очистить" 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                            <Button Content="Загрузить..." 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Резутьтаты:"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Border BorderBrush="Green" BorderThickness="2" Grid.Row="1">
+                        <Grid Margin="10" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Дата Регистрации:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="0" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="1" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Результат:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="1" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="2" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Отчество:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="2" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="3" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Пин:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="3" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="4" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Дата рождения:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="4" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="5" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Пол:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="5" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="6" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Фамилия:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="6" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="7" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Адрес:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="7" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="8" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Тин:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="8" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                            <TextBlock Grid.Row="9" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Паспорт:"
+                   Margin="5"></TextBlock>
+                            <TextBox Grid.Row="9" 
+                   Grid.Column="1"
+                     Margin="5">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Информация о картах">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <TextBlock Text="Ввести параметры"></TextBlock>
+                        <Border BorderBrush="Blue" BorderThickness="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ид Пользователя" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="0" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Токен" 
+                                       Grid.Row="1" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="1" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                            </Grid>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right">
+                            <Button Content="Очистить" 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                            <Button Content="Загрузить..." 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Результаты:"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Border Grid.Row="1" BorderBrush="Green" BorderThickness="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Результат:"
+                                       Margin="5"></TextBlock>
+                             <TextBox Grid.Row="0" 
+                                      Grid.Column="1"
+                                      Margin="10">
+                            </TextBox>
+                            <TextBlock Grid.Row="1" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Статус карты:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="1" 
+                                      Grid.Column="1"
+                                      Margin="10">
+                            </TextBox>
+                            <TextBlock Grid.Row="2" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Дата выпуска:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="2" 
+                                      Grid.Column="1"
+                                      Margin="10">
+                            </TextBox>
+                            <TextBlock Grid.Row="3" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Номер карты:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="3" 
+                                      Grid.Column="1"
+                                      Margin="10">
+                            </TextBox>
+                            <TextBlock Grid.Row="4" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Юзер Ид:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="4" 
+                                      Grid.Column="1"
+                                      Margin="10">
+                            </TextBox>
+                            <TextBlock Grid.Row="5" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Годен до:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="5" 
+                                      Grid.Column="1"
+                                      Margin="10">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Ввести новую карту">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <TextBlock Text="Ввести параметры"></TextBlock>
+                        <Border BorderBrush="Blue" BorderThickness="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ид Пользователя" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="0" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Токен" 
+                                       Grid.Row="1" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="1" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Номер карты" 
+                                       Grid.Row="2" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="2" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Дата выпуска" 
+                                       Grid.Row="3" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="3" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Годен до" 
+                                       Grid.Row="4" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="4" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                            </Grid>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right">
+                            <Button Content="Очистить" 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                            <Button Content="Загрузить..." 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Результаты:"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Border Grid.Row="1" 
+                            BorderBrush="Green"
+                            BorderThickness="2">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="259*"/>
+                                <ColumnDefinition Width="404*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="193*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Результат:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="0" 
+                                      Grid.Column="1"
+                                      Margin="5">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Изменить данные карты">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <TextBlock Text="Ввести параметры"></TextBlock>
+                        <Border BorderBrush="Blue" BorderThickness="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ид Пользователя" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="0" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Токен" 
+                                       Grid.Row="1" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="1" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Номер карты" 
+                                       Grid.Row="2" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="2" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Дата выпуска" 
+                                       Grid.Row="3" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="3" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                                <TextBlock Text="Годен до" 
+                                       Grid.Row="4" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                <TextBox Grid.Row="4" 
+                                     Grid.Column="1"
+                                     Margin="5"></TextBox>
+                            </Grid>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right">
+                            <Button Content="Очистить" 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                            <Button Content="Загрузить..." 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"></Button>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Результаты:"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Border Grid.Row="1" 
+                            BorderBrush="Green"
+                            BorderThickness="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="259*"/>
+                                <ColumnDefinition Width="404*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="193*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Результат:"
+                                       Margin="5"></TextBlock>
+                            <TextBox Grid.Row="0" 
+                                      Grid.Column="1"
+                                      Margin="5">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Button HorizontalAlignment="Right" 
+                    Content="Выход" 
+                    Width="80" 
+                    Height="25"
+                    Margin="10"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
