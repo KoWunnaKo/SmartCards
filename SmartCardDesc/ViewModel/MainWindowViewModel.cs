@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCardDesc.InfocomService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +15,22 @@ namespace SmartCardDesc.ViewModel
 
         public RelayCommand OpenKeyGen { get; private set; }
 
+        public EpiService api;
+
         public MainWindowViewModel()
         {
             OpenUchetTs = new RelayCommand(_ => fOpenUchetTs());
             OpenServiceIA = new RelayCommand(_ => fOpenServiceIA());
             OpenKeyGen = new RelayCommand(_ => fOpenKeyGen());
+
+            api = new EpiService();
         }
 
         private void fOpenUchetTs()
         {
-            MessageBox.Show("fOpenUchetTs");
+            //MessageBox.Show("fOpenUchetTs");
+
+            api.TestGetUserCard();
         }
 
         private void fOpenServiceIA()

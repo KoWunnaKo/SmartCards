@@ -63,6 +63,7 @@ namespace SmartCardDesc
                     }
                     
                     stackUc.Children.Add(control);
+
                 }
             }
         }

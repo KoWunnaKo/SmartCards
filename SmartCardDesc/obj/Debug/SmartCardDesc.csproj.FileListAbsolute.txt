@@ -17,7 +17,6 @@ C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Views\Servi
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Views\ServiceManageWindow.g.cs
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcUserInfo.baml
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcUserInfo.g.cs
-C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\SmartCardDesc_MarkupCompile.lref
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcCardInfo.baml
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcCardInfo.g.cs
@@ -25,3 +24,4 @@ C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\Uc
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcInsertCard.g.cs
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcUpdateCard.baml
 C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcUpdateCard.g.cs
+C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\bin\Debug\log4net.dll

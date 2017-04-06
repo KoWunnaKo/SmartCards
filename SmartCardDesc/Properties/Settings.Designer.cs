@@ -82,5 +82,17 @@ namespace SmartCardDesc.Properties {
                 this["DB_Password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://91.212.89.201:57720")]
+        public string ServiceUrl {
+            get {
+                return ((string)(this["ServiceUrl"]));
+            }
+            set {
+                this["ServiceUrl"] = value;
+            }
+        }
     }
 }

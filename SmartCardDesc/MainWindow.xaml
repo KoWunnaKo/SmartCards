@@ -10,14 +10,57 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
 				      ScrollViewer.VerticalScrollBarVisibility="Auto"
                       SelectedItemChanged="TreeView_SelectedItemChanged">
-                <TreeViewItem Header="Обмен данными" Tag="0">
-                    <TreeViewItem Header="Информация пользователя" Tag="1"/>
-                    <TreeViewItem Header="Информация о картах" Tag="2"/>
-                    <TreeViewItem Header="Ввести новую карту" Tag="3"/>
-                    <TreeViewItem Header="Изменить данные карты" Tag="4"/>
+                <TreeViewItem Tag="0">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources\112_RefreshArrow_Blue.ico"/>
+                                <Label Content="Обмен данными"></Label>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+
+                    <TreeViewItem  Tag="1">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources\book_active_directory.bmp"/>
+                                <Label Content="Информация пользователя"></Label>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem  Tag="2">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources\AppWindow.bmp"/>
+                                <Label Content="Информация о картах"></Label>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem  Tag="3">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources\077_AddFile.ico"/>
+                                <Label Content="Ввести новую карту"></Label>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem  Tag="4">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources\126_Edit.ico"/>
+                                <Label Content="Изменить данные карты"></Label>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
                 </TreeViewItem>
                 <TreeViewItem Header="Операции с картами" Tag="0">
-                    <TreeViewItem Header="Генерация ключей" Tag="5"/>
+                    <TreeViewItem  Tag="5">
+                        <TreeViewItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources\TurnAhead.bmp"/>
+                                <Label Content="Генерация ключей"></Label>
+                            </StackPanel>
+                        </TreeViewItem.Header>
+                        
+                    </TreeViewItem>
                 </TreeViewItem>
 
             </TreeView>
@@ -25,7 +68,7 @@
         <Border DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="2">
             <StackPanel HorizontalAlignment="Left" Height="50"
 				Orientation="Horizontal">
-                <Button Width="50" Margin="5"/>
+                <Button Width="50" Margin="5" Command="{Binding Path=OpenUchetTs}"/>
                 <Button Width="50" Margin="5"/>
                 <Button Width="50" Margin="5"/>
                 <Button Width="50" Margin="5"/>
@@ -38,8 +81,10 @@
             </StackPanel>
         </Border>
         <Border BorderBrush="Red" BorderThickness="2">
-            <StackPanel Name="stackUc" >
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel Name="stackUc" >
+                </StackPanel>
+            </ScrollViewer>
         </Border>
     </DockPanel>
 </Window>

@@ -17,5 +17,8 @@
     <Setting Name="DB_Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://91.212.89.201:57720</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
