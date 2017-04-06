@@ -81,6 +81,7 @@
     <Compile Include="Log\ILogService.cs" />
     <Compile Include="Model\CardModel.cs" />
     <Compile Include="Model\UserInfoModel.cs" />
+    <Compile Include="Utils\CryptoFuncs.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcCardInfoViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />

@@ -33,9 +33,11 @@
                         </Grid.ColumnDefinitions>
                         <TextBox Margin="5" 
                                  Name="txbUserId"
-                                 Grid.Column="0"></TextBox>
+                                 Grid.Column="0"
+                                 Text="{Binding Path=UserId, Mode=TwoWay}"></TextBox>
                         <Button Grid.Column="1" Margin="5"
-                                Content="Токен"></Button>
+                                Content="Токен"
+                                Command="{Binding Path=GetToken}"></Button>
                     </Grid>
                     <TextBlock Text="Токен" 
                                        Grid.Row="1" 
@@ -43,7 +45,10 @@
                                        Margin="5"></TextBlock>
                     <TextBox Grid.Row="1" 
                                      Grid.Column="1"
-                                     Margin="5"></TextBox>
+                                     Margin="5"
+                                     Name="tbxToken"
+                                     Text="{Binding Path=Token, Mode=TwoWay}"
+                                     IsReadOnly="True"></TextBox>
                 </Grid>
             </Border>
             <StackPanel Orientation="Horizontal" 

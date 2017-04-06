@@ -94,5 +94,17 @@ namespace SmartCardDesc.Properties {
                 this["ServiceUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("asdqwe123")]
+        public string KeyMD5 {
+            get {
+                return ((string)(this["KeyMD5"]));
+            }
+            set {
+                this["KeyMD5"] = value;
+            }
+        }
     }
 }

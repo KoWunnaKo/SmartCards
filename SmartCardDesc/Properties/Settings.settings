@@ -20,5 +20,8 @@
     <Setting Name="ServiceUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://91.212.89.201:57720</Value>
     </Setting>
+    <Setting Name="KeyMD5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">asdqwe123</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

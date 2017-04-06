@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCardDesc.ViewModel.ControlsViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace SmartCardDesc.Controls
         public UcCardInfo()
         {
             InitializeComponent();
+
+            DataContext = new UcCardInfoViewModel();
         }
     }
 }
