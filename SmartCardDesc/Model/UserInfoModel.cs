@@ -5,41 +5,62 @@ using System.Text;
 
 namespace SmartCardDesc.Model
 {
-    public class UserInfoModel
+    public class UserInfoModel : BaseItemModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string reg_dttm { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string first_name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string result { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string mid_name { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string pin { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string dob { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string gd { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string surname { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string per_adr { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string tin { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string pport_no { get; set; }
 
-        /*
-
-            <first_name>ULUG‘BEK</first_name>
-            <result>success</result>
-            <mid_name>ABDUVOIT O‘G‘LI</mid_name>
-            <pin>32512920201717</pin>
-         * 
-            <dob>25/12/1992</dob>
-            <gd>M</gd>
-            <surname>KO‘CHAROV</surname>
-            <per_adr>ГОРОД ТАШКЕНТ МИРАБАДСКИЙ РАЙОН НУКУС 1- ТУПИК 4-3</per_adr>
-            <tin>498975465</tin>
-            <pport_no>AA1011149</pport_no>
-         */
     }
 }

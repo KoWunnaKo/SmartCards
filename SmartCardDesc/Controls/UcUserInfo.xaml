@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="506" d:DesignWidth="378" Background="White">
+             d:DesignHeight="615.334" d:DesignWidth="378" Background="White">
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -59,135 +59,177 @@
                 <Button Content="Очистить" 
                                     Width="80" 
                                     Height="25"
-                                    Margin="10"></Button>
+                                    Margin="10"
+                        Command="{Binding ClearParams}"></Button>
                 <Button Content="Загрузить..." 
                                     Width="80" 
                                     Height="25"
-                                    Margin="10"></Button>
+                                    Margin="10"
+                        Command="{Binding GetUserInfo}"></Button>
             </StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="Резутьтаты:"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Border BorderBrush="Green" BorderThickness="2" Grid.Row="1">
-            <Grid Margin="10" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" 
-                   Grid.Column="0" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Left"
-                   Text="Дата Регистрации:"
-                   Margin="5"></TextBlock>
-                <TextBox Grid.Row="0" 
-                   Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="1" 
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="10" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Результат:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="1" 
+                    <TextBox Grid.Row="0" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="2" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.result}">
+                    </TextBox>
+                    <TextBlock Grid.Row="1" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Дата Регистрации:"
+                   Margin="5"></TextBlock>
+                    <TextBox Grid.Row="1" 
+                   Grid.Column="1"
+                         IsReadOnly="True"
+                     Margin="5" Text="{Binding Path=UserInfo.reg_dttm}">
+                    </TextBox>
+                    <TextBlock Grid.Row="4" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Отчество:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="2" 
+                    <TextBox Grid.Row="4" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="3" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.mid_name}">
+                    </TextBox>
+                    <TextBlock Grid.Row="10" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Пин:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="3" 
+                    <TextBox Grid.Row="10" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="4" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.pin}">
+                    </TextBox>
+                    <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Дата рождения:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="4" 
+                    <TextBox Grid.Row="6" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="5" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.dob}">
+                    </TextBox>
+                    <TextBlock Grid.Row="5" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Пол:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="5" 
+                    <TextBox Grid.Row="5" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="6" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.gd}">
+                    </TextBox>
+                    <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Фамилия:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="6" 
+                    <TextBox Grid.Row="2" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="7" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.surname}">
+                    </TextBox>
+                    <TextBlock Grid.Row="7" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Адрес:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="7" 
+                    <TextBox Grid.Row="7" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="8" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.per_adr}">
+                    </TextBox>
+                    <TextBlock Grid.Row="9" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Тин:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="8" 
+                    <TextBox Grid.Row="9" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-                <TextBlock Grid.Row="9" 
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.tin}">
+                    </TextBox>
+                    <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Left"
                    Text="Паспорт:"
                    Margin="5"></TextBlock>
-                <TextBox Grid.Row="9" 
+                    <TextBox Grid.Row="8" 
                    Grid.Column="1"
-                     Margin="5">
-                </TextBox>
-            </Grid>
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.pport_no}">
+                    </TextBox>
+                    <TextBlock Grid.Row="3" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Left"
+                   Text="Имя:"
+                   Margin="5"></TextBlock>
+                    <TextBox Grid.Row="3" 
+                   Grid.Column="1"
+                     Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=UserInfo.first_name}">
+                    </TextBox>
+                </Grid>
+                <Button HorizontalAlignment="Right" 
+                        Width="80" 
+                        Height="25"
+                        Content="Сохранить"
+                        Margin="5"></Button>
+            </StackPanel>
+
         </Border>
     </Grid>
 </UserControl>

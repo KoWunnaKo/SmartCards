@@ -23,6 +23,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         private string token;
         private string userId;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Token
         {
             get 
@@ -38,6 +41,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string UserId
         {
             get 

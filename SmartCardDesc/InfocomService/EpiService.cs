@@ -2,85 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-//using Epigov.Properties;
 using Epigov.Log;
 using System.Xml;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using SmartCardDesc.Properties;
+using SmartCardDesc.Model;
 
 namespace SmartCardDesc.InfocomService
 {
-    /// <summary>
-    /// EpiGov Return Codes
-    /// </summary>
-    public enum ReturnCodes
-    {
-        Success = 1200,
-        Unauthorized = 1401,
-        AccessNotAllowed = 1403,
-        NotFound = 1404
-    }
-
-    /// <summary>
-    /// EpiGov Message States
-    /// </summary>
-    public enum ApplicationStatus
-    {
-        New = 1,
-        InProcess = 2,
-        Accepted = 3,
-        Rejected = 4
-    }
-
-    /// <summary>
-    /// AIS Objects
-    /// </summary>
-    public enum AisServices
-    {
-        Patent = 52,
-        Util = 53,
-        Db = 54,
-        Soft = 55,
-        Zoo = 56,
-        Plant = 57,
-        Design = 58,
-        TradeMark = 59,
-        Micro = 270,
-        Origin = 271
-    }
-
     /// <summary>
     /// EpiGov Network Class
     /// </summary>
     public class EpiService
     {
-        private readonly AisServices _currentService;
-
-        private readonly Dictionary<AisServices, string> _serviceAuthList;
-
-        private string _authprocId;
-
         private readonly ILogService _logService;
-
-        //public EpiTasksReturn TasksReturn;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="currentService"></param>
-        public EpiService(AisServices currentService)
-        {
-            _logService = new FileLogService(typeof(EpiService));
-            _logService.Info("EpiGov Service");
-
-            _serviceAuthList = new Dictionary<AisServices, string>();
-
-            _currentService = currentService;
-
-            SetServiceAuthCollection();
-        }
 
         /// <summary>
         /// 
@@ -89,122 +26,173 @@ namespace SmartCardDesc.InfocomService
         {
             _logService = new FileLogService(typeof(EpiService));
             _logService.Info("EpiGov Service");
-
-            _serviceAuthList = new Dictionary<AisServices, string>();
-
-            _currentService = AisServices.TradeMark;
-
-            SetServiceAuthCollection();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void SetServiceAuthCollection()
+        /// <param name="pUserId"></param>
+        /// <param name="pToken"></param>
+        /// <returns></returns>
+        public Task<UserInfoModel> GetUserId(string pUserId, string pToken)
         {
-            //_serviceAuthList.Add(AisServices.Patent, Settings.Default.authproc_id_Plant);
-            //_serviceAuthList.Add(AisServices.Util, Settings.Default.authproc_id_Util);
-            //_serviceAuthList.Add(AisServices.Db, Settings.Default.authproc_id_Db);
-            //_serviceAuthList.Add(AisServices.Soft, Settings.Default.authproc_id_Soft);
-            //_serviceAuthList.Add(AisServices.Zoo, Settings.Default.authproc_id_Zoo);
-            //_serviceAuthList.Add(AisServices.Plant, Settings.Default.authproc_id_Plant);
-            //_serviceAuthList.Add(AisServices.Design, Settings.Default.authproc_id_Design);
-            //_serviceAuthList.Add(AisServices.TradeMark, Settings.Default.authproc_id_TradeMark);
-            //_serviceAuthList.Add(AisServices.Micro, Settings.Default.authproc_id_Micro);
-            //_serviceAuthList.Add(AisServices.Origin, Settings.Default.authproc_id_TovarPlace);
-
-            foreach (var obj in _serviceAuthList.Where(obj => obj.Key == _currentService))
+            var resultTask = Task.Factory.StartNew(()=>
             {
-                _authprocId = obj.Value;
-            }
-        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        //public Task<List<TasksCL>> GetTasks()
-        //{
-        //    var tresult = Task.Factory.StartNew(() =>
-        //    {
-        //        _logService.Info("=============GetTasks=================");
+                    UserInfoModel model = null;
 
-        //        string result = string.Empty;
+                    try
+                    {
+                        var xml = getUserById(pUserId, pToken);
 
-        //        CLGetTasks method = new CLGetTasks(_authprocId);
+                        var result = CallWebService("getUserById", xml);
 
-        //        method.ResultSoap = CallWebService(method.methodName, method.SoapEnvelop);
+                        model = ParseGetUserIdMethod(result);
+                    }
+                    catch(Exception ex)
+                    {
+                        _logService.Error(ex.ToString());
+                    }
 
-        //        method.ParseXml();
+                    return model;
+            }); 
 
-        //        result = method.ResultInnerXml;
-
-        //        return method.listTask;
-        //    });
-
-        //    return tresult;
-        //}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="appl"></param>
-        /// <returns></returns>
-        //public Task<CLGetExactTask> GetExactTasks(string appl , AisServices ois)
-        //{
-        //    var tresult = Task.Factory.StartNew(() =>
-        //    {
-        //        _logService.Info("=============GetTasks=================");
-            
-        //        string result = string.Empty;
-
-        //        CLGetExactTask method = new CLGetExactTask(appl, ois);
-            
-        //        method.ResultSoap = CallWebService(method.methodName, method.SoapEnvelop);
-            
-        //        method.ParseXml();
-            
-        //        result = method.ResultInnerXml;
-            
-        //        _logService.Info(result);
-            
-        //        return method;
-        //    });
-
-        //    return tresult;
-        //}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="incomeMessage"></param>
-        /// <returns></returns>
-        //public Task SetTaskStatus(CLSetTasksStatus incomeMessage)
-        //{
-        //    var tresult = Task.Factory.StartNew(() =>
-        //    {
-        //        _logService.Info("=============SetTaskStatus=================");
-
-
-        //        incomeMessage.ResultSoap = CallWebService(incomeMessage.methodName, incomeMessage.SoapEnvelop);
-
-        //        incomeMessage.ParseXml();
-
-        //        string result = incomeMessage.ResultInnerXml;
-
-        //        _logService.Info(result);
-
-        //    });
-
-        //    return tresult;
-        //}
-
-        public void TestGetUserId()
-        {
-            var xml = getUserById("ulugbek", "5127189a315ad39b21bc4eab6b602cb6");
-
-            CallWebService("getUserById", xml);
+            return resultTask;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pResult"></param>
+        /// <returns></returns>
+        private UserInfoModel  ParseGetUserIdMethod(string pResult)
+        {
+            string ResultInnerXml = string.Empty;
+            string OrigResultInnerXml = string.Empty;
+
+            var userInfo = new UserInfoModel();
+
+            XmlDocument resultXml = new XmlDocument();
+
+            ResultInnerXml = WebUtility.HtmlDecode(pResult);
+
+            OrigResultInnerXml = ResultInnerXml;
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            #region Header
+            var list = resultXml.GetElementsByTagName("env:Header"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("wsc:CoordinationContext"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlAttribute attribute in obj.Attributes)
+                {
+                    if (attribute.Name.Equals("globalTransactionID"))
+                    {
+                        userInfo.globalTransactionID = attribute.Value;
+                    }
+
+                    if (attribute.Name.Equals("localTransactionID"))
+                    {
+                        userInfo.localTransactionID = attribute.Value;
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Body
+
+            resultXml.LoadXml(OrigResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("env:Body"); //
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("x:res"); //
+
+            foreach (XmlNode obj in list)
+            {
+                foreach(XmlNode child in obj.ChildNodes)
+                {
+                    if (child.Name.Equals("reg_dttm"))
+                    {
+                        userInfo.reg_dttm = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("first_name"))
+                    {
+                        userInfo.first_name = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("result"))
+                    {
+                        userInfo.result = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("mid_name"))
+                    {
+                        userInfo.mid_name = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("pin"))
+                    {
+                        userInfo.pin = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("dob"))
+                    {
+                        userInfo.dob = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("gd"))
+                    {
+                        userInfo.gd = child.InnerText;
+                    }
+
+
+                    if (child.Name.Equals("surname"))
+                    {
+                        userInfo.surname = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("per_adr"))
+                    {
+                        userInfo.per_adr = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("tin"))
+                    {
+                        userInfo.tin = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("pport_no"))
+                    {
+                        userInfo.pport_no = child.InnerText;
+                    }
+
+                }
+            }
+
+            #endregion
+
+            return userInfo;
+        }
+
         public void TestGetUserCard()
         {
             var xml = getUserCard("ulugbek", "5127189a315ad39b21bc4eab6b602cb6");

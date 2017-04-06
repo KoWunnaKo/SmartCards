@@ -8,6 +8,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
     internal class UcInsertCardViewModel : ViewModelBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public RelayCommand GetToken { get; private set; }
 
         public UcInsertCardViewModel()
@@ -23,6 +26,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         private string token;
         private string userId;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Token
         {
             get 
@@ -38,6 +44,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string UserId
         {
             get 
