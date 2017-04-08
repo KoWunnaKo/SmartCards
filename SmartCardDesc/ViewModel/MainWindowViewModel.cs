@@ -1,8 +1,5 @@
 ﻿using SmartCardDesc.InfocomService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SmartCardDesc.ViewModel.ControlsViewModel;
 using System.Windows;
 
 namespace SmartCardDesc.ViewModel
@@ -28,9 +25,11 @@ namespace SmartCardDesc.ViewModel
 
         private void fOpenUchetTs()
         {
-            //MessageBox.Show("fOpenUchetTs");
+            //CardRSAGenViewModel obj = new CardRSAGenViewModel();
 
-            api.TestGetUserCard();
+
+
+            //obj.TestCard();
         }
 
         private void fOpenServiceIA()

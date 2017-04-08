@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\obj\Debug\
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\
 SmartCardDesc
 none
 false
 DEBUG;TRACE
-C:\RAD SOFT\PROJECTS\SmartKard\SmartCardDesc\SmartCardDesc\App.xaml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\App.xaml
 71237403469
 
-31411877605
-14-1956390759
+32-24947611
+15874081048
 Controls\UcCardInfo.xaml;Controls\UcInsertCard.xaml;Controls\UcUpdateCard.xaml;Controls\UcUserInfo.xaml;MainWindow.xaml;Views\ServiceManageWindow.xaml;Views\UserInfoWindow.xaml;
 
 False

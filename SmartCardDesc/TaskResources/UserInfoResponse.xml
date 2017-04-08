@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header>
+    <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="27e61be4-152e-11e7-af71-00ff85f06e57" localTransactionID="27e61be3-152e-11e7-af71-00ff85f06e57"/>
+  </env:Header>
+  <env:Body>
+    <x:res xmlns:x="urn:megaware:/mediate/ips/testIdUz/getUserById/getUserById.wsdl">
+      <reg_dttm>22/02/2017</reg_dttm>
+      <first_name>ULUG‘BEK</first_name>
+      <result>success</result>
+      <mid_name>ABDUVOIT O‘G‘LI</mid_name>
+      <pin>32512920201717</pin>
+      <dob>25/12/1992</dob>
+      <gd>M</gd>
+      <surname>KO‘CHAROV</surname>
+      <per_adr>ГОРОД ТАШКЕНТ МИРАБАДСКИЙ РАЙОН НУКУС 1- ТУПИК 4-3</per_adr>
+      <tin>498975465</tin>
+      <pport_no>AA1011149</pport_no>
+    </x:res>
+  </env:Body>
+</env:Envelope>

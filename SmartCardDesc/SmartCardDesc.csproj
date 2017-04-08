@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmartCardDesc</RootNamespace>
     <AssemblyName>SmartCardDesc</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,10 +37,28 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\DISK D\KP5\kp5\kp5\lib\log4net.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>Lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -64,6 +83,9 @@
     <Compile Include="Controls\UcCardInfo.xaml.cs">
       <DependentUpon>UcCardInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcGenCardRSA.xaml.cs">
+      <DependentUpon>UcGenCardRSA.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcInsertCard.xaml.cs">
       <DependentUpon>UcInsertCard.xaml</DependentUpon>
     </Compile>
@@ -86,6 +108,7 @@
     <Compile Include="Model\CardModel.cs" />
     <Compile Include="Model\UserInfoModel.cs" />
     <Compile Include="Utils\CryptoFuncs.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\CardRSAGenViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcCardInfoViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
@@ -100,6 +123,10 @@
       <DependentUpon>UserInfoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\UcCardInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UcGenCardRSA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -899,6 +926,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Zoom.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\UserInfoReqiest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\UserInfoResponse.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\CardInfoRequest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\CardInfoResponce.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\InsertCardRequest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\InsertCardResponce.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\UpdateCardRequest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TaskResources\UpdateCardResponce.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj">
+      <Project>{a82daf31-8264-4735-a896-d6a025952a6c}</Project>
+      <Name>ClassLibrary1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

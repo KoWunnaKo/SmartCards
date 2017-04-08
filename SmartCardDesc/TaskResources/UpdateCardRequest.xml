@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:upd="urn:megaware:/mediate/ips/testIdUz/updateUserCard/updateUserCard.wsdl">
+  <x:Header/>
+  <x:Body>
+    <upd:req>
+      <upd:token>5127189a315ad39b21bc4eab6b602cb6</upd:token>
+      <upd:user_id>ulugbek</upd:user_id>
+      <upd:card_stat>1</upd:card_stat>
+      <upd:issue_date>2018-12-10</upd:issue_date>
+      <upd:exp_date>2019-12-10</upd:exp_date>
+    </upd:req>
+  </x:Body>
+</x:Envelope>

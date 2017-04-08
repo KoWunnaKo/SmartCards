@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<x:Envelope xmlns:x=""http:=""//schemas.xmlsoap.org/soap/envelope/"" xmlns:ins=""urn:megaware:/mediate/ips/testIdUz/insertUserCard/insertUserCard.wsdl"">
+<x:Header/>
+<x:Body>
+  <ins:req>
+    <ins:token>5127189a315ad39b21bc4eab6b602cb6</ins:token>
+    <ins:user_id>ulugbek</ins:user_id>
+    <ins:card_num>CARD002</ins:card_num>
+    <ins:issue_date>2018-12-10</ins:issue_date>
+    <ins:exp_date>2019-12-10</ins:exp_date>
+  </ins:req>
+</x:Body>
+</x:Envelope>

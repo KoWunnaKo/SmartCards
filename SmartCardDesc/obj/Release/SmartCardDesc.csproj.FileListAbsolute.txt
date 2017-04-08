@@ -1,0 +1,17 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Release\SmartCardDesc.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcCardInfo.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcInsertCard.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcUpdateCard.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcUserInfo.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Views\ServiceManageWindow.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Views\UserInfoWindow.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcCardInfo.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcInsertCard.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcUpdateCard.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Controls\UcUserInfo.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\MainWindow.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Views\ServiceManageWindow.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\Views\UserInfoWindow.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\App.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\SmartCardDesc_MarkupCompile.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Release\SmartCardDesc_MarkupCompile.lref

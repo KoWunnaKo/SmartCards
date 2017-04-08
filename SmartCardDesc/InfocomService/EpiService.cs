@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using Epigov.Log;
 using System.Xml;
-using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using SmartCardDesc.Properties;
@@ -193,13 +190,12 @@ namespace SmartCardDesc.InfocomService
             return userInfo;
         }
 
-        public void TestGetUserCard()
-        {
-            var xml = getUserCard("ulugbek", "5127189a315ad39b21bc4eab6b602cb6");
-
-            CallWebService("getUserCard", xml);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         private XmlDocument getUserById(string userId, string token)
         {
             var SoapEnvelop = new XmlDocument();
@@ -215,37 +211,50 @@ namespace SmartCardDesc.InfocomService
                                                     </x:Body>
                                                 </x:Envelope>", userId, token);
 
-            //ulugbek
-            //5127189a315ad39b21bc4eab6b602cb6
-
             SoapEnvelop.LoadXml(resultSoap);
 
             return SoapEnvelop;
-
-            /*
-             * <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
-    <env:Header>
-        <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="27e61be4-152e-11e7-af71-00ff85f06e57" localTransactionID="27e61be3-152e-11e7-af71-00ff85f06e57"/>
-    </env:Header>
-    <env:Body>
-        <x:res xmlns:x="urn:megaware:/mediate/ips/testIdUz/getUserById/getUserById.wsdl">
-            <reg_dttm>22/02/2017</reg_dttm>
-            <first_name>ULUG‘BEK</first_name>
-            <result>success</result>
-            <mid_name>ABDUVOIT O‘G‘LI</mid_name>
-            <pin>32512920201717</pin>
-            <dob>25/12/1992</dob>
-            <gd>M</gd>
-            <surname>KO‘CHAROV</surname>
-            <per_adr>ГОРОД ТАШКЕНТ МИРАБАДСКИЙ РАЙОН НУКУС 1- ТУПИК 4-3</per_adr>
-            <tin>498975465</tin>
-            <pport_no>AA1011149</pport_no>
-        </x:res>
-    </env:Body>
-</env:Envelope>
-             */
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUserId"></param>
+        /// <param name="pToken"></param>
+        /// <returns></returns>
+        public Task<CardModel> GetUserCardInfo(string pUserId, string pToken)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+
+                CardModel model = null;
+
+                try
+                {
+                    var xml = getUserCard(pUserId, pToken);
+
+                    var result = CallWebService("getUserCard", xml);
+
+                    model = ParseGetUserCardInfoMethod(result);
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+                }
+
+                return model;
+            });
+
+            return resultTask;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         private XmlDocument getUserCard(string userId, string token)
         {
             var SoapEnvelop = new XmlDocument();
@@ -261,96 +270,357 @@ namespace SmartCardDesc.InfocomService
                                                     </x:Body>
                                                 </x:Envelope>", userId, token);
 
-            //ulugbek
-            //5127189a315ad39b21bc4eab6b602cb6
+            SoapEnvelop.LoadXml(resultSoap);
+
+            return SoapEnvelop;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pResult"></param>
+        /// <returns></returns>
+        private CardModel ParseGetUserCardInfoMethod(string pResult)
+        {
+            string ResultInnerXml = string.Empty;
+            string OrigResultInnerXml = string.Empty;
+
+            var CardInfo = new CardModel();
+
+            XmlDocument resultXml = new XmlDocument();
+
+            ResultInnerXml = WebUtility.HtmlDecode(pResult);
+
+            OrigResultInnerXml = ResultInnerXml;
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            #region Header
+            var list = resultXml.GetElementsByTagName("env:Header"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("wsc:CoordinationContext"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlAttribute attribute in obj.Attributes)
+                {
+                    if (attribute.Name.Equals("globalTransactionID"))
+                    {
+                        CardInfo.globalTransactionID = attribute.Value;
+                    }
+
+                    if (attribute.Name.Equals("localTransactionID"))
+                    {
+                        CardInfo.localTransactionID = attribute.Value;
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Body
+
+            resultXml.LoadXml(OrigResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("env:Body"); //
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("x:resp"); //
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlNode child in obj.ChildNodes)
+                {
+                    if (child.Name.Equals("result"))
+                    {
+                        CardInfo.result = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("card_stat"))
+                    {
+                        CardInfo.card_stat = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("issue_date"))
+                    {
+                        CardInfo.issue_date = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("card_num"))
+                    {
+                        CardInfo.card_num = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("user_id"))
+                    {
+                        CardInfo.user_id = child.InnerText;
+                    }
+
+                    if (child.Name.Equals("expiry_date"))
+                    {
+                        CardInfo.expiry_date = child.InnerText;
+                    }
+                }
+            }
+
+            #endregion
+
+            return CardInfo;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <param name="cardNumber"></param>
+        /// <param name="issue_date"></param>
+        /// <param name="exp_date"></param>
+        /// <returns></returns>
+        public Task<CardModel> InsertCardInfo(string userId,
+                                            string token,
+                                            string cardNumber,
+                                            string issue_date,
+                                            string exp_date)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+
+                CardModel model = null;
+
+                try
+                {
+                    var xml = insertCardInfo(userId,
+                                             token,
+                                             cardNumber,
+                                             issue_date,
+                                             exp_date);
+
+                    var result = CallWebService("insertUserCard", xml);
+
+                    model = ParseInsertCardInfoMethod(result);
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+                }
+
+                return model;
+            });
+
+            return resultTask;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <param name="cardNumber"></param>
+        /// <param name="issue_date"></param>
+        /// <param name="exp_date"></param>
+        /// <returns></returns>
+        private XmlDocument insertCardInfo( string userId, 
+                                            string token, 
+                                            string cardNumber,
+                                            string issue_date,
+                                            string exp_date)
+        {
+            var SoapEnvelop = new XmlDocument();
+
+            string resultSoap = string.Format(@"<?xml version=""1.0"" encoding=""UTF-8""?>
+                                                <x:Envelope xmlns:x=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:ins=""urn:megaware:/mediate/ips/testIdUz/insertUserCard/insertUserCard.wsdl"">
+                                                      <x:Header/>
+                                                        <x:Body>
+                                                            <ins:req>
+                                                                <ins:token>{0}</ins:token>
+                                                                <ins:user_id>{1}</ins:user_id>
+                                                                <ins:card_num>{2}</ins:card_num>
+                                                                <ins:issue_date>{3}</ins:issue_date>
+                                                                <ins:exp_date>{4}</ins:exp_date>
+                                                            </ins:req>
+                                                        </x:Body>
+                                                    </x:Envelope>", token , userId, cardNumber, issue_date, exp_date);
 
             SoapEnvelop.LoadXml(resultSoap);
 
             return SoapEnvelop;
-
-            /*
-             <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
-    <env:Header>
-        <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="cafbb0b4-153d-11e7-af71-00ff85f06e57" localTransactionID="cafbb0b3-153d-11e7-af71-00ff85f06e57"/>
-    </env:Header>
-    <env:Body>
-        <x:resp xmlns:x="urn:megaware:/mediate/ips/testIdUz/getUserCard/getUserCard.wsdl">
-            <result>Success</result>
-            <card_stat>Y</card_stat>
-            <issue_date>2018-12-10</issue_date>
-            <card_num>CARD001</card_num>
-            <user_id>ulugbek</user_id>
-            <expiry_date>2019-12-10</expiry_date>
-        </x:resp>
-    </env:Body>
-</env:Envelope>
-             */
         }
 
-        private XmlDocument insertCardInfo()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pResult"></param>
+        /// <returns></returns>
+        private CardModel ParseInsertCardInfoMethod(string pResult)
         {
-            /* Enter XML
-             * <x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins="urn:megaware:/mediate/ips/testIdUz/insertUserCard/insertUserCard.wsdl">
-    <x:Header/>
-    <x:Body>
-        <ins:req>
-            <ins:token>5127189a315ad39b21bc4eab6b602cb6</ins:token>
-            <ins:user_id>ulugbek</ins:user_id>
-            <ins:card_num>CARD002</ins:card_num>
-            <ins:issue_date>2018-12-10</ins:issue_date>
-            <ins:exp_date>2019-12-10</ins:exp_date>
-        </ins:req>
-    </x:Body>
-</x:Envelope>*
-             */
+            string ResultInnerXml = string.Empty;
+            string OrigResultInnerXml = string.Empty;
 
+            var CardInfo = new CardModel();
 
-            /*
-             * <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
-    <env:Header>
-        <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="88d0089f-153e-11e7-af71-00ff85f06e57" localTransactionID="88d0089e-153e-11e7-af71-00ff85f06e57"/>
-    </env:Header>
-    <env:Body>
-        <x:resp xmlns:x="urn:megaware:/mediate/ips/testIdUz/insertUserCard/insertUserCard.wsdl">
-            <result>Denied</result>
-        </x:resp>
-    </env:Body>
-</env:Envelope>
-             */
-            return null;
+            XmlDocument resultXml = new XmlDocument();
+
+            ResultInnerXml = WebUtility.HtmlDecode(pResult);
+
+            OrigResultInnerXml = ResultInnerXml;
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            #region Header
+            var list = resultXml.GetElementsByTagName("env:Header"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("wsc:CoordinationContext"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlAttribute attribute in obj.Attributes)
+                {
+                    if (attribute.Name.Equals("globalTransactionID"))
+                    {
+                        CardInfo.globalTransactionID = attribute.Value;
+                    }
+
+                    if (attribute.Name.Equals("localTransactionID"))
+                    {
+                        CardInfo.localTransactionID = attribute.Value;
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Body
+
+            resultXml.LoadXml(OrigResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("env:Body"); //
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("x:resp"); //
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlNode child in obj.ChildNodes)
+                {
+                    if (child.Name.Equals("result"))
+                    {
+                        CardInfo.result = child.InnerText;
+                    }
+                }
+            }
+
+            #endregion
+
+            return CardInfo;
         }
 
-        private XmlDocument updateCardInfo()
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <param name="card_stat"></param>
+        /// <param name="issue_date"></param>
+        /// <param name="exp_date"></param>
+        /// <returns></returns>
+        public Task<CardModel> UpdateCardInfo(string userId,
+                                    string token,
+                                    string card_stat,
+                                    string issue_date,
+                                    string exp_date)
         {
-            /* Enter XML
-<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:upd="urn:megaware:/mediate/ips/testIdUz/updateUserCard/updateUserCard.wsdl">
-    <x:Header/>
-    <x:Body>
-        <upd:req>
-            <upd:token>5127189a315ad39b21bc4eab6b602cb6</upd:token>
-            <upd:user_id>ulugbek</upd:user_id>
-            <upd:card_stat>1</upd:card_stat>
-            <upd:issue_date>2018-12-10</upd:issue_date>
-            <upd:exp_date>2019-12-10</upd:exp_date>
-        </upd:req>
-    </x:Body>
-</x:Envelope>
-             */
+            var resultTask = Task.Factory.StartNew(() =>
+            {
 
+                CardModel model = null;
 
-            /*
-<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
-    <env:Header>
-        <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="db698217-153e-11e7-af71-00ff85f06e57" localTransactionID="db698216-153e-11e7-af71-00ff85f06e57"/>
-    </env:Header>
-    <env:Body>
-        <x:res xmlns:x="urn:megaware:/mediate/ips/testIdUz/updateUserCard/updateUserCard.wsdl">
-            <result>Denied</result>
-        </x:res>
-    </env:Body>
-</env:Envelope>
-             */
-            return null;
+                try
+                {
+                    var xml = updateCardInfo(userId,
+                                             token,
+                                             card_stat,
+                                             issue_date,
+                                             exp_date);
+
+                    var result = CallWebService("updateUserCard", xml);
+
+                    model = ParseInsertCardInfoMethod(result);
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+                }
+
+                return model;
+            });
+
+            return resultTask;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <param name="card_stat"></param>
+        /// <param name="issue_date"></param>
+        /// <param name="exp_date"></param>
+        /// <returns></returns>
+        private XmlDocument updateCardInfo(string userId,
+                                            string token,
+                                            string card_stat,
+                                            string issue_date,
+                                            string exp_date)
+        {
+            var SoapEnvelop = new XmlDocument();
+
+            string resultSoap = string.Format(@"<?xml version=""1.0"" encoding=""UTF-8""?>
+                                                <x:Envelope xmlns:x=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:upd=""urn:megaware:/mediate/ips/testIdUz/updateUserCard/updateUserCard.wsdl"">
+                                                        <x:Header/>
+                                                        <x:Body>
+                                                            <upd:req>
+                                                                <upd:token>{0}</upd:token>
+                                                                <upd:user_id>{1}</upd:user_id>
+                                                                <upd:card_stat>{2}</upd:card_stat>
+                                                                <upd:issue_date>{3}</upd:issue_date>
+                                                                <upd:exp_date>{4}</upd:exp_date>
+                                                            </upd:req>
+                                                        </x:Body>
+                                                    </x:Envelope>", token, userId, card_stat, issue_date, exp_date);
+
+            SoapEnvelop.LoadXml(resultSoap);
+
+            return SoapEnvelop;
         }
 
         /// <summary>

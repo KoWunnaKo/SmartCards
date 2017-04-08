@@ -59,7 +59,7 @@ namespace SmartCardDesc
                     }
                     else
                     {
-                        return;
+                        control = new UcGenCardRSA();
                     }
                     
                     stackUc.Children.Add(control);

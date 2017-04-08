@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header>
+    <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="cafbb0b4-153d-11e7-af71-00ff85f06e57" localTransactionID="cafbb0b3-153d-11e7-af71-00ff85f06e57"/>
+  </env:Header>
+  <env:Body>
+    <x:resp xmlns:x="urn:megaware:/mediate/ips/testIdUz/getUserCard/getUserCard.wsdl">
+      <result>Success</result>
+      <card_stat>Y</card_stat>
+      <issue_date>2018-12-10</issue_date>
+      <card_num>CARD001</card_num>
+      <user_id>ulugbek</user_id>
+      <expiry_date>2019-12-10</expiry_date>
+    </x:resp>
+  </env:Body>
+</env:Envelope>

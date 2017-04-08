@@ -57,11 +57,14 @@
                 <Button Content="Очистить" 
                                     Width="80" 
                                     Height="25"
-                                    Margin="10"></Button>
+                                    Margin="10"
+                                    Command="{Binding ClearParams}"
+                        ></Button>
                 <Button Content="Загрузить..." 
                                     Width="80" 
                                     Height="25"
-                                    Margin="10"></Button>
+                                    Margin="10"
+                                    Command="{Binding GetCardInfo}"></Button>
             </StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="Результаты:"></TextBlock>
@@ -89,7 +92,9 @@
                                        Margin="5"></TextBlock>
                 <TextBox Grid.Row="0" 
                                       Grid.Column="1"
-                                      Margin="10">
+                                      Margin="10"
+                         IsReadOnly="True"
+                         Text="{Binding Path=CardInfo.result}">
                 </TextBox>
                 <TextBlock Grid.Row="1" 
                                        Grid.Column="0" 
@@ -99,7 +104,10 @@
                                        Margin="5"></TextBlock>
                 <TextBox Grid.Row="1" 
                                       Grid.Column="1"
-                                      Margin="10">
+                                      Margin="10"
+                         IsReadOnly="True"
+                         Text="{Binding Path=CardInfo.card_stat}"
+                         >
                 </TextBox>
                 <TextBlock Grid.Row="2" 
                                        Grid.Column="0" 
@@ -109,7 +117,9 @@
                                        Margin="5"></TextBlock>
                 <TextBox Grid.Row="2" 
                                       Grid.Column="1"
-                                      Margin="10">
+                                      Margin="10"
+                         IsReadOnly="True"
+                         Text="{Binding Path=CardInfo.issue_date}">
                 </TextBox>
                 <TextBlock Grid.Row="3" 
                                        Grid.Column="0" 
@@ -119,7 +129,9 @@
                                        Margin="5"></TextBlock>
                 <TextBox Grid.Row="3" 
                                       Grid.Column="1"
-                                      Margin="10">
+                                      Margin="10"
+                         IsReadOnly="True"
+                         Text="{Binding Path=CardInfo.card_num}">
                 </TextBox>
                 <TextBlock Grid.Row="4" 
                                        Grid.Column="0" 
@@ -129,7 +141,9 @@
                                        Margin="5"></TextBlock>
                 <TextBox Grid.Row="4" 
                                       Grid.Column="1"
-                                      Margin="10">
+                                      Margin="10"
+                         IsReadOnly="True"
+                         Text="{Binding Path=CardInfo.user_id}">
                 </TextBox>
                 <TextBlock Grid.Row="5" 
                                        Grid.Column="0" 
@@ -139,7 +153,9 @@
                                        Margin="5"></TextBlock>
                 <TextBox Grid.Row="5" 
                                       Grid.Column="1"
-                                      Margin="10">
+                                      Margin="10"
+                         IsReadOnly="True"
+                         Text="{Binding Path=CardInfo.expiry_date}">
                 </TextBox>
             </Grid>
         </Border>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<x:Envelope xmlns:x=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:get=""urn:megaware:/mediate/ips/testIdUz/getUserById/getUserById.wsdl"">
+    <x:Header/>
+    <x:Body>
+        <get:req>
+            <get:user_id>{0}</get:user_id>
+            <get:token>{1}</get:token>
+        </get:req>
+    </x:Body>
+</x:Envelope>

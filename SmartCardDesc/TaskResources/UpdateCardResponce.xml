@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header>
+    <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="db698217-153e-11e7-af71-00ff85f06e57" localTransactionID="db698216-153e-11e7-af71-00ff85f06e57"/>
+  </env:Header>
+  <env:Body>
+    <x:res xmlns:x="urn:megaware:/mediate/ips/testIdUz/updateUserCard/updateUserCard.wsdl">
+      <result>Denied</result>
+    </x:res>
+  </env:Body>
+</env:Envelope>
