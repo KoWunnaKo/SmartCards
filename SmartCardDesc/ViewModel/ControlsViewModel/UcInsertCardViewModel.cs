@@ -1,21 +1,58 @@
-﻿using SmartCardDesc.Utils;
+﻿using SmartCardDesc.InfocomService;
+using SmartCardDesc.Model;
+using SmartCardDesc.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
     internal class UcInsertCardViewModel : ViewModelBase
     {
+
+        private EpiService service;
         /// <summary>
         /// 
         /// </summary>
         public RelayCommand GetToken { get; private set; }
 
+        public RelayCommand GetNumber { get; private set; }
+
+        public RelayCommand LoadResults { get; private set; }
+
+        public RelayCommand ClearResults { get; private set; }
+
+
         public UcInsertCardViewModel()
         {
             GetToken = new RelayCommand(_ => fGetToken());
+
+            GetNumber = new RelayCommand(_ => fGetNumber());
+
+            LoadResults = new RelayCommand(_ => fLoadResults());
+
+            ClearResults = new RelayCommand(_ => fClearResults());
+
+            IssueDate = DateTime.Now;
+            ExpireDate = DateTime.Now;
+
+            service = new EpiService();
+        }
+
+        private void fClearResults()
+        {
+            UserId = string.Empty;
+            Token = string.Empty;
+            Number = string.Empty;
+            IssueDate = DateTime.MinValue;
+            ExpireDate = DateTime.MinValue;
+        }
+
+        private async void fLoadResults()
+        {
+            Model = await service.InsertCardInfo(UserId,
+                                           Token,
+                                           Number,
+                                           IssueDate.ToString("yyyy-MM-dd"),
+                                           ExpireDate.ToString("yyyy-MM-dd"));
         }
 
         private void fGetToken()
@@ -23,9 +60,48 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             Token = CryptoFuncs.GetMD5(UserId);
         }
 
+        private void fGetNumber()
+        {
+            Number = CardTools.GenerateCardNumber();
+        }
+
         private string token;
         private string userId;
+        private string number;
+        private DateTime issueDate;
+        private DateTime expireDate;
 
+        public DateTime IssueDate
+        {
+            get
+            {
+                return issueDate;
+            }
+
+            set
+            {
+                issueDate = value;
+
+                OnPropertyChanged("IssueDate");
+            }
+        }
+
+        public DateTime ExpireDate
+        {
+            get
+            {
+                return expireDate;
+            }
+
+            set
+            {
+                expireDate = value;
+
+                OnPropertyChanged("ExpireDate");
+            }
+        }
+
+        
         /// <summary>
         /// 
         /// </summary>
@@ -60,5 +136,39 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 OnPropertyChanged("UserId");
             }
         }
+
+        public string Number
+        {
+            get
+            {
+                return number;
+            }
+
+            set
+            {
+                number = value;
+
+                OnPropertyChanged("Number");
+            }
+        }
+
+        private CardModel _model;
+
+        public CardModel Model
+        {
+            get
+            {
+                return _model;
+            }
+
+            set
+            {
+                _model = value;
+
+                OnPropertyChanged("Model");
+            }
+        }
+
+
     }
 }

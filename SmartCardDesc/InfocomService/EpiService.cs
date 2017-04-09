@@ -49,6 +49,11 @@ namespace SmartCardDesc.InfocomService
                     catch(Exception ex)
                     {
                         _logService.Error(ex.ToString());
+
+                        if (model == null)
+                            model = new UserInfoModel();
+
+                        model.result = ex.Message;
                     }
 
                     return model;
@@ -241,6 +246,11 @@ namespace SmartCardDesc.InfocomService
                 catch (Exception ex)
                 {
                     _logService.Error(ex.ToString());
+
+                    if (model == null)
+                        model = new CardModel();
+
+                    model.result = ex.Message;
                 }
 
                 return model;
@@ -417,6 +427,11 @@ namespace SmartCardDesc.InfocomService
                 catch (Exception ex)
                 {
                     _logService.Error(ex.ToString());
+
+                    if (model == null)
+                        model = new CardModel();
+
+                    model.result = ex.Message;
                 }
 
                 return model;
@@ -579,6 +594,11 @@ namespace SmartCardDesc.InfocomService
                 catch (Exception ex)
                 {
                     _logService.Error(ex.ToString());
+
+                    if (model == null)
+                        model = new CardModel();
+
+                    model.result = ex.Message;
                 }
 
                 return model;
