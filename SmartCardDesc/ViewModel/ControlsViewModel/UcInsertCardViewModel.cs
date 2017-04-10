@@ -48,11 +48,19 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private async void fLoadResults()
         {
+            IsIntermadiate = true;
+
+            StatusText = "Загрузка...";
+
             Model = await service.InsertCardInfo(UserId,
                                            Token,
                                            Number,
                                            IssueDate.ToString("yyyy-MM-dd"),
                                            ExpireDate.ToString("yyyy-MM-dd"));
+
+            IsIntermadiate = false;
+
+            StatusText = string.Empty;
         }
 
         private void fGetToken()
@@ -166,6 +174,40 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 _model = value;
 
                 OnPropertyChanged("Model");
+            }
+        }
+
+        private bool _isIntermadiate;
+
+        public bool IsIntermadiate
+        {
+            get
+            {
+                return _isIntermadiate;
+            }
+
+            set
+            {
+                _isIntermadiate = value;
+
+                OnPropertyChanged("IsIntermadiate");
+            }
+        }
+
+        private string _statusText;
+
+        public string StatusText
+        {
+            get
+            {
+                return _statusText;
+            }
+
+            set
+            {
+                _statusText = value;
+
+                OnPropertyChanged("StatusText");
             }
         }
 

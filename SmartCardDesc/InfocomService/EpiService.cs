@@ -174,7 +174,7 @@ namespace SmartCardDesc.InfocomService
 
                     if (child.Name.Equals("per_adr"))
                     {
-                        userInfo.per_adr = child.InnerText;
+                        userInfo.PerAdr = child.InnerText;
                     }
 
                     if (child.Name.Equals("tin"))

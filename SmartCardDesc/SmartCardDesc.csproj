@@ -76,7 +76,9 @@
       <HintPath>Lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -116,11 +118,17 @@
     <Compile Include="Db\DbHelper.cs" />
     <Compile Include="Db\DBModel.cs" />
     <Compile Include="Db\SortableBindingList.cs" />
+    <Compile Include="EntityModel\SmartCardDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartCardDs.xsd</DependentUpon>
+    </Compile>
     <Compile Include="InfocomService\EpiService.cs" />
     <Compile Include="Log\FileLogService.cs" />
     <Compile Include="Log\ILogService.cs" />
     <Compile Include="Model\BaseItemModel.cs" />
     <Compile Include="Model\CardModel.cs" />
+    <Compile Include="Model\DataActionController.cs" />
     <Compile Include="Model\UserInfoModel.cs" />
     <Compile Include="Utils\CardTools.cs" />
     <Compile Include="Utils\CryptoFuncs.cs" />
@@ -198,6 +206,18 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="EntityModel\SmartCardDs.xsc">
+      <DependentUpon>SmartCardDs.xsd</DependentUpon>
+    </None>
+    <None Include="EntityModel\SmartCardDs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SmartCardDs.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EntityModel\SmartCardDs.xss">
+      <DependentUpon>SmartCardDs.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -984,6 +1004,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

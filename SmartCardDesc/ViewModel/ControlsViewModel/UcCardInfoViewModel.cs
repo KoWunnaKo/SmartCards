@@ -32,7 +32,15 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private async void fGetCardInfo()
         {
+            IsIntermadiate = true;
+
+            StatusText = "Загрузка...";
+
             CardInfo = await service.GetUserCardInfo(UserId, Token);
+
+            IsIntermadiate = false;
+
+            StatusText = string.Empty;
         }
 
         private void fClearParams()
@@ -96,6 +104,40 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 cardInfo = value;
 
                 OnPropertyChanged("CardInfo");
+            }
+        }
+
+        private bool _isIntermadiate;
+
+        public bool IsIntermadiate
+        {
+            get
+            {
+                return _isIntermadiate;
+            }
+
+            set
+            {
+                _isIntermadiate = value;
+
+                OnPropertyChanged("IsIntermadiate");
+            }
+        }
+
+        private string _statusText;
+
+        public string StatusText
+        {
+            get
+            {
+                return _statusText;
+            }
+
+            set
+            {
+                _statusText = value;
+
+                OnPropertyChanged("StatusText");
             }
         }
     }

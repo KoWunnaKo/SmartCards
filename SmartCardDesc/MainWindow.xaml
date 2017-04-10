@@ -77,7 +77,14 @@
         <Border DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="2">
             <StackPanel  HorizontalAlignment="Left" 
 				Orientation="Horizontal">
-                <ProgressBar Height="20" Width="100"/>
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             Visibility="Hidden"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding Status}"></TextBlock>
             </StackPanel>
         </Border>
         <Border BorderBrush="Red" BorderThickness="2">

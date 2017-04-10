@@ -25,7 +25,7 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("GS-13\\SQLEXPRESS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("HP\\SQLEXPRESS")]
         public string DB_DataSource {
             get {
                 return ((string)(this["DB_DataSource"]));
@@ -37,7 +37,7 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SmartCardDB")]
         public string DB_Database {
             get {
                 return ((string)(this["DB_Database"]));
@@ -49,7 +49,7 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public string DB_IntegratedSecurity {
             get {
                 return ((string)(this["DB_IntegratedSecurity"]));
@@ -61,7 +61,7 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("sa")]
         public string DB_UserId {
             get {
                 return ((string)(this["DB_UserId"]));
@@ -73,7 +73,7 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("123")]
         public string DB_Password {
             get {
                 return ((string)(this["DB_Password"]));
@@ -104,6 +104,16 @@ namespace SmartCardDesc.Properties {
             }
             set {
                 this["KeyMD5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HP\\SQLEXPRESS;Initial Catalog=SmartCardDB;Integrated Security=True")]
+        public string SmartCardDBConnectionString {
+            get {
+                return ((string)(this["SmartCardDBConnectionString"]));
             }
         }
     }

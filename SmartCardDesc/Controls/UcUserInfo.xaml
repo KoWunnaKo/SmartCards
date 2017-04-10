@@ -9,6 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <TextBlock Text="Ввести параметры"></TextBlock>
@@ -227,9 +228,27 @@
                         Width="80" 
                         Height="25"
                         Content="Сохранить"
-                        Margin="5"></Button>
+                        Margin="5"
+                        Command="{Binding SaveUser}"></Button>
+
             </StackPanel>
 
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

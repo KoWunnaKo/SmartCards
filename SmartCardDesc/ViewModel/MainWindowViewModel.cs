@@ -1,5 +1,7 @@
-﻿using SmartCardDesc.InfocomService;
+﻿using SmartCardDesc.Db;
+using SmartCardDesc.InfocomService;
 using SmartCardDesc.ViewModel.ControlsViewModel;
+using System;
 using System.Windows;
 
 namespace SmartCardDesc.ViewModel
@@ -16,6 +18,17 @@ namespace SmartCardDesc.ViewModel
 
         public MainWindowViewModel()
         {
+            try
+            {
+                DbModel.db = DbConnection.GetInstance(ConnectionProperty.Default.GetConnectionString());
+
+                DbModel.dataSetSc = new EntityModel.SmartCardDs();
+            }
+            catch(Exception ex)
+            {
+                Status = ex.Message;
+            }
+            
             OpenUchetTs = new RelayCommand(_ => fOpenUchetTs());
             OpenServiceIA = new RelayCommand(_ => fOpenServiceIA());
             OpenKeyGen = new RelayCommand(_ => fOpenKeyGen());
@@ -40,6 +53,23 @@ namespace SmartCardDesc.ViewModel
         private void fOpenKeyGen()
         {
             MessageBox.Show("fOpenKeyGen");
+        }
+
+        private string _status;
+
+        public string Status
+        {
+            get
+            {
+                return _status;
+            }
+
+            set
+            {
+                _status = value;
+
+                OnPropertyChanged("Status");
+            }
         }
     }
 }

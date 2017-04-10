@@ -3,25 +3,33 @@
   <Profiles />
   <Settings>
     <Setting Name="DB_DataSource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">GS-13\SQLEXPRESS</Value>
+      <Value Profile="(Default)">HP\SQLEXPRESS</Value>
     </Setting>
     <Setting Name="DB_Database" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">SmartCardDB</Value>
     </Setting>
     <Setting Name="DB_IntegratedSecurity" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="DB_UserId" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">sa</Value>
     </Setting>
     <Setting Name="DB_Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">123</Value>
     </Setting>
     <Setting Name="ServiceUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://91.212.89.201:57720</Value>
     </Setting>
     <Setting Name="KeyMD5" Type="System.String" Scope="User">
       <Value Profile="(Default)">asdqwe123</Value>
+    </Setting>
+    <Setting Name="SmartCardDBConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=HP\SQLEXPRESS;Initial Catalog=SmartCardDB;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=HP\SQLEXPRESS;Initial Catalog=SmartCardDB;Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

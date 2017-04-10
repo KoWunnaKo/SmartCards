@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCardDesc.EntityModel;
+using System;
 using System.ComponentModel;
 
 namespace SmartCardDesc.Db
@@ -8,6 +9,8 @@ namespace SmartCardDesc.Db
     {
         
         public static DbConnection db;
+
+        public static SmartCardDs dataSetSc;
 
         //------------------------------------------------------
         //

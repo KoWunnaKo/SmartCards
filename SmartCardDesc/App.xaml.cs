@@ -12,5 +12,6 @@ namespace SmartCardDesc
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

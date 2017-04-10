@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartCardDesc.Controls;
+using SmartCardDesc.Db;
 
 namespace SmartCardDesc
 {
@@ -21,6 +22,8 @@ namespace SmartCardDesc
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UcUserInfo userInfo;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,27 +46,34 @@ namespace SmartCardDesc
 
                     if (tag.Equals("1"))
                     {
-                        control = new UcUserInfo();
+                        userInfo = new UcUserInfo();
+
+                        stackUc.Children.Add(userInfo);
                     }
                     else if (tag.Equals("2"))
                     {
                         control = new UcCardInfo();
+
+                        stackUc.Children.Add(control);
                     }
                     else if (tag.Equals("3"))
                     {
                         control = new UcInsertCard();
+
+                        stackUc.Children.Add(control);
                     }
                     else if (tag.Equals("4"))
                     {
                         control = new UcUpdateCard();
+
+                        stackUc.Children.Add(control);
                     }
                     else
                     {
                         control = new UcGenCardRSA();
-                    }
-                    
-                    stackUc.Children.Add(control);
 
+                        stackUc.Children.Add(control);
+                    }
                 }
             }
         }

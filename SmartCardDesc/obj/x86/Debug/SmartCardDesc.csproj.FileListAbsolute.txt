@@ -1,4 +1,9 @@
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\log4net.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.csprojResolveAssemblyReference.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcCardInfo.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcInsertCard.baml
@@ -7,6 +12,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Cont
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Views\ServiceManageWindow.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Views\UserInfoWindow.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcCardInfo.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcGenCardRSA.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcInsertCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcUpdateCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcUserInfo.g.cs
@@ -16,16 +22,10 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\View
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\App.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc_MarkupCompile.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc_MarkupCompile.lref
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\log4net.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcGenCardRSA.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\MainWindow.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.g.resources
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.Properties.Resources.resources
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.csproj.GenerateResource.Cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcGenCardRSA.g.cs
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcGenCardRSA.baml
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.dll
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.pdb

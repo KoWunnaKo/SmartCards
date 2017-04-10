@@ -9,6 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <TextBlock Text="Ввести параметры"></TextBlock>
@@ -133,6 +134,22 @@
                          Text="{Binding Path=Model.result}">
                 </TextBox>
             </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

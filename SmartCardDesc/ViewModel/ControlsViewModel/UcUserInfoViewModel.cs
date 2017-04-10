@@ -18,18 +18,44 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         public RelayCommand ClearParams { get; private set; }
 
+        public RelayCommand SaveUser { get; private set; }
+
         public UcUserInfoViewModel()
         {
             GetToken = new RelayCommand(_ => fGetToken());
 
             GetUserInfo = new RelayCommand(_ => fGetUserInfo());
 
-            ClearParams = new RelayCommand(_ => fClearParams());
+            ClearParams = new RelayCommand(_ => FClearParams());
+
+            SaveUser = new RelayCommand(_ => fSaveUserInfo());
 
             service = new EpiService();
         }
 
-        private void fClearParams()
+        private async void fSaveUserInfo()
+        {
+            try
+            {
+                IsIntermadiate = true;
+
+                if (UserInfo != null)
+                {
+                    await UserInfo.SaveUserInfo();
+                }
+            }
+            catch(Exception ex)
+            {
+                UserInfo.result = ex.Message;
+                StatusText = ex.Message;
+            }
+            finally
+            {
+                IsIntermadiate = false;
+            }
+        }
+
+        private void FClearParams()
         {
             Token = string.Empty;
 
@@ -41,9 +67,69 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             Token = CryptoFuncs.GetMD5(UserId);
         }
 
+        private string _statusText;
+
+        public string StatusText
+        {
+            get
+            {
+                return _statusText;
+            }
+
+            set
+            {
+                _statusText = value;
+
+                OnPropertyChanged("StatusText");
+            }
+        }
+
+        private bool _isIntermadiate;
+        
+        public bool IsIntermadiate
+        {
+            get
+            {
+                return _isIntermadiate;
+            }
+
+            set
+            {
+                _isIntermadiate = value;
+
+                OnPropertyChanged("IsIntermadiate");
+            }
+        }
+
         private async void fGetUserInfo()
         {
+            IsIntermadiate = true;
+            StatusText = "Загрузка...";
+
             UserInfo = await service.GetUserId(UserId, Token);
+
+            //UserInfo = new UserInfoModel();
+            //UserInfo.userId = "ulugbek";
+            //UserInfo.reg_dttm = "2017-10-01";
+            //UserInfo.pport_no = "AA0012321";
+            //UserInfo.Department = 1;
+
+            IsIntermadiate = false;
+
+            StatusText = string.Empty;
+
+            try
+            {
+                if (UserInfo != null)
+                {
+                    UserInfo.InsertUserInfo();
+                }
+            }
+            catch(Exception ex)
+            {
+                UserInfo.result = ex.Message;
+            }
+
         }
 
         private string token;
