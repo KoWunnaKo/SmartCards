@@ -1,7 +1,6 @@
 ﻿using SmartCardDesc.Db;
 using SmartCardDesc.InfocomService;
 using SmartCardDesc.ViewModel.ControlsViewModel;
-using SmartCardDesc.Views.AppDesigns;
 using System;
 using System.Windows;
 

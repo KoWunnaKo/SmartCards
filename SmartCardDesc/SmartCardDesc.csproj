@@ -101,17 +101,29 @@
     <Compile Include="Controls\UcCardInfo.xaml.cs">
       <DependentUpon>UcCardInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcCertificate.xaml.cs">
+      <DependentUpon>UcCertificate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UcDeleteCard.xaml.cs">
+      <DependentUpon>UcDeleteCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcGenCardRSA.xaml.cs">
       <DependentUpon>UcGenCardRSA.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UcInsertCard.xaml.cs">
       <DependentUpon>UcInsertCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcKeyGen.xaml.cs">
+      <DependentUpon>UcKeyGen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcUpdateCard.xaml.cs">
       <DependentUpon>UcUpdateCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UcUserInfo.xaml.cs">
       <DependentUpon>UcUserInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UcWriteCert.xaml.cs">
+      <DependentUpon>UcWriteCert.xaml</DependentUpon>
     </Compile>
     <Compile Include="Db\CommonList.cs" />
     <Compile Include="Db\ConnectionProperty.cs" />
@@ -142,7 +154,7 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="Views\AppDesigns\RibbonWindow.xaml.cs">
+    <Compile Include="RibbonWindow.xaml.cs">
       <DependentUpon>RibbonWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ServiceManageWindow.xaml.cs">
@@ -155,6 +167,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UcCertificate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UcDeleteCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UcGenCardRSA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,11 +183,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UcKeyGen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UcUpdateCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UcUserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UcWriteCert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,7 +211,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AppDesigns\RibbonWindow.xaml">
+    <Page Include="RibbonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,7 +262,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CardAPI\" />
+    <Folder Include="Controls\OperationLists\" />
+    <Folder Include="Controls\Warehouse\" />
     <Folder Include="Lib\" />
+    <Folder Include="Views\AppDesigns\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\077_AddFile.ico">
@@ -253,9 +284,9 @@
     <None Include="Resources\Close.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\delete.ico">
+    <Resource Include="Resources\delete.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.ico" />
@@ -600,7 +631,7 @@
     <None Include="Resources\Graph.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Help.bmp" />
+    <Resource Include="Resources\Help.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Highlight.bmp" />
@@ -1023,23 +1054,26 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\user_info.png" />
+    <Resource Include="Resources\user_info.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\smart_card_technology.png" />
+    <Resource Include="Resources\smart_card_technology.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Paomedia-Small-N-Flat-Key.ico">
+    <Resource Include="Resources\Paomedia-Small-N-Flat-Key.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\document.ico" />
+    <Resource Include="Resources\document.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\write_document.png">
+    <Resource Include="Resources\write_document.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

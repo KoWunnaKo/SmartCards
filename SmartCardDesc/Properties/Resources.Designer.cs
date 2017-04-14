@@ -1771,6 +1771,16 @@ namespace SmartCardDesc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Oxygen_Icons_org_Oxygen_Apps_preferences_contact_list {
+            get {
+                object obj = ResourceManager.GetObject("Oxygen_Icons_org_Oxygen_Apps_preferences_contact_list", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PageNumber {
