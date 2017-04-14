@@ -33,7 +33,15 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private async void fGenRsa()
         {
+            IsIntermadiate = true;
+
+            StatusText = "Генерация ключа...";
+
             await CallCard();
+
+            IsIntermadiate = false;
+
+            StatusText = string.Empty;
 
             Exponental = _exponental;
 
@@ -80,7 +88,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 unsafe
                 {
 
-                    uint[] exp = new uint[3];
+                    uint[] exp = new uint[256];
                     uint[] modul = new uint[256];
 
                     fixed (uint* public_exp = exp)
@@ -88,7 +96,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                         try
                         {
-                            returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
+                           returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
+
+                            //returnValue = RSAGeneration.getRSAPrivateComponents(public_exp, public_modul);
+
+                            //RSAGeneration.getRSAPublicComponents()
                         }
                         catch (Exception ex)
                         {
@@ -102,13 +114,78 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                         return;
                     }
 
-                    Exponental = string.Join(" ", exp);
+                    string expStr = string.Empty;
+                    string[] expStrArr = new string[exp.Length];
+                    int counter = 0;
 
-                    Modules = string.Join(" ", modul);
+                    foreach (uint xx in exp)
+                    {
+                        expStr = xx.ToString("x");
+
+                        expStrArr[counter++] = expStr;
+                    }
+
+                    Exponental = string.Join(" ", expStrArr);
+
+                    if (!Exponental.Equals("1 0 1"))
+                    {
+                        StatusText = "Error! Try again please!!!";
+
+                        Exponental = StatusText;
+
+                        return;
+                    }
+
+                    string mexpStr = string.Empty;
+                    string[] mexpStrArr = new string[modul.Length];
+                    int mcounter = 0;
+
+                    foreach (uint xx in modul)
+                    {
+                        mexpStr = xx.ToString("x");
+
+                        mexpStrArr[mcounter++] = mexpStr;
+                    }
+
+                    Modules = string.Join(" ", mexpStrArr);
                 }
             });
 
             return resultTask;
+        }
+
+        private bool _isIntermadiate;
+
+        public bool IsIntermadiate
+        {
+            get
+            {
+                return _isIntermadiate;
+            }
+
+            set
+            {
+                _isIntermadiate = value;
+
+                OnPropertyChanged("IsIntermadiate");
+            }
+        }
+
+        private string _statusText;
+
+        public string StatusText
+        {
+            get
+            {
+                return _statusText;
+            }
+
+            set
+            {
+                _statusText = value;
+
+                OnPropertyChanged("StatusText");
+            }
         }
     }
 }

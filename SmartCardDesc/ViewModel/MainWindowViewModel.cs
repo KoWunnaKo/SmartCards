@@ -1,6 +1,7 @@
 ﻿using SmartCardDesc.Db;
 using SmartCardDesc.InfocomService;
 using SmartCardDesc.ViewModel.ControlsViewModel;
+using SmartCardDesc.Views.AppDesigns;
 using System;
 using System.Windows;
 
@@ -43,6 +44,10 @@ namespace SmartCardDesc.ViewModel
 
 
             //obj.TestCard();
+
+            RibbonWindow window = new RibbonWindow();
+
+            window.ShowDialog();
         }
 
         private void fOpenServiceIA()

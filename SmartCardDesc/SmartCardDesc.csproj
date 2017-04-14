@@ -80,6 +80,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -133,6 +134,7 @@
     <Compile Include="Utils\CardTools.cs" />
     <Compile Include="Utils\CryptoFuncs.cs" />
     <Compile Include="ViewModel\ControlsViewModel\CardRSAGenViewModel.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\RibbonViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcCardInfoViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
@@ -140,6 +142,9 @@
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Views\AppDesigns\RibbonWindow.xaml.cs">
+      <DependentUpon>RibbonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ServiceManageWindow.xaml.cs">
       <DependentUpon>ServiceManageWindow.xaml</DependentUpon>
     </Compile>
@@ -178,6 +183,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AppDesigns\RibbonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ServiceManageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,19 +238,25 @@
     <Folder Include="Lib\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\077_AddFile.ico" />
+    <Resource Include="Resources\077_AddFile.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\112_RefreshArrow_Blue.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\126_Edit.ico" />
+    <Resource Include="Resources\126_Edit.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Close.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete.ico" />
+    <EmbeddedResource Include="Resources\delete.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.ico" />
@@ -1007,6 +1022,25 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\user_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\smart_card_technology.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Paomedia-Small-N-Flat-Key.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\document.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\write_document.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCardDesc", "SmartCardDesc\SmartCardDesc.csproj", "{5A310670-6963-46E8-80FA-1D7940505634}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassLibrary1", "..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj", "{A82DAF31-8264-4735-A896-D6A025952A6C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CardRSA_API", "..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj", "{A82DAF31-8264-4735-A896-D6A025952A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

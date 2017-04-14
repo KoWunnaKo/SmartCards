@@ -751,6 +751,16 @@ namespace SmartCardDesc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon document1 {
+            get {
+                object obj = ResourceManager.GetObject("document1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DoubleLeftArrow {
@@ -1791,6 +1801,16 @@ namespace SmartCardDesc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Paomedia_Small_N_Flat_Key {
+            get {
+                object obj = ResourceManager.GetObject("Paomedia_Small_N_Flat_Key", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Paste {
@@ -2323,6 +2343,16 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap smart_card_technology {
+            get {
+                object obj = ResourceManager.GetObject("smart_card_technology", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SortAscending_24 {
             get {
                 object obj = ResourceManager.GetObject("SortAscending_24", resourceCulture);
@@ -2453,6 +2483,16 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap user_info {
+            get {
+                object obj = ResourceManager.GetObject("user_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ViewThumbnails {
             get {
                 object obj = ResourceManager.GetObject("ViewThumbnails", resourceCulture);
@@ -2486,6 +2526,16 @@ namespace SmartCardDesc.Properties {
         internal static System.Drawing.Bitmap Windows {
             get {
                 object obj = ResourceManager.GetObject("Windows", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap write_document {
+            get {
+                object obj = ResourceManager.GetObject("write_document", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

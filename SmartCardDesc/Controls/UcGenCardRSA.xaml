@@ -12,9 +12,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="75"/>
-            <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
              <RowDefinition Height="*"/>
              <RowDefinition Height="*"/>
+             <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -25,6 +27,8 @@
                 Grid.Row="0" 
                 Grid.Column="0"
                 Text="Exponent/State"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 Margin="5,0,0,0"></TextBlock>
             <Border Grid.Row="0" 
                     Grid.Column="1"
@@ -40,8 +44,9 @@
             Grid.Row="1" 
             Grid.Column="0"
             Text="Module"
-            Padding="15"
-            Margin="10"></TextBlock>
+           HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="5,0,0,0"></TextBlock>
             <Border Grid.Row="1" 
                     Grid.Column="1"
                     BorderBrush="Black"
@@ -60,13 +65,34 @@
                 Command="{Binding GetRsa}"
                 Content="Generate RSA"></Button>
 
+
             <TextBlock 
             Grid.Row="3" 
             Grid.Column="0"
-            Text="Certificate"
-            Padding="15"
-            Margin="10"></TextBlock>
+            Text="UserId"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="5,0,0,0"
+                ></TextBlock>
             <Border Grid.Row="3" 
+                    Grid.Column="1"
+                    BorderBrush="Black"
+                    BorderThickness="2">
+                <TextBox Grid.Row="1" 
+                       Grid.Column="1"
+                       TextWrapping="Wrap"
+                       Margin="2"></TextBox>
+            </Border>
+
+
+            <TextBlock 
+            Grid.Row="4" 
+            Grid.Column="0"
+            Text="Certificate"
+            HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="5,0,0,0"></TextBlock>
+            <Border Grid.Row="4" 
                     Grid.Column="1"
                     BorderBrush="Black"
                     BorderThickness="2">
@@ -75,11 +101,28 @@
                        TextWrapping="Wrap"
                        Margin="5"></TextBlock>
             </Border>
-            <Button Grid.Row="4" 
+            <Button Grid.Row="5" 
                 Grid.Column="1"
                 Height="20"
                 Margin="5"
                 Content="Get Cartificate"></Button>
+
+            <Border Grid.Row="6" BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                >
+                <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                    <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                    <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+                </StackPanel>
+            </Border>
         </Grid>
      
     </StackPanel>
