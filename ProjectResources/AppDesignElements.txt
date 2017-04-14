@@ -1,0 +1,28 @@
+                <!-- Home  group-->
+                <RibbonGroup x:Name="ClipboardGroup" Margin="0,1"  Header="Обмен данными">
+                    <StackPanel Orientation="Horizontal">
+                        <RibbonButton  Label="Информация пользователя"  LargeImageSource="pack://siteoforigin:,,,/Resources/user_info.png" > <!--LargeImageSource="Images\paste.png"-->
+                        <!--<RibbonMenuItem  Header="Keep Text Only" KeyTip="T"/> --><!--ImageSource="Images\paste.png"--><!--
+                        <RibbonMenuItem  Header="Paste Special..." KeyTip="S"/> --><!--ImageSource="Images\paste.png"-->
+                    </RibbonButton>
+                    <RibbonButton  Label="Информация о картах"  LargeImageSource="pack://siteoforigin:,,,/Resources/smart_card_technology.png" /> <!--SmallImageSource="Images\cut.png"-->
+                    <RibbonButton  Label="Ввести новую карту"  LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" /> <!--SmallImageSource="Images\copy.png"-->
+                     <RibbonButton  Label="Изменить данные карты" LargeImageSource="/SmartCardDesc;component/Resources/126_Edit.ico" /> <!--SmallImageSource="Images\format_painter.png"-->
+                        <RibbonButton  Label="Удалить карту"  LargeImageSource="pack://siteoforigin:,,,/Resources/delete.ico" />
+                        <!--SmallImageSource="Images\format_painter.png"-->
+                    </StackPanel>
+                </RibbonGroup>
+                <!-- Employee And Payroll group-->
+                <RibbonGroup x:Name="CardCertificate" Header="Операции с картами">
+                    <StackPanel Orientation="Horizontal">
+                    <!--<RibbonMenuButton  Label="Employee" KeyTip="V"> --><!--LargeImageSource="Images\personal.png"-->
+                        <!--<RibbonMenuItem  Header="Keep Text Only" KeyTip="T"/> --><!--ImageSource="Images\paste.png"--><!--
+                        <RibbonMenuItem  Header="Paste Special..." KeyTip="S"/> --><!--ImageSource="Images\paste.png"--><!--
+                    </RibbonMenuButton>-->
+                    <!--<RibbonButton  Label="Save" KeyTip="X" /> --><!--SmallImageSource="Images\save.png"-->
+                        <RibbonButton  Label="Генерация ключей"  LargeImageSource="pack://siteoforigin:,,,/Resources/Paomedia-Small-N-Flat-Key.ico" /> <!--SmallImageSource="Images\add.png"-->
+                        <RibbonButton  Label="Получить Сертификат"  LargeImageSource="pack://siteoforigin:,,,/Resources/document.ico" />
+                        <RibbonButton  Label="Записать Сертификат"  LargeImageSource="pack://siteoforigin:,,,/Resources/write_document.png" />
+                        <!--SmallImageSource="Images\add.png"-->
+                    </StackPanel>
+                </RibbonGroup>

@@ -16,5 +16,5 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\App.xaml
 181544881144
 Controls\UcCardInfo.xaml;Controls\UcGenCardRSA.xaml;Controls\UcInsertCard.xaml;Controls\UcUpdateCard.xaml;Controls\UcUserInfo.xaml;MainWindow.xaml;Views\AppDesigns\RibbonWindow.xaml;Views\ServiceManageWindow.xaml;Views\UserInfoWindow.xaml;
 
-False
+True
 
