@@ -20,13 +20,13 @@
             <!-- Quick Access Toolbar - located at the upper-left corner -->
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar>
-                    <RibbonButton x:Name ="Save"  /> <!--SmallImageSource="Images\save.png"-->
-                    <RibbonSplitButton x:Name ="Undo" > <!--SmallImageSource="Images\undo.png"-->
+                    <RibbonButton x:Name ="Save"  /> 
+                    <RibbonSplitButton x:Name ="Undo" > 
                         <RibbonSplitMenuItem Header="Undo 1" />
                         <RibbonSplitMenuItem Header="Undo 2" />
                         <RibbonSplitMenuItem Header="Undo 3" />
                     </RibbonSplitButton>
-                    <RibbonSplitButton x:Name="Redo"  > <!--SmallImageSource="Images\redo.png"-->
+                    <RibbonSplitButton x:Name="Redo"  > 
                         <RibbonSplitMenuItem Header="Redo 1" />
                         <RibbonSplitMenuItem Header="Redo 2" />
                     </RibbonSplitButton>
@@ -45,7 +45,8 @@
                 <RibbonGroup x:Name="ClipboardGroup" Margin="0,1"  Header="Обмен данными">
                     <StackPanel Orientation="Horizontal">
                         <RibbonButton  Label="Информация пользователя"  
-                                       LargeImageSource="/SmartCardDesc;component/Resources/user_info.png" />
+                                       LargeImageSource="/SmartCardDesc;component/Resources/user_info.png"
+                                       />
                         <RibbonButton  Label="Информация о картах"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/smart_card_technology.png" />
                         <RibbonButton  Label="Ввести новую карту"  
