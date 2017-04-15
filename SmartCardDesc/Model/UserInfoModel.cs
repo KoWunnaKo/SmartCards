@@ -3,6 +3,8 @@ using SmartCardDesc.Db;
 using SmartCardDesc.EntityModel.SmartCardDsTableAdapters;
 using System.Globalization;
 using System.Threading.Tasks;
+using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.Cryptography;
 
 namespace SmartCardDesc.Model
 {
@@ -195,6 +197,127 @@ namespace SmartCardDesc.Model
             }
 
             DbModel.dataSetSc.USERS.Rows.Add(newRow);
+        }
+
+        public Task InsertUserInfoEnt()
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                using (var context = new SmartCardDBEntities())
+                {
+                    var user = context.USERS.Create();
+
+                    user.LOGIN = userId;
+                    user.PASSWORD = HashPassword.HashPasswordWithSalt(password);
+                    user.IS_ACTIVE = is_active;
+                    user.DEPARTMENT = Department;
+
+                    if (string.IsNullOrEmpty(reg_dttm))
+                    {
+                        user.REG_DATE = null;
+                    }
+                    else
+                    {
+                        user.REG_DATE = DateTime.ParseExact(reg_dttm, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    }
+
+                    if (string.IsNullOrEmpty(first_name))
+                    {
+                        user.FIRST_NAME = null;
+                    }
+                    else
+                    {
+                        user.FIRST_NAME = first_name;
+                    }
+
+                    if (string.IsNullOrEmpty(surname))
+                    {
+                        user.SURNAME_NAME = null;
+                    }
+                    else
+                    {
+                        user.SURNAME_NAME = surname;
+                    }
+
+                    if (string.IsNullOrEmpty(mid_name))
+                    {
+                        user.MIDDLE_NAME = null;
+                    }
+                    else
+                    {
+                        user.MIDDLE_NAME = mid_name;
+                    }
+
+                    if (string.IsNullOrEmpty(gd))
+                    {
+                        user.GENDER = null;
+                    }
+                    else
+                    {
+                        if (gd.Equals("M"))
+                        {
+                            user.GENDER = true;
+                        }
+                        else
+                        {
+                            user.GENDER = false;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(dob))
+                    {
+                        user.BIRTH_DATE = null;
+                    }
+                    else
+                    {
+                        user.BIRTH_DATE= DateTime.ParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture); ;
+                    }
+
+                    if (string.IsNullOrEmpty(PerAdr))
+                    {
+                        user.ADDRESS = null;
+                    }
+                    else
+                    {
+                        user.ADDRESS = PerAdr;
+                    }
+
+
+                    if (string.IsNullOrEmpty(pport_no))
+                    {
+                        user.PASSPORT = null;
+                    }
+                    else
+                    {
+                        user.PASSPORT = pport_no;
+                    }
+
+
+                    if (string.IsNullOrEmpty(tin))
+                    {
+                        user.TIN = null;
+                    }
+                    else
+                    {
+                        user.TIN = tin;
+                    }
+
+                    if (string.IsNullOrEmpty(pin))
+                    {
+                        user.PIN = null;
+                    }
+                    else
+                    {
+                        user.PIN = pin;
+                    }
+
+                    context.USERS.Add(user);
+
+                    context.SaveChanges();
+                }
+            });
+
+            return resultTask;
         }
 
         public Task SaveUserInfo()

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+﻿using SmartCardDesc.ViewModel.Security;
 using System.Windows;
+using SmartCardDesc.Secirity;
 
 namespace SmartCardDesc
 {
@@ -12,6 +9,18 @@ namespace SmartCardDesc
     /// </summary>
     public partial class App : Application
     {
-
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            Window LoginWindow = new LoginWindow();
+            LoginWindow.Show();
+            ((LoginViewModel)LoginWindow.DataContext).LoginCompleted += (s, ev) =>
+            {
+                Window MainWindow = new RibbonWindow();
+                LoginWindow.Hide();
+                LoginWindow.Close();
+                MainWindow.Show();
+            };
+        }
     }
 }

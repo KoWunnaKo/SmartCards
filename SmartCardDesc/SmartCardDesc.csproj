@@ -72,6 +72,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>Lib\log4net.dll</HintPath>
     </Reference>
@@ -80,6 +84,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -125,12 +131,58 @@
     <Compile Include="Controls\UcWriteCert.xaml.cs">
       <DependentUpon>UcWriteCert.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cryptography\HashPassword.cs" />
     <Compile Include="Db\CommonList.cs" />
     <Compile Include="Db\ConnectionProperty.cs" />
     <Compile Include="Db\DBConnection.cs" />
     <Compile Include="Db\DbHelper.cs" />
     <Compile Include="Db\DBModel.cs" />
     <Compile Include="Db\SortableBindingList.cs" />
+    <Compile Include="EntityModel\EntityModel\AUDIT.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\CARD_INFO.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\DEPARTMENT.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\DICTIONARY.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\DICTIONARY_TYPE.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\EXTERNAL_REQUESTS.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\READERS_INFO.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\SmartCardEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartCardEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\SmartCardEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\SmartCardEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\USER.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\WAREHOUSE.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\WAREHOUSE_DTL.cs">
+      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\SmartCardDs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +195,9 @@
     <Compile Include="Model\CardModel.cs" />
     <Compile Include="Model\DataActionController.cs" />
     <Compile Include="Model\UserInfoModel.cs" />
+    <Compile Include="Secirity\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\CardTools.cs" />
     <Compile Include="Utils\CryptoFuncs.cs" />
     <Compile Include="ViewModel\ControlsViewModel\CardRSAGenViewModel.cs" />
@@ -153,6 +208,7 @@
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\Security\LoginViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="RibbonWindow.xaml.cs">
       <DependentUpon>RibbonWindow.xaml</DependentUpon>
@@ -215,6 +271,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Secirity\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ServiceManageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -242,7 +302,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="EntityModel\EntityModel\SmartCardEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SmartCardEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityModel\EntityModel\SmartCardEntityModel.edmx.diagram">
+      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
+    </None>
     <None Include="EntityModel\SmartCardDs.xsc">
       <DependentUpon>SmartCardDs.xsd</DependentUpon>
     </None>
@@ -254,6 +323,7 @@
     <None Include="EntityModel\SmartCardDs.xss">
       <DependentUpon>SmartCardDs.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1074,6 +1144,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityModel\EntityModel\SmartCardEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
+      <LastGenOutput>SmartCardEntityModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityModel\EntityModel\SmartCardEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
+      <LastGenOutput>SmartCardEntityModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

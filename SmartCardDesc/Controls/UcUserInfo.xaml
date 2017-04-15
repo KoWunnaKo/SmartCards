@@ -229,6 +229,7 @@
                         Height="25"
                         Content="Сохранить"
                         Margin="5"
+                        Visibility="Hidden"
                         Command="{Binding SaveUser}"></Button>
 
             </StackPanel>

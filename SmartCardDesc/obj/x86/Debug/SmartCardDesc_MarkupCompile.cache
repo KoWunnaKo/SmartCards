@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\App.xaml
-13863118893
-
-42-1622355860
-181544881144
-Controls\UcCardInfo.xaml;Controls\UcCertificate.xaml;Controls\UcDeleteCard.xaml;Controls\UcGenCardRSA.xaml;Controls\UcInsertCard.xaml;Controls\UcKeyGen.xaml;Controls\UcUpdateCard.xaml;Controls\UcUserInfo.xaml;Controls\UcWriteCert.xaml;MainWindow.xaml;RibbonWindow.xaml;Views\ServiceManageWindow.xaml;Views\UserInfoWindow.xaml;
+14137708112
+21362466647
+581679141481
+211037677548
+Controls\UcCardInfo.xaml;Controls\UcCertificate.xaml;Controls\UcDeleteCard.xaml;Controls\UcGenCardRSA.xaml;Controls\UcInsertCard.xaml;Controls\UcKeyGen.xaml;Controls\UcUpdateCard.xaml;Controls\UcUserInfo.xaml;Controls\UcWriteCert.xaml;MainWindow.xaml;RibbonWindow.xaml;Secirity\LoginWindow.xaml;Views\ServiceManageWindow.xaml;Views\UserInfoWindow.xaml;
 
 False
 

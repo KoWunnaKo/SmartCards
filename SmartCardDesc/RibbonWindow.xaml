@@ -43,51 +43,52 @@
             <!-- Ribbon Tab #1: Home -->
             <RibbonTab Header=" Операции" KeyTip="H" >
                 <!-- Home  group-->
-                <RibbonGroup x:Name="ClipboardGroup" Margin="0,1"  Header="Обмен данными">
+                <RibbonGroup x:Name="ClipboardGroup" Margin="0,1" Header="Обмен данных и операции с картами" >
                     <StackPanel Orientation="Horizontal">
-                        <RibbonButton  Label="Информация пользователя"  
+                        <RibbonRadioButton  Label="Информация пользователя"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/user_info.png"
                                        Name="btnUserInfo"
                                        Click="btnUserInfo_Click"/>
-                        <RibbonButton  Label="Информация о картах"  
+                        <RibbonRadioButton  Label="Информация о картах"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/smart_card_technology.png" 
                                        Name="btnCardInfo"
                                        Click="btnCardInfo_Click"/>
-                        <RibbonButton  Label="Ввести новую карту"  
+                        <RibbonRadioButton  Label="Ввести новую карту"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 
                                        Name="btnAddCard"
-                                       Click="btnAddCard_Click"/> 
-                        <RibbonButton  Label="Изменить данные карты" 
+                                       Click="btnAddCard_Click"/>
+                        <RibbonRadioButton  Label="Изменить данные карты" 
                                        LargeImageSource="/SmartCardDesc;component/Resources/126_Edit.ico"
                                        Name="btnEditCard"
                                        Click="btnEditCard_Click"/>
-                        <RibbonButton  Label="Удалить карту"  
+                        <RibbonRadioButton  Label="Удалить карту"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/delete.ico" 
                                        Name="btnDeleteCard"
                                        Click="btnDeleteCard_Click"/>
-                    </StackPanel>
-                </RibbonGroup>
-                <!-- Employee And Payroll group-->
-                <RibbonGroup x:Name="CardCertificate" Header="Операции с картами">
-                    <StackPanel Orientation="Horizontal">
-                        <RibbonButton  
+                        <RibbonRadioButton  
                             Label="Генерация ключей"  
                             LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
                             Name="btnKeyGen"
-                            Click="btnKeyGen_Click"/> 
-                        <RibbonButton  
+                            Click="btnKeyGen_Click"/>
+                        <RibbonRadioButton  
                             Label="Получить Сертификат"  
                             LargeImageSource="/SmartCardDesc;component/Resources/document.ico" 
                             Name="btnCertificate"
                             Click="btnCertificate_Click"/>
-                        <RibbonButton  
+                        <RibbonRadioButton  
                             Label="Записать Сертификат"  
                             LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
                             Name="WriteCert"
                             Click="WriteCert_Click"/>
-                        <!--SmallImageSource="Images\add.png"-->
                     </StackPanel>
                 </RibbonGroup>
+                <!-- Employee And Payroll group-->
+                <!--<RibbonGroup x:Name="CardCertificate" Header="Операции с картами">
+                    <StackPanel Orientation="Horizontal">
+
+                        --><!--SmallImageSource="Images\add.png"--><!--
+                    </StackPanel>
+                </RibbonGroup>-->
             </RibbonTab>
             <!-- Ribbon Tab #2: -->
             <RibbonTab Header="Списки" KeyTip="I">

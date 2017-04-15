@@ -39,9 +39,16 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 IsIntermadiate = true;
 
+                UserInfo = new UserInfoModel();
+                UserInfo.userId = "bakhodir";
+                UserInfo.reg_dttm = "2017-10-01";
+                UserInfo.dob = "1986-11-01";
+                UserInfo.pport_no = "AA0012321";
+                UserInfo.Department = 1;
+
                 if (UserInfo != null)
                 {
-                    await UserInfo.SaveUserInfo();
+                    await UserInfo.InsertUserInfoEnt();
                 }
             }
             catch(Exception ex)
@@ -108,26 +115,25 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             UserInfo = await service.GetUserId(UserId, Token);
 
-            //UserInfo = new UserInfoModel();
-            //UserInfo.userId = "ulugbek";
-            //UserInfo.reg_dttm = "2017-10-01";
-            //UserInfo.pport_no = "AA0012321";
-            //UserInfo.Department = 1;
-
-            IsIntermadiate = false;
-
             StatusText = string.Empty;
 
             try
             {
-                if (UserInfo != null)
+                if ((UserInfo != null) && (UserInfo.userId != null))
                 {
-                    UserInfo.InsertUserInfo();
+                    await UserInfo.InsertUserInfoEnt();
+
+                    StatusText = "Загрузка прошла удачно...";
                 }
+                
             }
             catch(Exception ex)
             {
-                UserInfo.result = ex.Message;
+                StatusText = ex.Message;
+            }
+            finally
+            {
+                IsIntermadiate = false;
             }
 
         }

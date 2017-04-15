@@ -5,8 +5,117 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartCardDesc.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="White">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Text="Ввести параметры"></TextBlock>
+            <Border BorderBrush="Blue" BorderThickness="2">
+                <Grid Margin="-2,0,2,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Ид Пользователя" 
+                                       Grid.Row="0" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Margin="5" 
+                                 Name="txbUserId"
+                                 Grid.Column="0"
+                                 Text="{Binding Path=UserId, Mode=TwoWay}"></TextBox>
+                        <Button Grid.Column="1" 
+                                Margin="5"
+                                Content="Токен"
+                                Command="{Binding Path=GetToken}"></Button>
+                    </Grid>
+                    <TextBlock Text="Токен" 
+                               Grid.Row="1" 
+                               Margin="5">
+
+                    </TextBlock>
+                    <TextBox Grid.Row="1" 
+                             Grid.Column="1"
+                             Margin="5"
+                             IsReadOnly="True"
+                             Text="{Binding Path=Token}">
+
+                    </TextBox>
+                </Grid>
+            </Border>
+            <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right">
+                <Button Content="Очистить" 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"
+                        Command="{Binding ClearResults}"></Button>
+                <Button Content="Загрузить..." 
+                                    Width="80" 
+                                    Height="25"
+                                    Margin="10"
+                        Command="{Binding LoadResults}"></Button>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <TextBlock Text="Результаты:"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Row="1" 
+                            BorderBrush="Green"
+                            BorderThickness="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="84"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="37"/>
+                    <RowDefinition Height="193*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" 
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Результат:"
+                                       Margin="5,10,0,11" Height="16" Width="55"></TextBlock>
+                <TextBox Grid.Row="0" 
+                         Grid.Column="1"
+                         Margin="5"
+                         IsReadOnly="True"
+                         Text="{Binding Path=Model.result}">
+                </TextBox>
+            </Grid>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
