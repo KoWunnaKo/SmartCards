@@ -45,6 +45,10 @@ namespace SmartCardDesc.InfocomService
                         var result = CallWebService("getUserById", xml);
 
                         model = ParseGetUserIdMethod(result);
+
+                        model.userId = pUserId;
+
+                        model.token = pToken;
                     }
                     catch(Exception ex)
                     {
@@ -242,6 +246,10 @@ namespace SmartCardDesc.InfocomService
                     var result = CallWebService("getUserCard", xml);
 
                     model = ParseGetUserCardInfoMethod(result);
+
+                    model.user_id = pUserId;
+
+                    model.token = pToken;
                 }
                 catch (Exception ex)
                 {

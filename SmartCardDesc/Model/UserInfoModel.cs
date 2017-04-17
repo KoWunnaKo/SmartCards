@@ -5,6 +5,8 @@ using System.Globalization;
 using System.Threading.Tasks;
 using SmartCardDesc.EntityModel.EntityModel;
 using SmartCardDesc.Cryptography;
+using System.Linq;
+
 
 namespace SmartCardDesc.Model
 {
@@ -90,7 +92,8 @@ namespace SmartCardDesc.Model
         /// </summary>
         public string tin { get; set; }
 
-        /// <summary>
+        /// <summary>2
+        /// 
         /// 
         /// </summary>
         public string pport_no { get; set; }
@@ -205,12 +208,26 @@ namespace SmartCardDesc.Model
             {
                 using (var context = new SmartCardDBEntities())
                 {
-                    var user = context.USERS.Create();
+                    //Audit
+
+                    AuditModel.InsertAudit("USER_INFO", 
+                        string.Format("Got information by {0}",userId)
+                        , "Current User!!!");
+
+
+                    ///User information logic
+                    var count = (from userx in context.USERS
+                                where userx.LOGIN == userId
+                                select userx.LOGIN).Count();
+
+                    if (count > 0) return;
+
+                    var user = new USER();
 
                     user.LOGIN = userId;
                     user.PASSWORD = HashPassword.HashPasswordWithSalt(password);
                     user.IS_ACTIVE = is_active;
-                    user.DEPARTMENT = Department;
+                    user.DEPARTMENT = context.DEPARTMENTs.ToList().First().REC_ID;
 
                     if (string.IsNullOrEmpty(reg_dttm))
                     {
@@ -218,7 +235,7 @@ namespace SmartCardDesc.Model
                     }
                     else
                     {
-                        user.REG_DATE = DateTime.ParseExact(reg_dttm, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        user.REG_DATE = DateTime.ParseExact(reg_dttm, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     }
 
                     if (string.IsNullOrEmpty(first_name))
@@ -270,7 +287,7 @@ namespace SmartCardDesc.Model
                     }
                     else
                     {
-                        user.BIRTH_DATE= DateTime.ParseExact(dob, "yyyy-MM-dd", CultureInfo.InvariantCulture); ;
+                        user.BIRTH_DATE= DateTime.ParseExact(dob, "dd/MM/yyyy", CultureInfo.InvariantCulture); ;
                     }
 
                     if (string.IsNullOrEmpty(PerAdr))
@@ -310,6 +327,11 @@ namespace SmartCardDesc.Model
                     {
                         user.PIN = pin;
                     }
+
+                    user.CARD_FLG = false;
+                    user.KEY_FLG = false;
+                    user.CERT_CRT_FLG = false;
+                    user.CERT_WRT_FLG = false;
 
                     context.USERS.Add(user);
 

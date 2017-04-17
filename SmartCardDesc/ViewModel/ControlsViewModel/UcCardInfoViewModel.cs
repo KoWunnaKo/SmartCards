@@ -1,6 +1,10 @@
-﻿using SmartCardDesc.InfocomService;
+﻿using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.InfocomService;
 using SmartCardDesc.Model;
 using SmartCardDesc.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
@@ -38,7 +42,24 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             CardInfo = await service.GetUserCardInfo(UserId, Token);
 
-            IsIntermadiate = false;
+            try
+            {
+                if ((CardInfo != null) && (CardInfo.user_id != null))
+                {
+                    await CardInfo.InsertCardInfoEnt();
+
+                    StatusText = "Загрузка прошла удачно...";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                StatusText = ex.Message;
+            }
+            finally
+            {
+                IsIntermadiate = false;
+            }
 
             StatusText = string.Empty;
         }
@@ -87,6 +108,53 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 OnPropertyChanged("UserId");
             }
         }
+
+        private USER _selectedUser;
+
+        public USER SelectedUser
+        {
+            get
+            {
+                return _selectedUser;
+            }
+
+            set
+            {
+                _selectedUser = value;
+
+                UserId = _selectedUser.LOGIN;
+
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private List<USER> _usersList;
+
+        public List<USER> UsersList
+        {
+            get
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        _usersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                if (_usersList == null)
+                {
+                    _usersList = new List<USER>();
+                }
+
+                return _usersList;
+            }
+        } 
 
         private CardModel cardInfo;
 

@@ -8,16 +8,26 @@ namespace SmartCardDesc.Secirity
     /// </summary>
     public partial class LoginWindow : Window
     {
+
+        private LoginViewModel model;
+
         public LoginWindow()
         {
             InitializeComponent();
 
-            DataContext = new LoginViewModel();
+            model = new LoginViewModel();
+
+            DataContext = model;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void txbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            model.Password = txbPassword.Password;
         }
     }
 }

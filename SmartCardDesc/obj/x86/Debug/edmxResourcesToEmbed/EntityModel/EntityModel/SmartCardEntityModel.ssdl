@@ -23,6 +23,9 @@
     <Property Name="CREATE_DATE" Type="datetime" />
     <Property Name="CREATE_USER" Type="int" />
     <Property Name="OWNER_USER" Type="int" />
+    <Property Name="EXPONENT" Type="varbinary" MaxLength="3" />
+    <Property Name="MODULUS" Type="varbinary" MaxLength="256" />
+    <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
@@ -64,13 +67,14 @@
     <Property Name="REQ_DATETIME" Type="datetime" />
     <Property Name="REQ_USER" Type="int" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "SmartCardDB.dbo.FIXED_INTERNAL_VALUES" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
-        <EntityType Name="FIXED_INTERNAL_VALUES">
-          <Property Name="PKM_ID" Type="int" />
-          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
-          <Property Name="VALUE" Type="int" />
-        </EntityType>-->
+  <EntityType Name="FIXED_INTERNAL_VALUES">
+    <Key>
+      <PropertyRef Name="PKM_ID" />
+    </Key>
+    <Property Name="PKM_ID" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+    <Property Name="VALUE" Type="int" />
+  </EntityType>
   <EntityType Name="READERS_INFO">
     <Key>
       <PropertyRef Name="REC_ID" />
@@ -102,6 +106,10 @@
     <Property Name="TIN" Type="varchar" MaxLength="50" />
     <Property Name="PIN" Type="varchar" MaxLength="50" />
     <Property Name="REG_DATE" Type="date" />
+    <Property Name="CARD_FLG" Type="bit" />
+    <Property Name="KEY_FLG" Type="bit" />
+    <Property Name="CERT_CRT_FLG" Type="bit" />
+    <Property Name="CERT_WRT_FLG" Type="bit" />
   </EntityType>
   <EntityType Name="WAREHOUSE">
     <Key>
@@ -241,6 +249,7 @@
     <EntitySet Name="DICTIONARY" EntityType="Self.DICTIONARY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DICTIONARY_TYPE" EntityType="Self.DICTIONARY_TYPE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EXTERNAL_REQUESTS" EntityType="Self.EXTERNAL_REQUESTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FIXED_INTERNAL_VALUES" EntityType="Self.FIXED_INTERNAL_VALUES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="READERS_INFO" EntityType="Self.READERS_INFO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WAREHOUSE" EntityType="Self.WAREHOUSE" Schema="dbo" store:Type="Tables" />

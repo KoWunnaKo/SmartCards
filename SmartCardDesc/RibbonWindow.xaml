@@ -94,43 +94,44 @@
             <RibbonTab Header="Списки" KeyTip="I">
                 <RibbonGroup x:Name="ExchangeLists" Margin="0,1" Header="Списки обмена данных">
                     <StackPanel Orientation="Horizontal">
-                        <RibbonButton  Label="Список пользователей"  
+                        <RibbonRadioButton  Label="Список пользователей"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.ico"
                                        Name="btnUserInfolist"/>
-                        <RibbonButton  Label="Список карт"  
+                        <RibbonRadioButton  Label="Список карт"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/smart_card_technology.png" 
                                        Name="btnCardInfolist"/>
-                        <RibbonButton  Label="Список Добпалений"  
+                        <RibbonRadioButton  Label="Список Добпалений"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 
                                        Name="btnAddCardList"/>
-                        <RibbonButton  Label="Список Изменений" 
+                        <RibbonRadioButton  Label="Список Изменений" 
                                        LargeImageSource="/SmartCardDesc;component/Resources/126_Edit.ico"
                                        Name="btnEditCardList"/>
-                        <RibbonButton  Label="Список Удалений"  
+                        <RibbonRadioButton  Label="Список Удалений"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/delete.ico" 
                                        Name="btnDeleteCardList"/>
-                    </StackPanel>
-                </RibbonGroup>
-                <RibbonGroup x:Name="CardOpLists" Margin="0,1" Header="Списки операций с картами">
-                    <StackPanel Orientation="Horizontal">
-                        <RibbonButton  
+                        <RibbonRadioButton  
                             Label="Список Генераций"  
                             LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
                             Name="btnKeyGenlist"
                             />
-                        <RibbonButton  
+                        <RibbonRadioButton  
                             Label="Список Сертификатов"  
                             LargeImageSource="/SmartCardDesc;component/Resources/document.ico" 
                             Name="btnCertificatelist"
                             />
-                        <RibbonButton  
+                        <RibbonRadioButton  
                             Label="Записи Сертификатов"  
                             LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
                             Name="WriteCertlist"
                             />
-                        <!--SmallImageSource="Images\add.png"-->
                     </StackPanel>
                 </RibbonGroup>
+                <!--<RibbonGroup x:Name="CardOpLists" Margin="0,1" Header="Списки операций с картами">
+                    <StackPanel Orientation="Horizontal">
+
+                        --><!--SmallImageSource="Images\add.png"--><!--
+                    </StackPanel>
+                </RibbonGroup>-->
             </RibbonTab>
             <!-- Ribbon Tab #3: -->
             <RibbonTab Header="Склад" KeyTip="L">

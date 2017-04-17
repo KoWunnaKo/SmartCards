@@ -1,7 +1,9 @@
-﻿using System;
+﻿using SmartCardDesc.EntityModel.EntityModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartCardDesc.Model
 {
@@ -37,13 +39,29 @@ namespace SmartCardDesc.Model
         /// </summary>
         public string expiry_date { get; set; }
 
-        /*
-         *  <result>Success</result>
-            <card_stat>Y</card_stat>
-            <issue_date>2018-12-10</issue_date>
-            <card_num>CARD001</card_num>
-            <user_id>ulugbek</user_id>
-            <expiry_date>2019-12-10</expiry_date>
-         */
+        public Task InsertCardInfoEnt()
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                using (var context = new SmartCardDBEntities())
+                {
+                    //Audit
+
+                    AuditModel.InsertAudit("CARD_INFO",
+                        string.Format("Got information by card {0}", card_num)
+                        , "Current User!!!");
+
+                    var count = (from cardx in context.CARD_INFO
+                                 where cardx.CARD_NUMBER == card_num
+                                 select cardx.CARD_NUMBER).Count();
+
+                    if (count > 0) return;
+
+
+                }
+            });
+
+            return resultTask;
+        }
     }
 }

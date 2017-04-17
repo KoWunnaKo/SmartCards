@@ -25,6 +25,9 @@
     <Property Name="OWNER_USER" Type="Int32" />
     <NavigationProperty Name="USER" Relationship="Self.FK_CARD_INFO_USERS" FromRole="CARD_INFO" ToRole="USERS" />
     <NavigationProperty Name="USER1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="CARD_INFO" ToRole="USERS" />
+    <Property Name="EXPONENT" Type="Binary" MaxLength="3" FixedLength="false" />
+    <Property Name="MODULUS" Type="Binary" MaxLength="256" FixedLength="false" />
+    <Property Name="CERTIFICATE_FILE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
@@ -110,6 +113,10 @@
     <NavigationProperty Name="READERS_INFO" Relationship="Self.FK_READERS_INFO_USERS" FromRole="USERS" ToRole="READERS_INFO" />
     <NavigationProperty Name="READERS_INFO1" Relationship="Self.FK_READERS_INFO_USERS1" FromRole="USERS" ToRole="READERS_INFO" />
     <NavigationProperty Name="WAREHOUSE_DTL" Relationship="Self.FK_WAREHOUSE_DTL_USERS" FromRole="USERS" ToRole="WAREHOUSE_DTL" />
+    <Property Name="CARD_FLG" Type="Boolean" />
+    <Property Name="KEY_FLG" Type="Boolean" />
+    <Property Name="CERT_CRT_FLG" Type="Boolean" />
+    <Property Name="CERT_WRT_FLG" Type="Boolean" />
   </EntityType>
   <EntityType Name="WAREHOUSE">
     <Key>
@@ -292,5 +299,14 @@
       <End Role="WAREHOUSE" EntitySet="WAREHOUSEs" />
       <End Role="WAREHOUSE_DTL" EntitySet="WAREHOUSE_DTL" />
     </AssociationSet>
+    <EntitySet Name="FIXED_INTERNAL_VALUES" EntityType="SmartCardDBModel.FIXED_INTERNAL_VALUES" />
   </EntityContainer>
+  <EntityType Name="FIXED_INTERNAL_VALUES">
+    <Key>
+      <PropertyRef Name="PKM_ID" />
+    </Key>
+    <Property Name="PKM_ID" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VALUE" Type="Int32" />
+  </EntityType>
 </Schema>

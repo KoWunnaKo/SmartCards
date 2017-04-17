@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entitymodel/entitymodel/smartcardentitymodel.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entitymodel/entitymodel/smartcardentitymodel.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entitymodel/entitymodel/smartcardmodel.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entitymodel/entitymodel/smartcardmodel.tt")]
 
 

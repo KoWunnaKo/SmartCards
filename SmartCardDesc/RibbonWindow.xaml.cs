@@ -15,7 +15,7 @@ namespace SmartCardDesc
             {
                 InitializeComponent();
             }
-            catch(Exception ex)
+            catch(Exception)
             {
 
             }

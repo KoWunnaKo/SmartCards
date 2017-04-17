@@ -15,6 +15,9 @@
     <EntitySetMapping Name="CARD_INFO">
       <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
         <MappingFragment StoreEntitySet="CARD_INFO">
+          <ScalarProperty Name="CERTIFICATE_FILE" ColumnName="CERTIFICATE_FILE" />
+          <ScalarProperty Name="MODULUS" ColumnName="MODULUS" />
+          <ScalarProperty Name="EXPONENT" ColumnName="EXPONENT" />
           <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
           <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
           <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
@@ -87,6 +90,10 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="SmartCardDBModel.USER">
         <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="CERT_WRT_FLG" ColumnName="CERT_WRT_FLG" />
+          <ScalarProperty Name="CERT_CRT_FLG" ColumnName="CERT_CRT_FLG" />
+          <ScalarProperty Name="KEY_FLG" ColumnName="KEY_FLG" />
+          <ScalarProperty Name="CARD_FLG" ColumnName="CARD_FLG" />
           <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
           <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
@@ -127,6 +134,15 @@
           <ScalarProperty Name="STATE" ColumnName="STATE" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FIXED_INTERNAL_VALUES">
+      <EntityTypeMapping TypeName="SmartCardDBModel.FIXED_INTERNAL_VALUES">
+        <MappingFragment StoreEntitySet="FIXED_INTERNAL_VALUES">
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="PKM_ID" ColumnName="PKM_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

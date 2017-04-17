@@ -28,7 +28,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             ClearParams = new RelayCommand(_ => FClearParams());
 
-            SaveUser = new RelayCommand(_ => fSaveUserInfo());
+            //SaveUser = new RelayCommand(_ => fSaveUserInfo());
 
             service = new EpiService();
         }

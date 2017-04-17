@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="81e431257d4e42c1a7c00f0f1a9882a5" Name="Diagram1" ZoomLevel="87">
+        <EntityTypeShape EntityType="SmartCardDBModel.AUDIT" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.CARD_INFO" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.DEPARTMENT" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.DICTIONARY" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.DICTIONARY_TYPE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.EXTERNAL_REQUESTS" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.FIXED_INTERNAL_VALUES" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.READERS_INFO" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.USER" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.WAREHOUSE" Width="1.5" PointX="6" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.WAREHOUSE_DTL" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
+        <AssociationConnector Association="SmartCardDBModel.FK_CARD_INFO_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_CARD_INFO_USERS1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_READERS_INFO_DEPARTMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_USERS_DEPARTMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_EXTERNAL_REQUESTS_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_READERS_INFO_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_READERS_INFO_USERS1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_WAREHOUSE_DTL_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCardDBModel.FK_WAREHOUSE_DTL_WAREHOUSE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

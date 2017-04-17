@@ -72,8 +72,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net">
@@ -82,7 +86,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -104,6 +107,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\OperationLists\UcCardsList.xaml.cs">
+      <DependentUpon>UcCardsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcCertificateList.xaml.cs">
+      <DependentUpon>UcCertificateList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcDeletesList.xaml.cs">
+      <DependentUpon>UcDeletesList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcInsertsList.xaml.cs">
+      <DependentUpon>UcInsertsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcKeyGenList.xaml.cs">
+      <DependentUpon>UcKeyGenList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcUpdatesList.xaml.cs">
+      <DependentUpon>UcUpdatesList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcUsersList.xaml.cs">
+      <DependentUpon>UcUsersList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OperationLists\UcWriteCertList.xaml.cs">
+      <DependentUpon>UcWriteCertList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcCardInfo.xaml.cs">
       <DependentUpon>UcCardInfo.xaml</DependentUpon>
     </Compile>
@@ -131,6 +158,21 @@
     <Compile Include="Controls\UcWriteCert.xaml.cs">
       <DependentUpon>UcWriteCert.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Warehouse\UcCurrentWarehouse.xaml.cs">
+      <DependentUpon>UcCurrentWarehouse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Warehouse\UcPrixodsList.xaml.cs">
+      <DependentUpon>UcPrixodsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Warehouse\UcProxodOp.xaml.cs">
+      <DependentUpon>UcProxodOp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Warehouse\UcRasxodsList.xaml.cs">
+      <DependentUpon>UcRasxodsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Warehouse\UcSpisaniyeOp.xaml.cs">
+      <DependentUpon>UcSpisaniyeOp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cryptography\HashPassword.cs" />
     <Compile Include="Db\CommonList.cs" />
     <Compile Include="Db\ConnectionProperty.cs" />
@@ -139,49 +181,52 @@
     <Compile Include="Db\DBModel.cs" />
     <Compile Include="Db\SortableBindingList.cs" />
     <Compile Include="EntityModel\EntityModel\AUDIT.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\CARD_INFO.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\DEPARTMENT.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\DICTIONARY.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\DICTIONARY_TYPE.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\EXTERNAL_REQUESTS.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EntityModel\FIXED_INTERNAL_VALUES.cs">
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\READERS_INFO.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\EntityModel\SmartCardEntityModel.Context.cs">
+    <Compile Include="EntityModel\EntityModel\SmartCardModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SmartCardEntityModel.Context.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\EntityModel\SmartCardEntityModel.cs">
+    <Compile Include="EntityModel\EntityModel\SmartCardModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\EntityModel\SmartCardEntityModel.Designer.cs">
+    <Compile Include="EntityModel\EntityModel\SmartCardModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
+      <DependentUpon>SmartCardModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\USER.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\WAREHOUSE.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\EntityModel\WAREHOUSE_DTL.cs">
-      <DependentUpon>SmartCardEntityModel.tt</DependentUpon>
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\SmartCardDs.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -191,6 +236,7 @@
     <Compile Include="InfocomService\EpiService.cs" />
     <Compile Include="Log\FileLogService.cs" />
     <Compile Include="Log\ILogService.cs" />
+    <Compile Include="Model\AuditModel.cs" />
     <Compile Include="Model\BaseItemModel.cs" />
     <Compile Include="Model\CardModel.cs" />
     <Compile Include="Model\DataActionController.cs" />
@@ -208,6 +254,7 @@
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\Security\LoginModel.cs" />
     <Compile Include="ViewModel\Security\LoginViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="RibbonWindow.xaml.cs">
@@ -219,6 +266,38 @@
     <Compile Include="Views\UserInfoWindow.xaml.cs">
       <DependentUpon>UserInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\OperationLists\UcCardsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcCertificateList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcDeletesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcInsertsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcKeyGenList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcUpdatesList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcUsersList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcWriteCertList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UcCardInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -252,6 +331,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UcWriteCert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Warehouse\UcCurrentWarehouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Warehouse\UcPrixodsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Warehouse\UcProxodOp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Warehouse\UcRasxodsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Warehouse\UcSpisaniyeOp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,12 +404,12 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="EntityModel\EntityModel\SmartCardEntityModel.edmx">
+    <EntityDeploy Include="EntityModel\EntityModel\SmartCardModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SmartCardEntityModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>SmartCardModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EntityModel\EntityModel\SmartCardEntityModel.edmx.diagram">
-      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
+    <None Include="EntityModel\EntityModel\SmartCardModel.edmx.diagram">
+      <DependentUpon>SmartCardModel.edmx</DependentUpon>
     </None>
     <None Include="EntityModel\SmartCardDs.xsc">
       <DependentUpon>SmartCardDs.xsd</DependentUpon>
@@ -332,8 +431,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CardAPI\" />
-    <Folder Include="Controls\OperationLists\" />
-    <Folder Include="Controls\Warehouse\" />
     <Folder Include="Lib\" />
     <Folder Include="Views\AppDesigns\" />
   </ItemGroup>
@@ -1103,12 +1200,6 @@
     <Resource Include="TaskResources\UpdateCardResponce.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj">
-      <Project>{a82daf31-8264-4735-a896-d6a025952a6c}</Project>
-      <Name>ClassLibrary1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
@@ -1146,16 +1237,22 @@
     <Resource Include="Resources\Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EntityModel\EntityModel\SmartCardEntityModel.Context.tt">
+    <Content Include="EntityModel\EntityModel\SmartCardModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
-      <LastGenOutput>SmartCardEntityModel.Context.cs</LastGenOutput>
+      <DependentUpon>SmartCardModel.edmx</DependentUpon>
+      <LastGenOutput>SmartCardModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EntityModel\EntityModel\SmartCardEntityModel.tt">
+    <Content Include="EntityModel\EntityModel\SmartCardModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SmartCardEntityModel.edmx</DependentUpon>
-      <LastGenOutput>SmartCardEntityModel.cs</LastGenOutput>
+      <DependentUpon>SmartCardModel.edmx</DependentUpon>
+      <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj">
+      <Project>{a82daf31-8264-4735-a896-d6a025952a6c}</Project>
+      <Name>CardRSA_API</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

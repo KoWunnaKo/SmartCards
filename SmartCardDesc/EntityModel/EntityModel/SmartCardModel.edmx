@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SmartCardDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUDIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY" Type="varchar" MaxLength="50" />
+          <Property Name="MESSAGE" Type="nvarchar" MaxLength="500" />
+          <Property Name="USER_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CARD_INFO">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CARD_NUMBER" Type="nvarchar" MaxLength="16" />
+          <Property Name="SERIAL_NUMBER" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISSUE_DATE" Type="date" />
+          <Property Name="EXPIRE_DATE" Type="date" />
+          <Property Name="CARD_STATE" Type="nvarchar" MaxLength="4" />
+          <Property Name="CREATE_DATE" Type="datetime" />
+          <Property Name="CREATE_USER" Type="int" />
+          <Property Name="OWNER_USER" Type="int" />
+          <Property Name="EXPONENT" Type="varbinary" MaxLength="3" />
+          <Property Name="MODULUS" Type="varbinary" MaxLength="256" />
+          <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="IS_ACTIVE" Type="bit" />
+        </EntityType>
+        <EntityType Name="DICTIONARY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="50" />
+          <Property Name="NAME_UZ" Type="nvarchar" MaxLength="200" />
+          <Property Name="NAME_RU" Type="nvarchar" MaxLength="200" />
+          <Property Name="DICTIONARY_TYPE_ID" Type="int" />
+          <Property Name="IS_DEFAULT" Type="bit" />
+          <Property Name="IS_ARCHIVE" Type="bit" />
+        </EntityType>
+        <EntityType Name="DICTIONARY_TYPE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="25" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="name_uz" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EXTERNAL_REQUESTS">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REQ_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="REQ_MESSAGE" Type="nvarchar(max)" />
+          <Property Name="RES_MESSAGE" Type="nvarchar(max)" />
+          <Property Name="REQ_DATETIME" Type="datetime" />
+          <Property Name="REQ_USER" Type="int" />
+        </EntityType>
+        <EntityType Name="FIXED_INTERNAL_VALUES">
+          <Key>
+            <PropertyRef Name="PKM_ID" />
+          </Key>
+          <Property Name="PKM_ID" Type="int" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="VALUE" Type="int" />
+        </EntityType>
+        <EntityType Name="READERS_INFO">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="READER_TYPE" Type="nvarchar" MaxLength="100" />
+          <Property Name="READER_STATE" Type="nvarchar" MaxLength="4" />
+          <Property Name="CREATE_DATE" Type="datetime" />
+          <Property Name="CREATE_USER" Type="int" />
+          <Property Name="OWNER_USER" Type="int" />
+          <Property Name="OWNER_DEPARTMENT" Type="int" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGIN" Type="nvarchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varbinary" MaxLength="200" />
+          <Property Name="IS_ACTIVE" Type="bit" />
+          <Property Name="DEPARTMENT" Type="int" />
+          <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="SURNAME_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="MIDDLE_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="GENDER" Type="bit" />
+          <Property Name="BIRTH_DATE" Type="date" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="300" />
+          <Property Name="PASSPORT" Type="varchar" MaxLength="10" />
+          <Property Name="TIN" Type="varchar" MaxLength="50" />
+          <Property Name="PIN" Type="varchar" MaxLength="50" />
+          <Property Name="REG_DATE" Type="date" />
+          <Property Name="CARD_FLG" Type="bit" />
+          <Property Name="KEY_FLG" Type="bit" />
+          <Property Name="CERT_CRT_FLG" Type="bit" />
+          <Property Name="CERT_WRT_FLG" Type="bit" />
+        </EntityType>
+        <EntityType Name="WAREHOUSE">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="INPUT_DT" Type="date" />
+          <Property Name="TOTAL_AMOUNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QUANTITY" Type="int" />
+          <Property Name="ITEN_NAME" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="WAREHOUSE_DTL">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PARENT_ID" Type="int" Nullable="false" />
+          <Property Name="OP_TYPE" Type="char" MaxLength="1" />
+          <Property Name="TR_AMOUNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TR_DATE" Type="date" />
+          <Property Name="STATE" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="CREATE_USER" Type="int" />
+        </EntityType>
+        <Association Name="FK_CARD_INFO_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="CARD_INFO" Type="Self.CARD_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="CARD_INFO">
+              <PropertyRef Name="CREATE_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CARD_INFO_USERS1">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="CARD_INFO" Type="Self.CARD_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="CARD_INFO">
+              <PropertyRef Name="OWNER_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXTERNAL_REQUESTS_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="EXTERNAL_REQUESTS" Type="Self.EXTERNAL_REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="EXTERNAL_REQUESTS">
+              <PropertyRef Name="REQ_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_READERS_INFO_DEPARTMENT">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+          <End Role="READERS_INFO" Type="Self.READERS_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="READERS_INFO">
+              <PropertyRef Name="OWNER_DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_READERS_INFO_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="READERS_INFO" Type="Self.READERS_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="READERS_INFO">
+              <PropertyRef Name="CREATE_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_READERS_INFO_USERS1">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="READERS_INFO" Type="Self.READERS_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="READERS_INFO">
+              <PropertyRef Name="OWNER_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERS_DEPARTMENT">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WAREHOUSE_DTL_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="WAREHOUSE_DTL" Type="Self.WAREHOUSE_DTL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="WAREHOUSE_DTL">
+              <PropertyRef Name="CREATE_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WAREHOUSE_DTL_WAREHOUSE">
+          <End Role="WAREHOUSE" Type="Self.WAREHOUSE" Multiplicity="1" />
+          <End Role="WAREHOUSE_DTL" Type="Self.WAREHOUSE_DTL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WAREHOUSE">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="WAREHOUSE_DTL">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartCardDBModelStoreContainer">
+          <EntitySet Name="AUDIT" EntityType="Self.AUDIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CARD_INFO" EntityType="Self.CARD_INFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DICTIONARY" EntityType="Self.DICTIONARY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DICTIONARY_TYPE" EntityType="Self.DICTIONARY_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXTERNAL_REQUESTS" EntityType="Self.EXTERNAL_REQUESTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FIXED_INTERNAL_VALUES" EntityType="Self.FIXED_INTERNAL_VALUES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="READERS_INFO" EntityType="Self.READERS_INFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WAREHOUSE" EntityType="Self.WAREHOUSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WAREHOUSE_DTL" EntityType="Self.WAREHOUSE_DTL" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CARD_INFO_USERS" Association="Self.FK_CARD_INFO_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CARD_INFO" EntitySet="CARD_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CARD_INFO_USERS1" Association="Self.FK_CARD_INFO_USERS1">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CARD_INFO" EntitySet="CARD_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXTERNAL_REQUESTS_USERS" Association="Self.FK_EXTERNAL_REQUESTS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="EXTERNAL_REQUESTS" EntitySet="EXTERNAL_REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_READERS_INFO_DEPARTMENT" Association="Self.FK_READERS_INFO_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="READERS_INFO" EntitySet="READERS_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_READERS_INFO_USERS" Association="Self.FK_READERS_INFO_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="READERS_INFO" EntitySet="READERS_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_READERS_INFO_USERS1" Association="Self.FK_READERS_INFO_USERS1">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="READERS_INFO" EntitySet="READERS_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERS_DEPARTMENT" Association="Self.FK_USERS_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WAREHOUSE_DTL_USERS" Association="Self.FK_WAREHOUSE_DTL_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="WAREHOUSE_DTL" EntitySet="WAREHOUSE_DTL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WAREHOUSE_DTL_WAREHOUSE" Association="Self.FK_WAREHOUSE_DTL_WAREHOUSE">
+            <End Role="WAREHOUSE" EntitySet="WAREHOUSE" />
+            <End Role="WAREHOUSE_DTL" EntitySet="WAREHOUSE_DTL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartCardDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUDIT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MESSAGE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CARD_INFO">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CARD_NUMBER" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SERIAL_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISSUE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="EXPIRE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CARD_STATE" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATE_USER" Type="Int32" />
+          <Property Name="OWNER_USER" Type="Int32" />
+          <Property Name="EXPONENT" Type="Binary" MaxLength="3" FixedLength="false" />
+          <Property Name="MODULUS" Type="Binary" MaxLength="256" FixedLength="false" />
+          <Property Name="CERTIFICATE_FILE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_CARD_INFO_USERS" FromRole="CARD_INFO" ToRole="USERS" />
+          <NavigationProperty Name="USER1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="CARD_INFO" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
+          <NavigationProperty Name="READERS_INFO" Relationship="Self.FK_READERS_INFO_DEPARTMENT" FromRole="DEPARTMENT" ToRole="READERS_INFO" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK_USERS_DEPARTMENT" FromRole="DEPARTMENT" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="DICTIONARY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME_UZ" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_RU" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DICTIONARY_TYPE_ID" Type="Int32" />
+          <Property Name="IS_DEFAULT" Type="Boolean" />
+          <Property Name="IS_ARCHIVE" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DICTIONARY_TYPE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name_uz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EXTERNAL_REQUESTS">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REQ_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REQ_MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RES_MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="REQ_DATETIME" Type="DateTime" Precision="3" />
+          <Property Name="REQ_USER" Type="Int32" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_EXTERNAL_REQUESTS_USERS" FromRole="EXTERNAL_REQUESTS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="FIXED_INTERNAL_VALUES">
+          <Key>
+            <PropertyRef Name="PKM_ID" />
+          </Key>
+          <Property Name="PKM_ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VALUE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="READERS_INFO">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="READER_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="READER_STATE" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATE_USER" Type="Int32" />
+          <Property Name="OWNER_USER" Type="Int32" />
+          <Property Name="OWNER_DEPARTMENT" Type="Int32" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="Self.FK_READERS_INFO_DEPARTMENT" FromRole="READERS_INFO" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_READERS_INFO_USERS" FromRole="READERS_INFO" ToRole="USERS" />
+          <NavigationProperty Name="USER1" Relationship="Self.FK_READERS_INFO_USERS1" FromRole="READERS_INFO" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="Binary" MaxLength="200" FixedLength="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
+          <Property Name="DEPARTMENT" Type="Int32" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SURNAME_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MIDDLE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GENDER" Type="Boolean" />
+          <Property Name="BIRTH_DATE" Type="DateTime" Precision="0" />
+          <Property Name="ADDRESS" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PASSPORT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REG_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CARD_FLG" Type="Boolean" />
+          <Property Name="KEY_FLG" Type="Boolean" />
+          <Property Name="CERT_CRT_FLG" Type="Boolean" />
+          <Property Name="CERT_WRT_FLG" Type="Boolean" />
+          <NavigationProperty Name="CARD_INFO" Relationship="Self.FK_CARD_INFO_USERS" FromRole="USERS" ToRole="CARD_INFO" />
+          <NavigationProperty Name="CARD_INFO1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="USERS" ToRole="CARD_INFO" />
+          <NavigationProperty Name="DEPARTMENT1" Relationship="Self.FK_USERS_DEPARTMENT" FromRole="USERS" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="EXTERNAL_REQUESTS" Relationship="Self.FK_EXTERNAL_REQUESTS_USERS" FromRole="USERS" ToRole="EXTERNAL_REQUESTS" />
+          <NavigationProperty Name="READERS_INFO" Relationship="Self.FK_READERS_INFO_USERS" FromRole="USERS" ToRole="READERS_INFO" />
+          <NavigationProperty Name="READERS_INFO1" Relationship="Self.FK_READERS_INFO_USERS1" FromRole="USERS" ToRole="READERS_INFO" />
+          <NavigationProperty Name="WAREHOUSE_DTL" Relationship="Self.FK_WAREHOUSE_DTL_USERS" FromRole="USERS" ToRole="WAREHOUSE_DTL" />
+        </EntityType>
+        <EntityType Name="WAREHOUSE">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="INPUT_DT" Type="DateTime" Precision="0" />
+          <Property Name="TOTAL_AMOUNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="ITEN_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WAREHOUSE_DTL" Relationship="Self.FK_WAREHOUSE_DTL_WAREHOUSE" FromRole="WAREHOUSE" ToRole="WAREHOUSE_DTL" />
+        </EntityType>
+        <EntityType Name="WAREHOUSE_DTL">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PARENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="OP_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="TR_AMOUNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TR_DATE" Type="DateTime" Precision="0" />
+          <Property Name="STATE" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="CREATE_USER" Type="Int32" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_WAREHOUSE_DTL_USERS" FromRole="WAREHOUSE_DTL" ToRole="USERS" />
+          <NavigationProperty Name="WAREHOUSE" Relationship="Self.FK_WAREHOUSE_DTL_WAREHOUSE" FromRole="WAREHOUSE_DTL" ToRole="WAREHOUSE" />
+        </EntityType>
+        <Association Name="FK_CARD_INFO_USERS">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="CARD_INFO" Type="Self.CARD_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="CARD_INFO">
+              <PropertyRef Name="CREATE_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CARD_INFO_USERS1">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="CARD_INFO" Type="Self.CARD_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="CARD_INFO">
+              <PropertyRef Name="OWNER_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_READERS_INFO_DEPARTMENT">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+          <End Role="READERS_INFO" Type="Self.READERS_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="READERS_INFO">
+              <PropertyRef Name="OWNER_DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERS_DEPARTMENT">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="DEPARTMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXTERNAL_REQUESTS_USERS">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="EXTERNAL_REQUESTS" Type="Self.EXTERNAL_REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="EXTERNAL_REQUESTS">
+              <PropertyRef Name="REQ_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_READERS_INFO_USERS">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="READERS_INFO" Type="Self.READERS_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="READERS_INFO">
+              <PropertyRef Name="CREATE_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_READERS_INFO_USERS1">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="READERS_INFO" Type="Self.READERS_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="READERS_INFO">
+              <PropertyRef Name="OWNER_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WAREHOUSE_DTL_USERS">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="WAREHOUSE_DTL" Type="Self.WAREHOUSE_DTL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="WAREHOUSE_DTL">
+              <PropertyRef Name="CREATE_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WAREHOUSE_DTL_WAREHOUSE">
+          <End Role="WAREHOUSE" Type="Self.WAREHOUSE" Multiplicity="1" />
+          <End Role="WAREHOUSE_DTL" Type="Self.WAREHOUSE_DTL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WAREHOUSE">
+              <PropertyRef Name="REC_ID" />
+            </Principal>
+            <Dependent Role="WAREHOUSE_DTL">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartCardDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUDITs" EntityType="Self.AUDIT" />
+          <EntitySet Name="CARD_INFO" EntityType="Self.CARD_INFO" />
+          <EntitySet Name="DEPARTMENTs" EntityType="Self.DEPARTMENT" />
+          <EntitySet Name="DICTIONARies" EntityType="Self.DICTIONARY" />
+          <EntitySet Name="DICTIONARY_TYPE" EntityType="Self.DICTIONARY_TYPE" />
+          <EntitySet Name="EXTERNAL_REQUESTS" EntityType="Self.EXTERNAL_REQUESTS" />
+          <EntitySet Name="FIXED_INTERNAL_VALUES" EntityType="Self.FIXED_INTERNAL_VALUES" />
+          <EntitySet Name="READERS_INFO" EntityType="Self.READERS_INFO" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <EntitySet Name="WAREHOUSEs" EntityType="Self.WAREHOUSE" />
+          <EntitySet Name="WAREHOUSE_DTL" EntityType="Self.WAREHOUSE_DTL" />
+          <AssociationSet Name="FK_CARD_INFO_USERS" Association="Self.FK_CARD_INFO_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CARD_INFO" EntitySet="CARD_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CARD_INFO_USERS1" Association="Self.FK_CARD_INFO_USERS1">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CARD_INFO" EntitySet="CARD_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_READERS_INFO_DEPARTMENT" Association="Self.FK_READERS_INFO_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+            <End Role="READERS_INFO" EntitySet="READERS_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERS_DEPARTMENT" Association="Self.FK_USERS_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXTERNAL_REQUESTS_USERS" Association="Self.FK_EXTERNAL_REQUESTS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="EXTERNAL_REQUESTS" EntitySet="EXTERNAL_REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_READERS_INFO_USERS" Association="Self.FK_READERS_INFO_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="READERS_INFO" EntitySet="READERS_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_READERS_INFO_USERS1" Association="Self.FK_READERS_INFO_USERS1">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="READERS_INFO" EntitySet="READERS_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WAREHOUSE_DTL_USERS" Association="Self.FK_WAREHOUSE_DTL_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="WAREHOUSE_DTL" EntitySet="WAREHOUSE_DTL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WAREHOUSE_DTL_WAREHOUSE" Association="Self.FK_WAREHOUSE_DTL_WAREHOUSE">
+            <End Role="WAREHOUSE" EntitySet="WAREHOUSEs" />
+            <End Role="WAREHOUSE_DTL" EntitySet="WAREHOUSE_DTL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartCardDBModelStoreContainer" CdmEntityContainer="SmartCardDBEntities">
+          <EntitySetMapping Name="AUDITs">
+            <EntityTypeMapping TypeName="SmartCardDBModel.AUDIT">
+              <MappingFragment StoreEntitySet="AUDIT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CARD_INFO">
+            <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
+              <MappingFragment StoreEntitySet="CARD_INFO">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
+                <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+                <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+                <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+                <ScalarProperty Name="CARD_STATE" ColumnName="CARD_STATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+                <ScalarProperty Name="OWNER_USER" ColumnName="OWNER_USER" />
+                <ScalarProperty Name="EXPONENT" ColumnName="EXPONENT" />
+                <ScalarProperty Name="MODULUS" ColumnName="MODULUS" />
+                <ScalarProperty Name="CERTIFICATE_FILE" ColumnName="CERTIFICATE_FILE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENTs">
+            <EntityTypeMapping TypeName="SmartCardDBModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DICTIONARies">
+            <EntityTypeMapping TypeName="SmartCardDBModel.DICTIONARY">
+              <MappingFragment StoreEntitySet="DICTIONARY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="NAME_UZ" ColumnName="NAME_UZ" />
+                <ScalarProperty Name="NAME_RU" ColumnName="NAME_RU" />
+                <ScalarProperty Name="DICTIONARY_TYPE_ID" ColumnName="DICTIONARY_TYPE_ID" />
+                <ScalarProperty Name="IS_DEFAULT" ColumnName="IS_DEFAULT" />
+                <ScalarProperty Name="IS_ARCHIVE" ColumnName="IS_ARCHIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DICTIONARY_TYPE">
+            <EntityTypeMapping TypeName="SmartCardDBModel.DICTIONARY_TYPE">
+              <MappingFragment StoreEntitySet="DICTIONARY_TYPE">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="name_uz" ColumnName="name_uz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXTERNAL_REQUESTS">
+            <EntityTypeMapping TypeName="SmartCardDBModel.EXTERNAL_REQUESTS">
+              <MappingFragment StoreEntitySet="EXTERNAL_REQUESTS">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="REQ_TYPE" ColumnName="REQ_TYPE" />
+                <ScalarProperty Name="REQ_MESSAGE" ColumnName="REQ_MESSAGE" />
+                <ScalarProperty Name="RES_MESSAGE" ColumnName="RES_MESSAGE" />
+                <ScalarProperty Name="REQ_DATETIME" ColumnName="REQ_DATETIME" />
+                <ScalarProperty Name="REQ_USER" ColumnName="REQ_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FIXED_INTERNAL_VALUES">
+            <EntityTypeMapping TypeName="SmartCardDBModel.FIXED_INTERNAL_VALUES">
+              <MappingFragment StoreEntitySet="FIXED_INTERNAL_VALUES">
+                <ScalarProperty Name="PKM_ID" ColumnName="PKM_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="READERS_INFO">
+            <EntityTypeMapping TypeName="SmartCardDBModel.READERS_INFO">
+              <MappingFragment StoreEntitySet="READERS_INFO">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="READER_TYPE" ColumnName="READER_TYPE" />
+                <ScalarProperty Name="READER_STATE" ColumnName="READER_STATE" />
+                <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+                <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+                <ScalarProperty Name="OWNER_USER" ColumnName="OWNER_USER" />
+                <ScalarProperty Name="OWNER_DEPARTMENT" ColumnName="OWNER_DEPARTMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="SmartCardDBModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="SURNAME_NAME" ColumnName="SURNAME_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="PASSPORT" ColumnName="PASSPORT" />
+                <ScalarProperty Name="TIN" ColumnName="TIN" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="REG_DATE" ColumnName="REG_DATE" />
+                <ScalarProperty Name="CARD_FLG" ColumnName="CARD_FLG" />
+                <ScalarProperty Name="KEY_FLG" ColumnName="KEY_FLG" />
+                <ScalarProperty Name="CERT_CRT_FLG" ColumnName="CERT_CRT_FLG" />
+                <ScalarProperty Name="CERT_WRT_FLG" ColumnName="CERT_WRT_FLG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WAREHOUSEs">
+            <EntityTypeMapping TypeName="SmartCardDBModel.WAREHOUSE">
+              <MappingFragment StoreEntitySet="WAREHOUSE">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="INPUT_DT" ColumnName="INPUT_DT" />
+                <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="ITEN_NAME" ColumnName="ITEN_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WAREHOUSE_DTL">
+            <EntityTypeMapping TypeName="SmartCardDBModel.WAREHOUSE_DTL">
+              <MappingFragment StoreEntitySet="WAREHOUSE_DTL">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="OP_TYPE" ColumnName="OP_TYPE" />
+                <ScalarProperty Name="TR_AMOUNT" ColumnName="TR_AMOUNT" />
+                <ScalarProperty Name="TR_DATE" ColumnName="TR_DATE" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
