@@ -871,4 +871,7 @@
   <data name="Oxygen_Icons_org_Oxygen_Apps_preferences_contact_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Iconshow_Hardware_Printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Iconshow-Hardware-Printer.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

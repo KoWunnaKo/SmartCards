@@ -149,6 +149,9 @@
     <Compile Include="Controls\UcKeyGen.xaml.cs">
       <DependentUpon>UcKeyGen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcPrintCard.xaml.cs">
+      <DependentUpon>UcPrintCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcUpdateCard.xaml.cs">
       <DependentUpon>UcUpdateCard.xaml</DependentUpon>
     </Compile>
@@ -321,6 +324,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UcKeyGen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UcPrintCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1249,6 +1256,7 @@
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
       <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Iconshow-Hardware-Printer.ico" />
     <Resource Include="TaskResources\DeleteCardResponce.xml" />
     <Resource Include="TaskResources\DeleteCardRequest.xml" />
   </ItemGroup>

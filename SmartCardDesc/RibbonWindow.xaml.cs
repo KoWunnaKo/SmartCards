@@ -96,5 +96,10 @@ namespace SmartCardDesc
                     LoginModel.currentUser.MIDDLE_NAME);
             }
         }
+
+        private void btnCardPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

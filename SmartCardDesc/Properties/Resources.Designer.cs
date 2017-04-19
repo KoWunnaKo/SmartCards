@@ -1331,6 +1331,16 @@ namespace SmartCardDesc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Iconshow_Hardware_Printer {
+            get {
+                object obj = ResourceManager.GetObject("Iconshow_Hardware_Printer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ImagerScan {

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCardDesc", "SmartCardD
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CardRSA_API", "..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj", "{A82DAF31-8264-4735-A896-D6A025952A6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC_CertificateCALib", "SC_CertificateCALib\SC_CertificateCALib.csproj", "{6051FE06-920A-422D-9067-588CDB868620}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{A82DAF31-8264-4735-A896-D6A025952A6C}.Release|x64.Build.0 = Release|x64
 		{A82DAF31-8264-4735-A896-D6A025952A6C}.Release|x86.ActiveCfg = Release|Win32
 		{A82DAF31-8264-4735-A896-D6A025952A6C}.Release|x86.Build.0 = Release|Win32
+		{6051FE06-920A-422D-9067-588CDB868620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Debug|x64.Build.0 = Debug|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Debug|x86.Build.0 = Debug|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Release|x64.ActiveCfg = Release|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Release|x64.Build.0 = Release|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Release|x86.ActiveCfg = Release|Any CPU
+		{6051FE06-920A-422D-9067-588CDB868620}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

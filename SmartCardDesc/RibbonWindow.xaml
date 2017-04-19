@@ -67,6 +67,7 @@
                                        LargeImageSource="/SmartCardDesc;component/Resources/delete.ico" 
                                        Name="btnDeleteCard"
                                        Click="btnDeleteCard_Click"/>
+
                         <RibbonRadioButton  
                             Label="Генерация ключей"  
                             LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
@@ -82,6 +83,10 @@
                             LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
                             Name="WriteCert"
                             Click="WriteCert_Click"/>
+                        <RibbonRadioButton  Label="Печать карты"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/Iconshow-Hardware-Printer.ico" 
+                                       Name="btnCardPrint"
+                                       Click="btnCardPrint_Click"/>
                     </StackPanel>
                 </RibbonGroup>
                 <!-- Employee And Payroll group-->
