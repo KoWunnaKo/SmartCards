@@ -1,7 +1,10 @@
 ﻿using SCfunctional;
+using SmartCardDesc.EntityModel.EntityModel;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
@@ -43,7 +46,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             StatusText = string.Empty;
 
-            Exponental = _exponental;
+            //Exponental = _exponental;
 
             Modules = _modules;
         }
@@ -59,6 +62,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             set
             {
                 _exponental = value;
+
+                ConvertStr2ByteExponent(_exponental);
 
                 OnPropertyChanged("Exponental");
             }
@@ -76,6 +81,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 _modules = value;
 
+                ConvertStr2ByteModulus(_modules);
+
                 OnPropertyChanged("Modules");
             }
         }
@@ -88,7 +95,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 unsafe
                 {
 
-                    uint[] exp = new uint[256];
+                    uint[] exp = new uint[3];
                     uint[] modul = new uint[256];
 
                     fixed (uint* public_exp = exp)
@@ -97,10 +104,6 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                         try
                         {
                            returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
-
-                            //returnValue = RSAGeneration.getRSAPrivateComponents(public_exp, public_modul);
-
-                            //RSAGeneration.getRSAPublicComponents()
                         }
                         catch (Exception ex)
                         {
@@ -109,7 +112,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     if (returnValue != 0)
                     {
-                        Exponental = stateList[returnValue];
+                        StatusText = stateList[returnValue];
 
                         return;
                     }
@@ -120,7 +123,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     foreach (uint xx in exp)
                     {
-                        expStr = xx.ToString("x");
+                        expStr = xx.ToString();//"x"
 
                         expStrArr[counter++] = expStr;
                     }
@@ -131,8 +134,6 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     {
                         StatusText = "Error! Try again please!!!";
 
-                        Exponental = StatusText;
-
                         return;
                     }
 
@@ -142,12 +143,14 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     foreach (uint xx in modul)
                     {
-                        mexpStr = xx.ToString("x");
+                        mexpStr = xx.ToString();//"x"
 
                         mexpStrArr[mcounter++] = mexpStr;
                     }
 
                     Modules = string.Join(" ", mexpStrArr);
+
+                    UpdateCardKeyInfo();
                 }
             });
 
@@ -185,6 +188,138 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 _statusText = value;
 
                 OnPropertyChanged("StatusText");
+            }
+        }
+
+        private USER _selectedUser;
+
+        public USER SelectedUser
+        {
+            get
+            {
+                return _selectedUser;
+            }
+
+            set
+            {
+                _selectedUser = value;
+
+                UserId = _selectedUser.LOGIN;
+
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private List<USER> _usersList;
+
+        public List<USER> UsersList
+        {
+            get
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        _usersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                if (_usersList == null)
+                {
+                    _usersList = new List<USER>();
+                }
+
+                return _usersList;
+            }
+        }
+
+        private string userId;
+
+        public string UserId
+        {
+            get
+            {
+                return userId;
+            }
+            set
+            {
+                userId = value;
+
+                OnPropertyChanged("UserId");
+            }
+        }
+
+        private byte[] exponent { get; set; }
+
+        private byte[] modulus { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pexponent"></param>
+        private void ConvertStr2ByteExponent(string pexponent)
+        {
+            if (string.IsNullOrEmpty(pexponent))
+                return;
+
+            exponent = new byte[3];
+
+            string[] strexpArray = pexponent.Split(' ');
+
+            for (int i= 0; i < 3; i++)
+            {
+                byte each = Encoding.UTF8.GetBytes(strexpArray[i])[0];
+
+                exponent[i] = each;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pmodulus"></param>
+        private void ConvertStr2ByteModulus(string pmodulus)
+        {
+            if (string.IsNullOrEmpty(pmodulus))
+                return;
+
+            modulus = new byte[256];
+
+            string[] strmodArray = pmodulus.Split(' ');
+
+            for (int i = 0; i < 256; i++)
+            {
+                byte each = Encoding.UTF8.GetBytes(strmodArray[i])[0];
+
+                modulus[i] = each;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateCardKeyInfo()
+        {
+            if ((exponent == null) || (modulus == null) || (SelectedUser ==null))
+                return;
+
+            using (var context = new SmartCardDBEntities())
+            {
+                var Card = context.CARD_INFO.ToList().FirstOrDefault(x => x.OWNER_USER == SelectedUser.REC_ID &&
+                x.IS_ACTIVE.Value);
+
+                if (Card != null)
+                {
+                    Card.EXPONENT = exponent;
+                    Card.MODULUS = modulus;
+                }
+
+                context.SaveChanges();
             }
         }
     }

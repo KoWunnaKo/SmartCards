@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header>
+    <wsc:CoordinationContext xmlns:wsc="http://docs.oasis-open.org/ws-tx/wscoor/2006/06" globalTransactionID="1eb0e4d6-1e91-11e7-9973-00ff85f06e57" localTransactionID="1eb0e4d5-1e91-11e7-9973-00ff85f06e57"/>
+  </env:Header>
+  <env:Body>
+    <x:res xmlns:x="urn:megaware:/mediate/ips/testIdUz/deleteCardByUserId/deleteCardByUserId.wsdl">
+      <result>Card not found</result>
+    </x:res>
+  </env:Body>
+</env:Envelope>

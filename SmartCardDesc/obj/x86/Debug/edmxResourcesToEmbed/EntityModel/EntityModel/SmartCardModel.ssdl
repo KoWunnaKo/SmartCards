@@ -27,6 +27,7 @@
     <Property Name="MODULUS" Type="varbinary" MaxLength="256" />
     <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
     <Property Name="IS_ACTIVE" Type="bit" />
+    <Property Name="IS_PRINTED" Type="bit" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>

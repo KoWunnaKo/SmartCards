@@ -36,12 +36,17 @@
                    Margin="5"
                   Name="cbxUserList"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Center" Height="21"></ComboBox>
+                  VerticalAlignment="Center" 
+                  Height="21"
+                  ItemsSource="{Binding Path=UsersList}"
+                  DisplayMemberPath="LOGIN"
+                  SelectedValue="{Binding Path=SelectedUser}"></ComboBox>
         <Button
                    Grid.Column="1"
                    Grid.Row="1"
                    Margin="5"
-                    Content="Генериция ключей"></Button>
+                   Content="Генериция ключей"
+                   Command="{Binding GetRsa}"></Button>
         <TextBlock Grid.Column="0"
                    Grid.Row="2"
                    Text="Экспонента"
@@ -50,8 +55,10 @@
                    VerticalAlignment="Center" 
           ></TextBlock>
         <TextBox Grid.Column="1"
-                   Grid.Row="2"
-                 Margin="5"></TextBox>
+                 Grid.Row="2"
+                 Margin="5"
+                 Text="{Binding Exponental}"
+                 TextWrapping="Wrap"></TextBox>
         <TextBlock Grid.Column="0"
                    Grid.Row="3"
                    Text="Модуль"
@@ -60,8 +67,10 @@
                    VerticalAlignment="Center" 
           ></TextBlock>
         <TextBox Grid.Column="1"
-                   Grid.Row="3"
-                 Margin="5"></TextBox>
+                 Grid.Row="3"
+                 Margin="5"
+                 Text="{Binding Modules}" 
+                 TextWrapping="Wrap"></TextBox>
         <Border Grid.Row="4" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
                 >

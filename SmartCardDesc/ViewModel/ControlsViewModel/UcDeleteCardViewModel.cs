@@ -1,5 +1,6 @@
 ﻿using SmartCardDesc.EntityModel.EntityModel;
 using SmartCardDesc.InfocomService;
+using SmartCardDesc.Model;
 using SmartCardDesc.Utils;
 using System;
 using System.Collections.Generic;
@@ -45,9 +46,33 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             Token = CryptoFuncs.GetMD5(UserId);
         }
 
-        private void fLoadResults()
+        private async void fLoadResults()
         {
+            IsIntermadiate = true;
 
+            StatusText = "Загрузка...";
+
+            Model = await service.DeleteCardInfo(UserId, Token);
+
+            if ((Model != null) && (Model.result != null))
+            {
+                using (var context = new SmartCardDBEntities())
+                {
+                    var Card = context.CARD_INFO.ToList().FirstOrDefault(x => x.OWNER_USER == SelectedUser.REC_ID &&
+                    x.IS_ACTIVE.Value);
+
+                    if (Card != null)
+                    {
+                        Card.IS_ACTIVE = false;
+                    }
+
+                    context.SaveChanges();
+                }
+            }
+
+            IsIntermadiate = false;
+
+            StatusText = string.Empty;
         }
 
         private void fClearResults()
@@ -172,6 +197,23 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 _statusText = value;
 
                 OnPropertyChanged("StatusText");
+            }
+        }
+
+        private CardModel _model;
+
+        public CardModel Model
+        {
+            get
+            {
+                return _model;
+            }
+
+            set
+            {
+                _model = value;
+
+                OnPropertyChanged("Model");
             }
         }
     }

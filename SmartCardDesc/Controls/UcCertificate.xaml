@@ -35,10 +35,14 @@
                    VerticalAlignment="Center" ></TextBlock>
         <ComboBox Grid.Column="1"
                    Grid.Row="0"
-                   Margin="5"
+                   Margin="5,10,5,0"
                   Name="cbxUserList"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Center" Height="21"></ComboBox>
+                  VerticalAlignment="Center" 
+                  Height="21"
+                  ItemsSource="{Binding Path=UsersList}"
+                  DisplayMemberPath="LOGIN"
+                  SelectedValue="{Binding Path=SelectedUser}"></ComboBox>
         <Button
                    Grid.Column="1"
                    Grid.Row="3"
@@ -53,7 +57,8 @@
           ></TextBlock>
         <TextBox Grid.Column="1"
                    Grid.Row="1"
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Exponental}"></TextBox>
         <TextBlock Grid.Column="0"
                    Grid.Row="2"
                    Text="Модуль"
@@ -63,10 +68,9 @@
           ></TextBlock>
         <TextBox Grid.Column="1"
                    Grid.Row="2"
-                 Margin="5"></TextBox>
-
-
-
+                 Margin="5"
+                 Text="{Binding Modules}" 
+                 TextWrapping="Wrap"></TextBox>
         <TextBlock Grid.Column="0"
                    Grid.Row="4"
                    Text="Сертификат"

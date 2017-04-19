@@ -29,6 +29,7 @@
     <NavigationProperty Name="USER" Relationship="Self.FK_CARD_INFO_USERS" FromRole="CARD_INFO" ToRole="USERS" />
     <NavigationProperty Name="USER1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="CARD_INFO" ToRole="USERS" />
     <Property Name="IS_ACTIVE" Type="Boolean" />
+    <Property Name="IS_PRINTED" Type="Boolean" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>

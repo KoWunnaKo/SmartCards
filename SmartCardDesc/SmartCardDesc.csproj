@@ -250,6 +250,7 @@
     <Compile Include="ViewModel\ControlsViewModel\RibbonViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcCardInfoViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcDeleteCardViewModel.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\UcGetCertificateViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />
@@ -1248,6 +1249,8 @@
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
       <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="TaskResources\DeleteCardResponce.xml" />
+    <Resource Include="TaskResources\DeleteCardRequest.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj">

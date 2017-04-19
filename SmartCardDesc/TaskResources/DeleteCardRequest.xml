@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:del="urn:megaware:/mediate/ips/testIdUz/deleteCardByUserId/deleteCardByUserId.wsdl">
+    <x:Header/>
+    <x:Body>
+        <del:req>
+            <del:user_id>ulugbek</del:user_id>
+            <del:token>5127189a315ad39b21bc4eab6b602cb6</del:token>
+        </del:req>
+    </x:Body>
+</x:Envelope>

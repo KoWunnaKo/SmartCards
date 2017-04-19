@@ -651,6 +651,78 @@ namespace SmartCardDesc.InfocomService
             return SoapEnvelop;
         }
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<CardModel> DeleteCardInfo(string userId,
+                                    string token)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+
+                CardModel model = null;
+
+                try
+                {
+                    var xml = deleteCardInfo(userId,
+                                             token);
+
+                    var result = CallWebService("deleteCardByUserId", xml);
+
+                    model = ParseInsertCardInfoMethod(result);
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+
+                    if (model == null)
+                        model = new CardModel();
+
+                    model.result = ex.Message;
+                }
+
+                return model;
+            });
+
+            return resultTask;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        private XmlDocument deleteCardInfo(string userId,
+                                            string token)
+        {
+            var SoapEnvelop = new XmlDocument();
+
+            string resultSoap = string.Format(@"<?xml version=""1.0"" encoding=""UTF-8""?>
+                                                <x:Envelope xmlns:x=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:del=""urn:megaware:/mediate/ips/testIdUz/deleteCardByUserId/deleteCardByUserId.wsdl"">
+                                                    <x:Header/>
+                                                        <x:Body>
+                                                            <del:req>
+                                                              <del:user_id>{0}</del:user_id>
+                                                              <del:token>{1}</del:token >
+                                                               </del:req>
+                                                         </x:Body>
+                                                </x:Envelope>", userId, token);
+
+            SoapEnvelop.LoadXml(resultSoap);
+
+            return SoapEnvelop;
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>

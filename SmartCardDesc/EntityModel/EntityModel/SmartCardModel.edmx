@@ -32,6 +32,7 @@
           <Property Name="MODULUS" Type="varbinary" MaxLength="256" />
           <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
           <Property Name="IS_ACTIVE" Type="bit" />
+          <Property Name="IS_PRINTED" Type="bit" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -330,6 +331,7 @@
           <NavigationProperty Name="USER" Relationship="Self.FK_CARD_INFO_USERS" FromRole="CARD_INFO" ToRole="USERS" />
           <NavigationProperty Name="USER1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="CARD_INFO" ToRole="USERS" />
           <Property Name="IS_ACTIVE" Type="Boolean" />
+          <Property Name="IS_PRINTED" Type="Boolean" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -631,6 +633,7 @@
           <EntitySetMapping Name="CARD_INFO">
             <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
               <MappingFragment StoreEntitySet="CARD_INFO">
+                <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
                 <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
                 <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
