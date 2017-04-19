@@ -26,6 +26,7 @@
     <Property Name="EXPONENT" Type="varbinary" MaxLength="3" />
     <Property Name="MODULUS" Type="varbinary" MaxLength="256" />
     <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
+    <Property Name="IS_ACTIVE" Type="bit" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>

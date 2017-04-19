@@ -249,6 +249,7 @@
     <Compile Include="ViewModel\ControlsViewModel\CardRSAGenViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\RibbonViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcCardInfoViewModel.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\UcDeleteCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />

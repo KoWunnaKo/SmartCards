@@ -18,6 +18,8 @@ namespace SmartCardDesc.Secirity
             model = new LoginViewModel();
 
             DataContext = model;
+
+            txbLogin.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

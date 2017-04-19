@@ -1,4 +1,5 @@
 ﻿using SmartCardDesc.Controls;
+using SmartCardDesc.ViewModel.Security;
 using System;
 using System.Windows;
 
@@ -81,6 +82,19 @@ namespace SmartCardDesc
         private void RibbonApplicationMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private string _fullName;
+
+        public string FullName
+        {
+            get
+            {
+                return string.Format("Текущий пользователь: {0} {1} {2}",
+                    LoginModel.currentUser.SURNAME_NAME ,
+                    LoginModel.currentUser.FIRST_NAME,
+                    LoginModel.currentUser.MIDDLE_NAME);
+            }
         }
     }
 }

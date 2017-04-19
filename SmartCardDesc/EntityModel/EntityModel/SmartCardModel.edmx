@@ -31,6 +31,7 @@
           <Property Name="EXPONENT" Type="varbinary" MaxLength="3" />
           <Property Name="MODULUS" Type="varbinary" MaxLength="256" />
           <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
+          <Property Name="IS_ACTIVE" Type="bit" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -307,7 +308,7 @@
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CATEGORY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MESSAGE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="USER_ID" Type="String" />
+          <Property Name="USER_ID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CREATE_DATE" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="CARD_INFO">
@@ -328,6 +329,7 @@
           <Property Name="CERTIFICATE_FILE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="USER" Relationship="Self.FK_CARD_INFO_USERS" FromRole="CARD_INFO" ToRole="USERS" />
           <NavigationProperty Name="USER1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="CARD_INFO" ToRole="USERS" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -629,6 +631,7 @@
           <EntitySetMapping Name="CARD_INFO">
             <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
               <MappingFragment StoreEntitySet="CARD_INFO">
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
                 <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
                 <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />

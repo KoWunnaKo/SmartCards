@@ -1,6 +1,8 @@
 ﻿using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.ViewModel.Security;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,16 +50,27 @@ namespace SmartCardDesc.Model
                     //Audit
 
                     AuditModel.InsertAudit("CARD_INFO",
-                        string.Format("Got information by card {0}", card_num)
-                        , "Current User!!!");
+                        string.Format("Got information by card {0}", card_num));
 
+                    //Card Insert Logic
                     var count = (from cardx in context.CARD_INFO
                                  where cardx.CARD_NUMBER == card_num
                                  select cardx.CARD_NUMBER).Count();
 
                     if (count > 0) return;
 
+                    var card = new CARD_INFO();
 
+                    card.CARD_NUMBER = card_num;
+                    card.CARD_STATE = card_stat;
+                    card.ISSUE_DATE = DateTime.ParseExact(issue_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    card.EXPIRE_DATE = DateTime.ParseExact(expiry_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    card.CREATE_USER = LoginModel.currentUser.REC_ID;
+                    card.OWNER_USER = context.USERS.ToList().First(t => t.LOGIN == user_id).REC_ID;
+
+                    context.CARD_INFO.Add(card);
+
+                    context.SaveChanges();
                 }
             });
 

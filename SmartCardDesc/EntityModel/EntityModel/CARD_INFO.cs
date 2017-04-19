@@ -26,6 +26,7 @@ namespace SmartCardDesc.EntityModel.EntityModel
         public byte[] EXPONENT { get; set; }
         public byte[] MODULUS { get; set; }
         public string CERTIFICATE_FILE { get; set; }
+        public Nullable<bool> IS_ACTIVE { get; set; }
     
         public virtual USER USER { get; set; }
         public virtual USER USER1 { get; set; }

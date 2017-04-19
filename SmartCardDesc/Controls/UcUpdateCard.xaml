@@ -7,8 +7,8 @@
              d:DesignHeight="445" d:DesignWidth="357" Background="White">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
@@ -38,6 +38,9 @@
                         <ComboBox Margin="5" 
                                  Name="txbUserId"
                                  Grid.Column="0"
+                                  ItemsSource="{Binding Path=UsersList}"
+                                  DisplayMemberPath="LOGIN"
+                                  SelectedValue="{Binding Path=SelectedUser}"
                                  ></ComboBox>
                         <Button Grid.Column="1" 
                                 Margin="5"
@@ -53,27 +56,30 @@
                                      Margin="5"
                              IsReadOnly="True"
                              Text="{Binding Path=Token}"></TextBox>
-                    <TextBlock Text="Номер карты" 
+                    <TextBlock Text="Операция с картой" 
                                        Grid.Row="2" 
                                        Grid.Column="0"
                                        Margin="5"></TextBlock>
-                    <Grid Grid.Row="2" 
-                                     Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox Margin="5"
-                                 Text="{Binding Path=Number}">
-
-                        </TextBox>
-                        <Button Grid.Column="1" 
+                    <Border Grid.Row="2" 
+                                     Grid.Column="1"
+                            BorderBrush="Blue"
+                            BorderThickness="2"></Border>
+                    <StackPanel Grid.Row="2" 
+                                     Grid.Column="1"
                                 Margin="5"
-                                Content="Номер"
-                                Command="{Binding GetNumber}"
-                                >
-                        </Button>
-                    </Grid>
+                                Orientation="Vertical">
+                        <RadioButton VerticalAlignment="Center"
+                                     GroupName="Op" 
+                                     Content="Активировать" 
+                                     Margin="2"
+                                     IsChecked="{Binding Path=ActivateChecked, Mode=TwoWay}"
+                                     ></RadioButton>
+                        <RadioButton VerticalAlignment="Center"
+                                     GroupName="Op" 
+                                     Content="Блокировать"
+                                     Margin="2"
+                                     IsChecked="{Binding Path=DeactivateChecked, Mode=TwoWay}"></RadioButton>
+                    </StackPanel>
                     <TextBlock Text="Дата выпуска" 
                                        Grid.Row="3" 
                                        Grid.Column="0"
@@ -119,7 +125,7 @@
                     <ColumnDefinition Width="404*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="37*"/>
+                    <RowDefinition Height="37"/>
                     <RowDefinition Height="193*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" 
@@ -131,6 +137,7 @@
                 <TextBox Grid.Row="0" 
                                       Grid.Column="1"
                                       Margin="10,10,0,1"
+                         Height="20"
                          Text="{Binding Path=Model.result}">
                 </TextBox>
             </Grid>

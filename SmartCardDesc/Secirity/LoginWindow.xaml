@@ -11,9 +11,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="10*"/>
             <RowDefinition Height="39*"/>
-            <RowDefinition Height="27*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="121*"/>
@@ -34,6 +33,7 @@
             Height="20"
             Text="{ Binding Login, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
             VerticalAlignment="Center"
+            Name="txbLogin"
             Grid.Column="1"/>
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
@@ -52,9 +52,23 @@
             PasswordChanged="txbPassword_PasswordChanged"
             />
         <!--PasswordChanged="PasswordBox_PasswordChanged"-->
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" 
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" 
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
+
+            <TextBlock HorizontalAlignment="Center" 
+                    TextWrapping="Wrap" 
+                   Text="{Binding StatusText}" 
+                   VerticalAlignment="Center" 
+                   Height="22" 
+                   Width="100" 
+                   Grid.ColumnSpan="2" 
+                   Grid.Row="4" 
+                   Grid.RowSpan="2"
+                   Foreground="Red"
+                       Visibility="Hidden"
+                   />
+            
             <Button 
             Content="ОК" 
             HorizontalAlignment="Center" 
@@ -63,7 +77,7 @@
             Width="84" 
             Margin="5,0,5,0"
             Command="{Binding LoginCommand}" 
-            Grid.Row="3"/>
+            Grid.Row="2" IsDefault="True"/>
 
             <Button 
             Content="Закрыть" 
@@ -73,22 +87,29 @@
             Width="84" 
                 Click="Button_Click"
             Margin="5,0,5,0"
-            Grid.Row="3"
-            Grid.Column="1"/>
+            Grid.Row="2"
+            Grid.Column="1" IsCancel="True"/>
         </StackPanel>
 
 
-        <TextBlock HorizontalAlignment="Center" 
-                    TextWrapping="Wrap" 
-                   Text="{Binding StatusText}" 
-                   VerticalAlignment="Center" 
-                   Height="22" 
-                   Width="201" 
-                   Grid.ColumnSpan="2" 
-                   Grid.Row="4" 
-                   Grid.RowSpan="2"
-                   Foreground="Red"
-                   />
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="3"
+                Grid.ColumnSpan="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"
+                    Foreground="Red"></TextBlock>
+            </StackPanel>
+        </Border>
         
         
         

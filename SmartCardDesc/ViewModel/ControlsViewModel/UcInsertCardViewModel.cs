@@ -1,7 +1,10 @@
-﻿using SmartCardDesc.InfocomService;
+﻿using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.InfocomService;
 using SmartCardDesc.Model;
 using SmartCardDesc.Utils;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
@@ -58,6 +61,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                                            IssueDate.ToString("yyyy-MM-dd"),
                                            ExpireDate.ToString("yyyy-MM-dd"));
 
+            await AuditModel.InsertAuditAsync("INSERT_CARD",
+                string.Format("user = {0} card_number = {1}", userId, number));
+
             IsIntermadiate = false;
 
             StatusText = string.Empty;
@@ -68,9 +74,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             Token = CryptoFuncs.GetMD5(UserId);
         }
 
-        private void fGetNumber()
+        private async void fGetNumber()
         {
-            Number = CardTools.GenerateCardNumber();
+            Number = await CardTools.GenerateCardNumber();
         }
 
         private string token;
@@ -157,6 +163,53 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 number = value;
 
                 OnPropertyChanged("Number");
+            }
+        }
+
+        private USER _selectedUser;
+
+        public USER SelectedUser
+        {
+            get
+            {
+                return _selectedUser;
+            }
+
+            set
+            {
+                _selectedUser = value;
+
+                UserId = _selectedUser.LOGIN;
+
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private List<USER> _usersList;
+
+        public List<USER> UsersList
+        {
+            get
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        _usersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                if (_usersList == null)
+                {
+                    _usersList = new List<USER>();
+                }
+
+                return _usersList;
             }
         }
 

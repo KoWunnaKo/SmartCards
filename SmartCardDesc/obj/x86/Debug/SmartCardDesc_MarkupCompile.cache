@@ -12,7 +12,7 @@ DEBUG;TRACE
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\App.xaml
 27-1089063964
 21991903706
-74-910094296
+751681694040
 21-1911642292
 Controls\OperationLists\UcCardsList.xaml;Controls\OperationLists\UcCertificateList.xaml;Controls\OperationLists\UcDeletesList.xaml;Controls\OperationLists\UcInsertsList.xaml;Controls\OperationLists\UcKeyGenList.xaml;Controls\OperationLists\UcUpdatesList.xaml;Controls\OperationLists\UcUsersList.xaml;Controls\OperationLists\UcWriteCertList.xaml;Controls\UcCardInfo.xaml;Controls\UcCertificate.xaml;Controls\UcDeleteCard.xaml;Controls\UcGenCardRSA.xaml;Controls\UcInsertCard.xaml;Controls\UcKeyGen.xaml;Controls\UcUpdateCard.xaml;Controls\UcUserInfo.xaml;Controls\UcWriteCert.xaml;Controls\Warehouse\UcCurrentWarehouse.xaml;Controls\Warehouse\UcPrixodsList.xaml;Controls\Warehouse\UcProxodOp.xaml;Controls\Warehouse\UcRasxodsList.xaml;Controls\Warehouse\UcSpisaniyeOp.xaml;MainWindow.xaml;RibbonWindow.xaml;Secirity\LoginWindow.xaml;Views\ServiceManageWindow.xaml;Views\UserInfoWindow.xaml;
 

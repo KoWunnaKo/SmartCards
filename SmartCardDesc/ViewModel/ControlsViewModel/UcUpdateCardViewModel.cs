@@ -1,7 +1,10 @@
-﻿using SmartCardDesc.InfocomService;
+﻿using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.InfocomService;
 using SmartCardDesc.Model;
 using SmartCardDesc.Utils;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
@@ -63,9 +66,25 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             Model = await service.UpdateCardInfo(UserId,
                                            Token,
-                                           Number,
+                                           CardStat,
                                            IssueDate.ToString("yyyy-MM-dd"),
                                            ExpireDate.ToString("yyyy-MM-dd"));
+
+            if ((Model != null) && (Model.result != null))
+            {
+                using (var context = new SmartCardDBEntities())
+                {
+                    Card = context.CARD_INFO.ToList().FirstOrDefault(x => x.OWNER_USER == SelectedUser.REC_ID &&
+                    x.IS_ACTIVE.Value);
+
+                    if (Card != null)
+                    {
+                        Card.IS_ACTIVE = CardStat.Equals("Y") ? true : false;
+                    }
+
+                    context.SaveChanges();
+                }
+            }
 
             IsIntermadiate = false;
 
@@ -79,7 +98,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private void fGetNumber()
         {
-            Number = CardTools.GenerateCardNumber();
+            //Number = CardTools.GenerateCardNumber();
         }
 
         private string token;
@@ -154,6 +173,55 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+        private USER _selectedUser;
+
+        public USER SelectedUser
+        {
+            get
+            {
+                return _selectedUser;
+            }
+
+            set
+            {
+                _selectedUser = value;
+
+                UserId = _selectedUser.LOGIN;
+
+                LoadCardInfo();
+
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private List<USER> _usersList;
+
+        public List<USER> UsersList
+        {
+            get
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        _usersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                if (_usersList == null)
+                {
+                    _usersList = new List<USER>();
+                }
+
+                return _usersList;
+            }
+        }
+
         public string Number
         {
             get
@@ -220,5 +288,100 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+        private string _cardStat;
+
+        public string CardStat
+        {
+            get
+            {
+                return _cardStat;
+            }
+
+            set
+            {
+                _cardStat = value;
+
+                OnPropertyChanged("CardStat");
+            }
+        }
+
+        private bool _activateChecked;
+
+        public bool ActivateChecked
+        {
+            get
+            {
+                return _activateChecked;
+            }
+
+            set
+            {
+                _activateChecked = value;
+
+                if (_activateChecked)
+                {
+                    CardStat = "Y";
+                }
+
+                OnPropertyChanged("ActivateChecked");
+            }
+        }
+
+        private bool _deactivateChecked;
+
+        public bool DeactivateChecked
+        {
+            get
+            {
+                return _deactivateChecked;
+            }
+
+            set
+            {
+                _deactivateChecked = value;
+
+                if (_deactivateChecked)
+                {
+                    CardStat = "N";
+                }
+
+                OnPropertyChanged("DeactivateChecked");
+            }
+        }
+
+        private CARD_INFO _card;
+
+        public CARD_INFO Card
+        {
+            get
+            {
+                return _card;
+            }
+
+            set
+            {
+                _card = value;
+
+                OnPropertyChanged("Card");
+            }
+        }
+
+        private void LoadCardInfo()
+        {
+            using (var context = new SmartCardDBEntities())
+            {
+                Card = context.CARD_INFO.ToList().FirstOrDefault(x=>x.OWNER_USER == SelectedUser.REC_ID && 
+                x.IS_ACTIVE.Value);
+
+                if (Card != null)
+                {
+                    if (Card.ISSUE_DATE != null)
+                        IssueDate = Card.ISSUE_DATE.Value;
+
+                    if (Card.EXPIRE_DATE != null)
+                        ExpireDate = Card.EXPIRE_DATE.Value;
+                }
+            }
+        }
     }
 }

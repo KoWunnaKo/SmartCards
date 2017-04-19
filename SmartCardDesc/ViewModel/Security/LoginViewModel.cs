@@ -1,7 +1,9 @@
 ﻿using SmartCardDesc.Cryptography;
 using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.Model;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SmartCardDesc.ViewModel.Security
 {
@@ -17,8 +19,6 @@ namespace SmartCardDesc.ViewModel.Security
                 LoginCompleted(this, EventArgs.Empty);
             }
         }
-
-
 
         private string login;
         private string password;
@@ -51,47 +51,77 @@ namespace SmartCardDesc.ViewModel.Security
             set { password = value; OnPropertyChanged("Password"); }
         }
 
-        public void LoginOp(object o)
+        public async void LoginOp(object o)
         {
-            if (CheckAuthorithation())
+            IsIntermadiate = true;
+
+            StatusText = string.Empty;
+
+            if (await CheckAuthorithation())
             {
                 //# Validation logic
                 RaiseLoginCompleted();
             }
+
+            IsIntermadiate = false;
         }
 
-        private bool CheckAuthorithation()
+        private bool _isIntermadiate;
+
+        public bool IsIntermadiate
         {
-            if ((string.IsNullOrEmpty(Login)) || (string.IsNullOrEmpty(Password)))
+            get
             {
-                StatusText = "Заполните все поля";
-                return false;
+                return _isIntermadiate;
             }
 
-            using (var context = new SmartCardDBEntities())
+            set
             {
-                var count = (from userx in context.USERS
-                             where userx.LOGIN == Login
-                             select userx.LOGIN).Count();
+                _isIntermadiate = value;
 
-                if (count == 0)
+                OnPropertyChanged("IsIntermadiate");
+            }
+        }
+
+        private Task<bool> CheckAuthorithation()
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                if ((string.IsNullOrEmpty(Login)) || (string.IsNullOrEmpty(Password)))
                 {
-                    StatusText = "Не существующий юзер";
+                    StatusText = "Заполните все поля";
                     return false;
                 }
 
-                var user = context.USERS.First(x => x.LOGIN == Login);
-
-                LoginModel.currentUser = user;
-
-                 if (!HashPassword.Validate(user.PASSWORD, Password))
+                using (var context = new SmartCardDBEntities())
                 {
-                    StatusText = "Неверный пароль";
-                    return false;
+                    var count = (from userx in context.USERS
+                                 where userx.LOGIN == Login
+                                 select userx.LOGIN).Count();
+
+                    if (count == 0)
+                    {
+                        StatusText = "Не существующий юзер";
+                        return false;
+                    }
+
+                    var user = context.USERS.First(x => x.LOGIN == Login);
+
+                    if (!HashPassword.Validate(user.PASSWORD, Password))
+                    {
+                        StatusText = "Неверный пароль";
+                        return false;
+                    }
+
+                    LoginModel.currentUser = user;
                 }
+
+                AuditModel.InsertAudit("LOGIN", "User Logged In");
 
                 return true;
-            }
+            });
+
+            return resultTask;
         }
 
         public void CloseOp(object o)

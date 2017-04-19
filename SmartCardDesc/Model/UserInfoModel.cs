@@ -211,8 +211,7 @@ namespace SmartCardDesc.Model
                     //Audit
 
                     AuditModel.InsertAudit("USER_INFO", 
-                        string.Format("Got information by {0}",userId)
-                        , "Current User!!!");
+                        string.Format("Got information by {0}",userId));
 
 
                     ///User information logic

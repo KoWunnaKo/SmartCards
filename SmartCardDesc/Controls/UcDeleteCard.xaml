@@ -37,6 +37,9 @@
                         <ComboBox Margin="5" 
                                  Name="cxbUserId"
                                  Grid.Column="0"
+                                  ItemsSource="{Binding Path=UsersList}"
+                                  DisplayMemberPath="LOGIN"
+                                  SelectedValue="{Binding Path=SelectedUser}"
                                  ></ComboBox>
                         <Button Grid.Column="1" 
                                 Margin="5"

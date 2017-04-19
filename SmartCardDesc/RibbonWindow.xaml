@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartCardDesc"
         mc:Ignorable="d"
-        Title="RibbonWindow" Height="519.225" Width="852.899"
+        Title="Смарт Карт Терминал" Height="519.225" Width="852.899"
         Name="RibbonView"
+        DataContext="{Binding RelativeSource={RelativeSource self}}"
         WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Ribbon x:Name="RibbonWin"  SelectedIndex="0">
             <!-- Help Pane, located at the right-hand side -->
@@ -140,5 +142,14 @@
         <ScrollViewer Grid.Row="1">
             <StackPanel Orientation="Vertical" Name="spPanel"></StackPanel>
         </ScrollViewer>
+        <DockPanel Grid.Row="2" 
+                    HorizontalAlignment="Stretch"
+                    Background="AliceBlue">
+
+            <TextBlock Margin="10,0,10,0"
+                       DockPanel.Dock="Left"
+                       Text="{Binding FullName}"></TextBlock>
+
+        </DockPanel>
     </Grid>
 </Window>
