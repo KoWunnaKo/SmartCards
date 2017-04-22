@@ -31,5 +31,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=HP\SQLEXPRESS;Initial Catalog=SmartCardDB;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="CardPhotoPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\RADSOFT\Projects\SmartCardDesc\PrinterFiles\Photo</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

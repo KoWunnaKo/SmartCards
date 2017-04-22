@@ -10,7 +10,7 @@ namespace SmartCardDesc.Db
         
         public static DbConnection db;
 
-        public static SmartCardDs dataSetSc;
+        //public static SmartCardDs dataSetSc;
 
         //------------------------------------------------------
         //

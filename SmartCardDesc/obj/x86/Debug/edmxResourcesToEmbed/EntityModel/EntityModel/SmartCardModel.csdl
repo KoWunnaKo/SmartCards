@@ -30,6 +30,7 @@
     <NavigationProperty Name="USER1" Relationship="Self.FK_CARD_INFO_USERS1" FromRole="CARD_INFO" ToRole="USERS" />
     <Property Name="IS_ACTIVE" Type="Boolean" />
     <Property Name="IS_PRINTED" Type="Boolean" />
+    <Property Name="PICTURE_PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
@@ -310,5 +311,25 @@
       <End Role="WAREHOUSE" EntitySet="WAREHOUSEs" />
       <End Role="WAREHOUSE_DTL" EntitySet="WAREHOUSE_DTL" />
     </AssociationSet>
+    <EntitySet Name="PrinterViews" EntityType="SmartCardDBModel.PrinterView" />
   </EntityContainer>
+  <EntityType Name="PrinterView">
+    <Key>
+      <PropertyRef Name="REC_ID" />
+      <PropertyRef Name="PRINTED" />
+      <PropertyRef Name="CARD_ID" />
+    </Key>
+    <Property Name="REC_ID" Type="Int32" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SURNAME_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MIDDLE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BIRTH_DATE" Type="DateTime" Precision="0" />
+    <Property Name="PRINTED" Type="Boolean" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="CARD_NUMBER" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PICTURE_PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CARD_ID" Type="Int64" Nullable="false" />
+  </EntityType>
 </Schema>

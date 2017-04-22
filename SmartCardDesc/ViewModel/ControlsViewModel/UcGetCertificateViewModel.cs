@@ -173,9 +173,16 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     if (Card != null)
                     {
-                        Exponental = Encoding.UTF8.GetString(Card.EXPONENT);
-
-                        Modules = Encoding.UTF8.GetString(Card.MODULUS);
+                        if (Card.EXPONENT != null)
+                        {
+                            Exponental = Encoding.UTF8.GetString(Card.EXPONENT);
+                        }
+                        
+                        if (Card.MODULUS != null)
+                        {
+                            Modules = Encoding.UTF8.GetString(Card.MODULUS);
+                        }
+                        
                     }
                 }
             });

@@ -20,9 +20,9 @@ namespace SmartCardDesc.ViewModel
         {
             try
             {
-                DbModel.db = DbConnection.GetInstance(ConnectionProperty.Default.GetConnectionString());
+                //DbModel.db = DbConnection.GetInstance(ConnectionProperty.Default.GetConnectionString());
 
-                DbModel.dataSetSc = new EntityModel.SmartCardDs();
+                //DbModel.dataSetSc = new EntityModel.SmartCardDs();
             }
             catch(Exception ex)
             {

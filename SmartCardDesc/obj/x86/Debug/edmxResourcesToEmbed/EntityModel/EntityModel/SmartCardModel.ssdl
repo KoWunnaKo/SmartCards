@@ -28,6 +28,7 @@
     <Property Name="CERTIFICATE_FILE" Type="varchar" MaxLength="1000" />
     <Property Name="IS_ACTIVE" Type="bit" />
     <Property Name="IS_PRINTED" Type="bit" />
+    <Property Name="PICTURE_PATH" Type="nvarchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
@@ -135,6 +136,27 @@
     <Property Name="STATE" Type="int" />
     <Property Name="quantity" Type="int" />
     <Property Name="CREATE_USER" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PrinterView">
+    <Key>
+      <PropertyRef Name="REC_ID" />
+      <PropertyRef Name="PRINTED" />
+      <PropertyRef Name="CARD_ID" />
+    </Key>
+    <Property Name="REC_ID" Type="int" Nullable="false" />
+    <Property Name="FIRST_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="SURNAME_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="MIDDLE_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="BIRTH_DATE" Type="date" />
+    <Property Name="PRINTED" Type="bit" Nullable="false" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="300" />
+    <Property Name="CARD_NUMBER" Type="nvarchar" MaxLength="16" />
+    <Property Name="PIN" Type="varchar" MaxLength="50" />
+    <Property Name="TIN" Type="varchar" MaxLength="50" />
+    <Property Name="PICTURE_PATH" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CARD_ID" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="FK_CARD_INFO_USERS">
     <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
@@ -256,6 +278,22 @@
     <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WAREHOUSE" EntityType="Self.WAREHOUSE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WAREHOUSE_DTL" EntityType="Self.WAREHOUSE_DTL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrinterView" EntityType="Self.PrinterView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PrinterView].[REC_ID] AS [REC_ID], 
+    [PrinterView].[FIRST_NAME] AS [FIRST_NAME], 
+    [PrinterView].[SURNAME_NAME] AS [SURNAME_NAME], 
+    [PrinterView].[MIDDLE_NAME] AS [MIDDLE_NAME], 
+    [PrinterView].[BIRTH_DATE] AS [BIRTH_DATE], 
+    [PrinterView].[PRINTED] AS [PRINTED], 
+    [PrinterView].[ADDRESS] AS [ADDRESS], 
+    [PrinterView].[CARD_NUMBER] AS [CARD_NUMBER], 
+    [PrinterView].[PIN] AS [PIN], 
+    [PrinterView].[TIN] AS [TIN], 
+    [PrinterView].[PICTURE_PATH] AS [PICTURE_PATH], 
+    [PrinterView].[CARD_ID] AS [CARD_ID]
+    FROM [dbo].[PrinterView] AS [PrinterView]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_CARD_INFO_USERS" Association="Self.FK_CARD_INFO_USERS">
       <End Role="USERS" EntitySet="USERS" />
       <End Role="CARD_INFO" EntitySet="CARD_INFO" />

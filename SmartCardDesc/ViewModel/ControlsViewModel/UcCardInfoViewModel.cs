@@ -50,6 +50,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     StatusText = "Загрузка прошла удачно...";
                 }
+                else
+                {
+                    //For Test
+                    
+                }
 
             }
             catch (Exception ex)

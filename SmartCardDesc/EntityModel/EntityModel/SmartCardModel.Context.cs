@@ -36,5 +36,6 @@ namespace SmartCardDesc.EntityModel.EntityModel
         public virtual DbSet<USER> USERS { get; set; }
         public virtual DbSet<WAREHOUSE> WAREHOUSEs { get; set; }
         public virtual DbSet<WAREHOUSE_DTL> WAREHOUSE_DTL { get; set; }
+        public virtual DbSet<PrinterView> PrinterViews { get; set; }
     }
 }

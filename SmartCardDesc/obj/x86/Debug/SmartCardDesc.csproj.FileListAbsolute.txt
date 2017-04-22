@@ -3,9 +3,11 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Smar
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\log4net.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.csprojResolveAssemblyReference.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcCardInfo.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcInsertCard.baml
@@ -27,6 +29,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Cont
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcGenCardRSA.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcInsertCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcKeyGen.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcPrintCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcUpdateCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcUserInfo.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcWriteCert.g.cs
@@ -42,6 +45,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\View
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Views\UserInfoWindow.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\App.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc_Content.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc_MarkupCompile.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc_MarkupCompile.lref
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcCardsList.baml
@@ -56,6 +60,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Cont
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcDeleteCard.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcGenCardRSA.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcKeyGen.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcPrintCard.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcWriteCert.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\Warehouse\UcCurrentWarehouse.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\Warehouse\UcPrixodsList.baml
@@ -70,5 +75,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Smar
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.csproj.GenerateResource.Cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.dll
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Printer\myTemplate.mds

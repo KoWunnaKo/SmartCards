@@ -15,6 +15,7 @@
     <EntitySetMapping Name="CARD_INFO">
       <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
         <MappingFragment StoreEntitySet="CARD_INFO">
+          <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
           <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
           <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
           <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
@@ -145,6 +146,24 @@
           <ScalarProperty Name="STATE" ColumnName="STATE" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
           <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrinterViews">
+      <EntityTypeMapping TypeName="SmartCardDBModel.PrinterView">
+        <MappingFragment StoreEntitySet="PrinterView">
+          <ScalarProperty Name="CARD_ID" ColumnName="CARD_ID" />
+          <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PRINTED" ColumnName="PRINTED" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="SURNAME_NAME" ColumnName="SURNAME_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

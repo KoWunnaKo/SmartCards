@@ -12,6 +12,7 @@ FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcCertif
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcDeleteCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcGenCardRSA.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcKeyGen.xaml;;
+FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcPrintCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcWriteCert.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Warehouse\UcCurrentWarehouse.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Warehouse\UcPrixodsList.xaml;;

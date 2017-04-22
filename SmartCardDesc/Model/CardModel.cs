@@ -57,15 +57,29 @@ namespace SmartCardDesc.Model
                                  where cardx.CARD_NUMBER == card_num
                                  select cardx.CARD_NUMBER).Count();
 
-                    if (count > 0) return;
+                    if ((count > 0) || (string.IsNullOrEmpty(card_num)))
+                        return;
 
                     var card = new CARD_INFO();
 
                     card.CARD_NUMBER = card_num;
                     card.CARD_STATE = card_stat;
-                    card.ISSUE_DATE = DateTime.ParseExact(issue_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    card.EXPIRE_DATE = DateTime.ParseExact(expiry_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    card.CREATE_USER = LoginModel.currentUser.REC_ID;
+
+                    if (!string.IsNullOrEmpty(issue_date))
+                    {
+                        card.ISSUE_DATE = DateTime.ParseExact(issue_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    
+                    if (!string.IsNullOrEmpty(expiry_date))
+                    {
+                        card.EXPIRE_DATE = DateTime.ParseExact(expiry_date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    
+                    if (LoginModel.currentUser != null)
+                    {
+                        card.CREATE_USER = LoginModel.currentUser.REC_ID;
+                    }
+                    
                     card.OWNER_USER = context.USERS.ToList().First(t => t.LOGIN == user_id).REC_ID;
 
                     context.CARD_INFO.Add(card);

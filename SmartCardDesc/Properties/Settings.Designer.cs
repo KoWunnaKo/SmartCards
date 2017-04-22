@@ -116,5 +116,17 @@ namespace SmartCardDesc.Properties {
                 return ((string)(this["SmartCardDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\RADSOFT\\Projects\\SmartCardDesc\\PrinterFiles\\Photo")]
+        public string CardPhotoPath {
+            get {
+                return ((string)(this["CardPhotoPath"]));
+            }
+            set {
+                this["CardPhotoPath"] = value;
+            }
+        }
     }
 }

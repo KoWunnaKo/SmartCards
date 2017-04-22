@@ -44,11 +44,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             IsIntermadiate = false;
 
-            StatusText = string.Empty;
+            //StatusText = string.Empty;
 
             //Exponental = _exponental;
 
-            Modules = _modules;
+            //Modules = _modules;
         }
 
         public string _exponental;
@@ -114,6 +114,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     {
                         StatusText = stateList[returnValue];
 
+                        Exponental = string.Empty;
+
+                        Modules = string.Empty;
+
                         return;
                     }
 
@@ -134,6 +138,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     {
                         StatusText = "Error! Try again please!!!";
 
+                        Exponental = string.Empty;
+
+                        Modules = string.Empty;
+
                         return;
                     }
 
@@ -151,6 +159,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     Modules = string.Join(" ", mexpStrArr);
 
                     UpdateCardKeyInfo();
+
+                    StatusText = string.Empty;
                 }
             });
 

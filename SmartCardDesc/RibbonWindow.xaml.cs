@@ -84,7 +84,7 @@ namespace SmartCardDesc
             Close();
         }
 
-        private string _fullName;
+        //private string _fullName;
 
         public string FullName
         {
@@ -99,7 +99,9 @@ namespace SmartCardDesc
 
         private void btnCardPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            spPanel.Children.Clear();
+            var uObject = new UcPrintCard();
+            spPanel.Children.Add(uObject);
         }
     }
 }

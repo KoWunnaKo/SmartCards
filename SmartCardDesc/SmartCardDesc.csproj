@@ -204,6 +204,9 @@
     <Compile Include="EntityModel\EntityModel\FIXED_INTERNAL_VALUES.cs">
       <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\EntityModel\PrinterView.cs">
+      <DependentUpon>SmartCardModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\EntityModel\READERS_INFO.cs">
       <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
@@ -231,18 +234,12 @@
     <Compile Include="EntityModel\EntityModel\WAREHOUSE_DTL.cs">
       <DependentUpon>SmartCardModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\SmartCardDs.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SmartCardDs.xsd</DependentUpon>
-    </Compile>
     <Compile Include="InfocomService\EpiService.cs" />
     <Compile Include="Log\FileLogService.cs" />
     <Compile Include="Log\ILogService.cs" />
     <Compile Include="Model\AuditModel.cs" />
     <Compile Include="Model\BaseItemModel.cs" />
     <Compile Include="Model\CardModel.cs" />
-    <Compile Include="Model\DataActionController.cs" />
     <Compile Include="Model\UserInfoModel.cs" />
     <Compile Include="Secirity\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -255,8 +252,10 @@
     <Compile Include="ViewModel\ControlsViewModel\UcDeleteCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcGetCertificateViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\UcPrinterViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />
+    <Compile Include="ViewModel\Converters\ImageConverter.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Security\LoginModel.cs" />
@@ -420,18 +419,23 @@
     <None Include="EntityModel\EntityModel\SmartCardModel.edmx.diagram">
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
     </None>
-    <None Include="EntityModel\SmartCardDs.xsc">
-      <DependentUpon>SmartCardDs.xsd</DependentUpon>
-    </None>
-    <None Include="EntityModel\SmartCardDs.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SmartCardDs.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="EntityModel\SmartCardDs.xss">
-      <DependentUpon>SmartCardDs.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <None Include="Printer\myTemplate.mds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.AUDIT.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.CARD_INFO.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.DEPARTMENT.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.DICTIONARY.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.DICTIONARY_TYPE.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.EXTERNAL_REQUESTS.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.FIXED_INTERNAL_VALUES.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.PrinterView.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.READERS_INFO.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.SmartCardDBEntities.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.USER.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.WAREHOUSE.datasource" />
+    <None Include="Properties\DataSources\SmartCardDesc.EntityModel.EntityModel.WAREHOUSE_DTL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1256,6 +1260,7 @@
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
       <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\NoImage.jpeg" />
     <Resource Include="Resources\Iconshow-Hardware-Printer.ico" />
     <Resource Include="TaskResources\DeleteCardResponce.xml" />
     <Resource Include="TaskResources\DeleteCardRequest.xml" />

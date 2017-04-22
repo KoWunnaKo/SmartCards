@@ -25,6 +25,7 @@
         <AssociationConnector Association="SmartCardDBModel.FK_READERS_INFO_USERS1" ManuallyRouted="false" />
         <AssociationConnector Association="SmartCardDBModel.FK_WAREHOUSE_DTL_USERS" ManuallyRouted="false" />
         <AssociationConnector Association="SmartCardDBModel.FK_WAREHOUSE_DTL_WAREHOUSE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmartCardDBModel.PrinterView" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

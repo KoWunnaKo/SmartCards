@@ -597,7 +597,7 @@ namespace SmartCardDesc.InfocomService
 
                     var result = CallWebService("updateUserCard", xml);
 
-                    model = ParseInsertCardInfoMethod(result);
+                    model = ParseUpdateCardInfoMethod(result);
                 }
                 catch (Exception ex)
                 {
@@ -653,6 +653,87 @@ namespace SmartCardDesc.InfocomService
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pResult"></param>
+        /// <returns></returns>
+        private CardModel ParseUpdateCardInfoMethod(string pResult)
+        {
+            string ResultInnerXml = string.Empty;
+            string OrigResultInnerXml = string.Empty;
+
+            var CardInfo = new CardModel();
+
+            XmlDocument resultXml = new XmlDocument();
+
+            ResultInnerXml = WebUtility.HtmlDecode(pResult);
+
+            OrigResultInnerXml = ResultInnerXml;
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            #region Header
+            var list = resultXml.GetElementsByTagName("env:Header"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("wsc:CoordinationContext"); //env:Header
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlAttribute attribute in obj.Attributes)
+                {
+                    if (attribute.Name.Equals("globalTransactionID"))
+                    {
+                        CardInfo.globalTransactionID = attribute.Value;
+                    }
+
+                    if (attribute.Name.Equals("localTransactionID"))
+                    {
+                        CardInfo.localTransactionID = attribute.Value;
+                    }
+                }
+            }
+
+            #endregion
+
+            #region Body
+
+            resultXml.LoadXml(OrigResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("env:Body"); //
+
+            foreach (XmlNode obj in list)
+            {
+                ResultInnerXml = obj.InnerXml;
+            }
+
+            resultXml.LoadXml(ResultInnerXml);
+
+            list = resultXml.GetElementsByTagName("x:res"); //
+
+            foreach (XmlNode obj in list)
+            {
+                foreach (XmlNode child in obj.ChildNodes)
+                {
+                    if (child.Name.Equals("result"))
+                    {
+                        CardInfo.result = child.InnerText;
+                    }
+                }
+            }
+
+            #endregion
+
+            return CardInfo;
+        }
+
 
         /// <summary>
         /// 
@@ -675,7 +756,7 @@ namespace SmartCardDesc.InfocomService
 
                     var result = CallWebService("deleteCardByUserId", xml);
 
-                    model = ParseInsertCardInfoMethod(result);
+                    model = ParseUpdateCardInfoMethod(result);
                 }
                 catch (Exception ex)
                 {
