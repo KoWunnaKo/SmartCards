@@ -34,6 +34,7 @@
           <Property Name="IS_ACTIVE" Type="bit" />
           <Property Name="IS_PRINTED" Type="bit" />
           <Property Name="PICTURE_PATH" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CERTIFICATE_BIN" Type="varbinary" MaxLength="4000" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -371,6 +372,7 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <Property Name="IS_ACTIVE" Type="Boolean" />
           <Property Name="IS_PRINTED" Type="Boolean" />
           <Property Name="PICTURE_PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CERTIFICATE_BIN" Type="Binary" MaxLength="4000" FixedLength="false" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -692,6 +694,7 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <EntitySetMapping Name="CARD_INFO">
             <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
               <MappingFragment StoreEntitySet="CARD_INFO">
+                <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />
                 <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
                 <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
                 <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />

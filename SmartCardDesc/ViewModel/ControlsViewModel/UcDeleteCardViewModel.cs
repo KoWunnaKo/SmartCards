@@ -54,6 +54,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             Model = await service.DeleteCardInfo(UserId, Token);
 
+            await AuditModel.InsertAuditAsync("DELETE_CARD",
+                string.Format("user = {0} ", userId));
+
             if ((Model != null) && (Model.result != null))
             {
                 using (var context = new SmartCardDBEntities())

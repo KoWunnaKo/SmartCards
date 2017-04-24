@@ -1,4 +1,6 @@
-﻿using SmartCardDesc.EntityModel.EntityModel;
+﻿using SC_CertificateCALib;
+using SmartCardDesc.EntityModel.EntityModel;
+using SmartCardDesc.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,82 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             GetCertificate = new RelayCommand(_ => fGetCertificate());
         }
 
-        private void fGetCertificate()
+        private Task tGetCertificate()
         {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    if (SelectedUser == null)
+                        return;
 
+                    //Generate Subject
+                    string fio = string.Format("{0} {1} {2}", SelectedUser.SURNAME_NAME, SelectedUser.FIRST_NAME, SelectedUser.MIDDLE_NAME);
+                    string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, 
+                    S = Tashkent, C = UZ , INN = {1} , PINFL = {2}", fio, SelectedUser.TIN, SelectedUser.PIN);
+
+
+                    //Validation Server Address and Template Name
+                    string serverAddress = Properties.Settings.Default.CAServerIpAndName;
+                    string template = Properties.Settings.Default.CA_TemplateName;
+
+                    if (string.IsNullOrEmpty(serverAddress) || string.IsNullOrEmpty(template))
+                        return;
+
+                    //Create Request
+                    var request = CertInterOpApi.CreateCertRequestMessage(subjectTxt, template);
+
+                    //Send Request
+                    var id = CertInterOpApi.SendCertificateRequest(request, serverAddress);
+
+                    //Download Certificate
+                    var cert = CertInterOpApi.DownloadCert(id, serverAddress);
+
+                    Certificate = cert;
+
+                    //Save Certificate in DB
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        var Card = context.CARD_INFO.ToList().FirstOrDefault(x => x.OWNER_USER == SelectedUser.REC_ID &&
+                        x.IS_ACTIVE.Value);
+
+                        if (Card != null)
+                        {
+                            //Card.CERTIFICATE_FILE 
+                            Card.CERTIFICATE_BIN = Encoding.UTF8.GetBytes(cert);
+                        }
+
+                        var user = context.USERS.ToList().FirstOrDefault(x => x.REC_ID == SelectedUser.REC_ID);
+
+                        user.KEY_FLG = true;
+
+                        context.SaveChanges();
+                    }
+
+                    StatusText = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    StatusText = ex.Message;
+                }
+            });
+
+            return resultTask;
+            ///////////////////
+        }
+
+        private async void fGetCertificate()
+        {
+            IsIntermadiate= true;
+
+            StatusText = "Получение сертификата...";
+
+            await tGetCertificate();
+
+            await AuditModel.InsertAuditAsync("CERT_CARD",
+                string.Format("user = {0} ", userId));
+
+            IsIntermadiate = false;
         }
 
         private bool _isIntermadiate;
@@ -156,6 +231,23 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+        private string _certificate;
+
+        public string Certificate
+        {
+            get
+            {
+                return _certificate;
+            }
+
+            set
+            {
+                _certificate = value;
+
+                OnPropertyChanged("Certificate");
+            }
+        }
+
         private Task GetCardPublicKeyInfo()
         {
             var resultTask = Task.Factory.StartNew(() =>
@@ -189,5 +281,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             return resultTask;
         }
+
+
     }
 }

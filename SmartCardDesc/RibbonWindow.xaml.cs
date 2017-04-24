@@ -1,4 +1,5 @@
 ﻿using SmartCardDesc.Controls;
+using SmartCardDesc.Controls.OperationLists;
 using SmartCardDesc.ViewModel.Security;
 using System;
 using System.Windows;
@@ -101,6 +102,109 @@ namespace SmartCardDesc
         {
             spPanel.Children.Clear();
             var uObject = new UcPrintCard();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUserInfolist_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcUsersList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCardInfolist_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcCardsList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddCardList_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcInsertsList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditCardList_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcUpdatesList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteCardList_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcDeletesList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnKeyGenlist_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcKeyGenList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCertificatelist_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcCertificateList();
+            spPanel.Children.Add(uObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WriteCertlist_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcWriteCertList();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void Logs_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcLogsList();
             spPanel.Children.Add(uObject);
         }
     }

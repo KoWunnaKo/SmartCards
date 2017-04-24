@@ -6,4 +6,3 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\In
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\SC_CertificateCALib.csproj.ResolveComReference.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\SC_CertificateCALib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\SC_CertificateCALib.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\SC_CertificateCALib.csprojResolveAssemblyReference.cache

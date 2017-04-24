@@ -84,6 +84,10 @@ namespace SmartCardDesc.Model
 
                     context.CARD_INFO.Add(card);
 
+                    var user = context.USERS.ToList().First(t => t.LOGIN == user_id);
+
+                    user.CARD_FLG = true;
+
                     context.SaveChanges();
                 }
             });

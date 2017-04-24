@@ -29,6 +29,7 @@
     <Property Name="IS_ACTIVE" Type="bit" />
     <Property Name="IS_PRINTED" Type="bit" />
     <Property Name="PICTURE_PATH" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CERTIFICATE_BIN" Type="varbinary" MaxLength="4000" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>

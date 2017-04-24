@@ -1,0 +1,85 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartCardDesc.Controls.OperationLists"
+             xmlns:EntityModel="clr-namespace:SmartCardDesc.EntityModel.EntityModel" x:Class="SmartCardDesc.Controls.OperationLists.UcLogsList"
+             mc:Ignorable="d" 
+             d:DesignHeight="438.189" d:DesignWidth="509.055"
+             Background="White" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="aUDITViewSource" d:DesignSource="{d:DesignInstance {x:Type EntityModel:AUDIT}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource aUDITViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <DataGrid 
+            x:Name="aUDITDataGrid" 
+            RowDetailsVisibilityMode="VisibleWhenSelected" 
+            Grid.Row="1"  
+            ItemsSource="{Binding}" 
+            EnableRowVirtualization="True" 
+            AutoGenerateColumns="False"
+             ScrollViewer.CanContentScroll="True" 
+             ScrollViewer.VerticalScrollBarVisibility="Auto"
+             ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="cATEGORYColumn" Width="Auto" Header="Категория" Binding="{Binding CATEGORY}"/>
+                <DataGridTemplateColumn x:Name="cREATE_DATEColumn" Width="Auto" Header="Дата Создания">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding CREATE_DATE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="iDColumn" Width="Auto" Header="Ид" Binding="{Binding ID}"/>
+                <DataGridTextColumn x:Name="mESSAGEColumn" Width="Auto" Header="Сообщение" Binding="{Binding MESSAGE}"/>
+                <DataGridTextColumn x:Name="uSER_IDColumn" Width="Auto" Header="Пользователь" Binding="{Binding USER_ID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="grid1" HorizontalAlignment="Left"  Grid.Row="0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Категория:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="cATEGORYTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding CATEGORY, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Дата создания:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <DatePicker x:Name="cREATE_DATEDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="{Binding CREATE_DATE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Content="Ид:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Сообщение:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="mESSAGETextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding MESSAGE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Пользователь:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="uSER_IDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding USER_ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                >
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+                         Height="20"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

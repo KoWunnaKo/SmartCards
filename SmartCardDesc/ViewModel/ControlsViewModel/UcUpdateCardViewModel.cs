@@ -70,6 +70,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                                            IssueDate.ToString("yyyy-MM-dd"),
                                            ExpireDate.ToString("yyyy-MM-dd"));
 
+            await AuditModel.InsertAuditAsync("UPDATE_CARD",
+                string.Format("user = {0} card_number = {1} card stat = {2}", userId, number, CardStat));
+
             if ((Model != null) && (Model.result != null))
             {
                 using (var context = new SmartCardDBEntities())

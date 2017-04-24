@@ -21,6 +21,8 @@ namespace SC_CertificateCALib
             objPrivateKey.CspInformations = objCSPs;
             objPrivateKey.Create();
 
+            //objPrivateKey.Export()
+
             var objPkcs10 = new CX509CertificateRequestPkcs10();
             objPkcs10.InitializeFromPrivateKey(
                 X509CertificateEnrollmentContext.ContextUser,
@@ -54,6 +56,37 @@ namespace SC_CertificateCALib
             return strRequest;
         }
 
+        public static string CreateCertRequestMessage(string psubjectName, string pCaTemplate)
+        {
+            var objCSPs = new CCspInformations();
+            objCSPs.AddAvailableCsps();
+
+            var objPrivateKey = new CX509PrivateKey();
+            objPrivateKey.Length = 2048;
+            objPrivateKey.KeySpec = X509KeySpec.XCN_AT_SIGNATURE;
+            objPrivateKey.KeyUsage = X509PrivateKeyUsageFlags.XCN_NCRYPT_ALLOW_ALL_USAGES;
+            objPrivateKey.MachineContext = false;
+            objPrivateKey.ExportPolicy = X509PrivateKeyExportFlags.XCN_NCRYPT_ALLOW_EXPORT_FLAG;
+            objPrivateKey.CspInformations = objCSPs;
+            objPrivateKey.Create();
+
+            var objPkcs10 = new CX509CertificateRequestPkcs10();
+            objPkcs10.InitializeFromPrivateKey(
+                X509CertificateEnrollmentContext.ContextUser,
+                objPrivateKey,
+                pCaTemplate);
+
+            var objDN = new CX500DistinguishedName();
+            var subjectName = psubjectName; //
+            objDN.Encode(subjectName, X500NameFlags.XCN_CERT_NAME_STR_NONE);
+            objPkcs10.Subject = objDN;
+
+            var objEnroll = new CX509Enrollment();
+            objEnroll.InitializeFromRequest(objPkcs10);
+            var strRequest = objEnroll.CreateRequest(EncodingType.XCN_CRYPT_STRING_BASE64);
+            return strRequest;
+        }
+
         private const int CC_DEFAULTCONFIG = 0;
         private const int CC_UIPICKCONFIG = 0x1;
         private const int CR_IN_BASE64 = 0x1;
@@ -64,7 +97,7 @@ namespace SC_CertificateCALib
         private const int CR_OUT_BASE64 = 0x1;
         private const int CR_OUT_CHAIN = 0x100;
 
-        private static int SendCertificateRequest(string message, string serverAddress)
+        public static int SendCertificateRequest(string message, string serverAddress)
         {
             var objCertRequest = new CCertRequest();
             var iDisposition = objCertRequest.Submit(
@@ -89,6 +122,21 @@ namespace SC_CertificateCALib
             return objCertRequest.GetRequestId();
         }
 
+        public static string DownloadCert(int requestId, string serverAddress)
+        {
+            var objCertRequest = new CCertRequest();
+            var iDisposition = objCertRequest.RetrievePending(requestId, @serverAddress);//"192.168.56.101\pal-CPAL-CA"
+
+            if (iDisposition == CR_DISP_ISSUED)
+            {
+                var cert = objCertRequest.GetCertificate(CR_OUT_BASE64 | CR_OUT_CHAIN);
+
+                return cert;
+            }
+
+            return string.Empty;
+        }
+        
         private static void DownloadAndInstallCert(int requestId, string serverAddress)
         {
             var objCertRequest = new CCertRequest();
@@ -107,7 +155,7 @@ namespace SC_CertificateCALib
                 Console.WriteLine("The certificate had been installed successfully.");
             }
         }
-
+        
         private static int Renew(string serverAddress)
         {
             X509Certificate2 certificate = null;

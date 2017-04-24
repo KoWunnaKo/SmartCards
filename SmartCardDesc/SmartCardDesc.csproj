@@ -122,6 +122,9 @@
     <Compile Include="Controls\OperationLists\UcKeyGenList.xaml.cs">
       <DependentUpon>UcKeyGenList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OperationLists\UcLogsList.xaml.cs">
+      <DependentUpon>UcLogsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OperationLists\UcUpdatesList.xaml.cs">
       <DependentUpon>UcUpdatesList.xaml</DependentUpon>
     </Compile>
@@ -255,7 +258,9 @@
     <Compile Include="ViewModel\ControlsViewModel\UcPrinterViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\UcWriteCertificate.cs" />
     <Compile Include="ViewModel\Converters\ImageConverter.cs" />
+    <Compile Include="ViewModel\Converters\UserIdConverter.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Security\LoginModel.cs" />
@@ -287,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\OperationLists\UcKeyGenList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OperationLists\UcLogsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1269,6 +1278,10 @@
     <ProjectReference Include="..\..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj">
       <Project>{a82daf31-8264-4735-a896-d6a025952a6c}</Project>
       <Name>CardRSA_API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SC_CertificateCALib\SC_CertificateCALib.csproj">
+      <Project>{6051fe06-920a-422d-9067-588cdb868620}</Project>
+      <Name>SC_CertificateCALib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

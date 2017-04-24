@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
+using SmartCardDesc.Model;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
@@ -41,6 +42,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             StatusText = "Генерация ключа...";
 
             await CallCard();
+
+            await AuditModel.InsertAuditAsync("RSAGEN_CARD",
+                string.Format("user = {0} ", userId));
 
             IsIntermadiate = false;
 
@@ -328,6 +332,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     Card.EXPONENT = exponent;
                     Card.MODULUS = modulus;
                 }
+
+                var user = context.USERS.ToList().FirstOrDefault(x => x.REC_ID == SelectedUser.REC_ID);
+
+                user.KEY_FLG = true;
 
                 context.SaveChanges();
             }

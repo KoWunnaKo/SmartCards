@@ -15,6 +15,7 @@
     <EntitySetMapping Name="CARD_INFO">
       <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
         <MappingFragment StoreEntitySet="CARD_INFO">
+          <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />
           <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
           <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
           <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />

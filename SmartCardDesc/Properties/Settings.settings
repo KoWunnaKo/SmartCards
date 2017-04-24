@@ -34,5 +34,11 @@
     <Setting Name="CardPhotoPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\RADSOFT\Projects\SmartCardDesc\PrinterFiles\Photo</Value>
     </Setting>
+    <Setting Name="CAServerIpAndName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.56.101\pal-CPAL-CA</Value>
+    </Setting>
+    <Setting Name="CA_TemplateName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SmartCardTemplate</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

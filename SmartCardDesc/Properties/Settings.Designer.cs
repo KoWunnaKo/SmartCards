@@ -128,5 +128,29 @@ namespace SmartCardDesc.Properties {
                 this["CardPhotoPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.56.101\\pal-CPAL-CA")]
+        public string CAServerIpAndName {
+            get {
+                return ((string)(this["CAServerIpAndName"]));
+            }
+            set {
+                this["CAServerIpAndName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SmartCardTemplate")]
+        public string CA_TemplateName {
+            get {
+                return ((string)(this["CA_TemplateName"]));
+            }
+            set {
+                this["CA_TemplateName"] = value;
+            }
+        }
     }
 }

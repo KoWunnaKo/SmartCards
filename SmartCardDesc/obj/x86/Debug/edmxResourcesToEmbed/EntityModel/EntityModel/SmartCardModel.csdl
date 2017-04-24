@@ -31,6 +31,7 @@
     <Property Name="IS_ACTIVE" Type="Boolean" />
     <Property Name="IS_PRINTED" Type="Boolean" />
     <Property Name="PICTURE_PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CERTIFICATE_BIN" Type="Binary" MaxLength="4000" FixedLength="false" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>

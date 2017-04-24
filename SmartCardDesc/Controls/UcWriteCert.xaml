@@ -36,12 +36,17 @@
                    Margin="5"
                   Name="cbxUserList"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Center" Height="21"></ComboBox>
+                  VerticalAlignment="Center" 
+                  Height="21"
+                  ItemsSource="{Binding Path=UsersList}"
+                  DisplayMemberPath="LOGIN"
+                  SelectedValue="{Binding Path=SelectedUser}"></ComboBox>
         <Button
                    Grid.Column="1"
                    Grid.Row="2"
                    Margin="5"
-                    Content="Получить Сертификат"></Button>
+                    Content="Запись Сертификата"
+                    Command="{Binding SetCertificate}"></Button>
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
                    Text="Сертификат"
@@ -51,7 +56,8 @@
           ></TextBlock>
         <TextBox Grid.Column="1"
                    Grid.Row="1"
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Certificate}"></TextBox>
  
         <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"

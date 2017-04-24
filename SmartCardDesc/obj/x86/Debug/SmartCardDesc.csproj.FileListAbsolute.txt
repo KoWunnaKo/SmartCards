@@ -1,3 +1,4 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Printer\myTemplate.mds
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe.config
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.pdb
@@ -5,7 +6,9 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Card
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\log4net.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SC_CertificateCALib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SC_CertificateCALib.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.csprojResolveAssemblyReference.cache
@@ -20,6 +23,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Cont
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcDeletesList.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcInsertsList.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcKeyGenList.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcLogsList.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcUpdatesList.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcUsersList.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcWriteCertList.g.cs
@@ -53,6 +57,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Cont
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcDeletesList.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcInsertsList.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcKeyGenList.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcLogsList.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcUpdatesList.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcUsersList.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\OperationLists\UcWriteCertList.baml
@@ -75,4 +80,3 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Smar
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.csproj.GenerateResource.Cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Printer\myTemplate.mds

@@ -103,33 +103,41 @@
                     <StackPanel Orientation="Horizontal">
                         <RibbonRadioButton  Label="Список пользователей"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.ico"
-                                       Name="btnUserInfolist"/>
+                                       Name="btnUserInfolist"
+                                            Click="btnUserInfolist_Click"/>
                         <RibbonRadioButton  Label="Список карт"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/smart_card_technology.png" 
-                                       Name="btnCardInfolist"/>
-                        <RibbonRadioButton  Label="Список Добпалений"  
+                                       Name="btnCardInfolist"
+                                            Click="btnCardInfolist_Click"/>
+                        <!--<RibbonRadioButton  Label="Список Добпалений"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 
-                                       Name="btnAddCardList"/>
+                                       Name="btnAddCardList"
+                                            Click="btnAddCardList_Click"/>
                         <RibbonRadioButton  Label="Список Изменений" 
                                        LargeImageSource="/SmartCardDesc;component/Resources/126_Edit.ico"
-                                       Name="btnEditCardList"/>
+                                       Name="btnEditCardList"
+                                            Click="btnEditCardList_Click"/>
                         <RibbonRadioButton  Label="Список Удалений"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/delete.ico" 
-                                       Name="btnDeleteCardList"/>
+                                       Name="btnDeleteCardList"
+                                            Click="btnDeleteCardList_Click"/>
                         <RibbonRadioButton  
                             Label="Список Генераций"  
                             LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
                             Name="btnKeyGenlist"
+                            Click="btnKeyGenlist_Click"
                             />
                         <RibbonRadioButton  
                             Label="Список Сертификатов"  
                             LargeImageSource="/SmartCardDesc;component/Resources/document.ico" 
                             Name="btnCertificatelist"
-                            />
+                            Click="btnCertificatelist_Click"
+                            />-->
                         <RibbonRadioButton  
-                            Label="Записи Сертификатов"  
+                            Label="Логи"  
                             LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
-                            Name="WriteCertlist"
+                            Name="Logs"
+                            Click="Logs_Click"
                             />
                     </StackPanel>
                 </RibbonGroup>

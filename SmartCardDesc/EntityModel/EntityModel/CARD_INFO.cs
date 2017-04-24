@@ -29,6 +29,7 @@ namespace SmartCardDesc.EntityModel.EntityModel
         public Nullable<bool> IS_ACTIVE { get; set; }
         public Nullable<bool> IS_PRINTED { get; set; }
         public string PICTURE_PATH { get; set; }
+        public byte[] CERTIFICATE_BIN { get; set; }
     
         public virtual USER USER { get; set; }
         public virtual USER USER1 { get; set; }

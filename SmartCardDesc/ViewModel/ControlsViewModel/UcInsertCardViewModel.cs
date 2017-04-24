@@ -64,6 +64,30 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             await AuditModel.InsertAuditAsync("INSERT_CARD",
                 string.Format("user = {0} card_number = {1}", userId, number));
 
+            try
+            {
+                if ((Model != null) && (Model.user_id != null))
+                {
+                    await Model.InsertCardInfoEnt();
+
+                    StatusText = "Загрузка прошла удачно...";
+                }
+                else
+                {
+                    //For Test
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                StatusText = ex.Message;
+            }
+            finally
+            {
+                IsIntermadiate = false;
+            }
+
             IsIntermadiate = false;
 
             StatusText = string.Empty;

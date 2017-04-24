@@ -431,6 +431,7 @@ namespace SmartCardDesc.InfocomService
                     var result = CallWebService("insertUserCard", xml);
 
                     model = ParseInsertCardInfoMethod(result);
+
                 }
                 catch (Exception ex)
                 {
@@ -440,6 +441,14 @@ namespace SmartCardDesc.InfocomService
                         model = new CardModel();
 
                     model.result = ex.Message;
+                }
+                finally
+                {
+                    model.user_id = userId;
+                    model.token = token;
+                    model.card_num = cardNumber;
+                    model.issue_date = issue_date;
+                    model.expiry_date = exp_date;
                 }
 
                 return model;
