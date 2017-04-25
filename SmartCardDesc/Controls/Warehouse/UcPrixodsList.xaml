@@ -1,12 +1,91 @@
-﻿<UserControl x:Class="SmartCardDesc.Controls.Warehouse.UcPrixodsList"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartCardDesc.Controls.Warehouse"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             xmlns:EntityModel="clr-namespace:SmartCardDesc.EntityModel.EntityModel" x:Class="SmartCardDesc.Controls.Warehouse.UcPrixodsList"
+             mc:Ignorable="d" d:DesignWidth="405.319"
+                 xmlns:l="clr-namespace:SmartCardDesc.ViewModel.Converters" 
+             Background="White" Loaded="UserControl_Loaded" Height="477.66">
+    <UserControl.Resources>
+        <l:UserIdConverter x:Key="UserConverter" />
+        <CollectionViewSource x:Key="wAREHOUSE_DTLViewSource" d:DesignSource="{d:DesignInstance {x:Type EntityModel:WAREHOUSE_DTL}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource wAREHOUSE_DTLViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid1" VerticalAlignment="Top" HorizontalAlignment="Left" DataContext="{StaticResource wAREHOUSE_DTLViewSource}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Создал:"/>
+            <TextBox x:Name="cREATE_USERTextBox" Width="120" VerticalAlignment="Center" Text="{Binding CREATE_USER, Converter={StaticResource UserConverter} , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Тип операции:"/>
+            <TextBox x:Name="oP_TYPETextBox" Width="120" VerticalAlignment="Center" Text="{Binding OP_TYPE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Родительский ключ:"/>
+            <TextBox x:Name="pARENT_IDTextBox" Width="120" VerticalAlignment="Center" Text="{Binding PARENT_ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Количество:"/>
+            <TextBox x:Name="quantityTextBox" Width="120" VerticalAlignment="Center" Text="{Binding quantity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Номер п/п:"/>
+            <TextBox x:Name="rEC_IDTextBox" Width="120" VerticalAlignment="Center" Text="{Binding REC_ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Статус:"/>
+            <TextBox x:Name="sTATETextBox" Width="120" VerticalAlignment="Center" Text="{Binding STATE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Сумма:"/>
+            <TextBox x:Name="tR_AMOUNTTextBox" Width="120" VerticalAlignment="Center" Text="{Binding TR_AMOUNT, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Дата операции:"/>
+            <DatePicker x:Name="tR_DATEDatePicker" VerticalAlignment="Center" SelectedDate="{Binding TR_DATE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
+        </Grid>
+        <DataGrid SelectionMode="Single" IsReadOnly="True"
+            x:Name="wAREHOUSE_DTLDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="cREATE_USERColumn" Binding="{Binding CREATE_USER, Converter={StaticResource UserConverter}}" Header="Создал" Width="Auto"/>
+                <DataGridTextColumn x:Name="oP_TYPEColumn" Binding="{Binding OP_TYPE}" Header="Тип операции" Width="Auto"/>
+                <DataGridTextColumn x:Name="pARENT_IDColumn" Binding="{Binding PARENT_ID}" Header="Родительский ключ" Width="Auto"/>
+                <DataGridTextColumn x:Name="quantityColumn" Binding="{Binding quantity}" Header="Количество" Width="Auto"/>
+                <DataGridTextColumn x:Name="rEC_IDColumn" Binding="{Binding REC_ID}" Header="Номер п/п" Width="Auto"/>
+                <DataGridTextColumn x:Name="sTATEColumn" Binding="{Binding STATE}" Header="Статус" Width="Auto"/>
+                <DataGridTextColumn x:Name="tR_AMOUNTColumn" Binding="{Binding TR_AMOUNT}" Header="Сумма" Width="Auto"/>
+                <DataGridTemplateColumn x:Name="tR_DATEColumn" Header="Дата операции" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding TR_DATE, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border BorderBrush="Black" 
+                BorderThickness="2"
+                VerticalAlignment="Bottom"
+                Grid.Row="2"
+                Grid.ColumnSpan="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

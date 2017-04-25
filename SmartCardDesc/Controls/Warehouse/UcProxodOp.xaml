@@ -5,8 +5,103 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartCardDesc.Controls.Warehouse"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="420.472" d:DesignWidth="427.559"
+             Background="White">
     <Grid>
-            
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="176*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="135*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2"
+                Grid.RowSpan="6"
+                BorderBrush="Blue"
+                BorderThickness="2"></Border>
+        <TextBlock 
+            Grid.Row="0" 
+            Grid.Column="0"
+            Text="Дата:"
+            Margin="5,12,0,11"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"></TextBlock>
+        <DatePicker
+            Grid.Row="0" 
+            Grid.Column="1"
+            Margin="5"
+            VerticalAlignment="Center"
+            Text="{Binding Inputdate}"></DatePicker>
+        <TextBlock 
+            Grid.Row="1" 
+            Grid.Column="0"
+            Text="Сумма:"
+            Margin="5,14,0,14"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"></TextBlock>
+        <TextBox 
+            Grid.Row="1" 
+            Grid.Column="1"
+            Margin="5,10,5,10"
+            Text="{Binding Amount}"
+            ></TextBox>
+        <TextBlock 
+            Grid.Row="2" 
+            Grid.Column="0"
+            Text="Количество:"
+            Margin="5,16,0,15"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"></TextBlock>
+        <TextBox 
+            Grid.Row="2" 
+            Grid.Column="1"
+            Margin="5,10,5,10"
+            Text="{Binding Quantity}"
+            ></TextBox>
+        <TextBlock 
+            Grid.Row="3" 
+            Grid.Column="0"
+            Text="Наименование:"
+            Margin="5,15,0,14"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"></TextBlock>
+        <TextBox 
+            Grid.Row="3" 
+            Grid.Column="1"
+            Margin="5,10,5,10"
+            Text="{Binding Name}"
+            ></TextBox>
+        <Button
+            Grid.Row="5" 
+            Grid.Column="1"
+            Margin="5"
+            Content="Оприходовать"
+            Command="{Binding InputItem}"></Button>
+        <Border BorderBrush="Black" 
+                BorderThickness="2"
+                VerticalAlignment="Bottom"
+                Grid.Row="7"
+                Grid.ColumnSpan="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

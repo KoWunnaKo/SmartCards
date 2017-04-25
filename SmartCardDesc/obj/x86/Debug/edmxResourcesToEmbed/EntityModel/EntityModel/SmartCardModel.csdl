@@ -32,6 +32,8 @@
     <Property Name="IS_PRINTED" Type="Boolean" />
     <Property Name="PICTURE_PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="CERTIFICATE_BIN" Type="Binary" MaxLength="4000" FixedLength="false" />
+    <Property Name="PRIVATE_N" Type="Binary" MaxLength="256" FixedLength="false" />
+    <Property Name="PRIVATE_D" Type="Binary" MaxLength="256" FixedLength="false" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
@@ -140,6 +142,8 @@
     <Property Name="QUANTITY" Type="Int32" />
     <Property Name="ITEN_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="WAREHOUSE_DTL" Relationship="Self.FK_WAREHOUSE_DTL_WAREHOUSE" FromRole="WAREHOUSE" ToRole="WAREHOUSE_DTL" />
+    <Property Name="INIT_QUANTITY" Type="Int32" />
+    <Property Name="REMAINING_AMOUNT" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="WAREHOUSE_DTL">
     <Key>

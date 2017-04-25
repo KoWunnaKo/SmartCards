@@ -247,6 +247,7 @@
     <Compile Include="Secirity\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BitEndianConverter.cs" />
     <Compile Include="Utils\CardTools.cs" />
     <Compile Include="Utils\CryptoFuncs.cs" />
     <Compile Include="ViewModel\ControlsViewModel\CardRSAGenViewModel.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="RibbonWindow.xaml.cs">
       <DependentUpon>RibbonWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Warehouse\PrixodViewModel.cs" />
     <Compile Include="Views\ServiceManageWindow.xaml.cs">
       <DependentUpon>ServiceManageWindow.xaml</DependentUpon>
     </Compile>
@@ -1269,6 +1271,11 @@
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
       <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\add_list1600.png" />
+    <Resource Include="Resources\minusList.png" />
+    <Resource Include="Resources\warehouse2d-512.png" />
+    <Resource Include="Resources\whInput.png" />
+    <Resource Include="Resources\Minus_Circle_Red.png" />
     <Resource Include="Resources\NoImage.jpeg" />
     <Resource Include="Resources\Iconshow-Hardware-Printer.ico" />
     <Resource Include="TaskResources\DeleteCardResponce.xml" />

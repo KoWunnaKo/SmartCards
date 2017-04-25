@@ -25,6 +25,8 @@ namespace SmartCardDesc.EntityModel.EntityModel
         public Nullable<decimal> TOTAL_AMOUNT { get; set; }
         public Nullable<int> QUANTITY { get; set; }
         public string ITEN_NAME { get; set; }
+        public Nullable<int> INIT_QUANTITY { get; set; }
+        public Nullable<decimal> REMAINING_AMOUNT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WAREHOUSE_DTL> WAREHOUSE_DTL { get; set; }

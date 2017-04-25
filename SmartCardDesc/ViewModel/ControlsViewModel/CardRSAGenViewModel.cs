@@ -91,6 +91,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+
+        private string _privateN;
+
+        private string _privateD;
+
+
         public Task CallCard()
         {
             var resultTask = Task.Factory.StartNew(() =>
@@ -101,13 +107,21 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     uint[] exp = new uint[3];
                     uint[] modul = new uint[256];
+                    uint[] privN = new uint[256];
+                    uint[] privD = new uint[256];
 
                     fixed (uint* public_exp = exp)
                     fixed (uint* public_modul = modul)
+                    fixed (uint* private_N = privN)
+                    fixed (uint* private_D = privD)
 
                         try
                         {
-                           returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
+                           //returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
+
+                            returnValue = CardOperationApi.generate_RSA();
+
+                            returnValue = CardOperationApi.get_RSA_components(public_exp, public_modul, private_N, private_D);
                         }
                         catch (Exception ex)
                         {
@@ -138,16 +152,16 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     Exponental = string.Join(" ", expStrArr);
 
-                    if (!Exponental.Equals("1 0 1"))
-                    {
-                        StatusText = "Error! Try again please!!!";
+                    //if (!Exponental.Equals("1 0 1"))
+                    //{
+                    //    StatusText = "Error! Try again please!!!";
 
-                        Exponental = string.Empty;
+                    //    Exponental = string.Empty;
 
-                        Modules = string.Empty;
+                    //    Modules = string.Empty;
 
-                        return;
-                    }
+                    //    return;
+                    //}
 
                     string mexpStr = string.Empty;
                     string[] mexpStrArr = new string[modul.Length];
@@ -162,6 +176,39 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     Modules = string.Join(" ", mexpStrArr);
 
+
+                    ///////////////////////////////////////////////////////
+
+                    string StrprivN = string.Empty;
+                    string[] StrprivNArr = new string[privN.Length];
+                    int Ncounter = 0;
+
+                    foreach (uint xx in privN)
+                    {
+                        StrprivN = xx.ToString();//"x"
+
+                        StrprivNArr[Ncounter++] = StrprivN;
+                    }
+
+                    _privateN = string.Join(" ", StrprivNArr);
+
+                    ConvertStr2BytePrivN(_privateN);
+
+                    string StrprivD = string.Empty;
+                    string[] StrprivDArr = new string[privD.Length];
+                    int Dcounter = 0;
+
+                    foreach (uint xx in privD)
+                    {
+                        StrprivD = xx.ToString();//"x"
+
+                        StrprivDArr[Dcounter++] = StrprivD;
+                    }
+
+                    _privateD = string.Join(" ", StrprivDArr);
+
+                    ConvertStr2BytePrivD(_privateD);
+                    
                     UpdateCardKeyInfo();
 
                     StatusText = string.Empty;
@@ -272,6 +319,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private byte[] modulus { get; set; }
 
+        private byte[] private_N_Element { get; set; }
+
+        private byte[] private_D_Element { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -314,6 +365,44 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
+
+
+
+        private void ConvertStr2BytePrivN(string pPrivN)
+        {
+            if (string.IsNullOrEmpty(pPrivN))
+                return;
+
+            private_N_Element = new byte[256];
+
+            string[] strmodArray = pPrivN.Split(' ');
+
+            for (int i = 0; i < 256; i++)
+            {
+                byte each = Encoding.UTF8.GetBytes(strmodArray[i])[0];
+
+                private_N_Element[i] = each;
+            }
+        }
+
+
+        private void ConvertStr2BytePrivD(string pPrivD)
+        {
+            if (string.IsNullOrEmpty(pPrivD))
+                return;
+
+            private_D_Element = new byte[256];
+
+            string[] strmodArray = pPrivD.Split(' ');
+
+            for (int i = 0; i < 256; i++)
+            {
+                byte each = Encoding.UTF8.GetBytes(strmodArray[i])[0];
+
+                private_D_Element[i] = each;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -331,11 +420,13 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 {
                     Card.EXPONENT = exponent;
                     Card.MODULUS = modulus;
+                    Card.PRIVATE_N = private_N_Element;
+                    Card.PRIVATE_D = private_D_Element;
+
+                    var user = context.USERS.ToList().FirstOrDefault(x => x.REC_ID == SelectedUser.REC_ID);
+
+                    user.KEY_FLG = true;
                 }
-
-                var user = context.USERS.ToList().FirstOrDefault(x => x.REC_ID == SelectedUser.REC_ID);
-
-                user.KEY_FLG = true;
 
                 context.SaveChanges();
             }

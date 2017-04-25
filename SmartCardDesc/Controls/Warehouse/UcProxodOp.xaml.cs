@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCardDesc.ViewModel.Warehouse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace SmartCardDesc.Controls.Warehouse
         public UcProxodOp()
         {
             InitializeComponent();
+
+            DataContext = new PrixodViewModel();
         }
     }
 }

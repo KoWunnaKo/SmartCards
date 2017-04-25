@@ -15,6 +15,8 @@
     <EntitySetMapping Name="CARD_INFO">
       <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
         <MappingFragment StoreEntitySet="CARD_INFO">
+          <ScalarProperty Name="PRIVATE_D" ColumnName="PRIVATE_D" />
+          <ScalarProperty Name="PRIVATE_N" ColumnName="PRIVATE_N" />
           <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />
           <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
           <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
@@ -128,6 +130,8 @@
     <EntitySetMapping Name="WAREHOUSEs">
       <EntityTypeMapping TypeName="SmartCardDBModel.WAREHOUSE">
         <MappingFragment StoreEntitySet="WAREHOUSE">
+          <ScalarProperty Name="REMAINING_AMOUNT" ColumnName="REMAINING_AMOUNT" />
+          <ScalarProperty Name="INIT_QUANTITY" ColumnName="INIT_QUANTITY" />
           <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
           <ScalarProperty Name="INPUT_DT" ColumnName="INPUT_DT" />
           <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />

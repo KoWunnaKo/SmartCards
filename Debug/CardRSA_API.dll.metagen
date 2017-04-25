@@ -17,3 +17,10 @@ Class SCfunctional.RSAGeneration: AutoLayout, AnsiClass, Class, Public, BeforeFi
     generate_RSA(UInt32*, UInt32*): PrivateScope, Public, Static, HideBySig
     getRSAPublicComponents(UInt32*, UInt32*): PrivateScope, Public, Static, HideBySig
     getRSAPrivateComponents(UInt32*, UInt32*): PrivateScope, Public, Static, HideBySig
+Class SCfunctional.CardOperationApi: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    ErrorCheck(SByte*, Int32 IsLong): PrivateScope, Public, Static, HideBySig
+    PrintResponse(Byte*, UInt32 IsLong): PrivateScope, Public, Static, HideBySig
+    get_RSA_components(UInt32*, UInt32*, UInt32*, UInt32*): PrivateScope, Public, Static, HideBySig
+    generate_RSA(): PrivateScope, Public, Static, HideBySig

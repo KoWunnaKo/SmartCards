@@ -103,6 +103,16 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_list1600 {
+            get {
+                object obj = ResourceManager.GetObject("add_list1600", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddTable {
             get {
                 object obj = ResourceManager.GetObject("AddTable", resourceCulture);
@@ -1533,6 +1543,26 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Minus_Circle_Red {
+            get {
+                object obj = ResourceManager.GetObject("Minus_Circle_Red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minusList {
+            get {
+                object obj = ResourceManager.GetObject("minusList", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MonthlyView {
             get {
                 object obj = ResourceManager.GetObject("MonthlyView", resourceCulture);
@@ -2533,6 +2563,16 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap warehouse2d_512 {
+            get {
+                object obj = ResourceManager.GetObject("warehouse2d_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Warning {
             get {
                 object obj = ResourceManager.GetObject("Warning", resourceCulture);
@@ -2546,6 +2586,16 @@ namespace SmartCardDesc.Properties {
         internal static System.Drawing.Bitmap Web {
             get {
                 object obj = ResourceManager.GetObject("Web", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap whInput {
+            get {
+                object obj = ResourceManager.GetObject("whInput", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

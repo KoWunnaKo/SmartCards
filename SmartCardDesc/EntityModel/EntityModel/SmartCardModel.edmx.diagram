@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="SmartCardDBModel.DEPARTMENT" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartCardDBModel.DICTIONARY" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartCardDBModel.DICTIONARY_TYPE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmartCardDBModel.EXTERNAL_REQUESTS" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCardDBModel.EXTERNAL_REQUESTS" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartCardDBModel.FIXED_INTERNAL_VALUES" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartCardDBModel.READERS_INFO" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartCardDBModel.USER" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />

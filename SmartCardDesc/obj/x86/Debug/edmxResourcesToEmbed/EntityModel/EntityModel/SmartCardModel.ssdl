@@ -30,6 +30,8 @@
     <Property Name="IS_PRINTED" Type="bit" />
     <Property Name="PICTURE_PATH" Type="nvarchar" MaxLength="1000" />
     <Property Name="CERTIFICATE_BIN" Type="varbinary" MaxLength="4000" />
+    <Property Name="PRIVATE_N" Type="varbinary" MaxLength="256" />
+    <Property Name="PRIVATE_D" Type="varbinary" MaxLength="256" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
@@ -124,6 +126,8 @@
     <Property Name="TOTAL_AMOUNT" Type="decimal" Precision="18" Scale="0" />
     <Property Name="QUANTITY" Type="int" />
     <Property Name="ITEN_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="INIT_QUANTITY" Type="int" />
+    <Property Name="REMAINING_AMOUNT" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="WAREHOUSE_DTL">
     <Key>

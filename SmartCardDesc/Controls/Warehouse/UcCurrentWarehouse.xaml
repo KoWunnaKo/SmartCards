@@ -1,12 +1,90 @@
-﻿<UserControl x:Class="SmartCardDesc.Controls.Warehouse.UcCurrentWarehouse"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartCardDesc.Controls.Warehouse"
+             xmlns:EntityModel="clr-namespace:SmartCardDesc.EntityModel.EntityModel" x:Class="SmartCardDesc.Controls.Warehouse.UcCurrentWarehouse"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             d:DesignHeight="498.937" d:DesignWidth="506.382"
+             Background="White" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="wAREHOUSEViewSource" d:DesignSource="{d:DesignInstance {x:Type EntityModel:WAREHOUSE}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource wAREHOUSEViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="175"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid 
+            x:Name="grid1" 
+            VerticalAlignment="Top" 
+            Grid.RowSpan="2" HorizontalAlignment="Left" 
+            DataContext="{StaticResource wAREHOUSEViewSource}"
+            Grid.Row="0"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Дата ввода:"/>
+            <DatePicker x:Name="iNPUT_DTDatePicker" VerticalAlignment="Center" SelectedDate="{Binding INPUT_DT, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Наименование:"/>
+            <TextBox x:Name="iTEN_NAMETextBox" Width="120" VerticalAlignment="Center" Text="{Binding ITEN_NAME, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Количество:"/>
+            <TextBox x:Name="qUANTITYTextBox" Width="120" VerticalAlignment="Center" Text="{Binding QUANTITY, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Номер п/п:"/>
+            <TextBox x:Name="rEC_IDTextBox" Width="120" VerticalAlignment="Center" Text="{Binding REC_ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Общее сумма:"/>
+            <TextBox x:Name="tOTAL_AMOUNTTextBox" Width="120" VerticalAlignment="Center" Text="{Binding TOTAL_AMOUNT, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+        </Grid>
+        <DataGrid 
+            x:Name="wAREHOUSEDataGrid" 
+            AutoGenerateColumns="False" 
+            EnableRowVirtualization="True" 
+            ItemsSource="{Binding}" 
+            Grid.Row="1"
+            RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="iNPUT_DTColumn" Header="Дата ввода" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding INPUT_DT, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="iTEN_NAMEColumn" Binding="{Binding ITEN_NAME}" Header="Наименование" Width="Auto"/>
+                <DataGridTextColumn x:Name="qUANTITYColumn" Binding="{Binding QUANTITY}" Header="Количество" Width="Auto"/>
+                <DataGridTextColumn x:Name="rEC_IDColumn" Binding="{Binding REC_ID}" Header="Номер п/п" Width="Auto"/>
+                <DataGridTextColumn x:Name="tOTAL_AMOUNTColumn" Binding="{Binding TOTAL_AMOUNT}" Header="Общая сумма" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Border BorderBrush="Black" 
+                BorderThickness="2"
+                VerticalAlignment="Bottom"
+                Grid.Row="2"
+                Grid.ColumnSpan="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

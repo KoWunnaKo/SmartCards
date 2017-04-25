@@ -35,6 +35,8 @@
           <Property Name="IS_PRINTED" Type="bit" />
           <Property Name="PICTURE_PATH" Type="nvarchar" MaxLength="1000" />
           <Property Name="CERTIFICATE_BIN" Type="varbinary" MaxLength="4000" />
+          <Property Name="PRIVATE_N" Type="varbinary" MaxLength="256" />
+          <Property Name="PRIVATE_D" Type="varbinary" MaxLength="256" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -129,6 +131,8 @@
           <Property Name="TOTAL_AMOUNT" Type="decimal" Precision="18" Scale="0" />
           <Property Name="QUANTITY" Type="int" />
           <Property Name="ITEN_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="INIT_QUANTITY" Type="int" />
+          <Property Name="REMAINING_AMOUNT" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="WAREHOUSE_DTL">
           <Key>
@@ -373,6 +377,8 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <Property Name="IS_PRINTED" Type="Boolean" />
           <Property Name="PICTURE_PATH" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="CERTIFICATE_BIN" Type="Binary" MaxLength="4000" FixedLength="false" />
+          <Property Name="PRIVATE_N" Type="Binary" MaxLength="256" FixedLength="false" />
+          <Property Name="PRIVATE_D" Type="Binary" MaxLength="256" FixedLength="false" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -481,6 +487,8 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <Property Name="QUANTITY" Type="Int32" />
           <Property Name="ITEN_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="WAREHOUSE_DTL" Relationship="Self.FK_WAREHOUSE_DTL_WAREHOUSE" FromRole="WAREHOUSE" ToRole="WAREHOUSE_DTL" />
+          <Property Name="INIT_QUANTITY" Type="Int32" />
+          <Property Name="REMAINING_AMOUNT" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="WAREHOUSE_DTL">
           <Key>
@@ -694,6 +702,8 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <EntitySetMapping Name="CARD_INFO">
             <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
               <MappingFragment StoreEntitySet="CARD_INFO">
+                <ScalarProperty Name="PRIVATE_D" ColumnName="PRIVATE_D" />
+                <ScalarProperty Name="PRIVATE_N" ColumnName="PRIVATE_N" />
                 <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />
                 <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
                 <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
@@ -807,6 +817,8 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <EntitySetMapping Name="WAREHOUSEs">
             <EntityTypeMapping TypeName="SmartCardDBModel.WAREHOUSE">
               <MappingFragment StoreEntitySet="WAREHOUSE">
+                <ScalarProperty Name="REMAINING_AMOUNT" ColumnName="REMAINING_AMOUNT" />
+                <ScalarProperty Name="INIT_QUANTITY" ColumnName="INIT_QUANTITY" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
                 <ScalarProperty Name="INPUT_DT" ColumnName="INPUT_DT" />
                 <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />

@@ -39,6 +39,7 @@
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu KeyTip="F">
                     <RibbonApplicationMenuItem Header="Настройки"  /> <!--ImageSource="Images\options.png"-->
+                    <RibbonApplicationMenuItem Header="Изменить Пароль"  />
                     <RibbonApplicationMenuItem Header="Выход" Click="RibbonApplicationMenuItem_Click" /> <!--ImageSource="Images\quit.png"-->
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
@@ -149,7 +150,31 @@
                 </RibbonGroup>-->
             </RibbonTab>
             <!-- Ribbon Tab #3: -->
-            <RibbonTab Header="Склад" KeyTip="L">
+            <RibbonTab Header="Склад" >
+                <RibbonGroup x:Name="Warehouse" Margin="0,1" Header="Складской учет">
+                    <StackPanel Orientation="Horizontal">
+                        <RibbonRadioButton  Label="Приход"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/whInput.png"
+                                       Name="btnPrixodOp"
+                                       Click="btnPrixodOp_Click"/>
+                        <RibbonRadioButton  Label="Расход"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/Minus_Circle_Red.png"
+                                       Name="btnRasxodOp"
+                                       Click="btnRasxodOp_Click"/>
+                        <RibbonRadioButton  Label="Текущий остаток"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/warehouse2d-512.png"
+                                       Name="btnCurrentSaldo"
+                                       Click="btnCurrentSaldo_Click"/>
+                        <RibbonRadioButton  Label="Списки приходов"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/add_list1600.png"
+                                       Name="btnIncomesList"
+                                       Click="btnIncomesList_Click"/>
+                        <RibbonRadioButton  Label="Список Расходов"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/minusList.png"
+                                       Name="btnOutcomesList"
+                                       Click="btnOutcomesList_Click"/>
+                    </StackPanel>
+                </RibbonGroup>
             </RibbonTab>
         </Ribbon>
         <ScrollViewer Grid.Row="1">

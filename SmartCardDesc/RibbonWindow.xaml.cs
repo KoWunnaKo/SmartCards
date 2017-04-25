@@ -1,5 +1,6 @@
 ﻿using SmartCardDesc.Controls;
 using SmartCardDesc.Controls.OperationLists;
+using SmartCardDesc.Controls.Warehouse;
 using SmartCardDesc.ViewModel.Security;
 using System;
 using System.Windows;
@@ -205,6 +206,41 @@ namespace SmartCardDesc
         {
             spPanel.Children.Clear();
             var uObject = new UcLogsList();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void btnPrixodOp_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcProxodOp();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void btnRasxodOp_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcSpisaniyeOp();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void btnCurrentSaldo_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcCurrentWarehouse();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void btnIncomesList_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcPrixodsList();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void btnOutcomesList_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcRasxodsList();
             spPanel.Children.Add(uObject);
         }
     }

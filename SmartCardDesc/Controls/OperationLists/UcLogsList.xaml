@@ -14,7 +14,7 @@
     <Grid DataContext="{StaticResource aUDITViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="500"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <DataGrid 
