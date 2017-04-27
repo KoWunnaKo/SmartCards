@@ -40,6 +40,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             StatusText = "Загрузка...";
 
+            fGetToken();
+
             CardInfo = await service.GetUserCardInfo(UserId, Token);
 
             try

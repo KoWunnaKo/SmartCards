@@ -34,6 +34,7 @@
     <Property Name="CERTIFICATE_BIN" Type="Binary" MaxLength="4000" FixedLength="false" />
     <Property Name="PRIVATE_N" Type="Binary" MaxLength="256" FixedLength="false" />
     <Property Name="PRIVATE_D" Type="Binary" MaxLength="256" FixedLength="false" />
+    <Property Name="PIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>

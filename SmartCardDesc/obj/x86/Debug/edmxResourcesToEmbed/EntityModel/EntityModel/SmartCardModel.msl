@@ -15,6 +15,7 @@
     <EntitySetMapping Name="CARD_INFO">
       <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
         <MappingFragment StoreEntitySet="CARD_INFO">
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
           <ScalarProperty Name="PRIVATE_D" ColumnName="PRIVATE_D" />
           <ScalarProperty Name="PRIVATE_N" ColumnName="PRIVATE_N" />
           <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />

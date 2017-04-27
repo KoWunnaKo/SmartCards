@@ -235,6 +235,141 @@ namespace SmartCardDesc.Model
             return resultTask;
         }
 
+
+        public void InsertUserInfoEntx()
+        {
+                using (var context = new SmartCardDBEntities())
+                {
+                    //Audit
+
+                    AuditModel.InsertAudit("USER_INFO",
+                        string.Format("Got information by {0}", userId));
+
+
+                    ///User information logic
+                    var count = (from userx in context.USERS
+                                 where userx.LOGIN == userId
+                                 select userx.LOGIN).Count();
+
+                    if (count > 0) return;
+
+                    var user = new USER();
+
+                    user.LOGIN = userId;
+                    user.PASSWORD = HashPassword.HashPasswordWithSalt(password);
+                    user.IS_ACTIVE = is_active;
+                    user.DEPARTMENT = context.DEPARTMENTs.ToList().First().REC_ID;
+
+                    if (string.IsNullOrEmpty(reg_dttm))
+                    {
+                        user.REG_DATE = null;
+                    }
+                    else
+                    {
+                        user.REG_DATE = DateTime.ParseExact(reg_dttm, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    }
+
+                    if (string.IsNullOrEmpty(first_name))
+                    {
+                        user.FIRST_NAME = null;
+                    }
+                    else
+                    {
+                        user.FIRST_NAME = first_name;
+                    }
+
+                    if (string.IsNullOrEmpty(surname))
+                    {
+                        user.SURNAME_NAME = null;
+                    }
+                    else
+                    {
+                        user.SURNAME_NAME = surname;
+                    }
+
+                    if (string.IsNullOrEmpty(mid_name))
+                    {
+                        user.MIDDLE_NAME = null;
+                    }
+                    else
+                    {
+                        user.MIDDLE_NAME = mid_name;
+                    }
+
+                    if (string.IsNullOrEmpty(gd))
+                    {
+                        user.GENDER = null;
+                    }
+                    else
+                    {
+                        if (gd.Equals("M"))
+                        {
+                            user.GENDER = true;
+                        }
+                        else
+                        {
+                            user.GENDER = false;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(dob))
+                    {
+                        user.BIRTH_DATE = null;
+                    }
+                    else
+                    {
+                        user.BIRTH_DATE = DateTime.ParseExact(dob, "dd/MM/yyyy", CultureInfo.InvariantCulture); ;
+                    }
+
+                    if (string.IsNullOrEmpty(PerAdr))
+                    {
+                        user.ADDRESS = null;
+                    }
+                    else
+                    {
+                        user.ADDRESS = PerAdr;
+                    }
+
+
+                    if (string.IsNullOrEmpty(pport_no))
+                    {
+                        user.PASSPORT = null;
+                    }
+                    else
+                    {
+                        user.PASSPORT = pport_no;
+                    }
+
+
+                    if (string.IsNullOrEmpty(tin))
+                    {
+                        user.TIN = null;
+                    }
+                    else
+                    {
+                        user.TIN = tin;
+                    }
+
+                    if (string.IsNullOrEmpty(pin))
+                    {
+                        user.PIN = null;
+                    }
+                    else
+                    {
+                        user.PIN = pin;
+                    }
+
+                    user.CARD_FLG = false;
+                    user.KEY_FLG = false;
+                    user.CERT_CRT_FLG = false;
+                    user.CERT_WRT_FLG = false;
+
+                    context.USERS.Add(user);
+
+                    context.SaveChanges();
+                }
+        }
+
         public void ModifyUserInfo()
         {
 

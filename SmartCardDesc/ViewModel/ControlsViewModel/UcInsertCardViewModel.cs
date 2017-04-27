@@ -34,8 +34,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             ClearResults = new RelayCommand(_ => fClearResults());
 
-            IssueDate = DateTime.Now;
-            ExpireDate = DateTime.Now;
+            IssueDate = DateTime.Now.Date;
+            ExpireDate = DateTime.Now.Date.AddYears(10);
+
+            fGetNumber();
 
             service = new EpiService();
         }
@@ -54,6 +56,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             IsIntermadiate = true;
 
             StatusText = "Загрузка...";
+
+            fGetToken();
 
             Model = await service.InsertCardInfo(UserId,
                                            Token,
@@ -95,7 +99,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private void fGetToken()
         {
-            Token = CryptoFuncs.GetMD5(UserId);
+            string value = string.Format("{0}.{1}.{2}.{3}", UserId, Number, IssueDate.ToString("yyyy-MM-dd"), ExpireDate.ToString("yyyy-MM-dd"));
+
+            Token = CryptoFuncs.GetMD5(value);
         }
 
         private async void fGetNumber()

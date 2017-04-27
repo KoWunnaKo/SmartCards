@@ -113,6 +113,16 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_Male_User {
+            get {
+                object obj = ResourceManager.GetObject("Add_Male_User", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddTable {
             get {
                 object obj = ResourceManager.GetObject("AddTable", resourceCulture);
@@ -636,6 +646,16 @@ namespace SmartCardDesc.Properties {
         internal static System.Drawing.Bitmap CopyFolder {
             get {
                 object obj = ResourceManager.GetObject("CopyFolder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap credit_card_block_512 {
+            get {
+                object obj = ResourceManager.GetObject("credit_card_block_512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

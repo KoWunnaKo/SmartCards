@@ -66,6 +66,36 @@ namespace SmartCardDesc.InfocomService
             return resultTask;
         }
 
+        public UserInfoModel GetUserIdx(string pUserId, string pToken)
+        {
+
+                UserInfoModel model = null;
+
+                try
+                {
+                    var xml = getUserById(pUserId, pToken);
+
+                    var result = CallWebService("getUserById", xml);
+
+                    model = ParseGetUserIdMethod(result);
+
+                    model.userId = pUserId;
+
+                    model.token = pToken;
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+
+                    if (model == null)
+                        model = new UserInfoModel();
+
+                    model.result = ex.Message;
+                }
+
+                return model;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -455,6 +485,51 @@ namespace SmartCardDesc.InfocomService
             });
 
             return resultTask;
+        }
+
+        public CardModel InsertCardInfox(string userId,
+                                    string token,
+                                    string cardNumber,
+                                    string issue_date,
+                                    string exp_date)
+        {
+
+
+                CardModel model = null;
+
+                try
+                {
+                    var xml = insertCardInfo(userId,
+                                             token,
+                                             cardNumber,
+                                             issue_date,
+                                             exp_date);
+
+                    var result = CallWebService("insertUserCard", xml);
+
+                    model = ParseInsertCardInfoMethod(result);
+
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+
+                    if (model == null)
+                        model = new CardModel();
+
+                    model.result = ex.Message;
+                }
+                finally
+                {
+                    model.user_id = userId;
+                    model.token = token;
+                    model.card_num = cardNumber;
+                    model.issue_date = issue_date;
+                    model.expiry_date = exp_date;
+                }
+
+                return model;
+
         }
 
         /// <summary>

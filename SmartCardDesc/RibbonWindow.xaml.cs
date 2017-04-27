@@ -243,5 +243,17 @@ namespace SmartCardDesc
             var uObject = new UcRasxodsList();
             spPanel.Children.Add(uObject);
         }
+
+        private void btnNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            spPanel.Children.Clear();
+            var uObject = new UcNewUser();
+            spPanel.Children.Add(uObject);
+        }
+
+        private void btnBlockCard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

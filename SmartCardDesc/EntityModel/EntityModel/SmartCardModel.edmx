@@ -37,6 +37,7 @@
           <Property Name="CERTIFICATE_BIN" Type="varbinary" MaxLength="4000" />
           <Property Name="PRIVATE_N" Type="varbinary" MaxLength="256" />
           <Property Name="PRIVATE_D" Type="varbinary" MaxLength="256" />
+          <Property Name="PIN" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -379,6 +380,7 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <Property Name="CERTIFICATE_BIN" Type="Binary" MaxLength="4000" FixedLength="false" />
           <Property Name="PRIVATE_N" Type="Binary" MaxLength="256" FixedLength="false" />
           <Property Name="PRIVATE_D" Type="Binary" MaxLength="256" FixedLength="false" />
+          <Property Name="PIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DEPARTMENT">
           <Key>
@@ -702,6 +704,7 @@ warning 6002: The table/view 'SmartCardDB.dbo.PrinterView' does not have a prima
           <EntitySetMapping Name="CARD_INFO">
             <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
               <MappingFragment StoreEntitySet="CARD_INFO">
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
                 <ScalarProperty Name="PRIVATE_D" ColumnName="PRIVATE_D" />
                 <ScalarProperty Name="PRIVATE_N" ColumnName="PRIVATE_N" />
                 <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />

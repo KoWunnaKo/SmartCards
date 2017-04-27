@@ -36,5 +36,28 @@ namespace SmartCardDesc.Utils
 
             return resultTask;
         }
+
+        public static string GenerateCardNumberx()
+        {
+                string number = string.Empty;
+
+                using (var context = new SmartCardDBEntities())
+                {
+                    var card_num = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
+                    Equals("CARD_NUMBER")).VALUE + 1;
+
+                    number = card_num.ToString().PadLeft(16, '0');
+
+                    //Change Number +1
+                    var card = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
+                    Equals("CARD_NUMBER"));
+
+                    card.VALUE = card_num;
+
+                    context.SaveChanges();
+                }
+
+                return number;
+        }
     }
 }

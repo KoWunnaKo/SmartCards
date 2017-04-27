@@ -1,4 +1,4 @@
-﻿C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcCardsList.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcCertificateList.xaml;;
@@ -13,6 +13,7 @@ FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcCertif
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcDeleteCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcGenCardRSA.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcKeyGen.xaml;;
+FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcNewUser.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcPrintCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcWriteCert.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Warehouse\UcCurrentWarehouse.xaml;;

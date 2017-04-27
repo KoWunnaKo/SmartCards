@@ -17,7 +17,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -33,7 +33,7 @@
                     <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <!--<ColumnDefinition Width="1*"/>-->
                         </Grid.ColumnDefinitions>
                         <ComboBox Margin="5" 
                                  Name="txbUserId"
@@ -45,17 +45,20 @@
                         <Button Grid.Column="1" 
                                 Margin="5"
                                 Content="Токен"
+                                Visibility="Hidden"
                                 Command="{Binding Path=GetToken}"></Button>
                     </Grid>
                     <TextBlock Text="Токен" 
                                        Grid.Row="1" 
                                        Grid.Column="0"
-                                       Margin="5"></TextBlock>
+                                       Margin="5"
+                               Visibility="Hidden"></TextBlock>
                     <TextBox Grid.Row="1" 
                                      Grid.Column="1"
                                      Margin="5"
                              IsReadOnly="True"
-                             Text="{Binding Path=Token}"></TextBox>
+                             Text="{Binding Path=Token}"
+                             Visibility="Hidden"></TextBox>
                     <TextBlock Text="Операция с картой" 
                                        Grid.Row="2" 
                                        Grid.Column="0"
@@ -87,7 +90,7 @@
                     <DatePicker Grid.Row="3" 
                                      Grid.Column="1"
                                      Margin="5"
-                                Text="{Binding IssueDate}"></DatePicker>
+                                SelectedDate="{Binding IssueDate, Mode=TwoWay}"></DatePicker>
                     <TextBlock Text="Годен до" 
                                        Grid.Row="4" 
                                        Grid.Column="0"
@@ -95,7 +98,7 @@
                     <DatePicker Grid.Row="4" 
                                      Grid.Column="1"
                                      Margin="5"
-                                Text="{Binding ExpireDate}"></DatePicker>
+                                SelectedDate="{Binding ExpireDate, Mode=TwoWay}"></DatePicker>
                 </Grid>
             </Border>
             <StackPanel Orientation="Horizontal" 

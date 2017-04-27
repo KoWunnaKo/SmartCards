@@ -108,10 +108,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
-        private async void fGetUserInfo()
+        public async void fGetUserInfo()
         {
             IsIntermadiate = true;
             StatusText = "Загрузка...";
+
+            fGetToken();
 
             UserInfo = await service.GetUserId(UserId, Token);
 

@@ -48,6 +48,14 @@
                 <!-- Home  group-->
                 <RibbonGroup x:Name="ClipboardGroup" Margin="0,1" Header="Обмен данных и операции с картами" >
                     <StackPanel Orientation="Horizontal">
+                        <RibbonRadioButton  Label="Новый пользователь"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/Add-Male-User.png"
+                                       Name="btnNewUser"
+                                       Click="btnNewUser_Click"/>
+                        <RibbonRadioButton  Label="Блокировать карту"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/credit-card-block-512.png"
+                                       Name="btnBlockCard"
+                                       Click="btnBlockCard_Click"/>
                         <RibbonRadioButton  Label="Информация пользователя"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/user_info.png"
                                        Name="btnUserInfo"

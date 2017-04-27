@@ -52,6 +52,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             StatusText = "Загрузка...";
 
+            fGetToken();
+
             Model = await service.DeleteCardInfo(UserId, Token);
 
             await AuditModel.InsertAuditAsync("DELETE_CARD",

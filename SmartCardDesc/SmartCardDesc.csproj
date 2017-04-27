@@ -152,6 +152,9 @@
     <Compile Include="Controls\UcKeyGen.xaml.cs">
       <DependentUpon>UcKeyGen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcNewUser.xaml.cs">
+      <DependentUpon>UcNewUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcPrintCard.xaml.cs">
       <DependentUpon>UcPrintCard.xaml</DependentUpon>
     </Compile>
@@ -256,6 +259,7 @@
     <Compile Include="ViewModel\ControlsViewModel\UcDeleteCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcGetCertificateViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcInsertCardViewModel.cs" />
+    <Compile Include="ViewModel\ControlsViewModel\UcNewUserViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcPrinterViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUpdateCardViewModel.cs" />
     <Compile Include="ViewModel\ControlsViewModel\UcUserInfoViewModel.cs" />
@@ -334,6 +338,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UcKeyGen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UcNewUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1271,6 +1279,8 @@
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
       <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\credit-card-block-512.png" />
+    <Resource Include="Resources\Add-Male-User.png" />
     <Resource Include="Resources\add_list1600.png" />
     <Resource Include="Resources\minusList.png" />
     <Resource Include="Resources\warehouse2d-512.png" />

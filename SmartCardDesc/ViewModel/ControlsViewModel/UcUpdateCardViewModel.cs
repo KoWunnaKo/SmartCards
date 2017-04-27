@@ -64,6 +64,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             StatusText = "Загрузка...";
 
+            fGetToken();
+
             Model = await service.UpdateCardInfo(UserId,
                                            Token,
                                            CardStat,
@@ -96,7 +98,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private void fGetToken()
         {
-            Token = CryptoFuncs.GetMD5(UserId);
+            string value = string.Format("{0}.{1}.{2}.{3}", UserId, CardStat, IssueDate.ToString("yyyy-MM-dd"), ExpireDate.ToString("yyyy-MM-dd"));
+
+            Token = CryptoFuncs.GetMD5(value);
         }
 
         private void fGetNumber()
@@ -373,7 +377,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         {
             using (var context = new SmartCardDBEntities())
             {
-                Card = context.CARD_INFO.ToList().FirstOrDefault(x=>x.OWNER_USER == SelectedUser.REC_ID && 
+                Card = context.CARD_INFO.
+                    ToList().OrderBy(x=>x.REC_ID).
+                    LastOrDefault(x=>x.OWNER_USER == SelectedUser.REC_ID && 
                 x.IS_ACTIVE.Value);
 
                 if (Card != null)

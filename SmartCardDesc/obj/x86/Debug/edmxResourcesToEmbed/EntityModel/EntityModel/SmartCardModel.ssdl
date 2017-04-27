@@ -32,6 +32,7 @@
     <Property Name="CERTIFICATE_BIN" Type="varbinary" MaxLength="4000" />
     <Property Name="PRIVATE_N" Type="varbinary" MaxLength="256" />
     <Property Name="PRIVATE_D" Type="varbinary" MaxLength="256" />
+    <Property Name="PIN" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="DEPARTMENT">
     <Key>
