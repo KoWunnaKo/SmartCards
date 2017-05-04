@@ -7,11 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="419.753" d:DesignWidth="474.074"
              Background="White">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="225*"/>
         </Grid.RowDefinitions>
         <Grid
@@ -93,7 +96,7 @@
                      Command="{Binding StartOp}"></Button>
 
         </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="2"
+        <!--<Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
                 Grid.Row="2">
             <StackPanel  HorizontalAlignment="Left"
@@ -108,12 +111,40 @@
                     Margin="10,0,0,0"
                     Text="{Binding StatusText}"></TextBlock>
             </StackPanel>
-        </Border>
+        </Border>-->
         <ScrollViewer
             Grid.Row="3">
             <StackPanel
                 Orientation="Vertical"
                 Name="SpObjects">
+                <Border BorderBrush="Black" BorderThickness="1">
+                <StackPanel Orientation="Vertical" >
+                <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="300"></ColumnDefinition>
+                                <ColumnDefinition Width="20"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" 
+                            Text="Информация о пользователе"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"></TextBlock>
+                        <ProgressBar 
+                            Grid.Column="1" 
+                           
+                            Margin="15,2,0,2"
+                            Visibility="{Binding UserInfoProssVis, Converter={StaticResource BoolToVisConverter}}"
+                            IsIndeterminate="{Binding UserInfoProssInter}"></ProgressBar>
+                            <TextBlock Grid.Column="1" 
+                            Text="{Binding UserInfoResult}"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,5,0"
+                                   Visibility="{Binding UserInfoResultVis, Converter={StaticResource BoolToVisConverter}}"></TextBlock>
+                            <Image Grid.Column="2" 
+                            Source="{Binding UserInfoResImage}" 
+                           ></Image>
+                </Grid>
+                <Expander IsExpanded="False" Header="Подробнее" Margin="10,0,0,0">
                 <GroupBox BorderBrush="Yellow" BorderThickness="2" Header="Информация о пользователе">
                     <Grid Margin="10" >
                         <Grid.RowDefinitions>
@@ -266,121 +297,225 @@
                         </TextBox>
                     </Grid>
                 </GroupBox>
-                <GroupBox BorderBrush="Green" BorderThickness="2" Header="Карточная информация">
-                    <Grid Margin="-2,0,2,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0"/>
-                            <RowDefinition Height="0"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Номер карты" 
+                </Expander>
+                </StackPanel>
+                </Border>
+
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="300"></ColumnDefinition>
+                                <ColumnDefinition Width="20"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Карточная информация"
+                                       Grid.Column="0"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"></TextBlock>
+                            <ProgressBar 
+                                Grid.Column="1"
+                            
+                            Margin="15,2,0,2"
+                            Visibility="{Binding CardInfoProssVis, Converter={StaticResource BoolToVisConverter}}"
+                            IsIndeterminate="{Binding CardInfoProssInter}"></ProgressBar>
+                            <TextBlock Grid.Column="1"
+                                Text="{Binding CardInfoResult}"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,5,0"
+                                   Visibility="{Binding CardInfoResultVis, Converter={StaticResource BoolToVisConverter}}"></TextBlock>
+                            <Image Grid.Column="2"
+                                Source="{Binding CardInfoResImage}" 
+                                ></Image>
+                        </Grid>
+                        <Expander IsExpanded="False" Header="Подробнее" Margin="10,0,0,0">
+                            <GroupBox BorderBrush="Green" BorderThickness="2" Header="Карточная информация">
+                                <Grid Margin="-2,0,2,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0"/>
+                                        <RowDefinition Height="0"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Номер карты" 
                                        Grid.Row="2" 
                                        Grid.Column="0"
                                        Margin="5"></TextBlock>
-                        <Grid Grid.Row="2" 
+                                    <Grid Grid.Row="2" 
                                      Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <!--<ColumnDefinition Width="1*"/>-->
-                            </Grid.ColumnDefinitions>
-                            <TextBox Margin="5"
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <!--<ColumnDefinition Width="1*"/>-->
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Margin="5"
                                  IsReadOnly="True"
                                  Text="{Binding Path=Number}">
 
-                            </TextBox>
-                            <Button Grid.Column="1" 
+                                        </TextBox>
+                                        <Button Grid.Column="1" 
                                 Margin="5"
                                 Content="Номер"
                                 Command="{Binding GetNumber}"
                                 Visibility="Hidden"
                                 >
-                            </Button>
-                        </Grid>
+                                        </Button>
+                                    </Grid>
 
-                        <TextBlock Text="Дата выпуска" 
+                                    <TextBlock Text="Дата выпуска" 
                                        Grid.Row="3" 
                                        Grid.Column="0"
                                        Margin="5"></TextBlock>
-                        <DatePicker Grid.Row="3" 
+                                    <DatePicker Grid.Row="3" 
                                 Grid.Column="1"
                                 Margin="5"
                                 SelectedDate="{Binding IssueDate,Mode=TwoWay}"
                                 ></DatePicker>
-                        <TextBlock Text="Годен до" 
+                                    <TextBlock Text="Годен до" 
                                        Grid.Row="4" 
                                        Grid.Column="0"
                                        Margin="5"></TextBlock>
-                        <DatePicker Grid.Row="4" 
+                                    <DatePicker Grid.Row="4" 
                                      Grid.Column="1"
                                      Margin="5"
                                 SelectedDate="{Binding ExpireDate,Mode=TwoWay}"></DatePicker>
-                    </Grid>
-                </GroupBox>
-                <GroupBox BorderBrush="Red" BorderThickness="2" Header="Генерация ключей">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="37*"/>
-                            <RowDefinition Height="88"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"
+                                </Grid>
+                            </GroupBox>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+
+
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="300"></ColumnDefinition>
+                                <ColumnDefinition Width="20"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Генерация ключей"
+                                       Grid.Column="0"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"></TextBlock>
+                            <ProgressBar 
+                                Grid.Column="1"
+                            
+                            Margin="15,2,0,2"
+                            Visibility="{Binding GenInfoProssVis, Converter={StaticResource BoolToVisConverter}}"
+                            IsIndeterminate="{Binding GenInfoProssInter}"></ProgressBar>
+                            <TextBlock Grid.Column="1"
+                                Text="{Binding GenInfoResult}"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,5,0"
+                                   Visibility="{Binding GenInfoResultVis, Converter={StaticResource BoolToVisConverter}}"></TextBlock>
+                            <Image Grid.Column="2"
+                                Source="{Binding GenInfoResImage}" 
+                                ></Image>
+                        </Grid>
+                        <Expander IsExpanded="False" Header="Подробнее" Margin="10,0,0,0">
+                            <GroupBox BorderBrush="Red" BorderThickness="2" Header="Генерация ключей">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="37*"/>
+                                        <RowDefinition Height="88"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
                    Grid.Row="0"
                    Text="Экспонента"
                    Margin="10,0,0,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Center" 
           ></TextBlock>
-                        <TextBox Grid.Column="1"
+                                    <TextBox Grid.Column="1"
                  Grid.Row="0"
                  Margin="5"
                  Text="{Binding Exponental}"
                  TextWrapping="Wrap"></TextBox>
-                        <TextBlock Grid.Column="0"
+                                    <TextBlock Grid.Column="0"
                    Grid.Row="1"
                    Text="Модуль"
                    Margin="10,0,0,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Center" 
           ></TextBlock>
-                        <TextBox Grid.Column="1"
+                                    <TextBox Grid.Column="1"
                  Grid.Row="1"
                  Margin="5"
                  Text="{Binding Modules}" 
                  TextWrapping="Wrap"></TextBox>
-                    </Grid>
-                </GroupBox>
-                <GroupBox BorderBrush="Plum" BorderThickness="2" Header="Получение и запись сертификата">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="37*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"
+                                </Grid>
+                            </GroupBox>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+
+
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Vertical" >
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="300"></ColumnDefinition>
+                                <ColumnDefinition Width="20"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Получение и запись сертификата"
+                                       Grid.Column="0"
+                                   Margin="5,0,0,0"
+                                   VerticalAlignment="Center"></TextBlock>
+                            <ProgressBar 
+                                Grid.Column="1"
+                            
+                            Margin="15,2,0,2"
+                            Visibility="{Binding CerInfoProssVis, Converter={StaticResource BoolToVisConverter}}"
+                            IsIndeterminate="{Binding CerInfoProssInter}"></ProgressBar>
+                            <TextBlock Grid.Column="1"
+                                Text="{Binding CerInfoResult}"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,5,0"
+                                   Visibility="{Binding CerInfoResultVis, Converter={StaticResource BoolToVisConverter}}"></TextBlock>
+                            <Image Grid.Column="2"
+                                Source="{Binding CerInfoResImage}" 
+                                ></Image>
+                        </Grid>
+                        <Expander IsExpanded="False" Header="Подробнее" Margin="10,0,0,0">
+                            <GroupBox BorderBrush="Plum" BorderThickness="2" Header="Получение и запись сертификата">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="37*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
                    Grid.Row="0"
                    Text="Сертификат"
                    Margin="10,0,0,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Center" 
           ></TextBlock>
-                        <TextBox Grid.Column="1"
+                                    <TextBox Grid.Column="1"
                    Grid.Row="0"
                  Margin="5"
                  Text="{Binding Certificate}"></TextBox>
 
-                    </Grid>
-                </GroupBox>                
+                                </Grid>
+                            </GroupBox>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+
+
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

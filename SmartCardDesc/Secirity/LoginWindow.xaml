@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartCardDesc.Secirity"
         mc:Ignorable="d"
-        Title="Авторизация" Height="208.834" Width="300" WindowStyle="ToolWindow"
+        Title="Авторизация" Height="208.834" Width="320" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>

@@ -82,3 +82,9 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Smar
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\SmartCardDesc.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcNewUser.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcNewUser.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcBlockCard.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcChangePinNumber.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcBlockCard.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\Controls\UcChangePinNumber.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Interop.CERTENROLLLib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Interop.CERTCLILib.dll

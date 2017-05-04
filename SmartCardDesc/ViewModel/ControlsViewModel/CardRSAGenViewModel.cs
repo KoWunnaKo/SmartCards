@@ -61,7 +61,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 IsIntermadiate = true;
 
-                StatusText = "Генерация ключа...";
+                StatusText = "1";
 
                 CallCardx();
 

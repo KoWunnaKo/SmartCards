@@ -1,4 +1,4 @@
-﻿
+﻿C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
 
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcCardsList.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcCertificateList.xaml;;
@@ -9,7 +9,9 @@ FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Operatio
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcUpdatesList.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcUsersList.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcWriteCertList.xaml;;
+FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcBlockCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcCertificate.xaml;;
+FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcChangePinNumber.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcDeleteCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcGenCardRSA.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcKeyGen.xaml;;

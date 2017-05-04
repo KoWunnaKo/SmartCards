@@ -134,11 +134,17 @@
     <Compile Include="Controls\OperationLists\UcWriteCertList.xaml.cs">
       <DependentUpon>UcWriteCertList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UcBlockCard.xaml.cs">
+      <DependentUpon>UcBlockCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UcCardInfo.xaml.cs">
       <DependentUpon>UcCardInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UcCertificate.xaml.cs">
       <DependentUpon>UcCertificate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UcChangePinNumber.xaml.cs">
+      <DependentUpon>UcChangePinNumber.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UcDeleteCard.xaml.cs">
       <DependentUpon>UcDeleteCard.xaml</DependentUpon>
@@ -317,11 +323,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UcBlockCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UcCardInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UcCertificate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UcChangePinNumber.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1279,6 +1293,8 @@
       <DependentUpon>SmartCardModel.edmx</DependentUpon>
       <LastGenOutput>SmartCardModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\1493374024_Close_Icon_Dark.png" />
+    <Resource Include="Resources\1493374034_Tick_Mark_Dark.png" />
     <Resource Include="Resources\credit-card-block-512.png" />
     <Resource Include="Resources\Add-Male-User.png" />
     <Resource Include="Resources\add_list1600.png" />

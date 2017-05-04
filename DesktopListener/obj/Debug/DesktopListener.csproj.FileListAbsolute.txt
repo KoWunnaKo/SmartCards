@@ -1,0 +1,9 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\bin\Debug\DesktopListener.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\bin\Debug\DesktopListener.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\bin\Debug\DesktopListener.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.Properties.Resources.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.csproj.GenerateResource.Cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.MainForm.resources

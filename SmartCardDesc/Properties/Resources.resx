@@ -898,4 +898,10 @@
   <data name="credit_card_block_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\credit-card-block-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_1493374024_Close_Icon_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1493374024_Close_Icon_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1493374034_Tick_Mark_Dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1493374034_Tick_Mark_Dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

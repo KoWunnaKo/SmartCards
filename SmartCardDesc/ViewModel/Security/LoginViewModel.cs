@@ -57,10 +57,17 @@ namespace SmartCardDesc.ViewModel.Security
 
             StatusText = string.Empty;
 
-            if (await CheckAuthorithation())
+            try
             {
-                //# Validation logic
-                RaiseLoginCompleted();
+                if (await CheckAuthorithation())
+                {
+                    //# Validation logic
+                    RaiseLoginCompleted();
+                }
+            }
+            catch(Exception ex)
+            {
+                StatusText = "Невозможно подключится к БД";
             }
 
             IsIntermadiate = false;

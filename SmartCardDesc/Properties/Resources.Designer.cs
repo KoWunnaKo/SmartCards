@@ -93,6 +93,26 @@ namespace SmartCardDesc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1493374024_Close_Icon_Dark {
+            get {
+                object obj = ResourceManager.GetObject("_1493374024_Close_Icon_Dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1493374034_Tick_Mark_Dark {
+            get {
+                object obj = ResourceManager.GetObject("_1493374034_Tick_Mark_Dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ActualSize {
             get {
                 object obj = ResourceManager.GetObject("ActualSize", resourceCulture);

@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="SmartCardDesc.Controls.UcBlockCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartCardDesc.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="464.198" d:DesignWidth="456.79"
+             Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="114*"/>
+            <RowDefinition Height="86*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="58*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" BorderBrush="Aqua" BorderThickness="2" Header="Критерий Поиска">
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Stretch"
+                    Margin="2">
+            <RadioButton VerticalAlignment="Center" 
+                         GroupName="Options"
+                         Content="ФИО"
+                         Margin="5"></RadioButton>
+            <RadioButton VerticalAlignment="Center" 
+                         GroupName="Options"
+                         Content="ИНН"
+                         Margin="5"></RadioButton>
+            <RadioButton VerticalAlignment="Center" 
+                         GroupName="Options"
+                         Content="ПИНФЛ"
+                         Margin="5"></RadioButton>
+            <RadioButton VerticalAlignment="Center" 
+                         GroupName="Options"
+                         Content="№ Карты"
+                         Margin="5"></RadioButton>
+
+        </StackPanel>
+        </GroupBox>
+        <!--<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <TextBlock Text="Строка поиска"
+                       VerticalAlignment="Center"
+                       Margin="5"></TextBlock>
+            <TextBox></TextBox>
+        </StackPanel>-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="151*"/>
+                <ColumnDefinition Width="306*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

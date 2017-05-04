@@ -41,13 +41,13 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                         return;
 
                     //Create Request
-                    var request = CertInterOpApi.CreateCertRequestMessage(subjectTxt, template);
+                    var request = SmartCardLogonCertApi.CreateCertRequestMessage(subjectTxt, template);
 
                     //Send Request
-                    var id = CertInterOpApi.SendCertificateRequest(request, serverAddress);
+                    var id = SmartCardLogonCertApi.SendCertificateRequest(request, serverAddress);
 
                     //Download Certificate
-                    var cert = CertInterOpApi.DownloadCert(id, serverAddress);
+                    var cert = SmartCardLogonCertApi.DownloadCert(id, serverAddress);
 
                     Certificate = cert;
 
@@ -103,13 +103,13 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                         return;
 
                     //Create Request
-                    var request = CertInterOpApi.CreateCertRequestMessage(subjectTxt, template);
+                    var request = SmartCardLogonCertApi.CreateCertRequestMessage(subjectTxt, template);
 
                     //Send Request
-                    var id = CertInterOpApi.SendCertificateRequest(request, serverAddress);
+                    var id = SmartCardLogonCertApi.SendCertificateRequest(request, serverAddress);
 
                     //Download Certificate
-                    var cert = CertInterOpApi.DownloadCert(id, serverAddress);
+                    var cert = SmartCardLogonCertApi.DownloadCert(id, serverAddress);
 
                     Certificate = cert;
 
@@ -161,7 +161,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 IsIntermadiate = true;
 
-                StatusText = "Получение сертификата...";
+                StatusText = "1";
 
                 tGetCertificatex();
 
