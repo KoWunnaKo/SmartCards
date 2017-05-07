@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopListener.Socket;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace DesktopListener
 {
     public partial class MainForm : Form
     {
+        private ConnectionAcepter socketConnection;
+
         public MainForm()
         {
             InitializeComponent();
+
+            socketConnection = new ConnectionAcepter();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -38,6 +43,16 @@ namespace DesktopListener
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            socketConnection.Start();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            socketConnection.Stop();
         }
     }
 }

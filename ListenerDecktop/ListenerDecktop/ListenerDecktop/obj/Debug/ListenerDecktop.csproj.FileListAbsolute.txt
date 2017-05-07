@@ -1,0 +1,23 @@
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\bin\Debug\ListenerDecktop.exe
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\bin\Debug\ListenerDecktop.pdb
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.Properties.Resources.resources
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.csproj.GenerateResource.Cache
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.exe
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.pdb
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.MainForm.resources
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\bin\Debug\ListenerDecktop.exe.config
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\bin\Debug\log4net.dll
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.PinAutorizationForm.resources
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.g.resources
+C:\RAD SOFT\PROJECTS\SmartKard\CA_SmartCardLogon\ListenerDecktop\ListenerDecktop\obj\Debug\SystemTrayApp.AboutBox.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\ListenerDecktop.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\ListenerDecktop.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\ListenerDecktop.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.g.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.MainForm.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\SystemTrayApp.AboutBox.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.PinAutorizationForm.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.Properties.Resources.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.csproj.GenerateResource.Cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.pdb

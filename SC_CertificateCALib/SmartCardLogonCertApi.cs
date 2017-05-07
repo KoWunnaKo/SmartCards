@@ -1,7 +1,8 @@
 ﻿using System;
 using CERTENROLLLib;
 using CERTCLILib;
-
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace SC_CertificateCALib
 {

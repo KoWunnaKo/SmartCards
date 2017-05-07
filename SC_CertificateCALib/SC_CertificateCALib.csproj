@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CertApiOnBehalfOfOther.cs" />
     <Compile Include="CertInterOpApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartCardLogonCertApi.cs" />

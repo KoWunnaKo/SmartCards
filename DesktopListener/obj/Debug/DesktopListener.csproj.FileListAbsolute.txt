@@ -7,3 +7,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\Deskto
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\obj\Debug\DesktopListener.MainForm.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DesktopListener\bin\Debug\log4net.dll

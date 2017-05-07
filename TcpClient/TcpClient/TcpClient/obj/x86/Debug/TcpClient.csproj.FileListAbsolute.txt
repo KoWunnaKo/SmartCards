@@ -1,0 +1,9 @@
+\\fs-002\radb$\Documents\Visual Studio 2010\Projects\TcpClient\TcpClient\bin\Debug\TcpClient.exe
+\\fs-002\radb$\Documents\Visual Studio 2010\Projects\TcpClient\TcpClient\bin\Debug\TcpClient.pdb
+\\fs-002\radb$\Documents\Visual Studio 2010\Projects\TcpClient\TcpClient\obj\x86\Debug\TcpClient.exe
+\\fs-002\radb$\Documents\Visual Studio 2010\Projects\TcpClient\TcpClient\obj\x86\Debug\TcpClient.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\bin\Debug\TcpClient.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\bin\Debug\TcpClient.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\obj\x86\Debug\TcpClient.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\obj\x86\Debug\TcpClient.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\obj\x86\Debug\TcpClient.csprojResolveAssemblyReference.cache

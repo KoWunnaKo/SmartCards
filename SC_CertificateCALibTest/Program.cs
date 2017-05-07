@@ -16,30 +16,33 @@ namespace SC_CertificateCALibTest
                 Console.WriteLine("Enter server like [CA_SERVER_IP]\\[CA_NAME]");
                 var serverAddress = Console.ReadLine();
 
-                Console.WriteLine("Enter template Name:  ");
-                var templateName = Console.ReadLine();
+                Console.WriteLine("Enter domain user like [domainName]\\[user]");
+                var userName = Console.ReadLine();
+
+                //Console.WriteLine("Enter template Name:  ");
+                var templateName = "SmartcardUser";
 
                 Console.WriteLine("Request a new certificate? (y|n)");
                 if (Console.ReadLine() == "y")
                 {
                     //Generate Subject
                     string fio = string.Format("{0} {1} {2}", "RADJABOV", "BAKHODIR", "BOBOKULOVICH");
-                    string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, S = Tashkent, C = UZ ", fio);
+                    string subjectTxt = string.Format(@"CN = helpdesk, OU = Users, OU = Akho, DC = akho, DC = local");
 
                     Console.WriteLine("Subject ");
                     Console.WriteLine(subjectTxt);
 
                     //Create Request
-                    var request = SmartCardLogonCertApi.CreateCertRequestMessage(subjectTxt, templateName);
+                    var request = CertApiOnBehalfOfOther.CreateCertRequestMessage(subjectTxt, templateName, userName);
 
                     Console.WriteLine("request ");
                     Console.WriteLine(request);
 
                     //Send Request
-                    var id = SmartCardLogonCertApi.SendCertificateRequest(request, serverAddress);
+                    var id = CertApiOnBehalfOfOther.SendCertificateRequest(request, serverAddress);
 
                     //Download Certificate
-                    var cert = SmartCardLogonCertApi.DownloadCert(id, serverAddress);
+                    var cert = CertApiOnBehalfOfOther.DownloadCert(id, serverAddress);
 
                     Console.WriteLine("The certificate had been installed successfully.");
 

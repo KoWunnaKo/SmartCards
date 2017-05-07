@@ -29,9 +29,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     //Generate Subject
                     string fio = string.Format("{0} {1} {2}", SelectedUser.SURNAME_NAME, SelectedUser.FIRST_NAME, SelectedUser.MIDDLE_NAME);
-                    string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, 
-                    S = Tashkent, C = UZ , INN = {1} , PINFL = {2}", fio, SelectedUser.TIN, SelectedUser.PIN);
-
+                    string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, S = Tashkent, C = UZ ", fio);
+                    //, INN = {1} , PINFL = {2} , SelectedUser.TIN, SelectedUser.PIN
 
                     //Validation Server Address and Template Name
                     string serverAddress = Properties.Settings.Default.CAServerIpAndName;
@@ -91,12 +90,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                     //Generate Subject
                     string fio = string.Format("{0} {1} {2}", SelectedUser.SURNAME_NAME, SelectedUser.FIRST_NAME, SelectedUser.MIDDLE_NAME);
-                    string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, 
-                    S = Tashkent, C = UZ , INN = {1} , PINFL = {2}", fio, SelectedUser.TIN, SelectedUser.PIN);
+                    string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, S = Tashkent, C = UZ ", fio);
+                //, INN = {1} , PINFL = {2} , SelectedUser.TIN, SelectedUser.PIN
 
-
-                    //Validation Server Address and Template Name
-                    string serverAddress = Properties.Settings.Default.CAServerIpAndName;
+                //Validation Server Address and Template Name
+                string serverAddress = Properties.Settings.Default.CAServerIpAndName;
                     string template = Properties.Settings.Default.CA_TemplateName;
 
                     if (string.IsNullOrEmpty(serverAddress) || string.IsNullOrEmpty(template))
