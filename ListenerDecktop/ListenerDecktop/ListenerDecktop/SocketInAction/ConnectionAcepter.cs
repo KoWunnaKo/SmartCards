@@ -8,7 +8,7 @@ using log4net;
 
 namespace ListenerDecktop.SocketInAction
 {
-    public class ConnectionAcepter
+    public class ConnectionAcepter : BaseAcceptor
     {
         private static ILog log = log4net.LogManager.GetLogger(typeof(ConnectionAcepter));
         private Thread _Thread;

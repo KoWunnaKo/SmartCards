@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("SmartCardDesc")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Global Solutions")]
+[assembly: AssemblyCompany("RAD SOFT")]
 [assembly: AssemblyProduct("SmartCardDesc")]
-[assembly: AssemblyCopyright("Copyright © Global Solutions 2017")]
+[assembly: AssemblyCopyright("Copyright © RAD SOFT 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -53,3 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: log4net.Config.XmlConfigurator]

@@ -1,10 +1,7 @@
 ﻿using ListenerDecktop.Controllers;
 using log4net;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 
 namespace ListenerDecktop.SocketInAction
@@ -15,7 +12,7 @@ namespace ListenerDecktop.SocketInAction
 
         private Thread _Thread;
         private Socket _s;
-        private string _errorText;
+        //private string _errorText;
         public SocketClient(Socket s)
         {
             _s = s;
@@ -39,6 +36,13 @@ namespace ListenerDecktop.SocketInAction
                 log.Info("Client received: " + rcv);
     
                 var Message = MessageProcessor.ProccIncomingMessage(rcv);
+
+                if (string.IsNullOrEmpty(Message))
+                {
+                    Message = "RETR10EROR00000236";
+
+                    log.Error("Empty Out Message. Contact IT");
+                }
     
                 log.Info("Reply: " + Message);
     

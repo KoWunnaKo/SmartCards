@@ -1,0 +1,14 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\bin\Debug\ListenerDescTester.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\bin\Debug\ListenerDescTester.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\bin\Debug\ListenerDescTester.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\MainWindow.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\App.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester_MarkupCompile.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester_MarkupCompile.lref
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\MainWindow.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester.g.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester.Properties.Resources.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester.csproj.GenerateResource.Cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDescTester\obj\Debug\ListenerDescTester.csprojResolveAssemblyReference.cache

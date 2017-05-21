@@ -20,7 +20,7 @@ namespace ListenerDecktop.ProtocolParser
             {
                 ParseMessage(message);
             }
-            catch(ApplicationException ex)
+            catch(ApplicationException)
             {
                 //errorCode = lastErrorNumber;
             }

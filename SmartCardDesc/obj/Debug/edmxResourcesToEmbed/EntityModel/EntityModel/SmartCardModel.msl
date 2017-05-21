@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SmartCardDBModelStoreContainer" CdmEntityContainer="SmartCardDBEntities">
+    <EntitySetMapping Name="AUDITs">
+      <EntityTypeMapping TypeName="SmartCardDBModel.AUDIT">
+        <MappingFragment StoreEntitySet="AUDIT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARD_INFO">
+      <EntityTypeMapping TypeName="SmartCardDBModel.CARD_INFO">
+        <MappingFragment StoreEntitySet="CARD_INFO">
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="PRIVATE_D" ColumnName="PRIVATE_D" />
+          <ScalarProperty Name="PRIVATE_N" ColumnName="PRIVATE_N" />
+          <ScalarProperty Name="CERTIFICATE_BIN" ColumnName="CERTIFICATE_BIN" />
+          <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
+          <ScalarProperty Name="IS_PRINTED" ColumnName="IS_PRINTED" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
+          <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="CARD_STATE" ColumnName="CARD_STATE" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+          <ScalarProperty Name="OWNER_USER" ColumnName="OWNER_USER" />
+          <ScalarProperty Name="EXPONENT" ColumnName="EXPONENT" />
+          <ScalarProperty Name="MODULUS" ColumnName="MODULUS" />
+          <ScalarProperty Name="CERTIFICATE_FILE" ColumnName="CERTIFICATE_FILE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTMENTs">
+      <EntityTypeMapping TypeName="SmartCardDBModel.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENT">
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DICTIONARies">
+      <EntityTypeMapping TypeName="SmartCardDBModel.DICTIONARY">
+        <MappingFragment StoreEntitySet="DICTIONARY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAME_UZ" ColumnName="NAME_UZ" />
+          <ScalarProperty Name="NAME_RU" ColumnName="NAME_RU" />
+          <ScalarProperty Name="DICTIONARY_TYPE_ID" ColumnName="DICTIONARY_TYPE_ID" />
+          <ScalarProperty Name="IS_DEFAULT" ColumnName="IS_DEFAULT" />
+          <ScalarProperty Name="IS_ARCHIVE" ColumnName="IS_ARCHIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DICTIONARY_TYPE">
+      <EntityTypeMapping TypeName="SmartCardDBModel.DICTIONARY_TYPE">
+        <MappingFragment StoreEntitySet="DICTIONARY_TYPE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="name_uz" ColumnName="name_uz" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXTERNAL_REQUESTS">
+      <EntityTypeMapping TypeName="SmartCardDBModel.EXTERNAL_REQUESTS">
+        <MappingFragment StoreEntitySet="EXTERNAL_REQUESTS">
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="REQ_TYPE" ColumnName="REQ_TYPE" />
+          <ScalarProperty Name="REQ_MESSAGE" ColumnName="REQ_MESSAGE" />
+          <ScalarProperty Name="RES_MESSAGE" ColumnName="RES_MESSAGE" />
+          <ScalarProperty Name="REQ_DATETIME" ColumnName="REQ_DATETIME" />
+          <ScalarProperty Name="REQ_USER" ColumnName="REQ_USER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FIXED_INTERNAL_VALUES">
+      <EntityTypeMapping TypeName="SmartCardDBModel.FIXED_INTERNAL_VALUES">
+        <MappingFragment StoreEntitySet="FIXED_INTERNAL_VALUES">
+          <ScalarProperty Name="PKM_ID" ColumnName="PKM_ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="READERS_INFO">
+      <EntityTypeMapping TypeName="SmartCardDBModel.READERS_INFO">
+        <MappingFragment StoreEntitySet="READERS_INFO">
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="READER_TYPE" ColumnName="READER_TYPE" />
+          <ScalarProperty Name="READER_STATE" ColumnName="READER_STATE" />
+          <ScalarProperty Name="CREATE_DATE" ColumnName="CREATE_DATE" />
+          <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+          <ScalarProperty Name="OWNER_USER" ColumnName="OWNER_USER" />
+          <ScalarProperty Name="OWNER_DEPARTMENT" ColumnName="OWNER_DEPARTMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="SmartCardDBModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="SURNAME_NAME" ColumnName="SURNAME_NAME" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PASSPORT" ColumnName="PASSPORT" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="REG_DATE" ColumnName="REG_DATE" />
+          <ScalarProperty Name="CARD_FLG" ColumnName="CARD_FLG" />
+          <ScalarProperty Name="KEY_FLG" ColumnName="KEY_FLG" />
+          <ScalarProperty Name="CERT_CRT_FLG" ColumnName="CERT_CRT_FLG" />
+          <ScalarProperty Name="CERT_WRT_FLG" ColumnName="CERT_WRT_FLG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WAREHOUSEs">
+      <EntityTypeMapping TypeName="SmartCardDBModel.WAREHOUSE">
+        <MappingFragment StoreEntitySet="WAREHOUSE">
+          <ScalarProperty Name="REMAINING_AMOUNT" ColumnName="REMAINING_AMOUNT" />
+          <ScalarProperty Name="INIT_QUANTITY" ColumnName="INIT_QUANTITY" />
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="INPUT_DT" ColumnName="INPUT_DT" />
+          <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="ITEN_NAME" ColumnName="ITEN_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WAREHOUSE_DTL">
+      <EntityTypeMapping TypeName="SmartCardDBModel.WAREHOUSE_DTL">
+        <MappingFragment StoreEntitySet="WAREHOUSE_DTL">
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="OP_TYPE" ColumnName="OP_TYPE" />
+          <ScalarProperty Name="TR_AMOUNT" ColumnName="TR_AMOUNT" />
+          <ScalarProperty Name="TR_DATE" ColumnName="TR_DATE" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="CREATE_USER" ColumnName="CREATE_USER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrinterViews">
+      <EntityTypeMapping TypeName="SmartCardDBModel.PrinterView">
+        <MappingFragment StoreEntitySet="PrinterView">
+          <ScalarProperty Name="CARD_ID" ColumnName="CARD_ID" />
+          <ScalarProperty Name="PICTURE_PATH" ColumnName="PICTURE_PATH" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PRINTED" ColumnName="PRINTED" />
+          <ScalarProperty Name="BIRTH_DATE" ColumnName="BIRTH_DATE" />
+          <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+          <ScalarProperty Name="SURNAME_NAME" ColumnName="SURNAME_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

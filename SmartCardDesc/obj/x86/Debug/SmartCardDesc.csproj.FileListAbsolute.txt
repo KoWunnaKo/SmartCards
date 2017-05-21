@@ -2,12 +2,10 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\Prin
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe.config
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SmartCardDesc.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\log4net.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SC_CertificateCALib.dll
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\CardRSA_API.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\SC_CertificateCALib.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\x86\Debug\EntityFramework.SqlServer.xml

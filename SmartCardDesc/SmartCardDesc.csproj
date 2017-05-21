@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmartCardDesc</RootNamespace>
     <AssemblyName>SmartCardDesc</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -58,7 +58,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -107,6 +107,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CardAPI\CardApiController.cs" />
+    <Compile Include="CardAPI\CardApiInterface.cs" />
     <Compile Include="Controls\OperationLists\UcCardsList.xaml.cs">
       <DependentUpon>UcCardsList.xaml</DependentUpon>
     </Compile>
@@ -476,7 +478,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CardAPI\" />
     <Folder Include="Lib\" />
     <Folder Include="Views\AppDesigns\" />
   </ItemGroup>
@@ -1308,10 +1309,6 @@
     <Resource Include="TaskResources\DeleteCardRequest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ClassLibrary1\ClassLibrary1\ClassLibrary1.vcxproj">
-      <Project>{a82daf31-8264-4735-a896-d6a025952a6c}</Project>
-      <Name>CardRSA_API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SC_CertificateCALib\SC_CertificateCALib.csproj">
       <Project>{6051fe06-920a-422d-9067-588cdb868620}</Project>
       <Name>SC_CertificateCALib</Name>

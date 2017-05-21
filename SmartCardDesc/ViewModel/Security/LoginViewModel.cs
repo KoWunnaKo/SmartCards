@@ -65,7 +65,7 @@ namespace SmartCardDesc.ViewModel.Security
                     RaiseLoginCompleted();
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 StatusText = "Невозможно подключится к БД";
             }

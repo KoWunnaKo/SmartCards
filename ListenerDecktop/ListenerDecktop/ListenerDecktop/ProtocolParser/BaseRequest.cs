@@ -42,7 +42,7 @@ namespace ListenerDecktop.ProtocolParser
             if (string.IsNullOrWhiteSpace(message))
             {
                 lastError = "Invalid total message length";
-                lastErrorNumber = "51";
+                lastErrorNumber = "33";
 
                 log.Error("Invalid total message length");
 
@@ -52,7 +52,7 @@ namespace ListenerDecktop.ProtocolParser
             if (message.Length < 6)
             {
                 lastError = "Invalid total message length";
-                lastErrorNumber = "51";
+                lastErrorNumber = "33";
 
                 log.Error("Invalid total message length");
 
@@ -64,7 +64,7 @@ namespace ListenerDecktop.ProtocolParser
             if (!EntryTag.Equals(Constants.FunctionNameTag))
             {
                 lastError = "Invalid EntryTag";
-                lastErrorNumber = "54";
+                lastErrorNumber = "34";
 
                 log.Error("Invalid EntryTag");
 
@@ -87,7 +87,7 @@ namespace ListenerDecktop.ProtocolParser
                 if (message.Length < 10)
                 {
                     lastError = "Invalid total message length";
-                    lastErrorNumber = "51";
+                    lastErrorNumber = "33";
 
                     log.Error("Invalid total message length");
 
@@ -98,7 +98,7 @@ namespace ListenerDecktop.ProtocolParser
             {
                 requestTp = RequestType.Error;
                 lastError = "Invalid Content Data length";
-                lastErrorNumber = "52";
+                lastErrorNumber = "33";
 
                 log.Error("Invalid Content Data length");
 
@@ -114,7 +114,7 @@ namespace ListenerDecktop.ProtocolParser
             if (!int.TryParse(ContentDataLength, out contentLength))
             {
                 lastError = "Invalid Content Data length";
-                lastErrorNumber = "53";
+                lastErrorNumber = "33";
 
                 log.Error("Invalid Content Data length");
 

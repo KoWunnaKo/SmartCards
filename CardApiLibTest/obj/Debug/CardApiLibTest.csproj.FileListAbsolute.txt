@@ -1,0 +1,9 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\bin\Debug\CardApiLibTest.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\bin\Debug\CardApiLibTest.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\bin\Debug\CardApiLibTest.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\bin\Debug\CardAPILib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\bin\Debug\CardAPILib.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\obj\Debug\CardApiLibTest.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\obj\Debug\CardApiLibTest.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\bin\Debug\log4net.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardApiLibTest\obj\Debug\CardApiLibTest.csprojResolveAssemblyReference.cache

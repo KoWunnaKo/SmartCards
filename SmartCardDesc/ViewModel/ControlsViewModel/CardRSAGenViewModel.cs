@@ -1,4 +1,4 @@
-﻿using SCfunctional;
+﻿//using SCfunctional;
 using SmartCardDesc.EntityModel.EntityModel;
 using System;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             StatusText = "Генерация ключа...";
 
-            await CallCard();
+            //await CallCard();
 
             await AuditModel.InsertAuditAsync("RSAGEN_CARD",
                 string.Format("user = {0} ", userId));
@@ -63,7 +63,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                 StatusText = "1";
 
-                CallCardx();
+                //CallCardx();
 
                 AuditModel.InsertAudit("RSAGEN_CARD",
                     string.Format("user = {0} ", userId));
@@ -112,248 +112,248 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         }
 
 
-        private string _privateN;
+        //private string _privateN;
 
-        private string _privateD;
-
-
-        public Task CallCard()
-        {
-            var resultTask = Task.Factory.StartNew(() =>
-            {
-                int returnValue = 20;
-                unsafe
-                {
-
-                    uint[] exp = new uint[3];
-                    uint[] modul = new uint[256];
-                    uint[] privN = new uint[256];
-                    uint[] privD = new uint[256];
-
-                    fixed (uint* public_exp = exp)
-                    fixed (uint* public_modul = modul)
-                    fixed (uint* private_N = privN)
-                    fixed (uint* private_D = privD)
-
-                        try
-                        {
-                           //returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
-
-                            returnValue = CardOperationApi.generate_RSA();
-
-                            returnValue = CardOperationApi.get_RSA_components(public_exp, public_modul, private_N, private_D);
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-
-                    if (returnValue != 0)
-                    {
-                        StatusText = stateList[returnValue];
-
-                        Exponental = string.Empty;
-
-                        Modules = string.Empty;
-
-                        return;
-                    }
-
-                    string expStr = string.Empty;
-                    string[] expStrArr = new string[exp.Length];
-                    int counter = 0;
-
-                    foreach (uint xx in exp)
-                    {
-                        expStr = xx.ToString();//"x"
-
-                        expStrArr[counter++] = expStr;
-                    }
-
-                    Exponental = string.Join(" ", expStrArr);
-
-                    //if (!Exponental.Equals("1 0 1"))
-                    //{
-                    //    StatusText = "Error! Try again please!!!";
-
-                    //    Exponental = string.Empty;
-
-                    //    Modules = string.Empty;
-
-                    //    return;
-                    //}
-
-                    string mexpStr = string.Empty;
-                    string[] mexpStrArr = new string[modul.Length];
-                    int mcounter = 0;
-
-                    foreach (uint xx in modul)
-                    {
-                        mexpStr = xx.ToString();//"x"
-
-                        mexpStrArr[mcounter++] = mexpStr;
-                    }
-
-                    Modules = string.Join(" ", mexpStrArr);
+        //private string _privateD;
 
 
-                    ///////////////////////////////////////////////////////
+        //public Task CallCard()
+        //{
+        //    var resultTask = Task.Factory.StartNew(() =>
+        //    {
+        //        int returnValue = 20;
+        //        unsafe
+        //        {
 
-                    string StrprivN = string.Empty;
-                    string[] StrprivNArr = new string[privN.Length];
-                    int Ncounter = 0;
+        //            uint[] exp = new uint[3];
+        //            uint[] modul = new uint[256];
+        //            uint[] privN = new uint[256];
+        //            uint[] privD = new uint[256];
 
-                    foreach (uint xx in privN)
-                    {
-                        StrprivN = xx.ToString();//"x"
+        //            fixed (uint* public_exp = exp)
+        //            fixed (uint* public_modul = modul)
+        //            fixed (uint* private_N = privN)
+        //            fixed (uint* private_D = privD)
 
-                        StrprivNArr[Ncounter++] = StrprivN;
-                    }
+        //                try
+        //                {
+        //                   //returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
 
-                    _privateN = string.Join(" ", StrprivNArr);
+        //                    returnValue = CardOperationApi.generate_RSA();
 
-                    ConvertStr2BytePrivN(_privateN);
+        //                    returnValue = CardOperationApi.get_RSA_components(public_exp, public_modul, private_N, private_D);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    throw ex;
+        //                }
 
-                    string StrprivD = string.Empty;
-                    string[] StrprivDArr = new string[privD.Length];
-                    int Dcounter = 0;
+        //            if (returnValue != 0)
+        //            {
+        //                StatusText = stateList[returnValue];
 
-                    foreach (uint xx in privD)
-                    {
-                        StrprivD = xx.ToString();//"x"
+        //                Exponental = string.Empty;
 
-                        StrprivDArr[Dcounter++] = StrprivD;
-                    }
+        //                Modules = string.Empty;
 
-                    _privateD = string.Join(" ", StrprivDArr);
+        //                return;
+        //            }
 
-                    ConvertStr2BytePrivD(_privateD);
+        //            string expStr = string.Empty;
+        //            string[] expStrArr = new string[exp.Length];
+        //            int counter = 0;
+
+        //            foreach (uint xx in exp)
+        //            {
+        //                expStr = xx.ToString();//"x"
+
+        //                expStrArr[counter++] = expStr;
+        //            }
+
+        //            Exponental = string.Join(" ", expStrArr);
+
+        //            //if (!Exponental.Equals("1 0 1"))
+        //            //{
+        //            //    StatusText = "Error! Try again please!!!";
+
+        //            //    Exponental = string.Empty;
+
+        //            //    Modules = string.Empty;
+
+        //            //    return;
+        //            //}
+
+        //            string mexpStr = string.Empty;
+        //            string[] mexpStrArr = new string[modul.Length];
+        //            int mcounter = 0;
+
+        //            foreach (uint xx in modul)
+        //            {
+        //                mexpStr = xx.ToString();//"x"
+
+        //                mexpStrArr[mcounter++] = mexpStr;
+        //            }
+
+        //            Modules = string.Join(" ", mexpStrArr);
+
+
+        //            ///////////////////////////////////////////////////////
+
+        //            string StrprivN = string.Empty;
+        //            string[] StrprivNArr = new string[privN.Length];
+        //            int Ncounter = 0;
+
+        //            foreach (uint xx in privN)
+        //            {
+        //                StrprivN = xx.ToString();//"x"
+
+        //                StrprivNArr[Ncounter++] = StrprivN;
+        //            }
+
+        //            _privateN = string.Join(" ", StrprivNArr);
+
+        //            ConvertStr2BytePrivN(_privateN);
+
+        //            string StrprivD = string.Empty;
+        //            string[] StrprivDArr = new string[privD.Length];
+        //            int Dcounter = 0;
+
+        //            foreach (uint xx in privD)
+        //            {
+        //                StrprivD = xx.ToString();//"x"
+
+        //                StrprivDArr[Dcounter++] = StrprivD;
+        //            }
+
+        //            _privateD = string.Join(" ", StrprivDArr);
+
+        //            ConvertStr2BytePrivD(_privateD);
                     
-                    UpdateCardKeyInfo();
+        //            UpdateCardKeyInfo();
 
-                    StatusText = string.Empty;
-                }
-            });
+        //            StatusText = string.Empty;
+        //        }
+        //    });
 
-            return resultTask;
-        }
+        //    return resultTask;
+        //}
 
-        public void CallCardx()
-        {
-                int returnValue = 20;
-                unsafe
-                {
+        //public void CallCardx()
+        //{
+        //        int returnValue = 20;
+        //        unsafe
+        //        {
 
-                    uint[] exp = new uint[3];
-                    uint[] modul = new uint[256];
-                    uint[] privN = new uint[256];
-                    uint[] privD = new uint[256];
+        //            uint[] exp = new uint[3];
+        //            uint[] modul = new uint[256];
+        //            uint[] privN = new uint[256];
+        //            uint[] privD = new uint[256];
 
-                    fixed (uint* public_exp = exp)
-                    fixed (uint* public_modul = modul)
-                    fixed (uint* private_N = privN)
-                    fixed (uint* private_D = privD)
+        //            fixed (uint* public_exp = exp)
+        //            fixed (uint* public_modul = modul)
+        //            fixed (uint* private_N = privN)
+        //            fixed (uint* private_D = privD)
 
-                        try
-                        {
-                            //returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
+        //                try
+        //                {
+        //                    //returnValue = RSAGeneration.generate_RSA(public_exp, public_modul);
 
-                            returnValue = CardOperationApi.generate_RSA();
+        //                    returnValue = CardOperationApi.generate_RSA();
 
-                            returnValue = CardOperationApi.get_RSA_components(public_exp, public_modul, private_N, private_D);
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
+        //                    returnValue = CardOperationApi.get_RSA_components(public_exp, public_modul, private_N, private_D);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    throw ex;
+        //                }
 
-                    if (returnValue != 0)
-                    {
-                        StatusText = stateList[returnValue];
+        //            if (returnValue != 0)
+        //            {
+        //                StatusText = stateList[returnValue];
 
-                        Exponental = string.Empty;
+        //                Exponental = string.Empty;
 
-                        Modules = string.Empty;
+        //                Modules = string.Empty;
 
-                        return;
-                    }
+        //                return;
+        //            }
 
-                    string expStr = string.Empty;
-                    string[] expStrArr = new string[exp.Length];
-                    int counter = 0;
+        //            string expStr = string.Empty;
+        //            string[] expStrArr = new string[exp.Length];
+        //            int counter = 0;
 
-                    foreach (uint xx in exp)
-                    {
-                        expStr = xx.ToString();//"x"
+        //            foreach (uint xx in exp)
+        //            {
+        //                expStr = xx.ToString();//"x"
 
-                        expStrArr[counter++] = expStr;
-                    }
+        //                expStrArr[counter++] = expStr;
+        //            }
 
-                    Exponental = string.Join(" ", expStrArr);
+        //            Exponental = string.Join(" ", expStrArr);
 
-                    //if (!Exponental.Equals("1 0 1"))
-                    //{
-                    //    StatusText = "Error! Try again please!!!";
+        //            //if (!Exponental.Equals("1 0 1"))
+        //            //{
+        //            //    StatusText = "Error! Try again please!!!";
 
-                    //    Exponental = string.Empty;
+        //            //    Exponental = string.Empty;
 
-                    //    Modules = string.Empty;
+        //            //    Modules = string.Empty;
 
-                    //    return;
-                    //}
+        //            //    return;
+        //            //}
 
-                    string mexpStr = string.Empty;
-                    string[] mexpStrArr = new string[modul.Length];
-                    int mcounter = 0;
+        //            string mexpStr = string.Empty;
+        //            string[] mexpStrArr = new string[modul.Length];
+        //            int mcounter = 0;
 
-                    foreach (uint xx in modul)
-                    {
-                        mexpStr = xx.ToString();//"x"
+        //            foreach (uint xx in modul)
+        //            {
+        //                mexpStr = xx.ToString();//"x"
 
-                        mexpStrArr[mcounter++] = mexpStr;
-                    }
+        //                mexpStrArr[mcounter++] = mexpStr;
+        //            }
 
-                    Modules = string.Join(" ", mexpStrArr);
+        //            Modules = string.Join(" ", mexpStrArr);
 
 
-                    ///////////////////////////////////////////////////////
+        //            ///////////////////////////////////////////////////////
 
-                    string StrprivN = string.Empty;
-                    string[] StrprivNArr = new string[privN.Length];
-                    int Ncounter = 0;
+        //            string StrprivN = string.Empty;
+        //            string[] StrprivNArr = new string[privN.Length];
+        //            int Ncounter = 0;
 
-                    foreach (uint xx in privN)
-                    {
-                        StrprivN = xx.ToString();//"x"
+        //            foreach (uint xx in privN)
+        //            {
+        //                StrprivN = xx.ToString();//"x"
 
-                        StrprivNArr[Ncounter++] = StrprivN;
-                    }
+        //                StrprivNArr[Ncounter++] = StrprivN;
+        //            }
 
-                    _privateN = string.Join(" ", StrprivNArr);
+        //            _privateN = string.Join(" ", StrprivNArr);
 
-                    ConvertStr2BytePrivN(_privateN);
+        //            ConvertStr2BytePrivN(_privateN);
 
-                    string StrprivD = string.Empty;
-                    string[] StrprivDArr = new string[privD.Length];
-                    int Dcounter = 0;
+        //            string StrprivD = string.Empty;
+        //            string[] StrprivDArr = new string[privD.Length];
+        //            int Dcounter = 0;
 
-                    foreach (uint xx in privD)
-                    {
-                        StrprivD = xx.ToString();//"x"
+        //            foreach (uint xx in privD)
+        //            {
+        //                StrprivD = xx.ToString();//"x"
 
-                        StrprivDArr[Dcounter++] = StrprivD;
-                    }
+        //                StrprivDArr[Dcounter++] = StrprivD;
+        //            }
 
-                    _privateD = string.Join(" ", StrprivDArr);
+        //            _privateD = string.Join(" ", StrprivDArr);
 
-                    ConvertStr2BytePrivD(_privateD);
+        //            ConvertStr2BytePrivD(_privateD);
 
-                    UpdateCardKeyInfo();
+        //            UpdateCardKeyInfo();
 
-                    StatusText = string.Empty;
-                }
+        //            StatusText = string.Empty;
+        //        }
  
-        }
+        //}
 
         private bool _isIntermadiate;
 

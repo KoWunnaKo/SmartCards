@@ -1,0 +1,12 @@
+C:\RADSOFT\Projects\SmartCardDesc\WebSocketTest\WebSockets\WebSockets\bin\Debug\MimeTypes.config
+C:\RADSOFT\Projects\SmartCardDesc\WebSocketTest\WebSockets\WebSockets\bin\Debug\WebSockets.dll
+C:\RADSOFT\Projects\SmartCardDesc\WebSocketTest\WebSockets\WebSockets\bin\Debug\WebSockets.pdb
+C:\RADSOFT\Projects\SmartCardDesc\WebSocketTest\WebSockets\WebSockets\obj\Debug\WebSockets.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\WebSocketTest\WebSockets\WebSockets\obj\Debug\WebSockets.dll
+C:\RADSOFT\Projects\SmartCardDesc\WebSocketTest\WebSockets\WebSockets\obj\Debug\WebSockets.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\WebSockets\bin\Debug\MimeTypes.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\WebSockets\bin\Debug\WebSockets.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\WebSockets\bin\Debug\WebSockets.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\WebSockets\obj\Debug\WebSockets.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\WebSockets\obj\Debug\WebSockets.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\WebSockets\obj\Debug\WebSockets.pdb

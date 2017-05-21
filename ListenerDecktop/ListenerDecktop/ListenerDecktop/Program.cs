@@ -14,7 +14,7 @@ namespace ListenerDecktop
         /// </summary>
         /// 
 
-        public static ConnectionAcepter _connector;
+        public static BaseAcceptor _connector;
 
         [STAThread]
         static void Main()
@@ -22,7 +22,7 @@ namespace ListenerDecktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            _connector = new ConnectionAcepter();
+            _connector = new WebSocketConnectionAceptor();
 
             using (ProcessIcon pi = new ProcessIcon())
             {

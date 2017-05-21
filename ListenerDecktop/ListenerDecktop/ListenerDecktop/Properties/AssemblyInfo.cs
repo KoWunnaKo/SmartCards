@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Авторизация в id.gov.uz с помощью Смарт Карт")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Developed by RADSOFT specially for Global Solutions")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Global Solutions")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Авторизация в id.gov.uz с помощью Смарт Карт")]
-[assembly: AssemblyCopyright("Copyright © Global Solutions 2017")]
+[assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
