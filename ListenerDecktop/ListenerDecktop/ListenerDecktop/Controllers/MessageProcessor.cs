@@ -83,8 +83,8 @@ namespace ListenerDecktop.Controllers
                     {
                         outerRequest.ErrorCode = "35"; //User Denied PIN Enter
 
-                        CardInternals.hcard = 0;
-                        CardInternals.hcontect = 0;
+                        //CardInternals.hcard = 0;
+                        //CardInternals.hcontect = 0;
                     }
                 }
                 else
@@ -97,6 +97,8 @@ namespace ListenerDecktop.Controllers
             catch(Exception ex)
             {
                 log.Error(ex.ToString());
+
+                outerRequest.ErrorCode = "35";
             }
 
             return returnMessage;

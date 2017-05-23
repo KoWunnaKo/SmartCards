@@ -1,13 +1,16 @@
 ﻿using log4net;
 using System;
 using System.Text;
+using System.Threading;
 
 namespace CardAPILib.InterfaceCL
 {
     public class CardApiAPDUMessages
     {
-        public int hContext;       //card reader context handle
+        public int hContext;     //card reader context handle
+
         public int hCard;          //card connection handle
+
         private int ActiveProtocol;
 
         private int _retcode;
@@ -42,6 +45,8 @@ namespace CardAPILib.InterfaceCL
         private string specRetCode;
         private bool connActive = false;
 
+        private int retryCount = 0;
+
         public string LastOperationStatus { get; set; }
 
         public string SelectedReader { get; set; }
@@ -60,17 +65,6 @@ namespace CardAPILib.InterfaceCL
             {
 
                 log.Info("Card Connection Begin");
-
-                if (hCard != 0)
-                {
-                    retcode = ModWinsCard.SCardDisconnect(hCard, ModWinsCard.SCARD_UNPOWER_CARD);
-                    if (retcode != ModWinsCard.SCARD_S_SUCCESS)
-                    {
-                        hContext = 0;
-                        hCard = 0;
-                    }
-                }
-                
 
                 byte[] returnData = null;   // Will hold the reader names after the call to SCardListReaders
                 int readerCount = 0;        // Total length of the reader names
@@ -129,8 +123,6 @@ namespace CardAPILib.InterfaceCL
                             log.Info(readerList[idx]);
                         }
 
-                        connActive = true;
-
                         if (connActive)
                         {
                             log.Info("Active Connection SCardDisconnect");
@@ -145,30 +137,51 @@ namespace CardAPILib.InterfaceCL
                         }
     
                         SelectedReader = readerList[1];
-    
-                        log.Info("Connect to the reader using hContext handle and obtain hCard handle");
-                        // Connect to the reader using hContext handle and obtain hCard handle  
-                        retcode = ModWinsCard.SCardConnect(hContext, readerList[1], ModWinsCard.SCARD_SHARE_EXCLUSIVE, 0 | 1, ref hCard, ref ActiveProtocol);
-                        if (retcode != ModWinsCard.SCARD_S_SUCCESS)
+
+                        while (true)
                         {
-                            if (retcode  ==- 2146435061)
+                            log.Info("Connect to the reader using hContext handle and obtain hCard handle");
+                            // Connect to the reader using hContext handle and obtain hCard handle  
+                            retcode = ModWinsCard.SCardConnect(hContext, readerList[1], ModWinsCard.SCARD_SHARE_EXCLUSIVE, 0 | 1, ref hCard, ref ActiveProtocol);
+                            if (retcode != ModWinsCard.SCARD_S_SUCCESS)
+                            {
+                                if (retcode == -2146435061)
+                                {
+                                    log.Info("Connection OK");
+                                    LastOperationStatus = "Connection OK";
+                                    connActive = true;
+                                    retcode = 0;
+
+                                    break;
+                                }
+                                else
+                                {
+                                    if (retryCount <= 3)
+                                    {
+                                        retryCount++;
+                                    }
+                                    else
+                                    {
+                                        log.Error(string.Format("SCardConnect error {0}", retcode));
+                                        LastOperationStatus = string.Format("SCardConnect error {0}", retcode);
+                                        retryCount = 0;
+                                        return 4;
+                                    }
+                                }
+
+                                Thread.Sleep(1000);
+
+                            }
+                            else
                             {
                                 log.Info("Connection OK");
                                 LastOperationStatus = "Connection OK";
                                 connActive = true;
+                                break;
                             }
 
-                            log.Error(string.Format("SCardConnect error {0}", retcode));
-                            LastOperationStatus = string.Format("SCardConnect error {0}", retcode);
-                            return 4;
+                            
                         }
-                        else
-                        {
-                            log.Info("Connection OK");
-                            LastOperationStatus = "Connection OK";
-                            connActive = true;
-                        }
-    
                     }
                 }
 
@@ -239,6 +252,27 @@ namespace CardAPILib.InterfaceCL
                 {
                     log.Error(string.Format("SCardTransmit error {0}", retcode));
                     LastOperationStatus = string.Format("SCardTransmit error {0}", retcode);
+
+                    //if (retryCount<=10)
+                    //{
+                    //    retryCount++;
+
+                    int retvalue = Connect2Card();
+
+                        if (retvalue == 0)
+                        {
+                            PerformTransmitAPDUGen(ref apdu, resvLen);
+                        }
+
+                    //}
+                    //else
+                    //{
+                    //    if (retryCount > 10)
+                    //    {
+                    //        retryCount = 0;
+                    //    }
+                    //}
+
                     return;
                 }
 
@@ -281,6 +315,7 @@ namespace CardAPILib.InterfaceCL
                 }
 
                 retcode = 0;
+                retryCount = 0;
             }
             catch(Exception ex)
             {

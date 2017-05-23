@@ -2,7 +2,7 @@
 {
     public class CardApiController : CardApiInterface
     {
-        CardAPILib.CardAPI.CardApiController cbt;
+        //CardAPILib.CardAPI.CardApiController cbt;
 
         public CardApiController()
         {
@@ -26,23 +26,35 @@
         public int userPinCodeLogin(string pinCode)
         {
 
-            if ((CardInternals.hcard == 0) && (CardInternals.hcontect == 0))
-            {
-                cbt = new CardAPILib.CardAPI.CardApiController(true);
+            //if ((CardInternals.hcard == 0) && (CardInternals.hcontect == 0))
+            //{
+            //    cbt = new CardAPILib.CardAPI.CardApiController(true);
 
-                CardInternals.hcard = cbt.hCard;
-                CardInternals.hcontect = cbt.hContext;
-            }
-            else
-            {
-                cbt = new CardAPILib.CardAPI.CardApiController();
+            //    CardInternals.hcard = cbt.hCard;
+            //    CardInternals.hcontect = cbt.hContext;
+            //}
+            //else if ((CardInternals.hcard == 0) || (CardInternals.hcontect == 0))
+            //{
+            //    cbt = new CardAPILib.CardAPI.CardApiController();
 
-                cbt.hCard = CardInternals.hcard;
-                cbt.hContext = CardInternals.hcontect;
+            //    cbt.hCard = 0;
+            //    cbt.hContext = 0;
 
-            }
+            //    cbt.Connect2Card();
 
-            var result = cbt.userPinCodeLogin(pinCode);
+            //    cbt.hCard = CardInternals.hcard;
+            //    cbt.hContext = CardInternals.hcontect;
+
+            //}
+            //else
+            //{
+            //    cbt = new CardAPILib.CardAPI.CardApiController();
+
+            //    cbt.hCard = CardInternals.hcard;
+            //    cbt.hContext = CardInternals.hcontect;
+            //}
+
+            var result = Program.controller.userPinCodeLogin(pinCode);
 
             if (result != 0)
             {
@@ -76,7 +88,7 @@
         {
             signedToken = "";
 
-            var result = cbt.signToken(token, out signedToken);
+            var result = Program.controller.signToken(token, out signedToken);
 
             if (result != 0)
             {
@@ -90,23 +102,35 @@
         {
             certificate = "";
 
-            if ((CardInternals.hcard == 0) && (CardInternals.hcontect == 0))
-            {
-                cbt = new CardAPILib.CardAPI.CardApiController(true);
+            //if ((CardInternals.hcard == 0) && (CardInternals.hcontect == 0))
+            //{
+            //    cbt = new CardAPILib.CardAPI.CardApiController(true);
 
-                CardInternals.hcard = cbt.hCard;
-                CardInternals.hcontect = cbt.hContext;
-            }
-            else
-            {
-                cbt = new CardAPILib.CardAPI.CardApiController();
+            //    CardInternals.hcard = cbt.hCard;
+            //    CardInternals.hcontect = cbt.hContext;
+            //}
+            //else if ((CardInternals.hcard == 0) || (CardInternals.hcontect == 0))
+            //{
+            //    cbt = new CardAPILib.CardAPI.CardApiController();
 
-                cbt.hCard = CardInternals.hcard;
-                cbt.hContext = CardInternals.hcontect;
+            //    cbt.hCard = 0;
+            //    cbt.hContext = 0;
 
-            }
+            //    cbt.Connect2Card();
 
-            var result = cbt.LoadCert(out certificate);
+            //    cbt.hCard = CardInternals.hcard;
+            //    cbt.hContext = CardInternals.hcontect;
+
+            //}
+            //else
+            //{
+            //    cbt = new CardAPILib.CardAPI.CardApiController();
+
+            //    cbt.hCard = CardInternals.hcard;
+            //    cbt.hContext = CardInternals.hcontect;
+            //}
+
+            var result = Program.controller.LoadCert(out certificate);
 
             if (result != 0)
             {

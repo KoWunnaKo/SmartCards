@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -135,6 +136,8 @@
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\loginForm.html" />
+    <Content Include="Client\returnValues.html" />
     <Content Include="Images\smartcard256.png" />
     <Resource Include="Images\About.png" />
     <Resource Include="Images\Exit.png" />

@@ -15,6 +15,7 @@ namespace ListenerDecktop
         /// 
 
         public static BaseAcceptor _connector;
+        public static CardAPILib.CardAPI.CardApiController controller;
 
         [STAThread]
         static void Main()
@@ -22,12 +23,21 @@ namespace ListenerDecktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            bool isInstance;
+            var mutex = new System.Threading.Mutex(true, "ListenerDecktop", out isInstance);
+
+            if (!isInstance)
+            {
+                Application.Exit();
+            }
+
             _connector = new WebSocketConnectionAceptor();
 
             using (ProcessIcon pi = new ProcessIcon())
             {
                 pi.Display();
 
+                controller = new CardAPILib.CardAPI.CardApiController(true);
                 // Make sure the application runs!
                 Application.Run();
             }
