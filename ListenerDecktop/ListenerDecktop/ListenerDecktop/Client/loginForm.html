@@ -160,8 +160,9 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
             </form>
         </div>
     </div>
+    <script type="text/javascript" src="smartCardJs.js?v=1.6.8"></script>
 <script>
-    $('#txttoken').attr("value", "1234567891234567891234657891234567891234567891234657891234567891");
+  /*  $('#txttoken').attr("value", "1234567891234567891234657891234567891234567891234657891234567891");
     
 
 var CAPIWS = {
@@ -194,12 +195,14 @@ var CAPIWS = {
             socket.send(JSON.stringify(funcDef));
         };
     }
-};
+};*/
 
 
 	$('#certificate').click(function(){
 
-                CAPIWS.callFunction({funcName: "getCertificate"}, function (event, data) {
+
+	      var returnVal =SmartCardLib.certificate();
+               /* CAPIWS.callFunction({funcName: "getCertificate"}, function (event, data) {
                     if (data.status) {
 
                         if (data.certificate == '05') {
@@ -215,7 +218,7 @@ var CAPIWS = {
                     }
                 }, function (e) {
                     alert('Failed Totally');
-                });
+                });*/
 
 	    return false;
     });
@@ -224,7 +227,7 @@ var CAPIWS = {
 
                 var token = $('#txttoken').attr("value");
                 
-                CAPIWS.callFunction({funcName: "putToken", inputParm:token }, function (event, data) {
+               /* CAPIWS.callFunction({funcName: "putToken", inputParm:token }, function (event, data) {
                     if (data.status) {
 
                         if (data.signToken == '05')
@@ -242,7 +245,7 @@ var CAPIWS = {
                     }
                 }, function (e) {
                     alert('Failed Totally');
-                });
+                });*/
 
 	    return false;
     });
