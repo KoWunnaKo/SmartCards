@@ -5,8 +5,15 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace SC_CertificateCALib
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CertInterOpApi
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private static string CreateCertRequestMessage()
         {
             var objCSPs = new CCspInformations();
@@ -56,6 +63,12 @@ namespace SC_CertificateCALib
             return strRequest;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="psubjectName"></param>
+        /// <param name="pCaTemplate"></param>
+        /// <returns></returns>
         public static string CreateCertRequestMessage(string psubjectName, string pCaTemplate)
         {
             var objCSPs = new CCspInformations();
@@ -97,6 +110,12 @@ namespace SC_CertificateCALib
         private const int CR_OUT_BASE64 = 0x1;
         private const int CR_OUT_CHAIN = 0x100;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="serverAddress"></param>
+        /// <returns></returns>
         public static int SendCertificateRequest(string message, string serverAddress)
         {
             var objCertRequest = new CCertRequest();
@@ -122,6 +141,12 @@ namespace SC_CertificateCALib
             return objCertRequest.GetRequestId();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <param name="serverAddress"></param>
+        /// <returns></returns>
         public static string DownloadCert(int requestId, string serverAddress)
         {
             var objCertRequest = new CCertRequest();
@@ -137,6 +162,11 @@ namespace SC_CertificateCALib
             return string.Empty;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <param name="serverAddress"></param>
         private static void DownloadAndInstallCert(int requestId, string serverAddress)
         {
             var objCertRequest = new CCertRequest();
@@ -156,6 +186,11 @@ namespace SC_CertificateCALib
             }
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serverAddress"></param>
+        /// <returns></returns>
         private static int Renew(string serverAddress)
         {
             X509Certificate2 certificate = null;
@@ -209,6 +244,10 @@ namespace SC_CertificateCALib
             return objCertRequest.GetRequestId();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         static void MainLogic(string[] args)
         {
             try

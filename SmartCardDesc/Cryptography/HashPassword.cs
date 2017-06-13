@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace SmartCardDesc.Cryptography
 {
+    /// <summary>
+    /// Crypto Hash Class
+    /// </summary>
     public class HashPassword
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a_password"></param>
+        /// <returns></returns>
         public static byte[] HashPasswordWithSalt(string a_password)
         {
             string defaultPassword = "1111";
@@ -31,6 +39,12 @@ namespace SmartCardDesc.Cryptography
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="u_password"></param>
+        /// <param name="e_password"></param>
+        /// <returns></returns>
         public static bool Validate(byte[] u_password, string e_password )
         {
             byte[] hashedEntered;
@@ -45,6 +59,12 @@ namespace SmartCardDesc.Cryptography
             return Compare(u_password, hashedEntered);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array1"></param>
+        /// <param name="array2"></param>
+        /// <returns></returns>
         private static bool Compare(byte[] array1, byte[] array2)
         {
             var result = array1.Length == array2.Length;
@@ -57,6 +77,12 @@ namespace SmartCardDesc.Cryptography
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
         private static byte[] Combine(byte[] first, byte[] second)
         {
             var ret = new byte[first.Length + second.Length];
@@ -66,6 +92,10 @@ namespace SmartCardDesc.Cryptography
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private static byte[] GenerateSalt()
         {
             string salt = "baxa0095247&^%$#@!";

@@ -138,6 +138,7 @@
   <ItemGroup>
     <Content Include="Client\loginForm.html" />
     <Content Include="Client\returnValues.html" />
+    <Content Include="Client\smartCardJs.js" />
     <Content Include="Images\smartcard256.png" />
     <Resource Include="Images\About.png" />
     <Resource Include="Images\Exit.png" />

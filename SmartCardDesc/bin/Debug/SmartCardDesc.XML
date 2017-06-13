@@ -1,0 +1,2692 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartCardDesc</name>
+    </assembly>
+    <members>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.getUUId(System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="uuid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.getPubKeyModule(System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.userPinCodeLogin(System.String)">
+            <summary>
+            6 charakters , default 123456
+            </summary>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.adminPukCodeLogin(System.String)">
+            <summary>
+            default 12345678
+            </summary>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.userChangePin(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="newPinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.adminChangePuk(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="newPukCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.adminRestoreUserPin(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="newPinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.signToken(System.String,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="signedToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.LoadCert(System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.CardAPI.CardApiInterface.WriteCert(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcCardsList">
+            <summary>
+            Логика взаимодействия для UcCardsList.xaml
+            </summary>
+            <summary>
+            UcCardsList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcCardsList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcCertificateList">
+            <summary>
+            Логика взаимодействия для UcCertificateList.xaml
+            </summary>
+            <summary>
+            UcCertificateList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcCertificateList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcDeletesList">
+            <summary>
+            Логика взаимодействия для UcDeletesList.xaml
+            </summary>
+            <summary>
+            UcDeletesList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcDeletesList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcInsertsList">
+            <summary>
+            Логика взаимодействия для UcInsertsList.xaml
+            </summary>
+            <summary>
+            UcInsertsList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcInsertsList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcKeyGenList">
+            <summary>
+            Логика взаимодействия для UcKeyGenList.xaml
+            </summary>
+            <summary>
+            UcKeyGenList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcKeyGenList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcLogsList">
+            <summary>
+            Interaction logic for UcLogsList.xaml
+            </summary>
+            <summary>
+            UcLogsList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcLogsList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcUpdatesList">
+            <summary>
+            Логика взаимодействия для UcUpdatesList.xaml
+            </summary>
+            <summary>
+            UcUpdatesList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcUpdatesList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcUsersList">
+            <summary>
+            Логика взаимодействия для UcUsersList.xaml
+            </summary>
+            <summary>
+            UcUsersList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcUsersList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.OperationLists.UcWriteCertList">
+            <summary>
+            Логика взаимодействия для UcWriteCertList.xaml
+            </summary>
+            <summary>
+            UcWriteCertList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.OperationLists.UcWriteCertList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcBlockCard">
+            <summary>
+            Interaction logic for UcBlockCard.xaml
+            </summary>
+            <summary>
+            UcBlockCard
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcBlockCard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcCardInfo">
+            <summary>
+            Interaction logic for UcCardInfo.xaml
+            </summary>
+            <summary>
+            UcCardInfo
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcCardInfo.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcCertificate">
+            <summary>
+            Логика взаимодействия для UcCertificate.xaml
+            </summary>
+            <summary>
+            UcCertificate
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcCertificate.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcDeleteCard">
+            <summary>
+            Логика взаимодействия для UcDeleteCard.xaml
+            </summary>
+            <summary>
+            UcDeleteCard
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcDeleteCard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcGenCardRSA">
+            <summary>
+            Логика взаимодействия для UcGenCardRSA.xaml
+            </summary>
+            <summary>
+            UcGenCardRSA
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcGenCardRSA.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcInsertCard">
+            <summary>
+            Interaction logic for UcInsertCard.xaml
+            </summary>
+            <summary>
+            UcInsertCard
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcInsertCard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcKeyGen">
+            <summary>
+            Логика взаимодействия для UcKeyGen.xaml
+            </summary>
+            <summary>
+            UcKeyGen
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcKeyGen.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcNewUser">
+            <summary>
+            Interaction logic for UcNewUser.xaml
+            </summary>
+            <summary>
+            UcNewUser
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcNewUser.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcPrintCard">
+            <summary>
+            Interaction logic for UcPrintCard.xaml
+            </summary>
+            <summary>
+            UcPrintCard
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcPrintCard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcUpdateCard">
+            <summary>
+            Interaction logic for UcUpdateCard.xaml
+            </summary>
+            <summary>
+            UcUpdateCard
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcUpdateCard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcUserInfo">
+            <summary>
+            Interaction logic for UcUserInfo.xaml
+            </summary>
+            <summary>
+            UcUserInfo
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcUserInfo.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcUserPinChange">
+            <summary>
+            Interaction logic for UcUserPinChange.xaml
+            </summary>
+            <summary>
+            UcUserPinChange
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcUserPinChange.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.UcWriteCert">
+            <summary>
+            Логика взаимодействия для UcWriteCert.xaml
+            </summary>
+            <summary>
+            UcWriteCert
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.UcWriteCert.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.Warehouse.UcCurrentWarehouse">
+            <summary>
+            Логика взаимодействия для UcCurrentWarehouse.xaml
+            </summary>
+            <summary>
+            UcCurrentWarehouse
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.Warehouse.UcCurrentWarehouse.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.Warehouse.UcPrixodsList">
+            <summary>
+            Логика взаимодействия для UcPrixodsList.xaml
+            </summary>
+            <summary>
+            UcPrixodsList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.Warehouse.UcPrixodsList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.Warehouse.UcProxodOp">
+            <summary>
+            Логика взаимодействия для UcProxodOp.xaml
+            </summary>
+            <summary>
+            UcProxodOp
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.Warehouse.UcProxodOp.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.Warehouse.UcRasxodsList">
+            <summary>
+            Логика взаимодействия для UcRasxodsList.xaml
+            </summary>
+            <summary>
+            UcRasxodsList
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.Warehouse.UcRasxodsList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Controls.Warehouse.UcSpisaniyeOp">
+            <summary>
+            Логика взаимодействия для UcSpisaniyeOp.xaml
+            </summary>
+            <summary>
+            UcSpisaniyeOp
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Controls.Warehouse.UcSpisaniyeOp.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Cryptography.HashPassword">
+            <summary>
+            Crypto Hash Class
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Cryptography.HashPassword.HashPasswordWithSalt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="a_password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Cryptography.HashPassword.Validate(System.Byte[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="u_password"></param>
+            <param name="e_password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Cryptography.HashPassword.Compare(System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="array1"></param>
+            <param name="array2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Cryptography.HashPassword.Combine(System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Cryptography.HashPassword.GenerateSalt">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SmartCardDesc.Db.CommonList`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:SmartCardDesc.Db.CommonList`1.List">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Db.CommonList`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Db.CommonList`1.#ctor(SmartCardDesc.Db.CommonList{`0})">
+            <summary>
+            
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="M:SmartCardDesc.Db.DbModel.AddItem">
+            <summary>
+            When overidden in ad derived class, model is added to database.
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Db.DbModel.OnPropertyChanged(System.String)">
+            <summary>
+            Raises PropertyChanged event when specified property changes.
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.InfocomService.EpiService">
+            <summary>
+            EpiGov Network Class
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.GetUserId(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pUserId"></param>
+            <param name="pToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.GetUserIdx(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pUserId"></param>
+            <param name="pToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.ParseGetUserIdMethod(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.getUserById(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.getUserByIdPr(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.GetUserCardInfo(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pUserId"></param>
+            <param name="pToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.getUserCard(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.ParseGetUserCardInfoMethod(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.InsertCardInfo(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <param name="cardNumber"></param>
+            <param name="issue_date"></param>
+            <param name="exp_date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.InsertCardInfox(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <param name="cardNumber"></param>
+            <param name="issue_date"></param>
+            <param name="exp_date"></param>
+            <param name="rfid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.insertCardInfo(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <param name="cardNumber"></param>
+            <param name="issue_date"></param>
+            <param name="exp_date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.ParseInsertCardInfoMethod(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.UpdateCardInfo(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <param name="card_stat"></param>
+            <param name="issue_date"></param>
+            <param name="exp_date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.updateCardInfo(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <param name="card_stat"></param>
+            <param name="issue_date"></param>
+            <param name="exp_date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.ParseUpdateCardInfoMethod(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.DeleteCardInfo(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.deleteCardInfo(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.ParseDeleteCardInfoMethod(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.CallWebService(System.String,System.Xml.XmlDocument)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="SoapXml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.CallWebService(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="SoapXml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.ValidateServerCertificate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="sslPolicyErrors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.CreateWebRequest(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.EpiService.InsertSoapEnvelopeIntoWebRequest(System.Xml.XmlDocument,System.Net.HttpWebRequest)">
+            <summary>
+            
+            </summary>
+            <param name="soapEnvelopeXml"></param>
+            <param name="webRequest"></param>
+        </member>
+        <member name="T:SmartCardDesc.InfocomService.HttpVerb">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.InfocomService.RestClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.InfocomService.RestClient.EndPoint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.InfocomService.RestClient.Method">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.InfocomService.RestClient.ContentType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.InfocomService.RestClient.PostData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="endpoint"></param>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.#ctor(System.String,SmartCardDesc.InfocomService.HttpVerb)">
+            <summary>
+            
+            </summary>
+            <param name="endpoint"></param>
+            <param name="method"></param>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.#ctor(System.String,SmartCardDesc.InfocomService.HttpVerb,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="endpoint"></param>
+            <param name="method"></param>
+            <param name="postData"></param>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.MakeRequest">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.ValidateServerCertificate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="sslPolicyErrors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.InfocomService.RestClient.MakeRequest(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartCardDesc.Model.AuditModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Model.AuditModel.InsertAudit(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="category"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:SmartCardDesc.Model.AuditModel.InsertAuditAsync(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="category"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SmartCardDesc.Model.BaseItemModel.globalTransactionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.BaseItemModel.localTransactionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.BaseItemModel.token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Model.CardModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.card_stat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.issue_date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.card_num">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.user_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.expiry_date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.picturePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.CardModel.PinNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Model.CardModel.InsertCardInfoEnt">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Model.CardModel.InsertCardInfoEntx">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Model.UserInfoModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Model.UserInfoModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.rec_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.userId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.is_active">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.Department">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.reg_dttm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.first_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.mid_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.pin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.dob">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.gd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.surname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.PerAdr">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.tin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Model.UserInfoModel.pport_no">
+            <summary>2
+            
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Model.UserInfoModel.InsertUserInfoEnt">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Model.UserInfoModel.InsertUserInfoEntx">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Model.UserInfoModel.ModifyUserInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Model.UserInfoModel.DeleteUserInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Secirity.LoginWindow">
+            <summary>
+            Логика взаимодействия для LoginWindow.xaml
+            </summary>
+            <summary>
+            LoginWindow
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Secirity.LoginWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Utils.BitEndianConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Char,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Double,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Single,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Int64,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.Int16,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.UInt32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.UInt64,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.GetBytes(System.UInt16,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="littleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.BitEndianConverter.ReverseAsNeeded(System.Byte[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <param name="wantsLittleEndian"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartCardDesc.Utils.CardTools">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Utils.CardTools.GenerateCardNumber">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartCardDesc.Utils.CardTools.GenerateCardNumberx">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SmartCardDesc.Utils.CryptoFuncs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Utils.CryptoFuncs.GetMD5(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SmartCardDesc.ViewModel.ControlsViewModel.CardRSAGenViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.ViewModel.ControlsViewModel.CardRSAGenViewModel.ConvertStr2ByteExponent(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pexponent"></param>
+        </member>
+        <member name="M:SmartCardDesc.ViewModel.ControlsViewModel.CardRSAGenViewModel.ConvertStr2ByteModulus(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pmodulus"></param>
+        </member>
+        <member name="M:SmartCardDesc.ViewModel.ControlsViewModel.CardRSAGenViewModel.ConvertStr2BytePrivN(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pPrivN"></param>
+        </member>
+        <member name="M:SmartCardDesc.ViewModel.ControlsViewModel.CardRSAGenViewModel.ConvertStr2BytePrivD(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pPrivD"></param>
+        </member>
+        <member name="M:SmartCardDesc.ViewModel.ControlsViewModel.CardRSAGenViewModel.UpdateCardKeyInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcCardInfoViewModel.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcCardInfoViewModel.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcCardInfoViewModel.CardInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcDeleteCardViewModel.GetToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcDeleteCardViewModel.LoadResults">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcDeleteCardViewModel.ClearResults">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcDeleteCardViewModel.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcDeleteCardViewModel.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcInsertCardViewModel.GetToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcInsertCardViewModel.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcInsertCardViewModel.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.GetToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.GetNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.LoadResults">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.ClearResults">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.RibbonWindow">
+            <summary>
+            Логика взаимодействия для RibbonWindow.xaml
+            </summary>
+            <summary>
+            RibbonWindow
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnUserInfolist_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnCardInfolist_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnAddCardList_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnEditCardList_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnDeleteCardList_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnKeyGenlist_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.btnCertificatelist_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.WriteCertlist_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:SmartCardDesc.RibbonWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Views.ServiceManageWindow">
+            <summary>
+            Interaction logic for ServiceManageWindow.xaml
+            </summary>
+            <summary>
+            ServiceManageWindow
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Views.ServiceManageWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Views.UserInfoWindow">
+            <summary>
+            Interaction logic for UserInfoWindow.xaml
+            </summary>
+            <summary>
+            UserInfoWindow
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.Views.UserInfoWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:SmartCardDesc.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources._077_AddFile">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources._112_RefreshArrow_Blue">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources._126_Edit">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources._1493374024_Close_Icon_Dark">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources._1493374034_Tick_Mark_Dark">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ActualSize">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.add_list1600">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Add_Male_User">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AddTable">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AddToFavorites">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Alerts">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignObjectsBottom">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignObjectsCenteredHorizontalHS">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignObjectsCenteredVerticalHS">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignObjectsLeft">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignObjectsRight">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignObjectsTop">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignTableCellMiddleCenter">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignTableCellMiddleLeftJust">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignTableCellMiddleRight">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AlignToGrid">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Animate">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.AppWindow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ArrangeSideBySide">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ArrangeWindows">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Attachment">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Audio">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.BackgroundSound">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.BarCode">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.BehindText">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Bold">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.book_active_directory">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.book_address">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.book_angle">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.book_hardcvr">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.book_open">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.book_report">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Book_StackOfReports">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Breakpoint">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.BringForward">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.BringToFront">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Calculator">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Calendar_schedule">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CanvasScale">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CascadeWindows">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CenterAcross">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Checkbox">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CheckGrammar">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CheckSpelling">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ChooseColor">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Close">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Color">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Color_eyedropper">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Color_fill">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Color_font">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Color_linecolor">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Comment">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CompareVersions">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Conflict">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Copy">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.CopyFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.credit_card_block_512">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Cut">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DataContainer_MoveFirst">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DataContainer_MoveLast">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DataContainer_MoveNext">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DataContainer_MovePrevious">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.delete">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Delete1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DeleteFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DeleteTable">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Dial">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DisplayInColor">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Document">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.document1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DoubleLeftArrow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DoubleRightArrow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.DownloadDocument">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Edit_Redo">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Edit_Undo">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.EditBrightContrast">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.EditCode">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.EditInformation">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.EditTable">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Envelope">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.eps_closed">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.eps_open">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.eps_open_large">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ExpandSpace">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Expiration">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Fax">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FillDown">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FillLeft">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FillRight">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FillUp">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Filter2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Find">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Find24_VS">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FindNext">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FindNext_VS">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FindPrevious_VS">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Flag_blue">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Flag_green">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Flag_red">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FlipHorizontal">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FlipVertical">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Font">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FontDialog">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Forecolor">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FormRun">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FormulaEvaluator">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.FullScreen">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Function">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GetLatestVersion">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoLtr">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoRtl">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoToNext">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoToNextRecord">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoToParentFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoToPrevious">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoToPreviousMessage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GoToPreviousRecord">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.GotoShortcuts">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Graph">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Help">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Highlight">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.History">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Home">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.HtmlBalanceBraces">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.HTMLPage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.HTMLPassword">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.HTMLSubmit">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Iconshow_Hardware_Printer">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ImagerScan">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ImportXML">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Indent">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.IndentRTL">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.InsertHyperlink">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.InsertPage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.InsertPhotos">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.InsertPicture">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.InsertTabControl">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Italic">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Legend">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.LineColor">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Link">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.LinkLabel">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.List_Bullets">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.List_Numbered">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.List_NumberedRTL">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.List_NumberedVertT">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.List_NumberedVertTB">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Minus_Circle_Red">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.minusList">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.MonthlyView">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.moveFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.MoveToFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.MultiplePages">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.MultiSelect">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NavBack">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NavForward">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewCard">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewDocument">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewMessage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewReport">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewWebsite">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NewWindow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NextPage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.NoImage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Note">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Open">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.OpenFile">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.OpenFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.openfolder_24">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.OpenSelectedItem">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Options">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Organizer">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.OrgChart">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Outdent">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Oxygen_Icons_org_Oxygen_Apps_preferences_contact_list">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PageNumber">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PageUp">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PageWidth">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Paomedia_Small_N_Flat_Key">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Paste">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Pause">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PauseRecorder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PieChart">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PieChart3D">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Play">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Pointer">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Portrait">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PortraitToLandscapeView">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PreviousPage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PrimaryKey">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Print">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PrintPreview">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PrintPreviewDialog">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PrintSetup">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Properties">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ProtectForm">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ProtectSubdocument">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PublishPlan">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.PublishToWeb">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Pushpin">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RadialChart">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RecolorPicture">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Record">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Refresh">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Refresh_Cancel">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RefreshDocView">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Relationships">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Rename">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Repeat">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Resize">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Restart">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RightArrow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RightArrow2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RightsRestricted">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RightToLeftDoucment">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.RoutingSlip">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Save">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SaveAll">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SaveAsWebPage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SaveFormDesign">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.search">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Search1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SearchFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SearchInFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SearchWeb">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Send">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SendBackward">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ShowAllComments">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ShowGridlines">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ShowGridlines2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ShowRulelines">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ShowRuler">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.smart_card_technology">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SortAscending_24">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SortDescending_24">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SpeechMic">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SplitSubdocument">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Stop">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.SychronizeList">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Symbol">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Table">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Task">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Textbox">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ThumbnailLoading">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ThumbnailView">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.TurnAhead">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.user_info">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.ViewThumbnails">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.warehouse2d_512">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Warning">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Web">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.whInput">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Windows">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.write_document">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.XMLFile">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.Properties.Resources.Zoom">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+    </members>
+</doc>

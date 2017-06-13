@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HttpsTestProj.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HttpsTestProj_uz_gov_ips_getUserInfoByIdService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -8,9 +8,14 @@ using System.Linq;
 
 namespace SmartCardDesc.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserInfoModel : BaseItemModel
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public UserInfoModel()
         {
             rec_id = -1;
@@ -96,6 +101,10 @@ namespace SmartCardDesc.Model
         /// </summary>
         public string pport_no { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Task InsertUserInfoEnt()
         {
             var resultTask = Task.Factory.StartNew(() =>
@@ -119,7 +128,7 @@ namespace SmartCardDesc.Model
 
                     user.LOGIN = userId;
                     user.PASSWORD = HashPassword.HashPasswordWithSalt(password);
-                    user.IS_ACTIVE = is_active;
+                    user.IS_ACTIVE = true;
                     user.DEPARTMENT = context.DEPARTMENTs.ToList().First().REC_ID;
 
                     if (string.IsNullOrEmpty(reg_dttm))
@@ -235,7 +244,9 @@ namespace SmartCardDesc.Model
             return resultTask;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void InsertUserInfoEntx()
         {
                 using (var context = new SmartCardDBEntities())
@@ -370,11 +381,17 @@ namespace SmartCardDesc.Model
                 }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void ModifyUserInfo()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void DeleteUserInfo()
         {
 

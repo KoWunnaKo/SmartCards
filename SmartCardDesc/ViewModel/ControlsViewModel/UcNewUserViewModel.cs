@@ -8,11 +8,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CardAPILib.InterfaceCL;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
     internal class UcNewUserViewModel : ViewModelBase
     {
+        private CardApiMessages cardApiObj;
+
         private string SuccessIcon { get; set; }
 
         private string FailIcon { get; set; }
@@ -22,6 +25,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         public RelayCommand Clear { get; private set; }
 
         public RelayCommand SetPhoto { get; private set; }
+
+        public RelayCommand GetRfId { get; private set; }
 
         private CardRSAGenViewModel rsaViewModel;
 
@@ -40,43 +45,65 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             SetPhoto = new RelayCommand(_ => fSetPhoto());
 
+            GetRfId = new RelayCommand(_ => fGetRfId());
+
             rsaViewModel = new CardRSAGenViewModel();
 
             certViewModel = new UcGetCertificateViewModel();
 
             service = new EpiService();
 
+            cardApiObj = new CardApiMessages();
+
+            IssueDate = DateTime.Now.Date;
+            ExpireDate = DateTime.Now.Date.AddYears(10);
+
+            fGetNumber();
+
+            fGetRfId();
+
             SuccessIcon = "/SmartCardDesc;component/Resources/1493374034_Tick_Mark_Dark.png";
 
             FailIcon = "/SmartCardDesc;component/Resources/1493374024_Close_Icon_Dark.png";
         }
 
+        private void fGetRfId()
+        {
+            StatusText = string.Empty;
+
+            if (cardApiObj.Connect2Card() != 0)
+            {
+                StatusText = "Unable to connect to Card";
+
+                return;
+            }
+
+            Rfid = cardApiObj.GetRfId().ToString();
+        }
+
         private async void fStartOp()
         {
-            UserInfoResult = string.Empty;
-            UserInfoResImage = string.Empty;
-            CardInfoResult = string.Empty;
-            CardInfoResImage = string.Empty;
-            GenInfoResult = string.Empty;
-            GenInfoResImage = string.Empty;
-            CerInfoResult = string.Empty;
-            CerInfoResImage = string.Empty;
+            try
+            {
+                UserInfoResult = string.Empty;
+                UserInfoResImage = string.Empty;
+                CardInfoResult = string.Empty;
+                CardInfoResImage = string.Empty;
+                GenInfoResult = string.Empty;
+                GenInfoResImage = string.Empty;
+                CerInfoResult = string.Empty;
+                CerInfoResImage = string.Empty;
 
-            await fGetUserInfo();
+                await fGetUserInfo();
 
-            //if (!inProcessFlg)
-            //{
-            //    return;
-            //}
-                        
-            await fLoadResults();
+                await fLoadResults();
 
-            await GenKeyFunc();
-
-            //if (!string.IsNullOrEmpty(Modules))
-            //{
                 await CertCreate();
-            //}
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private async Task GenKeyFunc()
@@ -270,7 +297,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                                                Token,
                                                Number,
                                                IssueDate.ToString("yyyy-MM-dd"),
-                                               ExpireDate.ToString("yyyy-MM-dd"));
+                                               ExpireDate.ToString("yyyy-MM-dd"),
+                                               Rfid
+                                               );
 
                 AuditModel.InsertAudit("INSERT_CARD",
                     string.Format("user = {0} card_number = {1}", userId, number));
@@ -929,6 +958,22 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 number = value;
 
                 OnPropertyChanged("Number");
+            }
+        }
+
+        private string _rfid;
+
+        public string Rfid
+        {
+            get
+            {
+                return _rfid;
+            }
+            set
+            {
+                _rfid = value;
+
+                OnPropertyChanged("Rfid");
             }
         }
 

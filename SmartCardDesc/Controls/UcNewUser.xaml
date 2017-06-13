@@ -49,7 +49,7 @@
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="0"
-                Text="Назначить ПИН"
+                Text="Email"
                 VerticalAlignment="Center"
                 Margin="5"></TextBlock>
             <TextBox
@@ -337,6 +337,7 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -383,14 +384,38 @@
                                      Grid.Column="1"
                                      Margin="5"
                                 SelectedDate="{Binding ExpireDate,Mode=TwoWay}"></DatePicker>
+
+                                    <TextBlock Text="RFID" 
+                                       Grid.Row="5" 
+                                       Grid.Column="0"
+                                       Margin="5"></TextBlock>
+                                    <Grid Grid.Row="5" 
+                                     Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Margin="5"
+                                            IsReadOnly="True"
+                                            Text="{Binding Path=Rfid}">
+                                        </TextBox>
+                                        <Button Grid.Column="1" 
+                                Margin="5"
+                                Content="Получить"
+                                Command="{Binding GetRfId}">
+                                        </Button>
+                                    </Grid>
                                 </Grid>
+                                
+                                
+                                
                             </GroupBox>
                         </Expander>
                     </StackPanel>
                 </Border>
 
 
-                <Border BorderBrush="Black" BorderThickness="1">
+                <!--<Border BorderBrush="Black" BorderThickness="1">
                     <StackPanel Orientation="Vertical" >
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -456,7 +481,7 @@
                             </GroupBox>
                         </Expander>
                     </StackPanel>
-                </Border>
+                </Border>-->
 
 
                 <Border BorderBrush="Black" BorderThickness="1">
@@ -502,7 +527,7 @@
                    Margin="10,0,0,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Center" 
-          ></TextBlock>
+                                ></TextBlock>
                                     <TextBox Grid.Column="1"
                    Grid.Row="0"
                  Margin="5"

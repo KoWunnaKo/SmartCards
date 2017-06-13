@@ -26,33 +26,10 @@
         public int userPinCodeLogin(string pinCode)
         {
 
-            //if ((CardInternals.hcard == 0) && (CardInternals.hcontect == 0))
-            //{
-            //    cbt = new CardAPILib.CardAPI.CardApiController(true);
-
-            //    CardInternals.hcard = cbt.hCard;
-            //    CardInternals.hcontect = cbt.hContext;
-            //}
-            //else if ((CardInternals.hcard == 0) || (CardInternals.hcontect == 0))
-            //{
-            //    cbt = new CardAPILib.CardAPI.CardApiController();
-
-            //    cbt.hCard = 0;
-            //    cbt.hContext = 0;
-
-            //    cbt.Connect2Card();
-
-            //    cbt.hCard = CardInternals.hcard;
-            //    cbt.hContext = CardInternals.hcontect;
-
-            //}
-            //else
-            //{
-            //    cbt = new CardAPILib.CardAPI.CardApiController();
-
-            //    cbt.hCard = CardInternals.hcard;
-            //    cbt.hContext = CardInternals.hcontect;
-            //}
+            if (Program.controller.Connect2Card() != 0)
+            {
+                return 4;
+            }
 
             var result = Program.controller.userPinCodeLogin(pinCode);
 
@@ -87,6 +64,11 @@
         public int signToken(string token , out string signedToken)
         {
             signedToken = "";
+
+            if (Program.controller.Connect2Card() != 0)
+            {
+                return 4;
+            }
 
             var result = Program.controller.signToken(token, out signedToken);
 

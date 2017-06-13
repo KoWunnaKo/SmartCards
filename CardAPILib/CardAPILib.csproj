@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CardAPILib.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,9 +55,16 @@
     <Compile Include="CardASCCL\PcscProvider.cs" />
     <Compile Include="CardASCCL\PcscReader.cs" />
     <Compile Include="InterfaceCL\CardApiAPDUMessages.cs" />
+    <Compile Include="InterfaceCL\CardApiMessages.cs" />
     <Compile Include="ModWinSCard\ModWinsCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CardASCCL\ReaderException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GemCard\GemCard.csproj">
+      <Project>{8b10d15a-39de-4b56-8dd1-710c1eb3a697}</Project>
+      <Name>GemCard</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

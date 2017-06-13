@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SmartCardDesc.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CardModel : BaseItemModel
     {
         /// <summary>
@@ -41,13 +44,21 @@ namespace SmartCardDesc.Model
         /// </summary>
         public string expiry_date { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string picturePath { get; set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string PinNumber { get; set; }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Task InsertCardInfoEnt()
         {
             var resultTask = Task.Factory.StartNew(() =>
@@ -69,8 +80,12 @@ namespace SmartCardDesc.Model
 
                     var card = new CARD_INFO();
 
-                    card.CARD_NUMBER = card_num;
+                    card.CARD_NUMBER = card_num.PadLeft(16, '0');
                     card.CARD_STATE = card_stat;
+                    card.IS_ACTIVE = true;
+                    card.IS_PRINTED = false;
+                    card.CREATE_DATE = DateTime.Now;
+                    card.CARD_STATE = "Y";
 
                     if (!string.IsNullOrEmpty(issue_date))
                     {
@@ -102,6 +117,9 @@ namespace SmartCardDesc.Model
             return resultTask;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void InsertCardInfoEntx()
         {
                 using (var context = new SmartCardDBEntities())

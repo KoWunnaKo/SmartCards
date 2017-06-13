@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CardAPILib.InterfaceCL;
+
 namespace CardApiLibTest
 {
     class Program
@@ -26,13 +28,20 @@ namespace CardApiLibTest
 
         static void Main(string[] args)
         {
-            CardApiController cp = new CardApiController();
+            //CardApiMessages obj = new CardApiMessages();
 
-            //string uuid = string.Empty;
+            //obj.Connect2Card();
 
-            //cp.getUUId(out uuid);
+            //obj.SelectFile();
 
-            //Console.WriteLine(uuid);
+            //obj.GetRfId();
+            CardApiController cp = new CardApiController(true);
+
+            string uuid = string.Empty;
+
+            cp.getUUId(out uuid);
+
+            Console.WriteLine(uuid);
 
             string signedToken = string.Empty;
 
@@ -40,9 +49,15 @@ namespace CardApiLibTest
 
             cp.adminPukCodeLogin("12345678");
 
+            //string publicKey = string.Empty;
+            //cp.getPubKeyModule(out publicKey);
+
+            //Console.WriteLine(publicKey);
+
             //cp.signToken("1234567891234567891234657891234567891234567891234657891234567891", out signedToken);
 
-            //cp.adminRestoreUserPin();
+            //Console.WriteLine(signedToken);
+            ////cp.adminRestoreUserPin();
 
             string certificate = "MIIFvzCCBKegAwIBAgITVQAAACB6RwNlWwaulQAAAAAAIDANBgkqhkiG9w0BAQ0F" +
                                  "ADBHMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxFDASBgoJkiaJk/IsZAEZFgRha2hv" +
@@ -84,12 +99,14 @@ namespace CardApiLibTest
 
             Console.WriteLine(cp.LastOperationStatus);
             Console.WriteLine(certFormCard);
-            
+
 
             if (certificate.Equals(certFormCard))
             {
                 Console.WriteLine("Equals");
             }
+
+
 
             Console.ReadKey();
 

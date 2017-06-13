@@ -7,8 +7,16 @@ using System.Text;
 
 namespace SmartCardDesc.Utils
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CryptoFuncs
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static string GetMD5(string userId)
         {
             byte[] hash = Encoding.ASCII.GetBytes(string.Format("{0}.{1}", userId, Settings.Default.KeyMD5));

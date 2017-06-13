@@ -72,7 +72,6 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\OperationLists\UcWriteCertList.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcBlockCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcCertificate.g.cs
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcChangePinNumber.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcDeleteCard.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcGenCardRSA.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcKeyGen.g.cs
@@ -99,7 +98,6 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\OperationLists\UcWriteCertList.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcBlockCard.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcCertificate.baml
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcChangePinNumber.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcDeleteCard.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcGenCardRSA.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcKeyGen.baml
@@ -113,3 +111,13 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\Warehouse\UcSpisaniyeOp.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\RibbonWindow.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Secirity\LoginWindow.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\CardAPILib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\CardAPILib.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\GemCard.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcUserPinChange.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\obj\Debug\Controls\UcUserPinChange.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\SmartCardDesc.XML
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\CardAPILib.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\GemCard.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\bin\Debug\SC_CertificateCALib.xml

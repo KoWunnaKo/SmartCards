@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace SmartCardDesc.Utils
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CardTools
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static Task<string> GenerateCardNumber()
         {
             var resultTask = Task.Factory.StartNew(() =>
@@ -20,7 +27,7 @@ namespace SmartCardDesc.Utils
                     var card_num = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
                     Equals("CARD_NUMBER")).VALUE + 1;
 
-                    number = card_num.ToString().PadLeft(16, '0');
+                    number = card_num.ToString(); //.PadLeft(16, '0')
 
                     //Change Number +1
                     var card = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
@@ -37,6 +44,10 @@ namespace SmartCardDesc.Utils
             return resultTask;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string GenerateCardNumberx()
         {
                 string number = string.Empty;
@@ -46,10 +57,10 @@ namespace SmartCardDesc.Utils
                     var card_num = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
                     Equals("CARD_NUMBER")).VALUE + 1;
 
-                    number = card_num.ToString().PadLeft(16, '0');
+                    number = card_num.ToString(); // .PadLeft(16, '0')
 
-                    //Change Number +1
-                    var card = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
+                //Change Number +1
+                var card = context.FIXED_INTERNAL_VALUES.ToList().First(x => x.DESCRIPTION.
                     Equals("CARD_NUMBER"));
 
                     card.VALUE = card_num;

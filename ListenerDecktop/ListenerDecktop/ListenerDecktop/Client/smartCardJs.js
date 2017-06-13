@@ -38,7 +38,7 @@ var erros = {
 
 
 var CAPIWS = {
-    URL: (window.location.protocol.toLowerCase() === "https:" ? "wss://127.0.0.1:5585" : "ws://127.0.0.1:5585") + "/smartcard",    
+    URL: (window.location.protocol.toLowerCase() === "https:" ? "wss://127.0.0.1:15585" : "ws://127.0.0.1:15585") + "/smartcard",    
     callFunction: function(funcDef, callback, error){
         if (!window.WebSocket){
             if(error)
@@ -82,7 +82,7 @@ var SmartCardLib = {
     certificate : function() {
         
                     CAPIWS.callFunction({funcName: "getCertificate"}, function (event, data) {
-                    if (data.status) {
+                    if (data.status===1) {
 
 
 
@@ -108,7 +108,7 @@ var SmartCardLib = {
     putToken : function name(token) {
         
             CAPIWS.callFunction({funcName: "putToken", inputParm:token }, function (event, data) {
-                    if (data.status) {
+                    if (data.status===1) {
 
                         if (data.signToken.length === 2)
                         {

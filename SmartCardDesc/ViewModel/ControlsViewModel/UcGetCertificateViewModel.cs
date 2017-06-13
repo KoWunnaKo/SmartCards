@@ -6,16 +6,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CardAPILib.CardAPI;
+using Epigov.Log;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
     internal class UcGetCertificateViewModel : ViewModelBase
     {
+        private readonly ILogService _logService;
+
+        private CardApiController cardApiObj;
+
         public RelayCommand GetCertificate { get; private set; }
+
+        public RelayCommand GetRsa { get; private set; }
+
+        public RelayCommand SetCertificate { get; private set; }
+        
 
         public UcGetCertificateViewModel()
         {
+            _logService = new FileLogService(typeof(UcGetCertificateViewModel));
+            _logService.Info("UcGetCertificateViewModel");
+
             GetCertificate = new RelayCommand(_ => fGetCertificate());
+
+            GetRsa =  new RelayCommand(_ => fGetRsa());
+
+            SetCertificate = new RelayCommand(_ => fSetCertificate());
+
+            cardApiObj = new CardApiController();
         }
 
         private Task tGetCertificate()
@@ -25,28 +45,52 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 try
                 {
                     if (SelectedUser == null)
+                    {
+                        StatusText = "Не выбран юзер...";
+
                         return;
+                    }
+
+                    _logService.Info("Certificate Create");
 
                     //Generate Subject
                     string fio = string.Format("{0} {1} {2}", SelectedUser.SURNAME_NAME, SelectedUser.FIRST_NAME, SelectedUser.MIDDLE_NAME);
                     string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, S = Tashkent, C = UZ ", fio);
                     //, INN = {1} , PINFL = {2} , SelectedUser.TIN, SelectedUser.PIN
 
+                    _logService.Info(subjectTxt);
+
                     //Validation Server Address and Template Name
                     string serverAddress = Properties.Settings.Default.CAServerIpAndName;
+
+                    _logService.Info(serverAddress);
+
                     string template = Properties.Settings.Default.CA_TemplateName;
 
+                    _logService.Info(template);
+
                     if (string.IsNullOrEmpty(serverAddress) || string.IsNullOrEmpty(template))
+                    {
+                        StatusText = "Настройки сервера не верны...";
+
                         return;
+                    }
+                        
 
                     //Create Request
                     var request = SmartCardLogonCertApi.CreateCertRequestMessage(subjectTxt, template);
 
+                    _logService.Info(request);
+
                     //Send Request
                     var id = SmartCardLogonCertApi.SendCertificateRequest(request, serverAddress);
 
+                    _logService.Info(string.Format("request Id = {0}", id));
+
                     //Download Certificate
                     var cert = SmartCardLogonCertApi.DownloadCert(id, serverAddress);
+
+                    _logService.Info(string.Format("certificate = {0}", cert));
 
                     Certificate = cert;
 
@@ -73,6 +117,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 }
                 catch (Exception ex)
                 {
+                    _logService.Info(ex.ToString());
                     StatusText = ex.Message;
                 }
             });
@@ -86,10 +131,14 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 try
                 {
                     if (SelectedUser == null)
-                        return;
+                    {
+                        StatusText = "Не выбран юзер...";
 
-                    //Generate Subject
-                    string fio = string.Format("{0} {1} {2}", SelectedUser.SURNAME_NAME, SelectedUser.FIRST_NAME, SelectedUser.MIDDLE_NAME);
+                        return;
+                    }
+
+                //Generate Subject
+                string fio = string.Format("{0} {1} {2}", SelectedUser.SURNAME_NAME, SelectedUser.FIRST_NAME, SelectedUser.MIDDLE_NAME);
                     string subjectTxt = string.Format(@"CN = {0}, OU = IT, O = UZINFOCOM, L = Tashkent, S = Tashkent, C = UZ ", fio);
                 //, INN = {1} , PINFL = {2} , SelectedUser.TIN, SelectedUser.PIN
 
@@ -98,10 +147,14 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     string template = Properties.Settings.Default.CA_TemplateName;
 
                     if (string.IsNullOrEmpty(serverAddress) || string.IsNullOrEmpty(template))
-                        return;
+                    {
+                        StatusText = "Настройки сервера не верны...";
 
-                    //Create Request
-                    var request = SmartCardLogonCertApi.CreateCertRequestMessage(subjectTxt, template);
+                        return;
+                    }
+
+                //Create Request
+                var request = SmartCardLogonCertApi.CreateCertRequestMessage(subjectTxt, template);
 
                     //Send Request
                     var id = SmartCardLogonCertApi.SendCertificateRequest(request, serverAddress);
@@ -151,6 +204,60 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 string.Format("user = {0} ", userId));
 
             IsIntermadiate = false;
+        }
+
+        private void fSetCertificate()
+        {
+            try
+            {
+                if (cardApiObj.Connect2Card() != 0)
+                {
+                    StatusText = "Unable to connect to Card";
+                }
+
+                if (!string.IsNullOrEmpty(Certificate))
+                {
+                    cardApiObj.adminPukCodeLogin(Properties.Settings.Default.AdminPINLogin);
+
+                    cardApiObj.WriteCert(Certificate);
+
+                    StatusText = "Certificate Load Finished.";
+                }
+                else
+                {
+                    StatusText = "Empty certificate or invalid length";
+                }
+            }
+            catch(Exception ex)
+            {
+                StatusText = ex.Message;
+            }
+        }
+
+        private void fGetRsa()
+        {
+            string publicKey = string.Empty;
+
+            try
+            {
+                if (cardApiObj.Connect2Card() != 0)
+                {
+                    StatusText = "Unable to connect to Card";
+                }
+                
+                cardApiObj.getPubKeyModule(out publicKey);
+
+                StatusText = "Public Key Load Finished";
+
+            }
+            catch(Exception ex)
+            {
+                StatusText = ex.Message;
+            }
+            finally
+            {
+                Modules = publicKey;
+            }
         }
 
         public Task fGetCertificatex()
@@ -223,7 +330,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                 IsIntermadiate = true;
 
-                GetCardPublicKeyInfo();
+                //GetCardPublicKeyInfo();
 
                 IsIntermadiate = false;
 

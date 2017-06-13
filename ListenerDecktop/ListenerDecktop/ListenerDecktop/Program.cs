@@ -15,6 +15,8 @@ namespace ListenerDecktop
         /// 
 
         public static BaseAcceptor _connector;
+
+
         public static CardAPILib.CardAPI.CardApiController controller;
 
         [STAThread]

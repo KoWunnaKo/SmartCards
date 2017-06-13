@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="SmartCardDesc.Controls.UcUserPinChange"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmartCardDesc.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="89*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="136*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Старый PIN"
+                   Margin="5,0,0,0"
+                   VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Column="1" 
+                 Grid.Row="0"
+                 Margin="2"
+                 Text="{Binding OldPin}"
+                 ></TextBox>
+
+        <TextBlock Text="Новый PIN"
+                   Margin="5,0,0,0"
+                   Grid.Column="0" 
+                 Grid.Row="1"
+                   VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Column="1" 
+                 Grid.Row="1"
+                 Margin="2"
+                 Text="{Binding NewPin}"></TextBox>
+
+        <TextBlock Text="Подтвердить PIN"
+                   Margin="5,0,0,0"
+                   Grid.Column="0" 
+                 Grid.Row="2"
+                   VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Column="1" 
+                 Grid.Row="2"
+                 Margin="2"
+                 Text="{Binding ConfirmNewPin}"></TextBox>
+
+        <Button Grid.Column="1" 
+                 Grid.Row="3"
+                Margin="3"
+                Content="Изменить PIN"
+                Command="{Binding ChangePin}"></Button>
+        <TextBlock Grid.Column="0" 
+                 Grid.Row="4"
+                   Name="txbDefaultPin"></TextBlock>
+        <Button Grid.Column="1" 
+                 Grid.Row="4"
+                Margin="3"
+                Content="Сбросить PIN"
+                Command="{Binding RestorePin}"></Button>
+        <Border Grid.Row="6" 
+                Grid.ColumnSpan="2" 
+                BorderBrush="Black" 
+                BorderThickness="2"
+                VerticalAlignment="Bottom">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

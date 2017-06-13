@@ -85,18 +85,6 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://91.212.89.201:57720")]
-        public string ServiceUrl {
-            get {
-                return ((string)(this["ServiceUrl"]));
-            }
-            set {
-                this["ServiceUrl"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("asdqwe123")]
         public string KeyMD5 {
             get {
@@ -131,7 +119,31 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.56.101\\pal-CPAL-CA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SmartCardTemplate")]
+        public string CA_TemplateName {
+            get {
+                return ((string)(this["CA_TemplateName"]));
+            }
+            set {
+                this["CA_TemplateName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://ips.gov.uz:443")]
+        public string ServiceUrl {
+            get {
+                return ((string)(this["ServiceUrl"]));
+            }
+            set {
+                this["ServiceUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.211.2")]
         public string CAServerIpAndName {
             get {
                 return ((string)(this["CAServerIpAndName"]));
@@ -143,13 +155,13 @@ namespace SmartCardDesc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SmartCardTemplate")]
-        public string CA_TemplateName {
+        [global::System.Configuration.DefaultSettingValueAttribute("12345678")]
+        public string AdminPINLogin {
             get {
-                return ((string)(this["CA_TemplateName"]));
+                return ((string)(this["AdminPINLogin"]));
             }
             set {
-                this["CA_TemplateName"] = value;
+                this["AdminPINLogin"] = value;
             }
         }
     }

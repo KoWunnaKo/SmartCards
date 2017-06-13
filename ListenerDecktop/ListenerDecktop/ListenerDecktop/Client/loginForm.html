@@ -3,7 +3,7 @@
 
 <head>
     <style>
-        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+        /*@import url(https://fonts.googleapis.com/css?family=Roboto:300);*/
         .login-page {
             width: 360px;
             padding: 8% 0 0;
@@ -124,9 +124,9 @@
             background: -moz-linear-gradient(right, #76b852, #8DC26F);
             background: -o-linear-gradient(right, #76b852, #8DC26F);
             background: linear-gradient(to left, #76b852, #8DC26F);
-            font-family: "Roboto", sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            /*font-family: "Roboto", sans-serif;*/
+            /*-webkit-font-smoothing: antialiased;*/
+            /*-moz-osx-font-smoothing: grayscale;*/
         }
     </style>
     
@@ -162,10 +162,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     </div>
     <script type="text/javascript" src="smartCardJs.js?v=1.6.8"></script>
 <script>
-  /*  $('#txttoken').attr("value", "1234567891234567891234657891234567891234567891234657891234567891");
+    $('#txttoken').attr("value", "1234567891234567891234657891234567891234567891234657891234567891");
     
 
-var CAPIWS = {
+    /*var CAPIWS = {
     URL: (window.location.protocol.toLowerCase() === "https:" ? "wss://127.0.0.1:5585" : "ws://127.0.0.1:5585") + "/smartcard",    
     callFunction: function(funcDef, callback, error){
         if (!window.WebSocket){
@@ -201,52 +201,21 @@ var CAPIWS = {
 	$('#certificate').click(function(){
 
 
-	      var returnVal =SmartCardLib.certificate();
-               /* CAPIWS.callFunction({funcName: "getCertificate"}, function (event, data) {
-                    if (data.status) {
+	    var returnVal = SmartCardLib.certificate();
 
-                        if (data.certificate == '05') {
-                            $('#txtcertificate').attr("value", 'Unable to connect to Card or Reader');
-                        }
-                        else
-                        {
-                            $('#txtcertificate').attr("value", data.certificate);
-                        }
-                        //success(id);
-                    } else {
-                        alert('Failed');
-                    }
-                }, function (e) {
-                    alert('Failed Totally');
-                });*/
+	    $('#txtcertificate').attr("value", returnVal.certificate);
 
 	    return false;
     });
 
     $('#puttoken').click(function(){
 
-                var token = $('#txttoken').attr("value");
+        var token = $('#txttoken').attr("value");
+
+        var returnVal = SmartCardLib.putToken(token);
+
+        $('#txtsigned').attr("value", returnVal.signToken);
                 
-               /* CAPIWS.callFunction({funcName: "putToken", inputParm:token }, function (event, data) {
-                    if (data.status) {
-
-                        if (data.signToken == '05')
-                        {
-                            $('#txtsigned').attr("value", 'Unable to connect to Card or Reader');
-                        }
-                        else
-                        {
-                            $('#txtsigned').attr("value", data.signToken);
-                        }
-                       
-                        //success(id);
-                    } else {
-                        alert('Failed');
-                    }
-                }, function (e) {
-                    alert('Failed Totally');
-                });*/
-
 	    return false;
     });
 	</script>

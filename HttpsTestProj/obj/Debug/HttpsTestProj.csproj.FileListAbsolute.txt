@@ -1,0 +1,6 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsTestProj\bin\Debug\HttpsTestProj.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsTestProj\bin\Debug\HttpsTestProj.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsTestProj\bin\Debug\HttpsTestProj.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsTestProj\obj\Debug\HttpsTestProj.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsTestProj\obj\Debug\HttpsTestProj.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsTestProj\obj\Debug\HttpsTestProj.csprojResolveAssemblyReference.cache

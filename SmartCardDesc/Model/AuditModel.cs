@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace SmartCardDesc.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AuditModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="message"></param>
         public static void InsertAudit(string category,
             string message)
         {
@@ -28,7 +36,12 @@ namespace SmartCardDesc.Model
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static Task InsertAuditAsync(string category,
                                             string message)
         {

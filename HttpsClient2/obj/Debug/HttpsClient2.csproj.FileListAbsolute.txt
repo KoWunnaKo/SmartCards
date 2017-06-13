@@ -1,0 +1,6 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsClient2\bin\Debug\HttpsClient2.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsClient2\bin\Debug\HttpsClient2.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsClient2\bin\Debug\HttpsClient2.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsClient2\obj\Debug\HttpsClient2.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsClient2\obj\Debug\HttpsClient2.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\HttpsClient2\obj\Debug\HttpsClient2.pdb

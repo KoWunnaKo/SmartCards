@@ -3,4 +3,8 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\bin\Debug\CardAPILib.
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\obj\Debug\CardAPILib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\obj\Debug\CardAPILib.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\bin\Debug\log4net.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\bin\Debug\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\bin\Debug\GemCard.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\obj\Debug\CardAPILib.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\bin\Debug\CardAPILib.XML
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CardAPILib\bin\Debug\GemCard.xml

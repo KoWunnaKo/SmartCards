@@ -1,0 +1,6 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\bin\Debug\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\bin\Debug\GemCard.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\obj\Debug\GemCard.csproj.ResolveComReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\obj\Debug\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\obj\Debug\GemCard.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\bin\Debug\GemCard.XML

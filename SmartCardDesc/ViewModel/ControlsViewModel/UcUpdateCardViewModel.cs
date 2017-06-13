@@ -5,11 +5,15 @@ using SmartCardDesc.Utils;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using CardAPILib.InterfaceCL;
+
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
     internal class UcUpdateCardViewModel : ViewModelBase
     {
+        private CardApiMessages cardApiObj;
+
         private EpiService service;
 
         /// <summary>
@@ -32,6 +36,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         /// </summary>
         public RelayCommand ClearResults { get; private set; }
 
+        public RelayCommand GetRfId { get; private set; }
+
 
         public UcUpdateCardViewModel()
         {
@@ -42,6 +48,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             LoadResults = new RelayCommand(_ => fLoadResults());
 
             ClearResults = new RelayCommand(_ => fClearResults());
+
+            GetRfId = new RelayCommand(_ => fGetRfId());
+
+            cardApiObj = new CardApiMessages();
+
+            //fGetRfId();
 
             IssueDate = DateTime.Now;
             ExpireDate = DateTime.Now;
@@ -70,7 +82,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                                            Token,
                                            CardStat,
                                            IssueDate.ToString("yyyy-MM-dd"),
-                                           ExpireDate.ToString("yyyy-MM-dd"));
+                                           ExpireDate.ToString("yyyy-MM-dd"),
+                                           Rfid);
 
             await AuditModel.InsertAuditAsync("UPDATE_CARD",
                 string.Format("user = {0} card_number = {1} card stat = {2}", userId, number, CardStat));
@@ -101,6 +114,19 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             string value = string.Format("{0}.{1}.{2}.{3}", UserId, CardStat, IssueDate.ToString("yyyy-MM-dd"), ExpireDate.ToString("yyyy-MM-dd"));
 
             Token = CryptoFuncs.GetMD5(value);
+        }
+
+        private void fGetRfId()
+        {
+            StatusText = string.Empty;
+
+            if (cardApiObj.Connect2Card() != 0)
+            {
+                StatusText = "Unable to connect to Card";
+                return;
+            }
+
+            Rfid = cardApiObj.GetRfId().ToString();
         }
 
         private void fGetNumber()
@@ -309,6 +335,23 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 _cardStat = value;
 
                 OnPropertyChanged("CardStat");
+            }
+        }
+
+
+        private string _rfid;
+
+        public string Rfid
+        {
+            get
+            {
+                return _rfid;
+            }
+            set
+            {
+                _rfid = value;
+
+                OnPropertyChanged("Rfid");
             }
         }
 

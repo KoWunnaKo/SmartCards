@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:megaware:/mediate/ips/OneId/getUserInfoById/getUserInfoById.wsdl" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:mw="http://www.mobicware.com" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="urn:megaware:/mediate/ips/OneId/getUserInfoById/getUserInfoById.wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema targetNamespace="urn:megaware:/mediate/ips/OneId/getUserInfoById/getUserInfoById.wsdl">
+      <s:element mw:isEncrypt="no" name="request">
+        <s:complexType>
+          <s:sequence>
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="user_id" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element mw:isEncrypt="no" name="respond">
+        <s:complexType>
+          <s:sequence>
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="reg_dttm" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="first_name" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="result" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="mid_name" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="pin" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="dob" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="gd" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="surname" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="per_adr" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="tin" type="s:string" />
+            <s:element mw:column="" mw:delimiter="" mw:encoding="Plain" mw:function="" mw:isCondition="no" mw:isEncrypt="no" mw:length="0" mw:preamble="" minOccurs="1" maxOccurs="1" name="pport_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="rEQInputMessage">
+    <part name="rEQInput" element="tns:request" />
+  </message>
+  <message name="rEQOutputMessage">
+    <part name="rEQOutput" element="tns:respond" />
+  </message>
+  <portType name="getUserInfoByIdPortType">
+    <operation name="rEQ">
+      <input name="rEQInput" message="tns:rEQInputMessage" />
+      <output name="rEQOutput" message="tns:rEQOutputMessage" />
+    </operation>
+  </portType>
+  <binding name="getUserInfoByIdSOAP12Binding" type="tns:getUserInfoByIdPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="rEQ">
+      <soap12:operation soapAction="/mediate/ips/OneId/getUserInfoById" style="document" />
+      <input name="rEQInput">
+        <soap12:body use="literal" />
+      </input>
+      <output name="rEQOutput">
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="getUserInfoByIdSOAP11Binding" type="tns:getUserInfoByIdPortType">
+    <soap11:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="rEQ">
+      <soap11:operation soapAction="/mediate/ips/OneId/getUserInfoById" style="document" />
+      <input name="rEQInput">
+        <soap11:body use="literal" />
+      </input>
+      <output name="rEQOutput">
+        <soap11:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="getUserInfoByIdHTTPGETBinding" type="tns:getUserInfoByIdPortType">
+    <http:binding verb="GET" />
+    <operation name="rEQ">
+      <http:operation location="/request" />
+      <input name="rEQInput">
+        <http:urlEncoded />
+      </input>
+      <output name="rEQOutput">
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="getUserInfoByIdHTTPPOSTXMLBinding" type="tns:getUserInfoByIdPortType">
+    <http:binding verb="POST" />
+    <operation name="rEQ">
+      <http:operation location="/request" />
+      <input name="rEQInput">
+        <mime:content part="rEQInput" type="application/xml" />
+      </input>
+      <output name="rEQOutput">
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="getUserInfoByIdHTTPPOSTFORMBinding" type="tns:getUserInfoByIdPortType">
+    <http:binding verb="POST" />
+    <operation name="rEQ">
+      <http:operation location="/request" />
+      <input name="rEQInput">
+        <mime:content part="rEQInput" type="application/x-www-form-urlencoded" />
+      </input>
+      <output name="rEQOutput">
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="getUserInfoByIdHTTPPOSTJSONBinding" type="tns:getUserInfoByIdPortType">
+    <http:binding verb="POST" />
+    <operation name="rEQ">
+      <http:operation location="/request" />
+      <input name="rEQInput">
+        <mime:content part="rEQInput" type="application/json" />
+      </input>
+      <output name="rEQOutput">
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <service name="getUserInfoByIdService">
+    <port name="getUserInfoByIdSOAP12BindingPort" binding="tns:getUserInfoByIdSOAP12Binding">
+      <soap12:address location="https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById" />
+    </port>
+    <port name="getUserInfoByIdSOAP11BindingPort" binding="tns:getUserInfoByIdSOAP11Binding">
+      <soap11:address location="https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById" />
+    </port>
+    <port name="getUserInfoByIdHTTPGETBindingPort" binding="tns:getUserInfoByIdHTTPGETBinding">
+      <http:address location="https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById" />
+    </port>
+    <port name="getUserInfoByIdHTTPPOSTXMLBindingPort" binding="tns:getUserInfoByIdHTTPPOSTXMLBinding">
+      <http:address location="https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById" />
+    </port>
+    <port name="getUserInfoByIdHTTPPOSTFORMBindingPort" binding="tns:getUserInfoByIdHTTPPOSTFORMBinding">
+      <http:address location="https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById" />
+    </port>
+    <port name="getUserInfoByIdHTTPPOSTJSONBindingPort" binding="tns:getUserInfoByIdHTTPPOSTJSONBinding">
+      <http:address location="https://ips.gov.uz:443/mediate/ips/OneId/getUserInfoById" />
+    </port>
+  </service>
+</definitions>

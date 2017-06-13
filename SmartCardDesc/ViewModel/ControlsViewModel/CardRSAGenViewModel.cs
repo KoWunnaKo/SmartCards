@@ -9,6 +9,9 @@ using SmartCardDesc.Model;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
+    /// <summary>
+    /// 
+    /// </summary>
     internal class CardRSAGenViewModel : ViewModelBase
     {
         public Dictionary<int, string> stateList;
@@ -504,7 +507,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pPrivN"></param>
         private void ConvertStr2BytePrivN(string pPrivN)
         {
             if (string.IsNullOrEmpty(pPrivN))
@@ -522,7 +528,10 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pPrivD"></param>
         private void ConvertStr2BytePrivD(string pPrivD)
         {
             if (string.IsNullOrEmpty(pPrivD))

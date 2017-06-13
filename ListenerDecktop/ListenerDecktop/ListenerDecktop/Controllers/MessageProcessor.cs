@@ -51,6 +51,11 @@ namespace ListenerDecktop.Controllers
                 }
                 else if (innerRequest.requestTp == RequestType.PutToken)
                 {
+                    //if ((Program.controller.hCard == 0) || (Program.controller.hContext == 0))
+                    //{
+                    //    outerRequest.ErrorCode = "01";
+                    //}
+
                     var form = new PinAutorizationForm();
 
                     if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)

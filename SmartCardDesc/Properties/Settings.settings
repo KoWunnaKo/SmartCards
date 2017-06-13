@@ -17,9 +17,6 @@
     <Setting Name="DB_Password" Type="System.String" Scope="User">
       <Value Profile="(Default)">123</Value>
     </Setting>
-    <Setting Name="ServiceUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://91.212.89.201:57720</Value>
-    </Setting>
     <Setting Name="KeyMD5" Type="System.String" Scope="User">
       <Value Profile="(Default)">asdqwe123</Value>
     </Setting>
@@ -34,11 +31,17 @@
     <Setting Name="CardPhotoPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\RADSOFT\Projects\SmartCardDesc\PrinterFiles\Photo</Value>
     </Setting>
-    <Setting Name="CAServerIpAndName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.56.101\pal-CPAL-CA</Value>
-    </Setting>
     <Setting Name="CA_TemplateName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SmartCardTemplate</Value>
+    </Setting>
+    <Setting Name="ServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://ips.gov.uz:443</Value>
+    </Setting>
+    <Setting Name="CAServerIpAndName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.211.2</Value>
+    </Setting>
+    <Setting Name="AdminPINLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">12345678</Value>
     </Setting>
   </Settings>
 </SettingsFile>

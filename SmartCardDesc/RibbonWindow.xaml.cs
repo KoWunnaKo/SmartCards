@@ -253,7 +253,9 @@ namespace SmartCardDesc
 
         private void btnBlockCard_Click(object sender, RoutedEventArgs e)
         {
-
+            spPanel.Children.Clear();
+            var uObject = new UcUserPinChange();
+            spPanel.Children.Add(uObject);
         }
     }
 }

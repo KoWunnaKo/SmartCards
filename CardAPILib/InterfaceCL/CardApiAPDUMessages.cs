@@ -198,6 +198,8 @@ namespace CardAPILib.InterfaceCL
             return 0;
         }
 
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -336,14 +338,14 @@ namespace CardAPILib.InterfaceCL
             apdu.bINS = 0xA4;          // INS
             apdu.bP1 = 0x04;           // P1
             apdu.bP2 = 0x00;           // P2
-            apdu.bP3 = 0x07;           // P3
+            apdu.bP3 = 0x05;           // P3
             apdu.Data[0] = 0x73;       // 
             apdu.Data[1] = 0x63;       // 
             apdu.Data[2] = 0x70;       // 
             apdu.Data[3] = 0x6B;       // 
             apdu.Data[4] = 0x69;       // 
-            apdu.Data[5] = 0x01;       // 
-            apdu.Data[6] = 0x00;       // 
+            //apdu.Data[5] = 0x01;       // 
+            //apdu.Data[6] = 0x00;       // 
             apdu.IsSend = true;
 
             PerformTransmitAPDUGen(ref apdu, 2);
@@ -405,7 +407,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x01;          // INS
+            apdu.bINS = 0x10;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x01;           // P2
             apdu.bP3 = 0x06;           // P3
@@ -458,7 +460,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x01;          // INS
+            apdu.bINS = 0x10;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x02;           // P2
             apdu.bP3 = 0x08;           // P3
@@ -508,7 +510,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x02;          // INS
+            apdu.bINS = 0x20;          // INS
             apdu.bP1 = 0x01;           // P1
             apdu.bP2 = 0x01;           // P2
             apdu.bP3 = 0x06;           // P3
@@ -566,7 +568,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x02;          // INS
+            apdu.bINS = 0x20;          // INS
             apdu.bP1 = 0x01;           // P1
             apdu.bP2 = 0x02;           // P2
             apdu.bP3 = 0x08;           // P3
@@ -624,7 +626,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x02;          // INS
+            apdu.bINS = 0x20;          // INS
             apdu.bP1 = 0x02;           // P1
             apdu.bP2 = 0x01;           // P2
             apdu.bP3 = 0x00;           // P3
@@ -669,7 +671,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x03;          // INS
+            apdu.bINS = 0x30;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x03;           // P2
             apdu.bP3 = 0x00;           // P3
@@ -725,7 +727,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x04;          // INS
+            apdu.bINS = 0x40;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x00;           // P2
             apdu.bP3 = 0x40;           // P3
@@ -896,7 +898,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x05;          // INS
+            apdu.bINS = 0x50;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x04;           // P2
             apdu.bP3 = (byte)CA.Length;           // P3
@@ -958,7 +960,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x05;          // INS
+            apdu.bINS = 0x50;          // INS
             apdu.bP1 = 0x03;           // P1
             apdu.bP2 = 0x04;           // P2
             apdu.bP3 = (byte)CA.Length;           // P3
@@ -1042,7 +1044,7 @@ namespace CardAPILib.InterfaceCL
             {
                 apdu.Data = array;
                 apdu.bCLA = 0x00;          // CLA
-                apdu.bINS = 0x03;          // INS
+                apdu.bINS = 0x30;          // INS
                 apdu.bP1 = 0x00;           // P1
                 apdu.bP2 = 0x04;           // P2
                 apdu.bP3 = 0x04;           // P3
@@ -1102,7 +1104,7 @@ namespace CardAPILib.InterfaceCL
 
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x03;          // INS
+            apdu.bINS = 0x30;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x04;           // P2
             apdu.bP3 = 0x04;           // P3
@@ -1209,7 +1211,7 @@ namespace CardAPILib.InterfaceCL
         {
             apdu.Data = array;
             apdu.bCLA = 0x00;          // CLA
-            apdu.bINS = 0x03;          // INS
+            apdu.bINS = 0x30;          // INS
             apdu.bP1 = 0x00;           // P1
             apdu.bP2 = 0x05;           // P2
             apdu.bP3 = 0x00;           // P3

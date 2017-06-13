@@ -6,6 +6,9 @@ using System.Security.Cryptography;
 
 namespace SC_CertificateCALib
 {
+    /// <summary>
+    /// Certificate Api On Behalf Of Other User
+    /// </summary>
     public class CertApiOnBehalfOfOther
     {
         private const int CC_DEFAULTCONFIG = 0;
@@ -26,6 +29,13 @@ namespace SC_CertificateCALib
 
         private const int CR_OUT_CHAIN = 0x100;
 
+        /// <summary>
+        /// Create Certificate Request Message
+        /// </summary>
+        /// <param name="psubjectName">Subject of Certificate</param>
+        /// <param name="pCaTemplate">Template Name of CA</param>
+        /// <param name="domainUser">Domain User</param>
+        /// <returns>Certificate Request in Base64</returns>
         public static string CreateCertRequestMessage(string psubjectName, string pCaTemplate, string domainUser)
         {
             //  Create all the objects that will be required
@@ -223,6 +233,12 @@ namespace SC_CertificateCALib
             return strRequest;
         }
 
+        /// <summary>
+        /// Send Certificate Request
+        /// </summary>
+        /// <param name="message">Certificate Request in Base64</param>
+        /// <param name="serverAddress">CA IP Address</param>
+        /// <returns>Cetificate Enrollment ID</returns>
         public static int SendCertificateRequest(string message, string serverAddress)
         {
             var objCertRequest = new CCertRequest();
@@ -249,6 +265,12 @@ namespace SC_CertificateCALib
             return objCertRequest.GetRequestId();
         }
 
+        /// <summary>
+        /// Download Certificate
+        /// </summary>
+        /// <param name="requestId">Request Id</param>
+        /// <param name="serverAddress">Server Address</param>
+        /// <returns>Certificate in Base64</returns>
         public static string DownloadCert(int requestId, string serverAddress)
         {
             var objCertRequest = new CCertRequest();

@@ -52,7 +52,7 @@
                                        LargeImageSource="/SmartCardDesc;component/Resources/Add-Male-User.png"
                                        Name="btnNewUser"
                                        Click="btnNewUser_Click"/>
-                        <RibbonRadioButton  Label="Блокировать карту"  
+                        <RibbonRadioButton  Label="Изменить PIN карты"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/credit-card-block-512.png"
                                        Name="btnBlockCard"
                                        Click="btnBlockCard_Click"/>
@@ -77,21 +77,22 @@
                                        Name="btnDeleteCard"
                                        Click="btnDeleteCard_Click"/>
 
-                        <RibbonRadioButton  
+                        <!--<RibbonRadioButton  
                             Label="Генерация ключей"  
                             LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
                             Name="btnKeyGen"
-                            Click="btnKeyGen_Click"/>
+                            Click="btnKeyGen_Click"
+                            Visibility="Hidden"/>-->
                         <RibbonRadioButton  
-                            Label="Получить Сертификат"  
+                            Label="Управление Сертификатом"  
                             LargeImageSource="/SmartCardDesc;component/Resources/document.ico" 
                             Name="btnCertificate"
                             Click="btnCertificate_Click"/>
-                        <RibbonRadioButton  
+                        <!--<RibbonRadioButton  
                             Label="Записать Сертификат"  
                             LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
                             Name="WriteCert"
-                            Click="WriteCert_Click"/>
+                            Click="WriteCert_Click"/>-->
                         <RibbonRadioButton  Label="Печать карты"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/Iconshow-Hardware-Printer.ico" 
                                        Name="btnCardPrint"
