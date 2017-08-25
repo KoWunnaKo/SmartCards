@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="GID_Client.Views.InitCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GID_Client.Views"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="600" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="243*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" 
+                   Grid.Column="0" 
+                   Text="Ридер"
+                   Margin="5"></TextBlock>
+            <TextBlock Grid.Row="1" 
+                   Grid.Column="0" 
+                   Text="Статус Карты"
+                   Margin="5"
+></TextBlock>
+            <TextBlock Grid.Row="2" 
+                   Grid.Column="0" 
+                   Text="Уникальный Ид"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="0" 
+                   Grid.Column="1" 
+                   Margin="5"
+                     Text="{Binding MyReaderName}"></TextBox>
+            <TextBox Grid.Row="1" 
+                   Grid.Column="1" 
+                   Margin="5"
+                     Text="{Binding MycardStatus}"
+                     Background="{Binding BackgroundTb}"
+                     Foreground="{Binding ForegroundTb}"
+></TextBox>
+            <TextBox Grid.Row="2" 
+                   Grid.Column="1" 
+                   Margin="5"
+                     Text="{Binding MyUIDofCard}"></TextBox>
+
+            <Button Grid.Row="3" 
+                   Grid.Column="1"
+                Content="Открыть Карту"
+                Margin="5"
+                    Command="{Binding OpenCard}"></Button>
+
+            <Button Grid.Row="4" 
+                   Grid.Column="1"
+                Content="Сохранить на сервере"
+                Margin="5"
+                    Command="{Binding SaveCardInfo}"></Button>
+
+            <TextBlock Grid.Row="5" 
+                   Grid.Column="0" 
+                   Text="Закрытый ключ"
+                   Margin="5"></TextBlock>
+            <TextBlock Grid.Row="6" 
+                   Grid.Column="0" 
+                   Text="Открытый ключ"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="5" 
+                   Grid.Column="1" 
+                   Margin="5"
+                  TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                     IsReadOnly="True"
+                     Text="{Binding PrivateKey}"
+                     ></TextBox>
+            <TextBox Grid.Row="6" 
+                   Grid.Column="1" 
+                   Margin="5"
+                   TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                     IsReadOnly="True"
+                      Text="{Binding PublicKey}"></TextBox>
+
+            <Button Grid.Row="7" 
+                   Grid.Column="1"
+                Content="Получить сертификат"
+                Margin="5"
+                    IsEnabled="{Binding CertificateButton}"
+                    Command="{Binding GetCertificate}"></Button>
+
+            <TextBlock Grid.Row="8" 
+                   Grid.Column="0" 
+                   Text="Сертификат"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="8" 
+                   Grid.Column="1" 
+                   Margin="5"
+                  TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                     IsReadOnly="True"
+                     Text="{Binding Certificate}"
+                     ></TextBox>
+
+            <Button Grid.Row="9" 
+                   Grid.Column="1"
+                Content="Сохранить на Карту"
+                Margin="5"
+                    Command="{Binding Apply2Card}"></Button>
+
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             IsIndeterminate="{Binding IsIntermadiate}"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

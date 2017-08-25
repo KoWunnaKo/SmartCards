@@ -1,0 +1,223 @@
+﻿<Window x:Class="GID_Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GID_Client"
+        mc:Ignorable="d"
+        Title="АРМ Карт Мастер" Height="600" Width="787.748">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Ribbon x:Name="RibbonWin"  SelectedIndex="0">
+            <!-- Help Pane, located at the right-hand side -->
+            <Ribbon.HelpPaneContent>
+                <RibbonButton  SmallImageSource="ResourcesPic/Help.bmp"/>
+                <!--SmallImageSource="Images\help.png"-->
+            </Ribbon.HelpPaneContent>
+            <!-- Quick Access Toolbar - located at the upper-left corner -->
+            <!--<Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonButton x:Name ="Save"  /> 
+                    <RibbonSplitButton x:Name ="Undo" > 
+                        <RibbonSplitMenuItem Header="Undo 1" />
+                        <RibbonSplitMenuItem Header="Undo 2" />
+                        <RibbonSplitMenuItem Header="Undo 3" />
+                    </RibbonSplitButton>
+                    <RibbonSplitButton x:Name="Redo"  > 
+                        <RibbonSplitMenuItem Header="Redo 1" />
+                        <RibbonSplitMenuItem Header="Redo 2" />
+                    </RibbonSplitButton>
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>-->
+            <!-- Application Menu, located at the left-hand side (down arrow) -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="Настройки"  />
+                    <!--ImageSource="Images\options.png"-->
+                    <!--<RibbonApplicationMenuItem Header="Изменить Пароль"  />-->
+                    <RibbonApplicationMenuItem Header="Выход" />
+                    <!--ImageSource="Images\quit.png"-->
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <!-- Ribbon Tab #1: Home -->
+            <RibbonTab Header=" Цех" KeyTip="H" >
+                <!-- Home  group-->
+                <RibbonGroup x:Name="ClipboardGroup" Margin="0,1" Header="Операции производимые в Цеху" >
+                    <StackPanel Orientation="Horizontal">
+
+
+                        <RibbonRadioButton  Label="Управление Сертификатом" 
+                                       LargeImageSource="ResourcesPic/document.ico"
+                                       Name="btnEditCard"
+                                       Click="btnEditCard_Click"/>
+                        <!--<RibbonRadioButton  
+                            Label="Управление Сертификатом"  
+                            LargeImageSource="ResourcesPic/document.ico" 
+                            Name="btnCertificate"
+                            Click="btnCertificate_Click"/>-->
+                        <!--<RibbonRadioButton  
+                            Label="Записать Сертификат"  
+                            LargeImageSource="ResourcesPic/write_document.png" 
+                            Name="WriteCert"
+                            Click="WriteCert_Click"/>-->
+                        
+                        <!--<RibbonRadioButton  Label="Новый пользователь"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/Add-Male-User.png"
+                                       Name="btnNewUser"
+                                       Click="btnNewUser_Click"/>
+                        <RibbonRadioButton  Label="Изменить PIN карты"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/credit-card-block-512.png"
+                                       Name="btnBlockCard"
+                                       Click="btnBlockCard_Click"/>
+                        <RibbonRadioButton  Label="Информация пользователя"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/user_info.png"
+                                       Name="btnUserInfo"
+                                       Click="btnUserInfo_Click"/>
+                        <RibbonRadioButton  Label="Информация о картах"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/smart_card_technology.png" 
+                                       Name="btnCardInfo"
+                                       Click="btnCardInfo_Click"/>
+                        <RibbonRadioButton  Label="Ввести новую карту"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 
+                                       Name="btnAddCard"
+                                       Click="btnAddCard_Click"/>
+                        <RibbonRadioButton  Label="Изменить данные карты" 
+                                       LargeImageSource="/SmartCardDesc;component/Resources/126_Edit.ico"
+                                       Name="btnEditCard"
+                                       Click="btnEditCard_Click"/>
+                        <RibbonRadioButton  Label="Удалить карту"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/delete.ico" 
+                                       Name="btnDeleteCard"
+                                       Click="btnDeleteCard_Click"/>-->
+
+                        <!--<RibbonRadioButton  
+                            Label="Генерация ключей"  
+                            LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
+                            Name="btnKeyGen"
+                            Click="btnKeyGen_Click"
+                            Visibility="Hidden"/>-->
+                        <!--<RibbonRadioButton  
+                            Label="Управление Сертификатом"  
+                            LargeImageSource="/SmartCardDesc;component/Resources/document.ico" 
+                            Name="btnCertificate"
+                            Click="btnCertificate_Click"/>-->
+                        <!--<RibbonRadioButton  
+                            Label="Записать Сертификат"  
+                            LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
+                            Name="WriteCert"
+                            Click="WriteCert_Click"/>-->
+                        <!--<RibbonRadioButton  Label="Печать карты"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/Iconshow-Hardware-Printer.ico" 
+                                       Name="btnCardPrint"
+                                       Click="btnCardPrint_Click"/>-->
+                    </StackPanel>
+                </RibbonGroup>
+                <!-- Employee And Payroll group-->
+                <!--<RibbonGroup x:Name="CardCertificate" Header="Операции с картами">
+                    <StackPanel Orientation="Horizontal">
+
+                        -->
+                <!--SmallImageSource="Images\add.png"-->
+                <!--
+                    </StackPanel>
+                </RibbonGroup>-->
+            </RibbonTab>
+            <!-- Ribbon Tab #2: -->
+            <RibbonTab Header="Принт Сервер" KeyTip="I">
+                <RibbonGroup x:Name="ExchangeLists" Margin="0,1" Header="Данные водителя и Тех. Паспорта">
+                    <StackPanel Orientation="Horizontal">
+                        <RibbonRadioButton  Label="Водительские Права"  
+                                       LargeImageSource="ResourcesPic/driver1600.png"
+                                       Name="btnUserInfolist"
+                                            Click="btnUserInfolist_Click"/>
+                        <RibbonRadioButton  Label="Технический Паспорт"  
+                                       LargeImageSource="ResourcesPic/car.png" 
+                                       Name="btnCardInfolist"
+                                            Click="btnCardInfolist_Click"/>
+                        <!--<RibbonRadioButton  Label="Список Добпалений"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 
+                                       Name="btnAddCardList"
+                                            Click="btnAddCardList_Click"/>
+                        <RibbonRadioButton  Label="Список Изменений" 
+                                       LargeImageSource="/SmartCardDesc;component/Resources/126_Edit.ico"
+                                       Name="btnEditCardList"
+                                            Click="btnEditCardList_Click"/>
+                        <RibbonRadioButton  Label="Список Удалений"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/delete.ico" 
+                                       Name="btnDeleteCardList"
+                                            Click="btnDeleteCardList_Click"/>
+                        <RibbonRadioButton  
+                            Label="Список Генераций"  
+                            LargeImageSource="/SmartCardDesc;component/Resources/Paomedia-Small-N-Flat-Key.ico"
+                            Name="btnKeyGenlist"
+                            Click="btnKeyGenlist_Click"
+                            />
+                        <RibbonRadioButton  
+                            Label="Список Сертификатов"  
+                            LargeImageSource="/SmartCardDesc;component/Resources/document.ico" 
+                            Name="btnCertificatelist"
+                            Click="btnCertificatelist_Click"
+                            />-->
+                        <!--<RibbonRadioButton  
+                            Label="Логи"  
+                            LargeImageSource="/SmartCardDesc;component/Resources/write_document.png" 
+                            Name="Logs"
+                            Click="Logs_Click"
+                            />-->
+                    </StackPanel>
+                </RibbonGroup>
+                <!--<RibbonGroup x:Name="CardOpLists" Margin="0,1" Header="Списки операций с картами">
+                    <StackPanel Orientation="Horizontal">
+
+                        -->
+                <!--SmallImageSource="Images\add.png"-->
+                <!--
+                    </StackPanel>
+                </RibbonGroup>-->
+            </RibbonTab>
+            <!-- Ribbon Tab #3: -->
+            <RibbonTab Header="Верификация Водительских Прав" >
+                <!--<RibbonGroup x:Name="Warehouse" Margin="0,1" Header="Складской учет">
+                    <StackPanel Orientation="Horizontal">
+                        <RibbonRadioButton  Label="Приход"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/whInput.png"
+                                       Name="btnPrixodOp"
+                                       Click="btnPrixodOp_Click"/>
+                        <RibbonRadioButton  Label="Расход"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/Minus_Circle_Red.png"
+                                       Name="btnRasxodOp"
+                                       Click="btnRasxodOp_Click"/>
+                        <RibbonRadioButton  Label="Текущий остаток"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/warehouse2d-512.png"
+                                       Name="btnCurrentSaldo"
+                                       Click="btnCurrentSaldo_Click"/>
+                        <RibbonRadioButton  Label="Списки приходов"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/add_list1600.png"
+                                       Name="btnIncomesList"
+                                       Click="btnIncomesList_Click"/>
+                        <RibbonRadioButton  Label="Список Расходов"  
+                                       LargeImageSource="/SmartCardDesc;component/Resources/minusList.png"
+                                       Name="btnOutcomesList"
+                                       Click="btnOutcomesList_Click"/>
+                    </StackPanel>
+                </RibbonGroup>-->
+            </RibbonTab>
+        </Ribbon>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Vertical" Name="spPanel"></StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2" 
+                    HorizontalAlignment="Stretch"
+                    Background="AliceBlue">
+
+            <TextBlock Margin="10,0,10,0"
+                       DockPanel.Dock="Left"
+                       Text="{Binding FullName}"></TextBlock>
+
+        </DockPanel>
+    </Grid>
+</Window>
