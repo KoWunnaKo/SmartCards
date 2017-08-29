@@ -353,5 +353,59 @@ namespace CardAPILib.CardAPI
 
             return 0;
         }
+
+
+        public int OpenCardDR()
+        {
+            try
+            {
+                if (OpenCardCommands(CardFactoryMode.DrivingLicence) != 0)
+                {
+                    throw new ApplicationException(LastOperationStatus);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return 0;
+        }
+
+        public int OpenCardVR()
+        {
+            try
+            {
+                if (OpenCardCommands(CardFactoryMode.VehicleRegistration) != 0)
+                {
+                    throw new ApplicationException(LastOperationStatus);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return 0;
+        }
+
+        public int SaveCertificateCardPKI()
+        {
+            try
+            {
+                //if (OpenCardCommands() != 0)
+                //{
+                //    throw new ApplicationException(LastOperationStatus);
+                //}
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return 0;
+        }
+
+
     }
 }

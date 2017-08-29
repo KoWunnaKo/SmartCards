@@ -56,6 +56,7 @@
     <Compile Include="CardASCCL\PcscReader.cs" />
     <Compile Include="InterfaceCL\CardApiAPDUMessages.cs" />
     <Compile Include="InterfaceCL\CardApiMessages.cs" />
+    <Compile Include="InterfaceCL\gidCardApi.cs" />
     <Compile Include="ModWinSCard\ModWinsCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CardASCCL\ReaderException.cs" />

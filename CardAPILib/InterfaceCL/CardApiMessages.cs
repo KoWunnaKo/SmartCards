@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 using GemCard;
 using log4net;
+using System.Security.Cryptography;
 
 namespace CardAPILib.InterfaceCL
 {
-    public class CardApiMessages
+    public partial class CardApiMessages
     {
         private static ILog log = LogManager.GetLogger(typeof(CardApiAPDUMessages));
 
@@ -25,6 +26,8 @@ namespace CardAPILib.InterfaceCL
 
         public CardApiMessages()
         {
+            log.Info("Card Terminal Initialization");
+
             iCard = new CardNative();
         }
 
@@ -39,11 +42,12 @@ namespace CardAPILib.InterfaceCL
         {
             try
             {
+                log.Info("Connect2Card");
 
                 string[] readers = iCard.ListReaders();
 
                 string[] SpecReaders = (from reader in readers
-                                       where reader.Contains("ICC")
+                                       where reader.Contains("CL")
                                        select reader).ToArray();
 
 
@@ -828,6 +832,25 @@ namespace CardAPILib.InterfaceCL
             LastOperationStatus = "Success!";
 
             return 0;
+        }
+
+
+
+
+    }
+
+    internal static class SecureRandom
+    {
+        public static byte[] GetBytes(int length)
+        {
+            var data = new byte[length];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(data);
+            }
+
+            return data;
         }
     }
 }

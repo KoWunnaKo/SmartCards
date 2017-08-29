@@ -76,5 +76,25 @@ namespace CardAPILib.CardAPI
         /// <param name="certificate"></param>
         /// <returns></returns>
         int WriteCert(string certificate);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        int OpenCardDR();
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        int OpenCardVR();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        int SaveCertificateCardPKI();
+
     }
 }

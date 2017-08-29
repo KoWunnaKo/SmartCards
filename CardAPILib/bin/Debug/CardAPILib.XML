@@ -166,6 +166,24 @@
             <param name="certificate"></param>
             <returns></returns>
         </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCardDR">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCardVR">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.SaveCertificateCardPKI">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.PerformTransmitAPDUGen(ModWinsCard.APDURec@,System.Int32)">
             <summary>
             
@@ -371,6 +389,25 @@
             of data stored under the condition that the length of data to be read out should not exceed 256 bytes. 
             </summary>
             <param name="CAsize"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.OpenCardCommands(CardAPILib.InterfaceCL.CardFactoryMode)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveCertificate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:Advanced_Device_Programming.Apdu.instructionClass">
             <summary>
