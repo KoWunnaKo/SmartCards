@@ -1,0 +1,5 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013Lib\bin\Debug\Iso18013Lib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013Lib\bin\Debug\Iso18013Lib.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013Lib\obj\Debug\Iso18013Lib.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013Lib\obj\Debug\Iso18013Lib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013Lib\obj\Debug\Iso18013Lib.pdb

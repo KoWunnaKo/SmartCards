@@ -1,0 +1,34 @@
+﻿{
+  "driver": {
+    "first_name": "Azizjon",
+    "last_name": "Sadikov",
+    "middle_name": "Tulkunovich",
+    "date_of_birth": "19850529",
+    "region_name_birth": "Toshkent shahri",
+    "pinfl": "7777777",
+    "address": {
+      "address": "Afrosiyob 6, 50",
+      "region_name": "Toshkent shahri",
+      "rayon_name": "Mirobod tumani"
+    }
+  },
+
+  "categories": [
+    {
+      "name": "B",
+      "issue_date": "20120420"
+    }
+  ],
+
+  "issue_date":"20120420",
+    
+  "expire_date":"21121231",
+    
+  "issue_region_name":"Toshkent shahri",
+
+  "license_number": "AB15456465464",
+
+  "Photo": "",
+
+  "Signature" : ""
+}

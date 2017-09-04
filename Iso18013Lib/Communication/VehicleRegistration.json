@@ -1,0 +1,34 @@
+﻿{
+  "company":{
+    "name":"GID",
+    "inn":"1111",
+    "address":{
+      "address":"Afrosiyob 6, 50",
+      "region_name":"Toshkent shahri",
+      "rayon_name":"Mirobod tumani"
+    }
+  },
+  "vehicle":{
+  	"reg_number":"01X197TA",
+  	"model_name":"Chevrolet Spark",
+  	"color_name":"Mystic Lake",
+  	"vehicle_manufacture_year":2015,
+  	"type":"X/Z",
+  	"vehicle_identification_number":"1x1x1x1x2",
+  	"gross_weight":900,
+  	"curb_weight":800,
+  	"engine_number":"2x2x2x2x2x2",
+  	"engine_power":"86",
+  	"fuel_type":"91",
+  	"number_of_seats":5,
+  	"number_of_standees":null,
+  	"special_marks":null
+  	
+  },
+  "issue_date":"20120420",
+    
+  "ubdd_name":"Mirobod UBDD",
+    
+  "issue_region_name":"Toshkent shahri"
+
+}
