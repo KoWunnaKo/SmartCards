@@ -9,3 +9,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\SC
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\bin\Debug\Interop.CERTCLILib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\bin\Debug\Interop.CERTENROLLLib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\bin\Debug\SC_CertificateCALib.XML
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALib\obj\Debug\SC_CertificateCALib.csprojResolveAssemblyReference.cache

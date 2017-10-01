@@ -36,8 +36,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DesktopListener\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="pcsc-sharp, Version=3.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCSC.3.6.1\lib\net40\pcsc-sharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SmartCardApi, Version=1.5.187.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MRTD.NET.1.5.187\lib\net45\SmartCardApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.PlatformServices.3.1.1\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
@@ -58,9 +90,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Log\FileLogService.cs" />
+    <Compile Include="Log\ILogService.cs" />
+    <Compile Include="MondatoryWindow.xaml.cs">
+      <DependentUpon>MondatoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ServerApi\ServerApiController.cs" />
+    <Compile Include="ViewModel\Base64ImageConverter.cs" />
+    <Compile Include="ViewModel\CardTracker.cs" />
     <Compile Include="ViewModel\CertificateMngViewModel.cs" />
     <Compile Include="ViewModel\InitCardViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\TexPasportViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -68,14 +108,23 @@
     <Compile Include="Views\CertificateMngView.xaml.cs">
       <DependentUpon>CertificateMngView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IDL_View.xaml.cs">
+      <DependentUpon>IDL_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InitCardView.xaml.cs">
       <DependentUpon>InitCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TexPasportView.xaml.cs">
       <DependentUpon>TexPasportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VoditelPravaView.xaml.cs">
       <DependentUpon>VoditelPravaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VLDataChecker.xaml.cs">
+      <DependentUpon>VLDataChecker.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -89,7 +138,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MondatoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CertificateMngView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IDL_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,11 +154,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\TexPasportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VoditelPravaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VLDataChecker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,6 +189,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -170,6 +236,14 @@
     <ProjectReference Include="..\CardAPILib\CardAPILib.csproj">
       <Project>{58b50b8c-7903-4334-8969-9a47575622de}</Project>
       <Name>CardAPILib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iso18013LibV2\Iso18013LibV2\Iso18013LibV2.csproj">
+      <Project>{aaaf3779-aa0c-49a4-a3e7-761f3308a0ce}</Project>
+      <Name>Iso18013LibV2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iso18013Lib\Iso18013Lib.csproj">
+      <Project>{eeb35304-4ea7-41d9-9598-42e3d54e66e8}</Project>
+      <Name>Iso18013Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

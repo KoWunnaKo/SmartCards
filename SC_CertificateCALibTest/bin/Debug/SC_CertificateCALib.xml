@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SC_CertificateCALib</name>
+    </assembly>
+    <members>
+        <member name="T:SC_CertificateCALib.CertApiOnBehalfOfOther">
+            <summary>
+            Certificate Api On Behalf Of Other User
+            </summary>
+        </member>
+        <member name="M:SC_CertificateCALib.CertApiOnBehalfOfOther.CreateCertRequestMessage(System.String,System.String,System.String)">
+            <summary>
+            Create Certificate Request Message
+            </summary>
+            <param name="psubjectName">Subject of Certificate</param>
+            <param name="pCaTemplate">Template Name of CA</param>
+            <param name="domainUser">Domain User</param>
+            <returns>Certificate Request in Base64</returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertApiOnBehalfOfOther.SendCertificateRequest(System.String,System.String)">
+            <summary>
+            Send Certificate Request
+            </summary>
+            <param name="message">Certificate Request in Base64</param>
+            <param name="serverAddress">CA IP Address</param>
+            <returns>Cetificate Enrollment ID</returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertApiOnBehalfOfOther.DownloadCert(System.Int32,System.String)">
+            <summary>
+            Download Certificate
+            </summary>
+            <param name="requestId">Request Id</param>
+            <param name="serverAddress">Server Address</param>
+            <returns>Certificate in Base64</returns>
+        </member>
+        <member name="T:SC_CertificateCALib.CertInterOpApi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.CreateCertRequestMessage">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.CreateCertRequestMessage(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="psubjectName"></param>
+            <param name="pCaTemplate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.SendCertificateRequest(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="serverAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.DownloadCert(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="requestId"></param>
+            <param name="serverAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.DownloadAndInstallCert(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="requestId"></param>
+            <param name="serverAddress"></param>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.Renew(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="serverAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SC_CertificateCALib.CertInterOpApi.MainLogic(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:SC_CertificateCALib.SmartCardLogonCertApi">
+            <summary>
+            Class which implement certificate generation in CA Windows
+            </summary>
+        </member>
+        <member name="M:SC_CertificateCALib.SmartCardLogonCertApi.CreateCertRequestMessage(System.String,System.String)">
+            <summary>
+            Create Certificate Request Message
+            </summary>
+            <param name="psubjectName">Subject of Certificate</param>
+            <param name="pCaTemplate">Template Name of CA</param>
+            <returns>Certificate Request in Base64</returns>
+        </member>
+        <member name="M:SC_CertificateCALib.SmartCardLogonCertApi.SendCertificateRequest(System.String,System.String)">
+            <summary>
+            Send Certificate Request
+            </summary>
+            <param name="message">Certificate Request in Base64</param>
+            <param name="serverAddress">CA IP Address</param>
+            <returns>Cetificate Enrollment ID</returns>
+        </member>
+        <member name="M:SC_CertificateCALib.SmartCardLogonCertApi.DownloadCert(System.Int32,System.String)">
+            <summary>
+            Download Certificate
+            </summary>
+            <param name="requestId">Request Id</param>
+            <param name="serverAddress">Server Address</param>
+            <returns>Certificate in Base64</returns>
+        </member>
+    </members>
+</doc>

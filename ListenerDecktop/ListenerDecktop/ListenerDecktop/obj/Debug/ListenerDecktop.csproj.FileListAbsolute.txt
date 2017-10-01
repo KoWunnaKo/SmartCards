@@ -28,5 +28,5 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\GemCard.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\GemCard.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\obj\Debug\ListenerDecktop.csprojResolveAssemblyReference.cache
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\CardAPILib.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\GemCard.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\ListenerDecktop\ListenerDecktop\ListenerDecktop\bin\Debug\CardAPILib.xml

@@ -9,6 +9,14 @@ namespace SmartCardDesc.ViewModel
 {
     internal class ViewModelBase : INotifyPropertyChanged
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string CurrentSelectedLogin { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         //[NotifyPropertyChangedInvocator]

@@ -1,0 +1,4 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso7816Lib\bin\Debug\Iso7816Lib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso7816Lib\bin\Debug\Iso7816Lib.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso7816Lib\obj\Debug\Iso7816Lib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso7816Lib\obj\Debug\Iso7816Lib.pdb

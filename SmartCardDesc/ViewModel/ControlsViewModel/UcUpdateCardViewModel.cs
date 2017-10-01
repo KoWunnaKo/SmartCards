@@ -6,12 +6,14 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using CardAPILib.InterfaceCL;
-
+using Epigov.Log;
 
 namespace SmartCardDesc.ViewModel.ControlsViewModel
 {
     internal class UcUpdateCardViewModel : ViewModelBase
     {
+        private readonly ILogService _logService;
+
         private CardApiMessages cardApiObj;
 
         private EpiService service;
@@ -41,6 +43,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         public UcUpdateCardViewModel()
         {
+            _logService = new FileLogService(typeof(UcUpdateCardViewModel));
+
             GetToken = new RelayCommand(_ => fGetToken());
 
             GetNumber = new RelayCommand(_ => fGetNumber());
@@ -53,7 +57,32 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             cardApiObj = new CardApiMessages();
 
-            //fGetRfId();
+            fGetRfId();
+
+            if (!string.IsNullOrEmpty(ViewModelBase.CurrentSelectedLogin))
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        UsersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                var defUser = _usersList.FirstOrDefault(c => c.LOGIN == ViewModelBase.CurrentSelectedLogin);
+
+                if (defUser != null)
+                {
+                    SelectedIndex = _usersList.IndexOf(defUser);
+
+                    SelectedUser = defUser;
+                }
+            }
 
             IssueDate = DateTime.Now;
             ExpireDate = DateTime.Now;
@@ -122,7 +151,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             if (cardApiObj.Connect2Card() != 0)
             {
-                StatusText = "Unable to connect to Card";
+                StatusText = "Невазможно присоединиться к Карте";
                 return;
             }
 
@@ -223,7 +252,26 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                 LoadCardInfo();
 
+                ViewModelBase.CurrentSelectedLogin = UserId;
+
                 OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+
+            set
+            {
+                _selectedIndex = value;
+
+                OnPropertyChanged("SelectedIndex");
             }
         }
 
@@ -235,6 +283,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 try
                 {
+                    if (_usersList != null)
+                    {
+                        return _usersList;
+                    }
+
                     using (var context = new SmartCardDBEntities())
                     {
                         _usersList = context.USERS.ToList();
@@ -252,6 +305,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 }
 
                 return _usersList;
+            }
+            set
+            {
+                _usersList = value;
+
+                OnPropertyChanged("UsersList");
             }
         }
 
@@ -418,22 +477,30 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         private void LoadCardInfo()
         {
-            using (var context = new SmartCardDBEntities())
+            try
             {
-                Card = context.CARD_INFO.
-                    ToList().OrderBy(x=>x.REC_ID).
-                    LastOrDefault(x=>x.OWNER_USER == SelectedUser.REC_ID && 
-                x.IS_ACTIVE.Value);
-
-                if (Card != null)
+                using (var context = new SmartCardDBEntities())
                 {
-                    if (Card.ISSUE_DATE != null)
-                        IssueDate = Card.ISSUE_DATE.Value;
+                    Card = context.CARD_INFO.
+                        ToList().OrderBy(x => x.REC_ID).
+                        LastOrDefault(x => x.OWNER_USER == SelectedUser.REC_ID &&
+                    x.IS_ACTIVE.Value);
 
-                    if (Card.EXPIRE_DATE != null)
-                        ExpireDate = Card.EXPIRE_DATE.Value;
+                    if (Card != null)
+                    {
+                        if (Card.ISSUE_DATE != null)
+                            IssueDate = Card.ISSUE_DATE.Value;
+
+                        if (Card.EXPIRE_DATE != null)
+                            ExpireDate = Card.EXPIRE_DATE.Value;
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                _logService.Error(ex.ToString());
+            }
+
         }
     }
 }

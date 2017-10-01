@@ -34,13 +34,36 @@
                             <ColumnDefinition Width="2*"/>
                             <!--<ColumnDefinition Width="1*"/>-->
                         </Grid.ColumnDefinitions>
-                        <ComboBox Margin="5" 
+                        <!--<ComboBox Margin="5" 
                                  Name="cxbUserId"
                                  Grid.Column="0"
                                   ItemsSource="{Binding Path=UsersList}"
                                   DisplayMemberPath="LOGIN"
                                   SelectedValue="{Binding Path=SelectedUser}"
-                                 ></ComboBox>
+                                  SelectedIndex="{Binding Path=SelectedIndex}"
+                                 ></ComboBox>-->
+                        <ComboBox Margin="5" 
+                                 Name="cxbUserId"
+                                 Grid.Column="0"
+                                  ItemsSource="{Binding Path=UsersList}"
+                                  SelectedValue="{Binding Path=SelectedUser}"
+                                  SelectedIndex="{Binding Path=SelectedIndex}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" 
+                                    BorderBrush="Blue" 
+                                    CornerRadius="5" 
+                                    Margin="8" 
+                                    Padding="4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="2" Text="{Binding LOGIN}" />
+                                            <TextBlock Margin="2" Text="{Binding SURNAME_NAME}" />
+                                            <TextBlock Margin="2" Text="{Binding FIRST_NAME}" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <Button Grid.Column="1" 
                                 Margin="5"
                                 Content="Токен"

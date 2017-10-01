@@ -378,6 +378,36 @@
             <param name="ApduCmd">APDUCommand object with the APDU to send to the card</param>
             <returns>An APDUResponse object with the response from the card</returns>
         </member>
+        <member name="M:GemCard.CardNative.TransmitLe(GemCard.APDUCommand,System.UInt32,System.Boolean)">
+            <summary>
+            Wraps the PCSC function
+            LONG SCardTransmit(
+            	SCARDHANDLE hCard,
+            	LPCSCARD_I0_REQUEST pioSendPci,
+            	LPCBYTE pbSendBuffer,
+            	DWORD cbSendLength,
+            	LPSCARD_IO_REQUEST pioRecvPci,
+            	LPBYTE pbRecvBuffer,
+            	LPDWORD pcbRecvLength
+            );
+            </summary>
+            <param name="ApduCmd">APDUCommand object with the APDU to send to the card</param>
+            <returns>An APDUResponse object with the response from the card</returns>
+        </member>
+        <member name="M:GemCard.CardNative.TransmitImage(GemCard.APDUCommand)">
+            <summary>
+            
+            </summary>
+            <param name="ApduCmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GemCard.CardNative.TransmitImageLe(GemCard.APDUCommand,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="ApduCmd"></param>
+            <returns></returns>
+        </member>
         <!-- Badly formed XML comment ignored for member "M:GemCard.CardNative.BeginTransaction" -->
         <member name="M:GemCard.CardNative.EndTransaction(GemCard.DISCONNECT)">
             <summary>

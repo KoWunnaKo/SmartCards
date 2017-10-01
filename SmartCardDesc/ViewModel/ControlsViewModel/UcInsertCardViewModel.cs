@@ -27,6 +27,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
         public RelayCommand GetRfId { get; private set; }
 
+        public RelayCommand ContextChanged { get; private set; }
+
 
         public UcInsertCardViewModel()
         {
@@ -40,15 +42,45 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             GetRfId = new RelayCommand(_ => fGetRfId());
 
+            ContextChanged = new RelayCommand(_ => fContextChanged());
+
+            if (!string.IsNullOrEmpty(ViewModelBase.CurrentSelectedLogin))
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        UsersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                var defUser = _usersList.FirstOrDefault(c => c.LOGIN == ViewModelBase.CurrentSelectedLogin);
+
+                if (defUser != null)
+                {
+                    SelectedIndex = _usersList.IndexOf(defUser);
+
+                    SelectedUser = defUser;
+                }
+            }
+
             IssueDate = DateTime.Now.Date;
             ExpireDate = DateTime.Now.Date.AddYears(10);
 
             cardApiObj = new CardApiMessages();
 
             fGetNumber();
-            //fGetRfId();
+
+            fGetRfId();
 
             service = new EpiService();
+
+
         }
 
         private void fClearResults()
@@ -58,6 +90,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             Number = string.Empty;
             IssueDate = DateTime.MinValue;
             ExpireDate = DateTime.MinValue;
+        }
+
+        private void fContextChanged()
+        {
+            StatusText = "Загрузка...";
         }
 
         private async void fLoadResults()
@@ -120,7 +157,7 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             if (cardApiObj.Connect2Card() != 0)
             {
-                StatusText = "Unable to connect to Card";
+                StatusText = "Невазможно присоединиться к Карте";
 
                 return;
             }
@@ -251,7 +288,26 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                 UserId = _selectedUser.LOGIN;
 
+                ViewModelBase.CurrentSelectedLogin = UserId;
+
                 OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+
+            set
+            {
+                _selectedIndex = value;
+
+                OnPropertyChanged("SelectedIndex");
             }
         }
 
@@ -280,6 +336,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 }
 
                 return _usersList;
+            }
+            set
+            {
+                _usersList = value;
+
+                OnPropertyChanged("UsersList");
             }
         }
 

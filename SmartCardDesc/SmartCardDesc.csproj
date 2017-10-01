@@ -280,6 +280,7 @@
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Security\LoginModel.cs" />
     <Compile Include="ViewModel\Security\LoginViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="RibbonWindow.xaml.cs">
       <DependentUpon>RibbonWindow.xaml</DependentUpon>

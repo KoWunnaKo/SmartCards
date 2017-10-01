@@ -1,7 +1,27 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GID_Client.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RegisterCardAPI" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/cards</Value>
+    </Setting>
+    <Setting Name="GetCertificate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/cards/{0}/certificate </Value>
+    </Setting>
+    <Setting Name="LoginActivation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">activator</Value>
+    </Setting>
+    <Setting Name="PasswordActivation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">activator</Value>
+    </Setting>
+    <Setting Name="ActivationDLApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/activate/dl</Value>
+    </Setting>
+    <Setting Name="ActivationVRApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/activate/vl</Value>
+    </Setting>
+    <Setting Name="LoginApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/login</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

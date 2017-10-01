@@ -27,6 +27,31 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             GetCardInfo = new RelayCommand(_ => fGetCardInfo());
 
             service = new EpiService();
+
+            if (!string.IsNullOrEmpty(ViewModelBase.CurrentSelectedLogin))
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        UsersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+
+                var defUser = _usersList.FirstOrDefault(c => c.LOGIN == ViewModelBase.CurrentSelectedLogin);
+
+                if (defUser != null)
+                {
+                    SelectedIndex = _usersList.IndexOf(defUser);
+
+                    SelectedUser = defUser;
+                }
+            }
         }
 
         private void fGetToken()
@@ -131,7 +156,26 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                 UserId = _selectedUser.LOGIN;
 
+                ViewModelBase.CurrentSelectedLogin = UserId;
+
                 OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+
+            set
+            {
+                _selectedIndex = value;
+
+                OnPropertyChanged("SelectedIndex");
             }
         }
 
@@ -143,6 +187,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 try
                 {
+                    if (_usersList != null)
+                    {
+                        return _usersList;
+                    }
+
                     using (var context = new SmartCardDBEntities())
                     {
                         _usersList = context.USERS.ToList();
@@ -160,6 +209,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 }
 
                 return _usersList;
+            }
+            set
+            {
+                _usersList = value;
+
+                OnPropertyChanged("UsersList");
             }
         } 
 

@@ -5,3 +5,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DemoSCFmwk\bin\Debug\GemCard.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DemoSCFmwk\obj\Debug\DemoSCFmwk.csprojResolveAssemblyReference.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DemoSCFmwk\obj\Debug\DemoSCFmwk.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DemoSCFmwk\obj\Debug\DemoSCFmwk.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\DemoSCFmwk\bin\Debug\GemCard.xml

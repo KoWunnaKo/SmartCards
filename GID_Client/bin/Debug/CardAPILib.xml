@@ -166,7 +166,19 @@
             <param name="certificate"></param>
             <returns></returns>
         </member>
-        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCard">
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCardDR">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCardVR">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.SaveCertificateCardPKI">
             <summary>
             
             </summary>
@@ -378,11 +390,254 @@
             </summary>
             <param name="CAsize"></param>
         </member>
-        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.OpenCardCommands">
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.OpenCardCommands(CardAPILib.InterfaceCL.CardFactoryMode)">
             <summary>
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveCertificate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card2(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card3(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card4(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveeVr2Card(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommand(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandLe(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[],System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <param name="_recieveLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandLeData(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[],System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <param name="_recieveLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandLeImageData(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[],System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <param name="_recieveLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandImage(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadIDLCard(System.Byte[]@,System.Byte[]@,System.Byte[]@,System.Byte[]@,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadVRCard(System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="VrBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadVRCardNext(System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="VrBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadUniqueId(System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="uuid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.CardFactoryMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.BAC_CalculateTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CardAPILib.InterfaceCL.BAC_CalculateTest.PARITY">
+            
+                     * Constants that help in determining whether or not a byte array is parity
+            
+                     * adjusted.
+            
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.BAC_CalculateTest.CalcBAC_Res(System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="_rndIcc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.BAC_Calculate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CardAPILib.InterfaceCL.BAC_Calculate.PARITY">
+            
+                     * Constants that help in determining whether or not a byte array is parity
+            
+                     * adjusted.
+            
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.BAC_Calculate.CalcBAC_Res(System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="_rndIcc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.BAC_Calculate.calculateKENC(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.SecureMessaging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannelV1">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:Advanced_Device_Programming.Apdu.instructionClass">
             <summary>

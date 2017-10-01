@@ -22,7 +22,9 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
         public RelayCommand GetRsa { get; private set; }
 
         public RelayCommand SetCertificate { get; private set; }
-        
+
+        public RelayCommand GetFromKartCertificate { get; private set; }
+
 
         public UcGetCertificateViewModel()
         {
@@ -35,7 +37,34 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
             SetCertificate = new RelayCommand(_ => fSetCertificate());
 
+            GetFromKartCertificate = new RelayCommand(_ => fGetFromKartCertificate());
+
             cardApiObj = new CardApiController();
+
+            if (!string.IsNullOrEmpty(ViewModelBase.CurrentSelectedLogin))
+            {
+                try
+                {
+                    using (var context = new SmartCardDBEntities())
+                    {
+                        UsersList = context.USERS.ToList();
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                }
+
+                var defUser = _usersList.FirstOrDefault(c => c.LOGIN == ViewModelBase.CurrentSelectedLogin);
+
+                if (defUser != null)
+                {
+                    SelectedIndex = _usersList.IndexOf(defUser);
+
+                    SelectedUser = defUser;
+                }
+            }
         }
 
         private Task tGetCertificate()
@@ -90,9 +119,22 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                     //Download Certificate
                     var cert = SmartCardLogonCertApi.DownloadCert(id, serverAddress);
 
-                    _logService.Info(string.Format("certificate = {0}", cert));
+                    Certificate = string.Empty;
 
                     Certificate = cert;
+
+                    _logService.Info(string.Format("certificate = length {0} {1} ", cert.Length, cert));
+
+                    if (cert.Length > 8192)
+                    {
+                        
+                        _logService.Warn("Certificate Length more than 8192");
+
+                        StatusText = "Certificate Length more than 8192";
+
+                        return;
+
+                    }
 
                     //Save Certificate in DB
                     using (var context = new SmartCardDBEntities())
@@ -103,12 +145,20 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                         if (Card != null)
                         {
                             //Card.CERTIFICATE_FILE 
-                            Card.CERTIFICATE_BIN = Encoding.UTF8.GetBytes(cert);
+
+                            byte[] certOfByte = Encoding.UTF8.GetBytes(cert);
+
+                            if (certOfByte.Length < 4000 )
+                            {
+                                Card.CERTIFICATE_BIN = certOfByte;
+                            }
                         }
 
                         var user = context.USERS.ToList().FirstOrDefault(x => x.REC_ID == SelectedUser.REC_ID);
 
                         user.KEY_FLG = true;
+                        user.CERT_CRT_FLG = true;
+                        user.CERT_WRT_FLG = true;
 
                         context.SaveChanges();
                     }
@@ -179,9 +229,15 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                         var user = context.USERS.ToList().FirstOrDefault(x => x.REC_ID == SelectedUser.REC_ID);
 
                         user.KEY_FLG = true;
+                        user.CERT_CRT_FLG = true;
+                        user.CERT_WRT_FLG = true;
 
                         context.SaveChanges();
                     }
+
+                    fSetCertificate();
+
+                    fGetFromKartCertificate();
 
                     StatusText = string.Empty;
                 }
@@ -212,23 +268,58 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 if (cardApiObj.Connect2Card() != 0)
                 {
-                    StatusText = "Unable to connect to Card";
+                    StatusText = "Невазможно присоединиться к Карте";
                 }
 
-                if (!string.IsNullOrEmpty(Certificate))
+                if ((!string.IsNullOrEmpty(Certificate)) && (Certificate.Length <= 8192))
                 {
                     cardApiObj.adminPukCodeLogin(Properties.Settings.Default.AdminPINLogin);
 
                     cardApiObj.WriteCert(Certificate);
 
-                    StatusText = "Certificate Load Finished.";
+                    StatusText = "Запись сертификата завершена";
                 }
                 else
                 {
-                    StatusText = "Empty certificate or invalid length";
+                    StatusText = "Пустой сертификат или неверная длина";
                 }
             }
             catch(Exception ex)
+            {
+                StatusText = ex.Message;
+            }
+        }
+
+        private void fGetFromKartCertificate()
+        {
+            try
+            {
+                if (cardApiObj.Connect2Card() != 0)
+                {
+                    StatusText = "Невазможно присоединиться к Карте";
+                }
+
+                cardApiObj.adminPukCodeLogin(Properties.Settings.Default.AdminPINLogin);
+
+                string certOfCard = "Невалидный сертификат";
+
+                cardApiObj.LoadCert(out certOfCard);
+
+                if (string.IsNullOrEmpty(certOfCard))
+                {
+                    CertificateOnCard = "Невалидный сертификат";
+                }
+                else
+                {
+                    CertificateOnCard = "Сертификат валидный";
+                }
+
+                CertificateOnCard = certOfCard;
+
+                StatusText = "Прочнение сертификата удачно законченно";
+
+            }
+            catch (Exception ex)
             {
                 StatusText = ex.Message;
             }
@@ -242,12 +333,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 if (cardApiObj.Connect2Card() != 0)
                 {
-                    StatusText = "Unable to connect to Card";
+                    StatusText = "Невазможно присоединиться к Карте";
                 }
                 
                 cardApiObj.getPubKeyModule(out publicKey);
 
-                StatusText = "Public Key Load Finished";
+                StatusText = "Оькрытый ключ удачно прочтен";
 
             }
             catch(Exception ex)
@@ -332,9 +423,28 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
 
                 //GetCardPublicKeyInfo();
 
+                ViewModelBase.CurrentSelectedLogin = UserId;
+
                 IsIntermadiate = false;
 
                 OnPropertyChanged("SelectedUser");
+            }
+        }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+
+            set
+            {
+                _selectedIndex = value;
+
+                OnPropertyChanged("SelectedIndex");
             }
         }
 
@@ -346,6 +456,11 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
             {
                 try
                 {
+                    if (_usersList != null)
+                    {
+                        return _usersList;
+                    }
+
                     using (var context = new SmartCardDBEntities())
                     {
                         _usersList = context.USERS.ToList();
@@ -363,6 +478,12 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 }
 
                 return _usersList;
+            }
+            set
+            {
+                _usersList = value;
+
+                OnPropertyChanged("UsersList");
             }
         }
 
@@ -428,6 +549,24 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 _certificate = value;
 
                 OnPropertyChanged("Certificate");
+            }
+        }
+
+
+        private string _certificateOnCard;
+
+        public string CertificateOnCard
+        {
+            get
+            {
+                return _certificateOnCard;
+            }
+
+            set
+            {
+                _certificateOnCard = value;
+
+                OnPropertyChanged("CertificateOnCard");
             }
         }
 

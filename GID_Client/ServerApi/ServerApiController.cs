@@ -14,10 +14,12 @@ namespace GID_Client.ServerApi
 {
     public class ServerApiController
     {
+        public static string token { get; set; }
 
         public static getResponceCardInsert GetCertificate(string CardNumber)
         {
-            var _url = string.Format(@"http://192.168.0.68:8888/api/v1/cards/{0}/csr", CardNumber);
+            
+            var _url = string.Format(Properties.Settings.Default.GetCertificate, CardNumber);
 
             var client = new RestClient();
             client.EndPoint = _url;
@@ -30,14 +32,14 @@ namespace GID_Client.ServerApi
             //var cardJson = GetStrFromCardNumber(obj);
 
             //client.PostData = cardJson;
-            var xmlresult = client.MakeRequest("");
+            var xmlresult = client.MakeRequest(token);
 
             return ParseInputRequest(xmlresult);
         }
 
         public static getResponceCardInsert RegisterCard(string CardNumber)
         {
-            var _url = @"http://192.168.0.68:8888/api/v1/cards";
+            var _url = Properties.Settings.Default.RegisterCardAPI;
 
             var client = new RestClient();
             client.EndPoint = _url;
@@ -50,9 +52,60 @@ namespace GID_Client.ServerApi
             var cardJson = GetStrFromCardNumber(obj);
 
             client.PostData = cardJson;
-            var xmlresult = client.MakeRequest("");
+            var xmlresult = client.MakeRequest(token);
 
             return ParseInputRequest(xmlresult);
+        }
+
+        public static LoginResponce LoginReqRes(string login, string password)
+        {
+            var _url = Properties.Settings.Default.LoginApi;
+
+            var client = new RestClient();
+            client.EndPoint = _url;
+            client.Method = HttpVerb.POST;
+            
+            LoginRequest loginRequest = new LoginRequest();
+
+            loginRequest.Login = login;
+            loginRequest.Password = password;
+
+            var LoginJson = GetStrFromLogin(loginRequest);
+
+            client.PostData = LoginJson;
+
+            string xmlresult = string.Empty;
+
+            xmlresult = client.MakeRequest("");
+
+            
+            return ParseLoginResponce(xmlresult);
+        }
+
+        public static ActivationResponce SendBackEndActivation(bool isDL, string jsonStr)
+        {
+            string _url;
+
+            if (isDL)
+            {
+                _url = Properties.Settings.Default.ActivationDLApi;  
+            }
+            else
+            {
+                _url = Properties.Settings.Default.ActivationVRApi;
+            }
+
+            var client = new RestClient();
+            client.EndPoint = _url;
+            client.Method = HttpVerb.POST;
+
+            client.PostData = jsonStr;
+
+            string xmlresult = string.Empty;
+
+            xmlresult = client.MakeRequest(token);
+
+            return ParseActivationResponce(xmlresult);
         }
 
         private static string GetStrFromCardNumber(putCardRequest responce)
@@ -100,6 +153,73 @@ namespace GID_Client.ServerApi
 
             return request;
         }
+
+
+        private static string GetStrFromLogin(LoginRequest responce)
+        {
+            string resultString = string.Empty;
+
+            try
+            {
+                using (var stream1 = new MemoryStream())
+                {
+                    var ser = new DataContractJsonSerializer(typeof(LoginRequest));
+                    ser.WriteObject(stream1, responce);
+                    stream1.Position = 0;
+
+                    using (var sr = new StreamReader(stream1))
+                    {
+                        resultString = sr.ReadToEnd();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+
+            return resultString;
+        }
+
+        private static LoginResponce ParseLoginResponce(string message)
+        {
+            LoginResponce request = null;
+
+            try
+            {
+                using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(message)))
+                {
+                    var ser = new DataContractJsonSerializer(typeof(LoginResponce));
+                    request = (LoginResponce)ser.ReadObject(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return request;
+        }
+
+        private static ActivationResponce ParseActivationResponce(string message)
+        {
+            ActivationResponce request = null;
+
+            try
+            {
+                using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(message)))
+                {
+                    var ser = new DataContractJsonSerializer(typeof(ActivationResponce));
+                    request = (ActivationResponce)ser.ReadObject(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return request;
+        }
     }
 
     [DataContract]
@@ -125,8 +245,7 @@ namespace GID_Client.ServerApi
         public string _certificate { get; set; }
 
     }
-
-
+    
     [DataContract]
     public class getResponceCardInsert
     {
@@ -138,6 +257,65 @@ namespace GID_Client.ServerApi
 
         [DataMember(Name = "error_code")]
         public string _errorCode { get; set; }
+    }
+
+    [DataContract]
+    public class LoginRequest
+    {
+        [DataMember(Name = "login")]
+        public string Login { get; set; }
+
+        [DataMember(Name = "password")]
+        public string Password { get; set; }
+    }
+
+    [DataContract]
+    public class LoginResponce
+    {
+        [DataMember(Name = "data")]
+        public LoginResponceData data { get; set; }
+
+        [DataMember(Name = "status")]
+        public string Status { get; set; }
+    }
+
+
+    [DataContract]
+    public class LoginResponceData
+    {
+        /*
+        "full_name": "Default Activator",
+        "ubdd": null,
+        "token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY3RpdmF0b3IiLCJpc3MiOiJkbHV6LnV6Iiwib3duZXJfaWQiOjQsInNjb3BlcyI6WyJBQ1RJVkFUT1IiXX0.LbyiUpkAhLZ82hZO1prET3nYWJIFa6NXvKmSW3RYBt6mRi70U0IOgXWgqjemu4GroVnhEIcu4Qb05vaGbPmEdA"
+         */
+        [DataMember(Name = "full_name")]
+        public string FullName { get; set; }
+
+        [DataMember(Name = "ubdd")]
+        public string Ubdd { get; set; }
+
+        [DataMember(Name = "token")]
+        public string Token { get; set; }
+    }
+
+    [DataContract]
+    public class ActivationResponce
+    {
+        [DataMember(Name = "data")]
+        public ActivationResponceData _data { get; set; }
+
+        [DataMember(Name = "status")]
+        public string _status { get; set; }
+
+        [DataMember(Name = "error_code")]
+        public string _error_code { get; set; }
+    }
+
+    [DataContract]
+    public class ActivationResponceData
+    {
+        [DataMember(Name = "message")]
+        public string _message { get; set; }
     }
 
 
@@ -265,10 +443,15 @@ namespace GID_Client.ServerApi
             request.ContentType = ContentType;
             //request.Headers.Add("SOAPAction", "/mediate/ips/OneId/" + parameters);
 
-            String username = "user";
-            String password = "dluz-backend";
-            String encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
+            string username = "user";
+            string password = "dluz-backend";
+            string encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
             request.Headers.Add("Authorization", "Basic " + encoded);
+
+            if (!string.IsNullOrEmpty(parameters))
+            {
+                request.Headers.Add("X-Authorization", parameters);
+            }
 
             if (!string.IsNullOrEmpty(PostData) && Method == HttpVerb.POST)
             {
@@ -286,11 +469,11 @@ namespace GID_Client.ServerApi
             {
                 var responseValue = string.Empty;
 
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    var message = String.Format("Request failed. Received HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
-                }
+                //if (response.StatusCode != HttpStatusCode.OK)
+                //{
+                //    var message = String.Format("Request failed. Received HTTP {0}", response.StatusCode);
+                //    throw new ApplicationException(message);
+                //}
 
                 // grab the response
                 using (var responseStream = response.GetResponseStream())

@@ -43,7 +43,7 @@ namespace GID_Client
         private void btnUserInfolist_Click(object sender, RoutedEventArgs e)
         {
             spPanel.Children.Clear();
-            var uObject = new VoditelPravaView();
+            var uObject = new IDL_View();
             spPanel.Children.Add(uObject);
         }
 

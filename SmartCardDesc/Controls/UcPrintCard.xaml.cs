@@ -37,9 +37,10 @@ namespace SmartCardDesc.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             context.PrinterViews.Load();
 
-            printerViewSource.Source = context.PrinterViews.AsNoTracking().ToList();
+            printerViewSource.Source = context.PrinterViews.AsNoTracking().ToList().Distinct();
 
             // Do not load your data at design time.
             // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))

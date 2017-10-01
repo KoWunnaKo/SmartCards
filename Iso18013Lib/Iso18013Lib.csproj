@@ -54,7 +54,12 @@
     <None Include="Communication\VehicleRegistration.json" />
     <None Include="Communication\VehicleRegistrationPrivate.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Iso18013LibV2\Iso18013LibV2\Iso18013LibV2.csproj">
+      <Project>{aaaf3779-aa0c-49a4-a3e7-761f3308a0ce}</Project>
+      <Name>Iso18013LibV2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

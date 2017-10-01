@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\App.xaml
-5-949534442
+9-1233218201
 
-161253817852
-16-729352186
-MainWindow.xaml;Views\CertificateMngView.xaml;Views\InitCardView.xaml;Views\TexPasportView.xaml;Views\VoditelPravaView.xaml;
+25511630131
+261631575605
+MainWindow.xaml;MondatoryWindow.xaml;Views\CertificateMngView.xaml;Views\IDL_View.xaml;Views\InitCardView.xaml;Views\LoginWindow.xaml;Views\TexPasportView.xaml;Views\VoditelPravaView.xaml;VLDataChecker.xaml;
 
 False
 

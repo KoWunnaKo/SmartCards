@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -737,6 +738,186 @@ namespace GemCard
 			return new APDUResponse(ApduData);
 		}
 
+        /// <summary>
+        /// Wraps the PCSC function
+        /// LONG SCardTransmit(
+        ///		SCARDHANDLE hCard,
+        ///		LPCSCARD_I0_REQUEST pioSendPci,
+        ///		LPCBYTE pbSendBuffer,
+        ///		DWORD cbSendLength,
+        ///		LPSCARD_IO_REQUEST pioRecvPci,
+        ///		LPBYTE pbRecvBuffer,
+        ///		LPDWORD pcbRecvLength
+        ///	);
+        /// </summary>
+        /// <param name="ApduCmd">APDUCommand object with the APDU to send to the card</param>
+        /// <returns>An APDUResponse object with the response from the card</returns>
+        public APDUResponse TransmitLe(APDUCommand ApduCmd, uint _RecvLength = 0, bool isInstall= false)
+        {
+            uint RecvLength = (uint)(_RecvLength + APDUResponse.SW_LENGTH);
+            byte[] ApduBuffer = null;
+            byte[] ApduResponse = new byte[_RecvLength + APDUResponse.SW_LENGTH];
+            SCard_IO_Request ioRequest = new SCard_IO_Request();
+            ioRequest.m_dwProtocol = m_nProtocol;
+            ioRequest.m_cbPciLength = 8;
+
+            // Build the command APDU
+            if (ApduCmd.Data == null)
+            {
+                ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 1];
+
+                ApduBuffer[4] = (byte)ApduCmd.Le;
+            }
+            else
+            {
+                ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 2 + ApduCmd.Data.Length];
+
+                int nI = 0;
+
+                for (nI = 0; nI < ApduCmd.Data.Length; nI++)
+                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1 + nI] = ApduCmd.Data[nI];
+
+                ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = (byte)ApduCmd.Data.Length;
+
+                if (!isInstall)
+                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH + ApduCmd.Data.Length+1] = (byte)ApduCmd.Le;
+            }
+
+            ApduBuffer[0] = ApduCmd.Class;
+            ApduBuffer[1] = ApduCmd.Ins;
+            ApduBuffer[2] = ApduCmd.P1;
+            ApduBuffer[3] = ApduCmd.P2;
+
+            m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint)ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength);
+            if (m_nLastError != 0)
+            {
+                string msg = "SCardTransmit error: " + m_nLastError;
+                throw new Exception(msg);
+            }
+
+            byte[] ApduData = new byte[RecvLength];
+
+            for (int nI = 0; nI < RecvLength; nI++)
+                ApduData[nI] = ApduResponse[nI];
+
+            return new APDUResponse(ApduData);
+        }
+
+
+        private byte[] Int2ByteArray(int val)
+        {
+            int intValue = val;
+            byte[] intBytes = BitConverter.GetBytes(intValue);
+            Array.Reverse(intBytes);
+            byte[] result = intBytes;
+
+            List<byte> ll = new List<byte>();
+
+            ll.Add(result[1]);
+            ll.Add(result[2]);
+            ll.Add(result[3]);
+
+            return ll.ToArray();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ApduCmd"></param>
+        /// <returns></returns>
+        public APDUResponse TransmitImage(APDUCommand ApduCmd)
+        {
+            uint RecvLength = (uint)(ApduCmd.Le + APDUResponse.SW_LENGTH);
+            byte[] ApduBuffer = null;
+            byte[] ApduResponse = new byte[ApduCmd.Le + APDUResponse.SW_LENGTH];
+            SCard_IO_Request ioRequest = new SCard_IO_Request();
+            ioRequest.m_dwProtocol = m_nProtocol;
+            ioRequest.m_cbPciLength = 8;
+
+            // Build the command APDU
+            if (ApduCmd.Data == null)
+            {
+                ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + ((ApduCmd.Le != 0) ? 1 : 0)];
+
+                if (ApduCmd.Le != 0)
+                    ApduBuffer[4] = (byte)ApduCmd.Le;
+            }
+            else
+            {
+                ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 3 + ApduCmd.Data.Length];
+
+                for (int nI = 0; nI < ApduCmd.Data.Length; nI++)
+                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 3 + nI] = ApduCmd.Data[nI];
+
+                byte[] Len = Int2ByteArray(ApduCmd.Data.Length);
+
+                ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = Len[0];
+                ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1] = Len[1];
+                ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 2] = Len[2];
+
+            }
+
+            ApduBuffer[0] = ApduCmd.Class;
+            ApduBuffer[1] = ApduCmd.Ins;
+            ApduBuffer[2] = ApduCmd.P1;
+            ApduBuffer[3] = ApduCmd.P2;
+
+            m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint)ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength);
+            if (m_nLastError != 0)
+            {
+                string msg = "SCardTransmit error: " + m_nLastError;
+                throw new Exception(msg);
+            }
+
+            byte[] ApduData = new byte[RecvLength];
+
+            for (int nI = 0; nI < RecvLength; nI++)
+                ApduData[nI] = ApduResponse[nI];
+
+            return new APDUResponse(ApduData);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ApduCmd"></param>
+        /// <returns></returns>
+        public APDUResponse TransmitImageLe(APDUCommand ApduCmd, uint _RecvLength = 0)
+        {
+            uint RecvLength = (uint)(_RecvLength + APDUResponse.SW_LENGTH);
+            byte[] ApduBuffer = null;
+            byte[] ApduResponse = new byte[_RecvLength + APDUResponse.SW_LENGTH];
+            SCard_IO_Request ioRequest = new SCard_IO_Request();
+            ioRequest.m_dwProtocol = m_nProtocol;
+            ioRequest.m_cbPciLength = 8;
+
+            byte[] Len = Int2ByteArray((int)_RecvLength);
+
+            ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 3];
+
+            ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = Len[0];
+            ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1] = Len[1];
+            ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 2] = Len[2];
+
+
+            ApduBuffer[0] = ApduCmd.Class;
+            ApduBuffer[1] = ApduCmd.Ins;
+            ApduBuffer[2] = ApduCmd.P1;
+            ApduBuffer[3] = ApduCmd.P2;
+
+            m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint)ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength);
+            if (m_nLastError != 0)
+            {
+                string msg = "SCardTransmit error: " + m_nLastError;
+                throw new Exception(msg);
+            }
+
+            byte[] ApduData = new byte[RecvLength];
+
+            for (int nI = 0; nI < RecvLength; nI++)
+                ApduData[nI] = ApduResponse[nI];
+
+            return new APDUResponse(ApduData);
+        }
 
         /// <summary>
         /// Wraps the PSCS function

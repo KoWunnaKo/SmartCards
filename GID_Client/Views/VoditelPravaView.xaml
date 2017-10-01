@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GID_Client.Views"
              mc:Ignorable="d" 
+             xmlns:l="clr-namespace:GID_Client.ViewModel" 
              Background="White"
-             d:DesignHeight="850" d:DesignWidth="300">
+             d:DesignHeight="660" d:DesignWidth="600">
+    <UserControl.Resources>
+        <l:Base64ImageConverter x:Key="Base64ImageConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -14,8 +18,9 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
@@ -28,131 +33,165 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="240"/>
-                <RowDefinition Height="35*"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
                    Text="Фамилия"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="0" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding LastName}"></TextBox>
 
             <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
                    Text="Имя"
+                  HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="1" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding FirstName}"></TextBox>
 
             <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
                    Text="Отчество"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="2" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding MiddleName}"></TextBox>
 
             <TextBlock Grid.Row="3" 
                    Grid.Column="0" 
                    Text="Дата рождения"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <DatePicker Grid.Row="3" 
                    Grid.Column="1" 
-                   Margin="5"></DatePicker>
+                   Margin="5"
+                        SelectedDate="{Binding BirthDate}"></DatePicker>
 
             <TextBlock Grid.Row="4" 
                    Grid.Column="0" 
                    Text="Место рождения"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="4" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding BirthPlace}"></TextBox>
 
             <TextBlock Grid.Row="5" 
                    Grid.Column="0" 
                    Text="Дата выдачи"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <DatePicker Grid.Row="5" 
                    Grid.Column="1" 
-                   Margin="5"></DatePicker>
+                   Margin="5"
+                        SelectedDate="{Binding IssueDate}"></DatePicker>
 
             <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
                    Text="Место выдачи"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="6" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding GivenPlace}"></TextBox>
 
             <TextBlock Grid.Row="7"  
                    Grid.Column="0" 
                    Text="Срок годности"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <DatePicker Grid.Row="7" 
                    Grid.Column="1" 
-                   Margin="5"></DatePicker>
+                   Margin="5"
+                        SelectedDate="{Binding ExpireDate}"></DatePicker>
 
             <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
+                   HorizontalAlignment="Right"
                    Text="Серия и Номер Прав"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="8" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding LicenseNumber}"></TextBox>
 
             <TextBlock Grid.Row="9" 
                    Grid.Column="0" 
-                   Text="Серия и Номер Талона"
+                   Text="Адрес"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="9" 
                    Grid.Column="1" 
-                   Margin="5"></TextBox>
+                   Margin="5"
+                     Text="{Binding FullAdress}"></TextBox>
 
             <TextBlock Grid.Row="10" 
                    Grid.Column="0" 
-                   Text="Подпись"
+                   Text="ПНФЛ"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-            <Image Grid.Row="10" 
+            <TextBox Grid.Row="10" 
                    Grid.Column="1" 
-                   Name="SignPhoto" Source="/GID_Client;component/ResourcesPic/Prohibition_signs_No_camera_photographs-256.png"
+                   Margin="5"
+                     Text="{Binding PNFL}"></TextBox>
+
+            <Border Grid.RowSpan="14" 
+                    BorderBrush="Black" BorderThickness="2"
+                    Grid.Column="2" Margin="5" > 
+                <StackPanel>
+
+                    <Image  
+                   Height="80"
+                   Width="Auto"
+                   Name="SignPhoto" 
+                   Source="{Binding Base64ImageData2, Converter={StaticResource Base64ImageConverter}}"
                    ></Image>
 
-            <TextBlock Grid.Row="11" 
-                   Grid.Column="0" 
-                   Text="Фотография"
-                       
-                   Margin="5"></TextBlock>
-
-            <Image Grid.Row="11" 
+                    <Image 
                    Name="PortraitPhoto"
-                   Grid.Column="1" Source="/GID_Client;component/ResourcesPic/Prohibition_signs_No_camera_photographs-256.png" ></Image>
+                        Height="Auto"
+                        Width="Auto"
+                   Grid.Column="2" 
+                   Source="{Binding Base64ImageData, Converter={StaticResource Base64ImageConverter}}" ></Image>
 
-            <TextBlock Grid.Row="12" 
+                </StackPanel>
+            </Border>
+
+            <TextBlock Grid.Row="13" 
                    Grid.ColumnSpan="2"
                    Text="Виды транспорта разрешенные для управления"
                    Margin="5"></TextBlock>
 
             <Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Top"
-                Grid.Row="13" Grid.ColumnSpan="2" >
-                    <Grid Grid.Row="13" Grid.ColumnSpan="2">
+                Grid.Row="14" Grid.ColumnSpan="2" >
+                    <Grid Grid.Row="14" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30*"/>
                             <RowDefinition Height="50*"/>
@@ -162,91 +201,118 @@
                             <RowDefinition Height="50*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="120*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="80*"/>
                             <ColumnDefinition Width="60*"/>
                             <ColumnDefinition Width="20*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="1" 
                    Grid.Column="0"
                    Text="A"
+                                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="0" 
                    Grid.Column="2"
                    Text="Дата выдачи"
-                   Margin="5"></TextBlock>
+                   ></TextBlock>
                         <CheckBox Grid.Row="1" 
                    Grid.Column="3"
-                                  Margin="2"></CheckBox>
+                                  Margin="2"
+                                  IsChecked="{Binding CheckedA}"></CheckBox>
                         <CheckBox Grid.Row="2" 
-                   Grid.Column="3" Margin="2"></CheckBox>
+                   Grid.Column="3" Margin="2"
+                                  IsChecked="{Binding CheckedB}"></CheckBox>
                         <CheckBox Grid.Row="3" 
-                   Grid.Column="3" Margin="2"></CheckBox>
+                   Grid.Column="3" Margin="2"
+                                  IsChecked="{Binding CheckedC}"></CheckBox>
                         <CheckBox Grid.Row="4" 
-                   Grid.Column="3" Margin="2"></CheckBox>
+                   Grid.Column="3" Margin="2"
+                                  IsChecked="{Binding CheckedD}"></CheckBox>
                         <CheckBox Grid.Row="5" 
-                   Grid.Column="3" Margin="2"></CheckBox>
+                   Grid.Column="3" Margin="2"
+                                  IsChecked="{Binding CheckedE}"></CheckBox>
                         <DatePicker Grid.Row="1" 
-                   Grid.Column="2"></DatePicker>
+                   Grid.Column="2"
+                                    SelectedDate="{Binding IssueA}"></DatePicker>
                         <DatePicker Grid.Row="2" 
-                   Grid.Column="2"></DatePicker>
+                   Grid.Column="2"
+                                    SelectedDate="{Binding IssueB}"></DatePicker>
                         <DatePicker Grid.Row="3" 
-                   Grid.Column="2"></DatePicker>
+                   Grid.Column="2"
+                                    SelectedDate="{Binding IssueC}"></DatePicker>
                         <DatePicker Grid.Row="4" 
-                   Grid.Column="2"></DatePicker>
+                   Grid.Column="2"
+                                    SelectedDate="{Binding IssueD}"></DatePicker>
                         <DatePicker Grid.Row="5" 
-                   Grid.Column="2"></DatePicker>
+                   Grid.Column="2"
+                                    SelectedDate="{Binding IssueE}"></DatePicker>
                         <TextBlock Grid.Row="1" 
                    Grid.Column="1"
                    Text="Мотоцикл"
+                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="2" 
                    Grid.Column="0"
                    Text="B"
+                    HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="2" 
                    Grid.Column="1"
                    Text="Легковой автомобиль"
+                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="3" 
                    Grid.Column="0"
                    Text="C"
+                            HorizontalAlignment="Center"       
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="3" 
                    Grid.Column="1"
                    Text="Грузовой автомобиль"
+                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="4" 
                    Grid.Column="0"
                    Text="D"
+                                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="4" 
                    Grid.Column="1"
                    Text="Перевозка пассажира"
+                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="5" 
                    Grid.Column="0"
                    Text="E"
+                                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                         <TextBlock Grid.Row="5" 
                    Grid.Column="1"
                    Text="Прицеп"
+                   HorizontalAlignment="Center"
                    Margin="5"></TextBlock>
                     </Grid>
             </Border>
-            <Button Grid.Row="14" Grid.Column="0"
+            <Grid Grid.Row="15" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="15" Grid.Column="0"
                     Margin="5"
-                    Content="Сохранить на карту">     
-            </Button>
+                    Content="Прочитать с карты"
+                        Command="{Binding ReadCard}">
+                </Button>
+                <Button Grid.Row="15" Grid.Column="1"
+                    Margin="5"
+                    Content="Сохранить">
+                </Button>
+            </Grid>
 
-            <Button Grid.Row="14" Grid.Column="1"
-                    Margin="5"
-                    Content="Сохранить на сервере">
-            </Button>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
-                Grid.Row="2">
+                Grid.Row="2" Grid.ColumnSpan="3">
             <StackPanel  HorizontalAlignment="Left"
                              VerticalAlignment="Bottom"
 				Orientation="Horizontal">

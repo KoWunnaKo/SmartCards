@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartCardDesc.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="340" d:DesignWidth="300"
+             d:DesignHeight="500" d:DesignWidth="300"
              Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,6 +19,9 @@
             <RowDefinition Height="34*"/>
             <RowDefinition Height="88"/>
             <RowDefinition Height="34*"/>
+            <RowDefinition Height="88"/>
+            <RowDefinition Height="34*"/>
+
             <RowDefinition Height="26*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -34,7 +37,7 @@
                    Margin="10,0,0,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Center" ></TextBlock>
-        <ComboBox Grid.Column="1"
+        <!--<ComboBox Grid.Column="1"
                    Grid.Row="0"
                    Margin="5,10,5,0"
                   Name="cbxUserList"
@@ -43,7 +46,33 @@
                   Height="21"
                   ItemsSource="{Binding Path=UsersList}"
                   DisplayMemberPath="LOGIN"
-                  SelectedValue="{Binding Path=SelectedUser}"></ComboBox>
+                  SelectedValue="{Binding Path=SelectedUser}"
+                  SelectedIndex="{Binding Path=SelectedIndex}"></ComboBox>-->
+        <ComboBox Grid.Column="1"
+                   Grid.Row="0"
+                   Margin="5,10,5,0"
+                  Name="cbxUserList"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center" 
+                  ItemsSource="{Binding Path=UsersList}"
+                  SelectedValue="{Binding Path=SelectedUser}"
+                  SelectedIndex="{Binding Path=SelectedIndex}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" 
+                                    BorderBrush="Blue" 
+                                    CornerRadius="5" 
+                                    Margin="8" 
+                                    Padding="4">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2" Text="{Binding LOGIN}" />
+                            <TextBlock Margin="2" Text="{Binding SURNAME_NAME}" />
+                            <TextBlock Margin="2" Text="{Binding FIRST_NAME}" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Button
                    Grid.Column="1"
                    Grid.Row="3"
@@ -77,6 +106,7 @@
         <TextBox Grid.Column="1"
                    Grid.Row="2"
                  Margin="5"
+                 AcceptsReturn="True"
                  Text="{Binding Modules}" 
                  TextWrapping="Wrap"></TextBox>
         <TextBlock Grid.Column="0"
@@ -90,6 +120,7 @@
                    Grid.Row="4"
                  Margin="5"
                  TextWrapping="Wrap"
+                 AcceptsReturn="True"
                  Text="{Binding Certificate}"></TextBox>
         <Button
                    Grid.Column="1"
@@ -97,7 +128,29 @@
                    Margin="5"
                     Content="Запись Сертификата"
                     Command="{Binding SetCertificate}"></Button>
-        <Border Grid.Row="6" 
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="6"
+                   Text="На Карте"
+                   Margin="10,0,0,0"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center" 
+          ></TextBlock>
+        <TextBox Grid.Column="1"
+                   Grid.Row="6"
+                 Margin="5"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Text="{Binding CertificateOnCard}"></TextBox>
+        <Button
+                   Grid.Column="1"
+                   Grid.Row="7"
+                   Margin="5"
+                    Content="Получить Сертификата"
+                    Command="{Binding GetFromKartCertificate}"></Button>
+
+
+        <Border Grid.Row="8" 
                 Grid.ColumnSpan="2" 
                 BorderBrush="Black" 
                 BorderThickness="2"

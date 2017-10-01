@@ -1,0 +1,13 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\bin\x86\Debug\CSharp_Samples_for_Mifare_Cards.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\bin\x86\Debug\CSharp_Samples_for_Mifare_Cards.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\Window1.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\Window1.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\App.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards_MarkupCompile.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.g.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.AboutBox.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.Properties.Resources.resources
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.csproj.GenerateResource.Cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CSharp_Samples_for_Mifare_Cards\obj\x86\Debug\CSharp_Samples_for_Mifare_Cards.pdb

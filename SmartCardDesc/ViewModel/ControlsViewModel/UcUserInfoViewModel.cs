@@ -125,6 +125,8 @@ namespace SmartCardDesc.ViewModel.ControlsViewModel
                 {
                     await UserInfo.InsertUserInfoEnt();
 
+                    ViewModelBase.CurrentSelectedLogin = UserInfo.userId;
+
                     StatusText = "Загрузка прошла удачно...";
                 }
                 

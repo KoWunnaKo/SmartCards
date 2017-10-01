@@ -1,0 +1,6 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment2\bin\Debug\CryptoExperiment2.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment2\bin\Debug\CryptoExperiment2.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment2\bin\Debug\CryptoExperiment2.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment2\obj\Debug\CryptoExperiment2.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment2\obj\Debug\CryptoExperiment2.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment2\obj\Debug\CryptoExperiment2.pdb

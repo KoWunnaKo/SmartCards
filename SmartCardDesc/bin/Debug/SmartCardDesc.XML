@@ -264,6 +264,11 @@
             UcInsertCard
             </summary>
         </member>
+        <member name="M:SmartCardDesc.Controls.UcInsertCard.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:SmartCardDesc.Controls.UcInsertCard.InitializeComponent">
             <summary>
             InitializeComponent
@@ -1237,6 +1242,26 @@
             </summary>
         </member>
         <member name="P:SmartCardDesc.ViewModel.ControlsViewModel.UcUpdateCardViewModel.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SmartCardDesc.ViewModel.SettingsViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.SettingsViewModel.CurrentSelectedLogin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SmartCardDesc.ViewModel.ViewModelBase.CurrentSelectedLogin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:SmartCardDesc.ViewModel.ViewModelBase.PropertyChanged">
             <summary>
             
             </summary>

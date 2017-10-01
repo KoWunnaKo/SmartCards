@@ -14,14 +14,14 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
@@ -33,15 +33,18 @@
             <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
                    Text="Ридер"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
             <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
                    Text="Статус Карты"
+                       HorizontalAlignment="Right"
                    Margin="5"
-></TextBlock>
+            ></TextBlock>
             <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
                    Text="Уникальный Ид"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="0" 
@@ -54,17 +57,31 @@
                      Text="{Binding MycardStatus}"
                      Background="{Binding BackgroundTb}"
                      Foreground="{Binding ForegroundTb}"
-></TextBox>
+            ></TextBox>
             <TextBox Grid.Row="2" 
                    Grid.Column="1" 
                    Margin="5"
                      Text="{Binding MyUIDofCard}"></TextBox>
 
-            <Button Grid.Row="3" 
-                   Grid.Column="1"
-                Content="Открыть Карту"
-                Margin="5"
-                    Command="{Binding OpenCard}"></Button>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" 
+                   Grid.Column="0"
+                    Content="Открыть Водительские Права"
+                    Margin="5"
+                    Command="{Binding OpenCardDR}"></Button>
+
+                <Button Grid.Row="1" 
+                    Grid.Column="0"
+                    Content="Открыть Тех. Паспорт"
+                    Margin="5"
+                    Command="{Binding OpenCardVR}"></Button>
+            </Grid>
+            
+
 
             <Button Grid.Row="4" 
                    Grid.Column="1"
@@ -74,11 +91,13 @@
 
             <TextBlock Grid.Row="5" 
                    Grid.Column="0" 
+                       HorizontalAlignment="Right"
                    Text="Закрытый ключ"
                    Margin="5"></TextBlock>
             <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
                    Text="Открытый ключ"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="5" 
@@ -107,6 +126,7 @@
             <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
                    Text="Сертификат"
+                       HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
             <TextBox Grid.Row="8" 

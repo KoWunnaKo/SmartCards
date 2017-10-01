@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using GemCard;
 using log4net;
 using System.Security.Cryptography;
@@ -37,6 +36,8 @@ namespace CardAPILib.InterfaceCL
 
         const ushort SC_OK = 0x9000;
         const byte SC_PENDING = 0x9F;
+
+        const ushort SC_FileEnd = 0x6282;
 
         public int Connect2Card()
         {
@@ -833,9 +834,6 @@ namespace CardAPILib.InterfaceCL
 
             return 0;
         }
-
-
-
 
     }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Iso18013LibV2.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,8 +74,8 @@ namespace Iso18013Lib.DGs
                     }
                     else
                     {
-                        //Array.Copy(Hex.hexStringToBytes(s), 0, result,
-                        //        offset, 4);
+                        Array.Copy(Hex.hexStringToBytes(s), 0, result,
+                                offset, 4);
                         offset += 4;
                     }
                 }

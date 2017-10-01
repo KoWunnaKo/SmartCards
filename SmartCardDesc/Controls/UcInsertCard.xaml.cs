@@ -1,4 +1,5 @@
-﻿using SmartCardDesc.ViewModel.ControlsViewModel;
+﻿using SmartCardDesc.ViewModel;
+using SmartCardDesc.ViewModel.ControlsViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,19 @@ namespace SmartCardDesc.Controls
     /// </summary>
     public partial class UcInsertCard : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public UcInsertCard()
         {
             InitializeComponent();
 
             DataContext = new UcInsertCardViewModel();
+        }
+
+        private void txbUserId_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            string selectedLogin = ViewModelBase.CurrentSelectedLogin;
         }
     }
 }

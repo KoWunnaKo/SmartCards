@@ -1,0 +1,4 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\bin\Release\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\obj\Release\GemCard.csproj.ResolveComReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\obj\Release\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GemCard\obj\Release\GemCard.csprojResolveAssemblyReference.cache

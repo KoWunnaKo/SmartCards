@@ -1,0 +1,10 @@
+C:\RAD SOFT\PROJECTS\AutoTest\MRTD.NET-master\MRTD.NET-master\Iso18013LibV2\bin\Debug\Iso18013LibV2.dll
+C:\RAD SOFT\PROJECTS\AutoTest\MRTD.NET-master\MRTD.NET-master\Iso18013LibV2\bin\Debug\Iso18013LibV2.pdb
+C:\RAD SOFT\PROJECTS\AutoTest\MRTD.NET-master\MRTD.NET-master\Iso18013LibV2\obj\Debug\Iso18013LibV2.dll
+C:\RAD SOFT\PROJECTS\AutoTest\MRTD.NET-master\MRTD.NET-master\Iso18013LibV2\obj\Debug\Iso18013LibV2.pdb
+C:\RAD SOFT\PROJECTS\AutoTest\MRTD.NET-master\MRTD.NET-master\Iso18013LibV2\obj\Debug\Iso18013LibV2.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\bin\Debug\Iso18013LibV2.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\bin\Debug\Iso18013LibV2.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\obj\Debug\Iso18013LibV2.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\obj\Debug\Iso18013LibV2.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\obj\Debug\Iso18013LibV2.csprojResolveAssemblyReference.cache

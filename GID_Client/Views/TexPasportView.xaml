@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GID_Client.Views"
              mc:Ignorable="d" 
              Background="White"
-             d:DesignHeight="700" d:DesignWidth="300">
+             d:DesignHeight="610" d:DesignWidth="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -26,223 +26,404 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        
-        
-        <TextBlock Grid.Row="0" 
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
-                   Text="Номер и Серия"
+                   Text="Тип владельца"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="0" 
+            <TextBox Grid.Row="0" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Owner_type}"></TextBox>
 
-        <TextBlock Grid.Row="1" 
+
+            <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
-                   Text="Владелец"
+                   Text="Адрес"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="1" 
+            <TextBox Grid.Row="1" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Company1_address2_address}"></TextBox>
 
-        <TextBlock Grid.Row="2" 
+            <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
-                   Text="Область, город"
+                   Text="Вилоят"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="2" 
+            <TextBox Grid.Row="2" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Company1_address2_region_name}"></TextBox>
 
-        <TextBlock Grid.Row="3" 
+            <TextBlock Grid.Row="3" 
                    Grid.Column="0" 
-                   Text="Регион"
+                   Text="Туман"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="3" 
+            <TextBox Grid.Row="3" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Company1_address2_rayon_name}"></TextBox>
 
-        <TextBlock Grid.Row="4" 
+            <TextBlock Grid.Row="4" 
                    Grid.Column="0" 
-                   Text="Улица"
+                   Text="Номи"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="4" 
+            <TextBox Grid.Row="4" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
-
-        <TextBlock Grid.Row="5" 
+                 Margin="5"
+                 Text="{Binding Company1_name}"></TextBox>
+            
+            
+                        <TextBlock Grid.Row="4" 
                    Grid.Column="0" 
-                   Text="Место выдачи"
+                   Text="Номи"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="5" 
+            <TextBox Grid.Row="4" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
-
-        <TextBlock Grid.Row="6" 
+                 Margin="5"
+                 Text="{Binding Company1_name}"></TextBox>
+            
+            
+            <TextBlock Grid.Row="5" 
                    Grid.Column="0" 
-                   Text="Дом"
+                   Text="Фамилия"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="6" 
+            <TextBox Grid.Row="5" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Owner_last_name}"></TextBox>
 
-        <TextBlock Grid.Row="7" 
+
+            <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
-                   Text="Квартира"
+                   Text="Исми"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="7" 
+            <TextBox Grid.Row="6" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Owner_first_name}"></TextBox>
 
-        <TextBlock Grid.Row="8" 
+            <TextBlock Grid.Row="7" 
                    Grid.Column="0" 
-                   Text="Особые признаки"
+                   Text="Отасининг Исми"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="8" 
+            <TextBox Grid.Row="7" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Owner_middle_name}"></TextBox>
 
-        <TextBlock Grid.Row="9" 
+
+            <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
-                   Text="Орган выдачи"
+                   Text="ПНФЛ"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="9" 
+            <TextBox Grid.Row="8" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Pinfl}"></TextBox>
 
-        <TextBlock Grid.Row="10" 
+            <TextBlock Grid.Row="9" 
                    Grid.Column="0" 
-                   Text="Номер гос. регистрации"
+                   Text="ИНН"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="10" 
+            <TextBox Grid.Row="9" 
                    Grid.Column="1" 
-                 Margin="5"></TextBox>
+                 Margin="5"
+                 Text="{Binding Company1_inn}"></TextBox>
 
-        <TextBlock Grid.Row="11" 
-                   Grid.Column="0" 
-                   Text="Модель"
+            <TextBlock Grid.Row="0" 
+                   Grid.Column="2" 
+                   Text="Давлат рақами белгиси"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="11" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="0" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_reg_number}"></TextBox>
 
-        <TextBlock Grid.Row="12" 
-                   Grid.Column="0" 
-                   Text="Т/В Тип"
+            <TextBlock Grid.Row="1" 
+                   Grid.Column="2" 
+                   Text="Русуми"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="12" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="1" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_model_name}"></TextBox>
 
-        <TextBlock Grid.Row="13" 
-                   Grid.Column="0" 
-                   Text="№ Двигателя"
+            <TextBlock Grid.Row="2" 
+                   Grid.Column="2" 
+                   Text="Маркаси"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="13" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="2" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Mark_name}"></TextBox>
 
-        <TextBlock Grid.Row="14" 
-                   Grid.Column="0" 
-                   Text="№ Кузова"
+            <TextBlock Grid.Row="3" 
+                   Grid.Column="2" 
+                   Text="Ранги"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="14" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="3" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_color_name}"></TextBox>
 
-        <TextBlock Grid.Row="15" 
-                   Grid.Column="0" 
-                   Text="№ Шасси"
+            <TextBlock Grid.Row="4" 
+                   Grid.Column="2" 
+                   Text="Ишлаб чиқарилган йили"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="15" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="4" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_vehicle_manufacture_year}"></TextBox>
 
-        <TextBlock Grid.Row="16" 
-                   Grid.Column="0" 
-                   Text="Цвет"
+
+            <TextBlock Grid.Row="5" 
+                   Grid.Column="2" 
+                   Text="Тури"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="16" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="5" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle_type}"></TextBox>
 
-        <TextBlock Grid.Row="17" 
-                   Grid.Column="0" 
-                   Text="Год производства"
+            <TextBlock Grid.Row="6" 
+                   Grid.Column="2" 
+                   Text="Кузов номери"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="17" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="6" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle_identification_number_kuzov}"></TextBox>
 
-        <TextBlock Grid.Row="18" 
-                   Grid.Column="0" 
-                   Text="Полный Вес КГ"
+            <TextBlock Grid.Row="7" 
+                   Grid.Column="2" 
+                   Text="Шасси номери"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="18" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="7" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle_identification_number_shassi}"></TextBox>
 
-        <TextBlock Grid.Row="19" 
-                   Grid.Column="0" 
-                   Text="Не груженный вес КГ"
+
+            <TextBlock Grid.Row="8" 
+                   Grid.Column="2" 
+                   Text="Тўла вазни КГ"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="19" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="8" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_gross_weight}"></TextBox>
 
-        <TextBlock Grid.Row="20" 
-                   Grid.Column="0" 
-                   Text="Мощьность двигателя"
+            <TextBlock Grid.Row="9" 
+                   Grid.Column="2" 
+                   Text="Юксиз вазни КГ"
+                   HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
-        <TextBox Grid.Row="20" 
-                   Grid.Column="1" 
-                 Margin="5"></TextBox>
+            <TextBox Grid.Row="9" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_curb_weight}"></TextBox>
 
-        <Button Grid.Row="22" Grid.Column="0"
+            <TextBlock Grid.Row="10" 
+                   Grid.Column="2" 
+                   Text="Двигатель рақами"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="10" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_engine_number}"></TextBox>
+
+            <TextBlock Grid.Row="11" 
+                   Grid.Column="2" 
+                   Text="Двигатель қуввати"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="11" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_engine_power}"></TextBox>
+
+            <TextBlock Grid.Row="12" 
+                   Grid.Column="2" 
+                   Text="Ёқилғи тури"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="12" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_fuel_type}"></TextBox>
+
+            <TextBlock Grid.Row="13" 
+                   Grid.Column="2" 
+                   Text="Двигатель кучи улчови"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="13" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Engine_measurement}"></TextBox>
+
+
+            <TextBlock Grid.Row="14" 
+                   Grid.Column="2" 
+                   Text="Ўринлар сони"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="14" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_number_of_seats}"></TextBox>
+
+            <TextBlock Grid.Row="15" 
+                   Grid.Column="2" 
+                   Text="Турувчилар сони"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="15" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_number_of_standees}"></TextBox>
+
+            <TextBlock Grid.Row="16" 
+                   Grid.Column="2" 
+                   Text="Алохида белгилар"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="16" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_special_marks}"></TextBox>
+
+
+
+            <TextBlock Grid.Row="11" 
+                   Grid.Column="0" 
+                   Text="Берилган вакти"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="11" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Issue_date}"></TextBox>
+
+            <TextBlock Grid.Row="12" 
+                   Grid.Column="0" 
+                   Text="ДАН бошқармаси бўлими"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="12" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Ubdd_name}"></TextBox>
+
+
+            <TextBlock Grid.Row="13" 
+                   Grid.Column="0" 
+                   Text="Лицензия раками"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="13" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding License_number}"></TextBox>
+
+
+            <TextBlock Grid.Row="14" 
+                   Grid.Column="0" 
+                   Text="Тугаш санаси"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="14" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Expire_date}"></TextBox>
+
+
+            <Grid Grid.Row="17" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+        <Button Grid.Row="16" Grid.Column="0"
                     Margin="5"
-                    Content="Сохранить на карту">
+                Height="50"
+                    Content="Прочитать с карты"
+                Command="{Binding ReadCard}">
         </Button>
 
-        <Button Grid.Row="22" Grid.Column="1"
+        <Button Grid.Row="16" Grid.Column="1"
                     Margin="5"
+                Height="50"
                     Content="Сохранить на сервере">
-        </Button>
-    </Grid>
+                </Button>
+            </Grid>
+        </Grid>
         <Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
                 Grid.Row="2">

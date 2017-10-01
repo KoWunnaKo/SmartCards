@@ -8,3 +8,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALibTest\bin\Debu
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALibTest\obj\Debug\SC_CertificateCALibTest.csprojResolveAssemblyReference.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALibTest\obj\Debug\SC_CertificateCALibTest.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALibTest\obj\Debug\SC_CertificateCALibTest.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SC_CertificateCALibTest\bin\Debug\SC_CertificateCALib.xml
