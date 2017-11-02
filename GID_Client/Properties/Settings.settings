@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="RegisterCardAPI" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/cards</Value>
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/cards</Value>
     </Setting>
     <Setting Name="GetCertificate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/cards/{0}/certificate </Value>
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/cards/{0}/certificate</Value>
     </Setting>
     <Setting Name="LoginActivation" Type="System.String" Scope="User">
       <Value Profile="(Default)">activator</Value>
@@ -15,13 +15,19 @@
       <Value Profile="(Default)">activator</Value>
     </Setting>
     <Setting Name="ActivationDLApi" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/activate/dl</Value>
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/activate/dl</Value>
     </Setting>
     <Setting Name="ActivationVRApi" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/activate/vl</Value>
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/activate/vl</Value>
     </Setting>
     <Setting Name="LoginApi" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://dluzbackend.avtotest.uz:28443/api/v1/login</Value>
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/login</Value>
+    </Setting>
+    <Setting Name="WorkMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="BackEndMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

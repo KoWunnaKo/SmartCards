@@ -154,7 +154,6 @@ namespace GID_Client.ServerApi
             return request;
         }
 
-
         private static string GetStrFromLogin(LoginRequest responce)
         {
             string resultString = string.Empty;
@@ -291,8 +290,8 @@ namespace GID_Client.ServerApi
         [DataMember(Name = "full_name")]
         public string FullName { get; set; }
 
-        [DataMember(Name = "ubdd")]
-        public string Ubdd { get; set; }
+        //[DataMember(Name = "ubdd")]
+        //public string Ubdd { get; set; }
 
         [DataMember(Name = "token")]
         public string Token { get; set; }

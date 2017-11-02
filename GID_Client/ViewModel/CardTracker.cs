@@ -522,7 +522,7 @@ namespace GID_Client.ViewModel
                     nullindex = currbuff.IndexOf(nullchar);   // Get null end character.
                     string reader = currbuff.Substring(0, nullindex);
 
-                    if (reader.Contains("CL"))
+                    if (reader.Contains("CK") || reader.Contains("CL"))
                     {
                         myReader = reader;
                         MyReaderName = myReader;

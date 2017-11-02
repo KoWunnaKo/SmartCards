@@ -18,15 +18,36 @@ namespace GID_Client
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
+
             Window LoginWindow = new LoginWindow();
             LoginWindow.Show();
             ((LoginViewModel)LoginWindow.DataContext).LoginCompleted += (s, ev) =>
             {
-                Window MainWindow = new MainWindow();
+                MainWindow MainWindow = new MainWindow();
+                MainWindow.SetAccessRules();
                 LoginWindow.Hide();
                 LoginWindow.Close();
                 MainWindow.Show();
-            };
+            }; //06.10.2017
+
+            //MainWindow MainWindow = new MainWindow();
+            //MainWindow.Show(); //10.10.2017
+        }
+
+        static void MyHandler(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+            Console.WriteLine("MyHandler caught : " + e.Message);
+            Console.WriteLine("Runtime terminating: {0}", args.IsTerminating);
+        }
+
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Ошибка: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
         }
     }
 

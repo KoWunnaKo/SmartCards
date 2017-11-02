@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GID_Client.Views"
              mc:Ignorable="d" 
              Background="White"
-             d:DesignHeight="600" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -15,6 +15,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -80,8 +81,10 @@
                     Margin="5"
                     Command="{Binding OpenCardVR}"></Button>
             </Grid>
-            
 
+            <Grid Grid.Column="2" Grid.RowSpan="10">
+                <TextBox Text="{Binding LogsList}"></TextBox>
+            </Grid>
 
             <Button Grid.Row="4" 
                    Grid.Column="1"

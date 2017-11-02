@@ -1,5 +1,6 @@
 ﻿using CardAPILib.CardAPI;
 using Iso18013Lib;
+using SmartCardApi.SmartCardReader;
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -12,15 +13,22 @@ namespace GID_Client
     /// </summary>
     public partial class VLDataChecker : Window
     {
+
+        public string InpetString = string.Empty;
+
         private CardApiController _controller;
 
         public VLDataChecker()
         {
             InitializeComponent();
 
+            //this.Owner = App.Current.MainWindow;
+
             DataContext = this;
 
-            _controller = new CardApiController(true);
+            _controller = new CardApiController(false);
+
+            txbDocNum.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,25 +70,27 @@ namespace GID_Client
 
             try
             {
-                var result = _controller.ReadVRCardNext(ref Vr);
 
-                if (result != 0)
-                {
-                    return false;
-                }
+                var str = string.Format("{0}{1}{2}{3}", "1", ftxbDocNum, fDpIssueDate.Value.ToString("yyyyMMdd"), ftxbDocNum2).Substring(0, 16);
+
+                InpetString = str;
+
+                SecuredReaderTest dd = new SecuredReaderTest();
+
+                Vr = dd.VR_Reader(str);
 
                 VehicleRegistration vl = new VehicleRegistration("");
 
                 var vll = vl.ParseReadMaterial(Vr);
 
-
                 var Issue_date = DateTime.ParseExact(vl._vehicleRegistration._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);  //************
 
-                
+
                 var Vehicle1_reg_number = vl._vehicleRegistration._vehicle._reg_number; //*******
 
 
                 var Vehicle1_special_marks = vl._vehicleRegistration._license_number; //************
+
 
                 if (ftxbDocNum.Equals(Vehicle1_reg_number) && fDpIssueDate.Equals(Issue_date) && Vehicle1_special_marks.Equals(ftxbDocNum2))
                 {

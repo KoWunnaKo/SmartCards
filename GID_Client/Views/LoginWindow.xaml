@@ -77,7 +77,7 @@
             Width="84" 
             Margin="5,0,5,0"
             Command="{Binding LoginCommand}" 
-            Grid.Row="2" IsDefault="True"/>
+            Grid.Row="2" IsDefault="True" />
 
             <Button 
             Content="Закрыть" 

@@ -447,6 +447,48 @@
             <param name="DGCommon"></param>
             <returns></returns>
         </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card5(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card6(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveVL2Card3(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
         <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveeVr2Card(System.Byte[])">
             <summary>
             

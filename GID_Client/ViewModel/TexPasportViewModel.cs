@@ -1,7 +1,9 @@
 ﻿using CardAPILib.CardAPI;
 using Epigov.Log;
+using GemCard;
 using GID_Client.ServerApi;
 using Iso18013Lib;
+using SmartCardApi.SmartCardReader;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +11,8 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace GID_Client.ViewModel
 {
@@ -32,7 +36,116 @@ namespace GID_Client.ViewModel
 
             SaveCard = new RelayCommand(_ => fSaveCard());
 
-            _controller = new CardApiController(true);
+            try
+            {
+                _controller = new CardApiController(false);
+                _card = new CardNative();
+
+                _card.OnCardInserted += _card_OnCardInserted;
+                _card.OnCardRemoved += _card_OnCardRemoved;
+
+                string[] readers;
+                string[] SpecReaders;
+
+
+                readers = _card.ListReaders();
+
+                SpecReaders = (from reader in readers
+                               where reader.Contains("CK") || reader.Contains("CL")
+                               select reader).ToArray();
+
+                if (SpecReaders.Length == 0)
+                {
+                    MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством");
+                }
+
+                _card_OnCardRemoved(SpecReaders[0]);
+                _card.StartCardEvents(SpecReaders[0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством " + ex.Message);
+            }
+        }
+
+        internal void Release()
+        {
+            _card.OnCardInserted -= _card_OnCardInserted;
+            _card.OnCardRemoved -= _card_OnCardRemoved;
+        }
+
+        private void _card_OnCardInserted(string reader)
+        {
+            fReadCard();
+        }
+
+        private void _card_OnCardRemoved(string reader)
+        {
+            Pinfl = string.Empty;
+
+            Issue_date = string.Empty;
+
+            Ubdd_name = string.Empty;
+
+            Issue_region_name = string.Empty;
+
+            Vehicle1_reg_number = string.Empty;
+
+            Vehicle1_model_name = string.Empty;
+
+            Vehicle1_color_name = string.Empty;
+
+            Vehicle1_vehicle_manufacture_year = string.Empty;
+
+            Vehicle1_gross_weight = string.Empty;
+
+            Vehicle1_curb_weight = string.Empty;
+
+            Vehicle1_engine_number = string.Empty;
+
+            Vehicle1_engine_power = string.Empty;
+
+            Vehicle1_fuel_type = string.Empty;
+
+            Vehicle1_number_of_seats = string.Empty;
+
+            Vehicle1_number_of_standees = string.Empty;
+
+            Vehicle1_special_marks = string.Empty;
+
+            Company1_name = string.Empty;
+
+            Company1_inn = string.Empty;
+
+            Company1_address2_address = string.Empty;
+
+            Company1_address2_region_name = string.Empty;
+
+            Company1_address2_rayon_name = string.Empty;
+
+            Owner_type = 0;
+
+            Owner_last_name = string.Empty;
+
+            Owner_first_name = string.Empty;
+
+            Owner_middle_name = string.Empty;
+
+            Mark_name = string.Empty;
+
+            Vehicle_type = string.Empty;
+
+            Vehicle_identification_number_kuzov = string.Empty;
+
+            Vehicle_identification_number_shassi = string.Empty;
+
+            Engine_measurement = string.Empty;
+
+            License_number = string.Empty;
+
+            Expire_date = string.Empty;
         }
 
         private string GetUUid()
@@ -63,16 +176,18 @@ namespace GID_Client.ViewModel
 
                     try
                     {
-                        var result = _controller.ReadVRCardNext(ref Vr);
+                        SecuredReaderTest dd = new SecuredReaderTest();
 
-                        if (result != 0)
-                        {
-                            StatusText = "Ошибка при прочтении карты";
+                        Vr = dd.VR_Reader(InputString);
 
-                            _logService.Error(string.Format("{0} {1}", "Ошибка при прочтении карты", result));
+                        //if (result != 0)
+                        //{
+                        //    StatusText = "Ошибка при прочтении карты";
 
-                            return -1;
-                        }
+                        //    _logService.Error(string.Format("{0} {1}", "Ошибка при прочтении карты", result));
+
+                        //    return -1;
+                        //}
 
                         VehicleRegistration vl = new VehicleRegistration("");
 
@@ -122,6 +237,12 @@ namespace GID_Client.ViewModel
 
                         Company1_address2_rayon_name = vl._vehicleRegistration._company._address._rayon_name;
 
+                        vl._vehicleRegistration._company._address._address = string.Empty;
+
+                        vl._vehicleRegistration._company._address._region_name = string.Empty;
+
+                        vl._vehicleRegistration._company._address._rayon_name = string.Empty;
+
                         Owner_type = vl._vehicleRegistration._company._type;
 
                         Owner_last_name = vl._vehicleRegistration._company._last_name;
@@ -146,9 +267,13 @@ namespace GID_Client.ViewModel
 
                         readJson = GetStrFromVR(vl._vehicleRegistration);
 
-                        var activationInfo = ServerApiController.SendBackEndActivation(false, readJson);
+                        if (Properties.Settings.Default.BackEndMode.Equals("1"))
+                        {
 
-                        StatusText = activationInfo._data._message;
+                            var activationInfo = ServerApiController.SendBackEndActivation(false, readJson);//06.10.2017
+
+                            StatusText = activationInfo._data._message;//06.10.2017
+                        }
 
                     }
                     catch (Exception ex)
@@ -168,11 +293,18 @@ namespace GID_Client.ViewModel
             return resultTask;
         }
 
+        private string InputString = string.Empty;
+        private CardNative _card;
+
         private async void fReadCard()
         {
+            StatusText = string.Empty;
+
             VLDataChecker mon = new VLDataChecker();
 
-            mon.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            //mon.Owner = App.Current.MainWindow;
+
+            mon.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             var result1 = mon.ShowDialog();
 
@@ -182,12 +314,23 @@ namespace GID_Client.ViewModel
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 
+                var result = MessageBox.Show("Введенные данные не верны. Попробовать снова?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    fReadCard();
+                }
+
                 return;
             }
+
+            InputString = mon.InpetString;
 
             IsIntermadiate = true;
 
             StatusText = "Считка...";
+
+            Mouse.OverrideCursor = Cursors.Wait;
 
             var res = await PfReadCard();
 
@@ -201,6 +344,8 @@ namespace GID_Client.ViewModel
             }
 
             IsIntermadiate = false;
+
+            Mouse.OverrideCursor = null;
 
         }
 

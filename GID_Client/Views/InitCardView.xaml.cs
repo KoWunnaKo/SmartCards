@@ -1,4 +1,5 @@
-﻿using GID_Client.ViewModel;
+﻿using CardAPILib.InterfaceCL;
+using GID_Client.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace GID_Client.Views
     public partial class InitCardView : UserControl
     {
 
-        public InitCardView()
+        public InitCardView(CardFactoryMode mode)
         {
             InitializeComponent();
 
-            DataContext = new InitCardViewModel();
+            DataContext = new IDL_ViewModel(mode);
         }
     }
 }

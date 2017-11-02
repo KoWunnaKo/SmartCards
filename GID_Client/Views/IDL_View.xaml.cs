@@ -21,11 +21,20 @@ namespace GID_Client.Views
     /// </summary>
     public partial class IDL_View : UserControl
     {
+        private VoditelPravaViewModel _model;
+
         public IDL_View()
         {
             InitializeComponent();
 
-            DataContext = new VoditelPravaViewModel();
+            _model = new VoditelPravaViewModel();
+
+            DataContext = _model;
+        }
+
+        public void Release()
+        {
+            _model.Release();
         }
     }
 }

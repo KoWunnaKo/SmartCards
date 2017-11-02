@@ -1,5 +1,7 @@
 ﻿using CardAPILib.CardAPI;
 using Iso18013Lib;
+using SmartCardApi.MRZ;
+using SmartCardApi.SmartCardReader;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,15 +25,23 @@ namespace GID_Client
     /// </summary>
     public partial class MondatoryWindow : Window
     {
+        public string InpetString = string.Empty;
+
         private CardApiController _controller;
 
         public MondatoryWindow()
         {
             InitializeComponent();
 
+            //this.Owner = App.Current.MainWindow;
+
             DataContext = this;
 
-            _controller = new CardApiController(true);
+            _controller = new CardApiController(false);
+
+            
+
+            txbDocNum.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -89,31 +99,42 @@ namespace GID_Client
 
             try
             {
-                var result = _controller.ReadIDLCardNext(ref DG1, ref DG2, ref DG3, ref DG4, ref DG5, ref DGCommon);
+                //var result = _controller.ReadIDLCardNext(ref DG1, ref DG2, ref DG3, ref DG4, ref DG5, ref DGCommon);
 
-                if (result != 0)
-                {
-                    return false;
-                }
+                //if (result != 0)
+                //{
+                //    return false;
+                //}
 
-                DrivingLicense DrL = new DrivingLicense("");
+                var mrzInfo = new MRZInfo(
+                    ftxbDocNum,
+                    fDpBirthDate.Value,
+                    fDpExpireDate.Value
+                );
 
-                var dl = DrL.ParseReadMaterial(DG1, DG2, DG3, DG4, DG5, DGCommon);
+                var str = string.Format("{0}{1}", "1", mrzInfo.ToString()).Substring(0, 16);
 
-                BirthDate = DateTime.ParseExact(dl._driver._date_of_birth, "yyyyMMdd", CultureInfo.InvariantCulture);
+                SecuredReaderTest dd = new SecuredReaderTest();
 
-                ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                InpetString = str;
+                //1
 
-                LicenseNumber = dl._license_number;
+                //DG1 = dd.IDL_ReaderDG1(InpetString);
+                //DG2 = dd.IDL_ReaderDG2(InpetString);
 
-                if (BirthDate.Equals(fDpBirthDate) && ExpireDate.Equals(fDpExpireDate) && LicenseNumber.Equals(ftxbDocNum))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                //DG4 = dd.IDL_ReaderDG4(InpetString);
+                //DG5 = dd.IDL_ReaderDG5(InpetString);
+
+                //DrivingLicense DrL = new DrivingLicense("");
+
+                //var dl = DrL.ParseReadMaterial(DG1, DG2, DG3, DG4, DG5, DGCommon);
+
+                //BirthDate = DateTime.ParseExact(dl._driver._date_of_birth, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                //ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                //LicenseNumber = dl._license_number;
+
             }
             catch (Exception ex)
             {
@@ -191,6 +212,50 @@ namespace GID_Client
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void DatePicker_TextChanged(object sender, RoutedEventArgs e)
+        {
+            //DateTime dt;
+            //DatePicker dp = (sender as DatePicker);
+            //string currentText = (e.OriginalSource as TextBox).Text;
+            //if (!DateTime.TryParse(currentText, out dt))
+            //{
+            //    try
+            //    {
+            //        string month = currentText.Substring(0, 2);
+            //        string day = currentText.Substring(2, 2);
+            //        string year = currentText.Substring(4, 4);
+
+            //        dt = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+            //        dp.SelectedDate = dt;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        dp.SelectedDate = null;
+            //    }
+            //}
+
+            DatePicker dp = (sender as DatePicker);
+            
+        }
+
+        private void DpBirthDate_TextInput(object sender, RoutedEventArgs e)
+        {
+            //DatePicker dp = (sender as DatePicker);
+            //dp.Text = string.Empty;
+        }
+
+        private void DpBirthDate_GotFocus(object sender, RoutedEventArgs e)
+        {
+            //DatePicker dp = (sender as DatePicker);
+            //dp.Text = string.Empty;
+        }
+
+        private void DpBirthDate_KeyDown(object sender, RoutedEventArgs e)
+        {
+            //DatePicker dp = (sender as DatePicker);
+            //dp.Text = string.Empty;
         }
     }
 }

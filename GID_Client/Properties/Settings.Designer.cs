@@ -25,7 +25,7 @@ namespace GID_Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dluzbackend.avtotest.uz:28443/api/v1/cards")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/cards")]
         public string RegisterCardAPI {
             get {
                 return ((string)(this["RegisterCardAPI"]));
@@ -37,7 +37,7 @@ namespace GID_Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dluzbackend.avtotest.uz:28443/api/v1/cards/{0}/certificate ")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/cards/{0}/certificate")]
         public string GetCertificate {
             get {
                 return ((string)(this["GetCertificate"]));
@@ -73,7 +73,7 @@ namespace GID_Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dluzbackend.avtotest.uz:28443/api/v1/activate/dl")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/activate/dl")]
         public string ActivationDLApi {
             get {
                 return ((string)(this["ActivationDLApi"]));
@@ -85,7 +85,7 @@ namespace GID_Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dluzbackend.avtotest.uz:28443/api/v1/activate/vl")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/activate/vl")]
         public string ActivationVRApi {
             get {
                 return ((string)(this["ActivationVRApi"]));
@@ -97,13 +97,37 @@ namespace GID_Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dluzbackend.avtotest.uz:28443/api/v1/login")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/login")]
         public string LoginApi {
             get {
                 return ((string)(this["LoginApi"]));
             }
             set {
                 this["LoginApi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string WorkMode {
+            get {
+                return ((string)(this["WorkMode"]));
+            }
+            set {
+                this["WorkMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string BackEndMode {
+            get {
+                return ((string)(this["BackEndMode"]));
+            }
+            set {
+                this["BackEndMode"] = value;
             }
         }
     }

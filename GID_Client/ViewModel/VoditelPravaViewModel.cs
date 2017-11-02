@@ -10,12 +10,20 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using GID_Client.ServerApi;
+using SmartCardApi.SmartCardReader;
+using GID_Client.DB;
+using GemCard;
+using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel;
 
 namespace GID_Client.ViewModel
 {
     internal class VoditelPravaViewModel : ViewModelBase
     {
         private readonly ILogService _logService;
+
+        private CardNative _card;
 
         private CardApiController _controller;
 
@@ -25,6 +33,8 @@ namespace GID_Client.ViewModel
 
         private string readJson { get; set; }
 
+        private SQLiteDataCommands dbDataSet { get; set; }
+
         public VoditelPravaViewModel()
         {
             _logService = new FileLogService(typeof(InitCardViewModel));
@@ -33,14 +43,107 @@ namespace GID_Client.ViewModel
 
             SaveCard = new RelayCommand(_ => fSaveCard());
 
-            _controller = new CardApiController(true);
+            try
+            {
+                _controller = new CardApiController(false);
+                dbDataSet = new SQLiteDataCommands();
+                _card = new CardNative();
 
+                _card.OnCardInserted += _card_OnCardInserted;
+                _card.OnCardRemoved += _card_OnCardRemoved;
+
+                string[] readers;
+                string[] SpecReaders;
+
+
+                readers = _card.ListReaders();
+
+                SpecReaders = (from reader in readers
+                               where reader.Contains("CK") || reader.Contains("CL")
+                               select reader).ToArray();
+
+                if (SpecReaders.Length == 0)
+                {
+                    MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством");
+                }
+
+                _card_OnCardRemoved(SpecReaders[0]);
+                _card.StartCardEvents(SpecReaders[0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством " + ex.Message);
+            }
+
+            
             CheckedA = false;
             CheckedB = false;
             CheckedC = false;
             CheckedD = false;
             CheckedE = false;
 
+        }
+
+        public void Release()
+        {
+            _card.OnCardInserted -= _card_OnCardInserted;
+            _card.OnCardRemoved -= _card_OnCardRemoved;
+        }
+
+        private void _card_OnCardInserted(string reader)
+        {
+            fReadCard();
+        }
+
+        private void _card_OnCardRemoved(string reader)
+        {
+            LastName = string.Empty;
+
+            FirstName = string.Empty;
+
+            MiddleName = string.Empty;
+
+            BirthDate = string.Empty;
+
+            IssueDate = string.Empty;
+
+            ExpireDate = string.Empty;
+
+            GivenPlace = string.Empty;
+
+            LicenseNumber = string.Empty;
+
+            PNFL = string.Empty;
+
+            FullAdress = string.Empty;
+
+            CheckedA = false;
+            IssueA = string.Empty;
+            ExpireA = string.Empty;
+
+            CheckedB = false;
+            IssueB = string.Empty;
+            ExpireB = string.Empty;
+
+            CheckedC = false;
+            IssueC = string.Empty;
+            ExpireC = string.Empty;
+
+            CheckedD = false;
+            IssueD = string.Empty;
+            ExpireD = string.Empty;
+
+            CheckedE = false;
+            IssueE = string.Empty;
+            ExpireE = string.Empty;
+
+            BirthPlace = string.Empty;
+
+            Base64ImageData = null;
+
+            Base64ImageData2 = null;
         }
 
         private string GetUUid()
@@ -86,10 +189,8 @@ namespace GID_Client.ViewModel
             return resultString;
         }
 
-        private Task<int> PfReadCard()
+        private int PfReadCard()
         {
-            var resultTask = Task.Factory.StartNew(() =>
-            {
 
                 try
                 {
@@ -107,16 +208,14 @@ namespace GID_Client.ViewModel
 
                     try
                     {
-                        var result = _controller.ReadIDLCardNext(ref DG1, ref DG2, ref DG3, ref DG4, ref DG5, ref DGCommon);
 
-                        if (result != 0)
-                        {
-                            StatusText = "Ошибка при прочтении карты";
+                        SecuredReaderTest dd = new SecuredReaderTest();
 
-                            _logService.Error(string.Format("{0} {1}", "Ошибка при прочтении карты", result));
+                        DG1 = dd.IDL_ReaderDG1(InputString);
+                        DG2 = dd.IDL_ReaderDG2(InputString);
 
-                            return -1;
-                        }
+                        DG4 = dd.IDL_ReaderDG4(InputString);
+                        DG5 = dd.IDL_ReaderDG5(InputString);
 
                         DrivingLicense DrL = new DrivingLicense("");
 
@@ -130,13 +229,13 @@ namespace GID_Client.ViewModel
 
                         MiddleName = dl._driver._middle_name;
 
-                        BirthDate = DateTime.ParseExact(dl._driver._date_of_birth, "yyyyMMdd", CultureInfo.InvariantCulture);
+                        BirthDate = DateTime.ParseExact(dl._driver._date_of_birth, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
 
-                        IssueDate = DateTime.ParseExact(dl._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                        IssueDate = DateTime.ParseExact(dl._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
 
-                        ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                    ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
 
-                        GivenPlace = dl._issue_region_name;
+                    GivenPlace = dl._issue_region_name;
 
                         LicenseNumber = dl._license_number;
 
@@ -144,36 +243,100 @@ namespace GID_Client.ViewModel
 
                         FullAdress = string.Format("{0} {1} {2}", dl._driver._address._address, dl._driver._address._rayon_name, dl._driver._address._region_name);
 
+                        dl._driver._address._address = string.Empty;
+
+                        dl._driver._address._rayon_name = string.Empty;
+
+                        dl._driver._address._region_name = string.Empty;
+
                         foreach (Category cat in dl._categories)
                         {
                             if (cat._name.Contains("A"))
                             {
                                 CheckedA = true;
-                                IssueA = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-                            }
+                                
+                                var IssueAx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
 
+                                IssueA = IssueAx.ToString("dd.MM.yyyy");
+
+                                if (string.IsNullOrEmpty(cat._expiry_date))
+                                {
+                                    ExpireA = IssueAx.AddYears(10).ToString("dd.MM.yyyy");
+                            }
+                                else
+                                {
+                                    ExpireA = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
+                                
+                            }
                             if (cat._name.Contains("B"))
                             {
                                 CheckedB = true;
-                                IssueB = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-                            }
 
+                                var IssueBx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                                IssueB = IssueBx.ToString("dd.MM.yyyy");
+
+
+                                if (string.IsNullOrEmpty(cat._expiry_date))
+                                {
+                                    ExpireB = IssueBx.AddYears(10).ToString("dd.MM.yyyy");
+                            }
+                                else
+                                {
+                                    ExpireB = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
+                            }
                             if (cat._name.Contains("C"))
                             {
                                 CheckedC = true;
-                                IssueC = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-                            }
 
+                                var IssueCx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                                IssueC = IssueCx.ToString("dd.MM.yyyy");
+
+                                if (string.IsNullOrEmpty(cat._expiry_date))
+                                {
+                                    ExpireC = IssueCx.AddYears(10).ToString("dd.MM.yyyy");
+                            }
+                                else
+                                {
+                                    ExpireC = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
+                            }
                             if (cat._name.Contains("D"))
                             {
                                 CheckedD = true;
-                                IssueD = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-                            }
 
+                                var IssueDx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                                IssueD = IssueDx.ToString("dd.MM.yyyy");
+                                
+                                if (string.IsNullOrEmpty(cat._expiry_date))
+                                {
+                                    ExpireD = IssueDx.AddYears(10).ToString("dd.MM.yyyy");
+                            }
+                                else
+                                {
+                                    ExpireD = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
+                            }
                             if (cat._name.Contains("E"))
                             {
                                 CheckedE = true;
-                                IssueE = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                                var IssueEx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+                                IssueE = IssueEx.ToString("dd.MM.yyyy");
+
+                                if (string.IsNullOrEmpty(cat._expiry_date))
+                                {
+                                    ExpireE = IssueEx.AddYears(10).ToString("dd.MM.yyyy");
+                            }
+                                else
+                                {
+                                    ExpireE = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
                             }
                         }
 
@@ -185,11 +348,15 @@ namespace GID_Client.ViewModel
 
                         readJson = GetStrFromDrivingLicense(dl);
 
-                        var activationInfo = ServerApiController.SendBackEndActivation(true, readJson);
+                        if (Properties.Settings.Default.BackEndMode.Equals("1"))
+                        {
+                            var activationInfo = ServerApiController.SendBackEndActivation(true, readJson);//06.10.2017
 
-                        StatusText = activationInfo._data._message;
-                    }
-                    catch (Exception ex)
+                            StatusText = activationInfo._data._message;//06.10.2017
+                        }
+
+                }
+                catch (Exception ex)
                     {
                         StatusText = "Ошибка при прочтении карты. Попробуйте еще раз";
 
@@ -206,16 +373,20 @@ namespace GID_Client.ViewModel
                 }
 
                 return 0;
-            });
 
-            return resultTask;
         }
+
+        private string InputString = string.Empty;
 
         private async void fReadCard()
         {
+            StatusText = string.Empty;
+
             MondatoryWindow mon = new MondatoryWindow();
 
             mon.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
+            //mon.Owner = App.Current.MainWindow;
 
             var result1 = mon.ShowDialog();
 
@@ -225,25 +396,50 @@ namespace GID_Client.ViewModel
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 
+                var result = MessageBox.Show("Введенные данные не верны. Попробовать снова?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    fReadCard();
+                }
+
                 return;
             }
 
+            InputString = mon.InpetString;
+
+            
+
+            StatusText = "O'qimoqda...";
+
+            BackgroundWorker worker = new BackgroundWorker();
+
+            worker.DoWork += (o, ea) =>
+            {
+                //no direct interaction with the UI is allowed from this method
+                //Mouse.OverrideCursor = Cursors.Wait;
+
+                var res = PfReadCard();
+
+                if (res == 0)
+                {
+                    StatusText = "O'qish yakunlandi";
+                }
+                else
+                {
+                    StatusText = "Xatolik...";
+                }
+            };
+            worker.RunWorkerCompleted += (o, ea) =>
+            {
+                //work has completed. you can now interact with the UI
+                IsIntermadiate = false;
+            };
+            //set the IsBusy before you start the thread
             IsIntermadiate = true;
+            worker.RunWorkerAsync();
 
-            StatusText = "Считка...";
-
-            var res = await PfReadCard();
-
-            if (res == 0)
-            {
-                StatusText = "Удачная Считка!!!";
-            }
-            else
-            {
-                StatusText = "Error...";
-            }
-
-            IsIntermadiate = false;
+            //Mouse.OverrideCursor = null;
 
         }
 
@@ -401,9 +597,9 @@ namespace GID_Client.ViewModel
         }
 
 
-        private DateTime _birthDate;
+        private string _birthDate;
 
-        public DateTime BirthDate
+        public string BirthDate
         {
             get { return _birthDate; }
 
@@ -415,9 +611,9 @@ namespace GID_Client.ViewModel
             }
         }
 
-        private DateTime _issueDate;
+        private string _issueDate;
 
-        public DateTime IssueDate
+        public string IssueDate
         {
             get { return _issueDate; }
 
@@ -429,9 +625,9 @@ namespace GID_Client.ViewModel
             }
         }
 
-        private DateTime _expireDate;
+        private string _expireDate;
 
-        public DateTime ExpireDate
+        public string ExpireDate
         {
             get { return _expireDate; }
 
@@ -570,13 +766,19 @@ namespace GID_Client.ViewModel
             }
         }
 
-        private DateTime _issuedA;
-        private DateTime _issuedB;
-        private DateTime _issuedC;
-        private DateTime _issuedD;
-        private DateTime _issuedE;
+        private string _issuedA;
+        private string _issuedB;
+        private string _issuedC;
+        private string _issuedD;
+        private string _issuedE;
 
-        public DateTime IssueA
+        private string _expireA;
+        private string _expireB;
+        private string _expireC;
+        private string _expireD;
+        private string _expireE;
+
+        public string IssueA
         {
             get { return _issuedA; }
 
@@ -589,7 +791,7 @@ namespace GID_Client.ViewModel
         }
 
 
-        public DateTime IssueB
+        public string IssueB
         {
             get { return _issuedB; }
 
@@ -601,7 +803,7 @@ namespace GID_Client.ViewModel
             }
         }
 
-        public DateTime IssueC
+        public string IssueC
         {
             get { return _issuedC; }
 
@@ -613,7 +815,7 @@ namespace GID_Client.ViewModel
             }
         }
 
-        public DateTime IssueD
+        public string IssueD
         {
             get { return _issuedD; }
 
@@ -626,7 +828,7 @@ namespace GID_Client.ViewModel
         }
 
 
-        public DateTime IssueE
+        public string IssueE
         {
             get { return _issuedE; }
 
@@ -635,6 +837,69 @@ namespace GID_Client.ViewModel
                 _issuedE = value;
 
                 OnPropertyChanged("IssueE");
+            }
+        }
+
+
+        public string ExpireA
+        {
+            get { return _expireA; }
+
+            set
+            {
+                _expireA = value;
+
+                OnPropertyChanged("ExpireA");
+            }
+        }
+
+
+        public string ExpireB
+        {
+            get { return _expireB; }
+
+            set
+            {
+                _expireB = value;
+
+                OnPropertyChanged("ExpireB");
+            }
+        }
+
+        public string ExpireC
+        {
+            get { return _expireC; }
+
+            set
+            {
+                _expireC = value;
+
+                OnPropertyChanged("ExpireC");
+            }
+        }
+
+        public string ExpireD
+        {
+            get { return _expireD; }
+
+            set
+            {
+                _expireD = value;
+
+                OnPropertyChanged("ExpireD");
+            }
+        }
+
+
+        public string ExpireE
+        {
+            get { return _expireE; }
+
+            set
+            {
+                _expireE = value;
+
+                OnPropertyChanged("ExpireE");
             }
         }
 

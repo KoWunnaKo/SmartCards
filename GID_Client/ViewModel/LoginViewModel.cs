@@ -61,6 +61,8 @@ namespace GID_Client.ViewModel
                 if (await CheckAuthorithation())
                 {
                     //# Validation logic
+                    UserInfo.userLogin = Login;
+
                     RaiseLoginCompleted();
                 }
             }
@@ -93,6 +95,12 @@ namespace GID_Client.ViewModel
         {
             var resultTask = Task.Factory.StartNew(() =>
             {
+                //To login in test
+                if (Properties.Settings.Default.BackEndMode.Equals("2"))
+                {
+                    return true;
+                }
+
                 if ((string.IsNullOrEmpty(Login)) || (string.IsNullOrEmpty(Password)))
                 {
                     StatusText = "Заполните все поля";
@@ -103,9 +111,9 @@ namespace GID_Client.ViewModel
 
                 try
                 {
-                    responce = ServerApiController.LoginReqRes(Login, Password);
+                    responce = ServerApiController.LoginReqRes(Login, Password);//06.10.2017
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     if (ex.Message.Contains("401"))
                     {
@@ -121,9 +129,9 @@ namespace GID_Client.ViewModel
                 {
                     StatusText = "Неверный юзер или пароль";
                     return false;
-                }
+                }//06.10.2017
 
-                ServerApiController.token = responce.data.Token;
+                ServerApiController.token = responce.data.Token;//06.10.2017
 
                 return true;
             });

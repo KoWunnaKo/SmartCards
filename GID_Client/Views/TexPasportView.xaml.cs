@@ -21,11 +21,20 @@ namespace GID_Client.Views
     /// </summary>
     public partial class TexPasportView : UserControl
     {
+        private TexPasportViewModel _model;
+
         public TexPasportView()
         {
             InitializeComponent();
 
-            DataContext = new TexPasportViewModel();
+            _model = new TexPasportViewModel();
+
+            DataContext = _model;
+        }
+
+        public void Release()
+        {
+            _model.Release();
         }
     }
 }

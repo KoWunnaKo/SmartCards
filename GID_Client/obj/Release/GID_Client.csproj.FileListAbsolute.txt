@@ -49,3 +49,15 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\obj\Release\Views\IDL
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\obj\Release\Views\LoginWindow.baml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\obj\Release\VLDataChecker.g.cs
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\obj\Release\VLDataChecker.baml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\nunit.framework.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\SmartCardApi.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\nunit.framework.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\EntityFramework.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\EntityFramework.SqlServer.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\System.Data.SQLite.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\System.Data.SQLite.EF6.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\System.Data.SQLite.Linq.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\EntityFramework.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\EntityFramework.SqlServer.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\System.Data.SQLite.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\bin\Release\DB\Activator.db

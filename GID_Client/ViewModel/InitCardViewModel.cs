@@ -1,10 +1,10 @@
 ﻿using CardAPILib.CardAPI;
+using CardAPILib.InterfaceCL;
 using Epigov.Log;
 using GID_Client.ServerApi;
 using System;
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Media;
@@ -85,12 +85,30 @@ namespace GID_Client.ViewModel
             {
                 return myUIDofCard;
             }
-
             set
             {
                 myUIDofCard = value;
 
                 OnPropertyChanged("MyUIDofCard");
+
+                if (string.IsNullOrEmpty(myUIDofCard))
+                    return;
+
+                var obj = llCard.Find(x => x.Equals(myUIDofCard));
+
+                if (obj == null)
+                {
+                    llCard.Add(myUIDofCard);
+
+                    if (_currentMode == CardFactoryMode.DrivingLicence)
+                    {
+                        fOpenCard();
+                    }
+                    else if (_currentMode == CardFactoryMode.VehicleRegistration)
+                    {
+                        fOpenCardVR();
+                    }
+                }
             }
         }
 
@@ -227,62 +245,72 @@ namespace GID_Client.ViewModel
 
         private void InitCard()
         {
-            uint pcchReaders = 0;
-            int nullindex = -1;
-            char nullchar = (char)0;
-            dwscope = 2;
-
-            // Establish context.
-            retval = HID.SCardEstablishContext(dwscope, IntPtr.Zero, IntPtr.Zero, out hContext);
-            retval = HID.SCardListReaders(hContext, null, null, ref pcchReaders);
-            byte[] mszReaders = new byte[pcchReaders];
-
-            // Fill readers buffer with second call.
-            retval = HID.SCardListReaders(hContext, null, mszReaders, ref pcchReaders);
-
-            // Populate List with readers.
-            string currbuff = Encoding.ASCII.GetString(mszReaders);
-            ReaderList = currbuff;
-            int len = (int)pcchReaders;
-
-            if (len > 0)
-            {
-                while (currbuff[0] != nullchar)
-                {
-                    nullindex = currbuff.IndexOf(nullchar);   // Get null end character.
-                    string reader = currbuff.Substring(0, nullindex);
-
-                    if (reader.Contains("CL"))
-                    {
-                        myReader = reader;
-                        MyReaderName = myReader;
-                    }
-                    //selectreadercombobox.Items.Add(reader);
-                    len = len - (reader.Length + 1);
-                    currbuff = currbuff.Substring(nullindex + 1, len);
-                }
-            }
-
             try
             {
-                Connect2Card();
+                uint pcchReaders = 0;
+                int nullindex = -1;
+                char nullchar = (char)0;
+                dwscope = 2;
+
+                // Establish context.
+                retval = HID.SCardEstablishContext(dwscope, IntPtr.Zero, IntPtr.Zero, out hContext);
+                retval = HID.SCardListReaders(hContext, null, null, ref pcchReaders);
+                byte[] mszReaders = new byte[pcchReaders];
+
+                // Fill readers buffer with second call.
+                retval = HID.SCardListReaders(hContext, null, mszReaders, ref pcchReaders);
+
+                // Populate List with readers.
+                string currbuff = Encoding.ASCII.GetString(mszReaders);
+                ReaderList = currbuff;
+                int len = (int)pcchReaders;
+
+                if (len > 0)
+                {
+                    while (currbuff[0] != nullchar)
+                    {
+                        nullindex = currbuff.IndexOf(nullchar);   // Get null end character.
+                        string reader = currbuff.Substring(0, nullindex);
+
+                        if (reader.Contains("CK") || reader.Contains("CL"))
+                        {
+                            myReader = reader;
+                            MyReaderName = myReader;
+                        }
+                        //selectreadercombobox.Items.Add(reader);
+                        len = len - (reader.Length + 1);
+                        currbuff = currbuff.Substring(nullindex + 1, len);
+                    }
+                }
+
+                try
+                {
+                    Connect2Card();
+                    
+                }
+                catch (Exception ex)
+                {
+
+                }
+                _controller = new CardApiController(false);
+
+                timerWorkItem();
+                // Creating a timer with a ten second interval.
+                timer = new System.Timers.Timer(1000);
+                // Hook up the Elapsed event for the timer.
+                timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                timer.Enabled = true;
             }
             catch(Exception ex)
             {
 
             }
 
-            _controller = new CardApiController(true);
-
-            timerWorkItem();
-            // Creating a timer with a ten second interval.
-            timer = new System.Timers.Timer(1000);
-            // Hook up the Elapsed event for the timer.
-            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            timer.Enabled = true;
         }
 
-        public InitCardViewModel()
+        private CardFactoryMode _currentMode;
+
+        public InitCardViewModel(CardFactoryMode mode)
         {
             _logService = new FileLogService(typeof(InitCardViewModel));
 
@@ -296,69 +324,87 @@ namespace GID_Client.ViewModel
 
             Apply2Card = new RelayCommand(_ => fApply2Card());
 
-            InitCard();
+            _currentMode = mode;
+
+            try
+            {
+                InitCard();
+            }
+            catch(Exception )
+            {
+
+            }
         }
 
         private void ATR_UID()
         {
-            HiDWinscard.SCARD_IO_REQUEST sioreq;
-            sioreq.dwProtocol = 0x2;
-            sioreq.cbPciLength = 8;
-            HiDWinscard.SCARD_IO_REQUEST rioreq;
-            rioreq.cbPciLength = 8;
-            rioreq.dwProtocol = 0x2;
-
-            String uid_temp;
-            String atr_temp;
-            String s;
-            atr_temp = "";
-            uid_temp = "";
-            s = "";
-            StringBuilder hex = new StringBuilder(ReaderState.ATRValue.Length * 2);
-            foreach (byte b in ReaderState.ATRValue)
-                hex.AppendFormat("{0:X2}", b);
-            atr_temp = hex.ToString();
-            atr_temp = atr_temp.Substring(0, ((int)(ReaderState.ATRLength)) * 2);
-
-            
-
-            for (int k = 0; k <= ((ReaderState.ATRLength) * 2 - 1); k += 2)
+            try
             {
-                s = s + atr_temp.Substring(k, 2) + " ";
+                HiDWinscard.SCARD_IO_REQUEST sioreq;
+                sioreq.dwProtocol = 0x2;
+                sioreq.cbPciLength = 8;
+                HiDWinscard.SCARD_IO_REQUEST rioreq;
+                rioreq.cbPciLength = 8;
+                rioreq.dwProtocol = 0x2;
+
+                String uid_temp;
+                String atr_temp;
+                String s;
+                atr_temp = "";
+                uid_temp = "";
+                s = "";
+                StringBuilder hex = new StringBuilder(ReaderState.ATRValue.Length * 2);
+                foreach (byte b in ReaderState.ATRValue)
+                    hex.AppendFormat("{0:X2}", b);
+                atr_temp = hex.ToString();
+                atr_temp = atr_temp.Substring(0, ((int)(ReaderState.ATRLength)) * 2);
+
+
+
+                for (int k = 0; k <= ((ReaderState.ATRLength) * 2 - 1); k += 2)
+                {
+                    s = s + atr_temp.Substring(k, 2) + " ";
+                }
+
+                atr_temp = s;
+
+                bcla = 0xFF;
+                bins = 0xCA;
+                bp1 = 0x0;
+                bp2 = 0x0;
+                len = 0x0;
+                sendBuffer[0] = bcla;
+                sendBuffer[1] = bins;
+                sendBuffer[2] = bp1;
+                sendBuffer[3] = bp2;
+                sendBuffer[4] = len;
+                sendbufferlen = 0x5;
+                receivebufferlen = 255;
+                retval = HID.SCardTransmit(hCard, ref sioreq, sendBuffer, sendbufferlen, ref rioreq, receiveBuffer, ref receivebufferlen);
+                if (retval == 0)
+                {
+                    if ((receiveBuffer[receivebufferlen - 2] == 0x90) && (receiveBuffer[receivebufferlen - 1] == 0))
+                    {
+                        StringBuilder hex1 = new StringBuilder((receivebufferlen - 2) * 2);
+                        foreach (byte b in receiveBuffer)
+                            hex1.AppendFormat("{0:X2}", b);
+                        uid_temp = hex1.ToString();
+                        uid_temp = uid_temp.Substring(0, ((int)(receivebufferlen - 2)) * 2);
+
+                        MyUIDofCard = uid_temp;
+
+                    }
+                    else
+                    {
+                        ;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
 
-            atr_temp = s;
-
-            bcla = 0xFF;
-            bins = 0xCA;
-            bp1 = 0x0;
-            bp2 = 0x0;
-            len = 0x0;
-            sendBuffer[0] = bcla;
-            sendBuffer[1] = bins;
-            sendBuffer[2] = bp1;
-            sendBuffer[3] = bp2;
-            sendBuffer[4] = len;
-            sendbufferlen = 0x5;
-            receivebufferlen = 255;
-            retval = HID.SCardTransmit(hCard, ref sioreq, sendBuffer, sendbufferlen, ref rioreq, receiveBuffer, ref receivebufferlen);
-            if (retval == 0)
-            {
-                if ((receiveBuffer[receivebufferlen - 2] == 0x90) && (receiveBuffer[receivebufferlen - 1] == 0))
-                {
-                    StringBuilder hex1 = new StringBuilder((receivebufferlen - 2) * 2);
-                    foreach (byte b in receiveBuffer)
-                        hex1.AppendFormat("{0:X2}", b);
-                    uid_temp = hex1.ToString();
-                    uid_temp = uid_temp.Substring(0, ((int)(receivebufferlen - 2)) * 2);
-
-                    MyUIDofCard = uid_temp;
-                }
-                else
-                {
-                    ;
-                }
-            }
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -368,6 +414,22 @@ namespace GID_Client.ViewModel
         }
 
         private bool timerInProc;
+
+        private bool IsConncted;
+
+        private List<string> llCard = new List<string>();
+
+        private void AutoTsex(bool _IsConncted)
+        {
+            if (_IsConncted)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
 
         private void timerWorkItem()
         {
@@ -404,6 +466,10 @@ namespace GID_Client.ViewModel
                         //DisconnectButton_Click(sender1, e1);
                         //mifarecardtypeLabel.Content = "";
                         MyUIDofCard = "";
+                        IsConncted = false;
+                        PrivateKey = string.Empty;
+                        PublicKey = string.Empty;
+                        Certificate = string.Empty;
                     }
                     else
                     {
@@ -411,6 +477,7 @@ namespace GID_Client.ViewModel
                         BackgroundTb = Brushes.GreenYellow;
                         ForegroundTb = Brushes.Black;
                         Connect2Card();
+                        IsConncted = true;
                     }
                 }
 
@@ -440,7 +507,17 @@ namespace GID_Client.ViewModel
 
             try
             {
-                _controller.OpenCardDR();
+                MycardStatus = "Идет пре-персонализация...";
+                BackgroundTb = Brushes.FloralWhite;
+                ForegroundTb = Brushes.Black;
+
+                if (_controller.OpenCardDR() != 0)
+                {
+                    MycardStatus = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                    BackgroundTb = Brushes.OrangeRed;
+                    ForegroundTb = Brushes.Black;
+                    return;
+                }
 
                 fSaveCardInfo();
 
@@ -451,6 +528,9 @@ namespace GID_Client.ViewModel
             catch(Exception ex)
             {
                 StatusText = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                MycardStatus = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                BackgroundTb = Brushes.OrangeRed;
+                ForegroundTb = Brushes.Black;
 
                 _logService.Error(ex.Message);
 
@@ -468,7 +548,17 @@ namespace GID_Client.ViewModel
 
             try
             {
-                _controller.OpenCardVR();
+                MycardStatus = "Идет пре-персонализация...";
+                BackgroundTb = Brushes.FloralWhite;
+                ForegroundTb = Brushes.Black;
+
+                if (_controller.OpenCardVR() != 0)
+                {
+                    MycardStatus = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                    BackgroundTb = Brushes.OrangeRed;
+                    ForegroundTb = Brushes.Black;
+                    return;
+                }
 
                 fSaveCardInfo();
 
@@ -479,37 +569,73 @@ namespace GID_Client.ViewModel
             catch (Exception ex)
             {
                 StatusText = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                MycardStatus = "Ошибка пре персонализации. Посмотрите логи для деталей.";
 
                 _logService.Error(ex.Message);
             }
+
+            StatusText = "Карта удачно открыта";
         }
 
-        private void fSaveCardInfo()
+        private Task PfSaveCardInfo()
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    MycardStatus = "Сохранение карты...";
+                    BackgroundTb = Brushes.PaleGoldenrod;
+                    ForegroundTb = Brushes.Black;
+
+                    getResponceCardInsert obj = ServerApiController.RegisterCard(MyUIDofCard);
+
+                    PrivateKey = obj._data.PrivateKey;
+
+                    PublicKey = obj._data.PublicKey;
+
+                    if (obj._status.ToLower().Contains("success"))
+                    {
+                        CertificateButton = true;
+
+                        StatusText = obj._status;
+                    }
+                    else
+                    {
+                        StatusText = obj._data._message;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    StatusText = "Ошибка при сохранении карты. Ошибка сервера";
+                    MycardStatus = "Ошибка при сохранении карты. Ошибка сервера";
+                    BackgroundTb = Brushes.OrangeRed;
+                    ForegroundTb = Brushes.Black;
+
+                    _logService.Error(ex.Message);
+                }
+            });
+
+            return resultTask;
+        }
+
+        private async void fSaveCardInfo()
         {
             try
             {
-                getResponceCardInsert obj = ServerApiController.RegisterCard(MyUIDofCard);
-
-                PrivateKey = obj._data.PrivateKey;
-
-                PublicKey = obj._data.PublicKey;
-
-                if (obj._status.ToLower().Contains("success"))
-                {
-                    CertificateButton = true;
-
-                    StatusText = obj._status;
-                }
-                else
-                {
-                    StatusText = obj._data._message;
-                }
+                await PfSaveCardInfo();
             }
             catch(Exception ex)
             {
                 StatusText = "Ошибка при сохранении карты. Ошибка сервера";
+                MycardStatus = "Ошибка при сохранении карты. Ошибка сервера";
+                BackgroundTb = Brushes.OrangeRed;
+                ForegroundTb = Brushes.Black;
 
                 _logService.Error(ex.Message);
+            }
+            finally
+            {
+
             }
 
         }
@@ -531,26 +657,55 @@ namespace GID_Client.ViewModel
             }
         }
 
-        private void fGetcertificate()
+        private Task PGetcertificate()
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    MycardStatus = "Получение сертификата...";
+                    BackgroundTb = Brushes.Gold;
+                    ForegroundTb = Brushes.Black;
+
+                    getResponceCardInsert obj = ServerApiController.GetCertificate(MyUIDofCard);
+
+                    Certificate = obj._data._certificate;
+
+                    if (obj._status.ToLower().Contains("success"))
+                    {
+                        StatusText = obj._status;
+                    }
+                    else
+                    {
+                        StatusText = obj._data._message;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    StatusText = "Ошибка при получении сертификата. Ошибка сервера";
+                    MycardStatus = "Ошибка при получении сертификата. Ошибка сервера";
+                    BackgroundTb = Brushes.OrangeRed;
+                    ForegroundTb = Brushes.Black;
+
+                    _logService.Error(ex.Message);
+                }
+            });
+
+            return resultTask;
+        }
+
+        private async void fGetcertificate()
         {
             try
             {
-                getResponceCardInsert obj = ServerApiController.GetCertificate(MyUIDofCard);
-
-                Certificate = obj._data._certificate;
-
-                if (obj._status.ToLower().Contains("success"))
-                {
-                    StatusText = obj._status;
-                }
-                else
-                {
-                    StatusText = obj._data._message;
-                }
+                await PGetcertificate();
             }
             catch(Exception ex)
             {
                 StatusText = "Ошибка при получении сертификата. Ошибка сервера";
+                MycardStatus = "Ошибка при получении сертификата. Ошибка сервера";
+                BackgroundTb = Brushes.OrangeRed;
+                ForegroundTb = Brushes.Black;
 
                 _logService.Error(ex.Message);
             }
@@ -564,7 +719,7 @@ namespace GID_Client.ViewModel
                 
                 try
                 {
-                    _controller.SaveCertificate(Certificate);
+                    //_controller.SaveCertificate(Certificate);
                 }
                 catch (Exception ex)
                 {

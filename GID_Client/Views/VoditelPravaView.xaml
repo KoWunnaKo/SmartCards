@@ -305,6 +305,7 @@
                 </Button>
                 <Button Grid.Row="15" Grid.Column="1"
                     Margin="5"
+                        Visibility="Hidden"
                     Content="Сохранить">
                 </Button>
             </Grid>
