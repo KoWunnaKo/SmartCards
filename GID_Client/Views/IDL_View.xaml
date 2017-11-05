@@ -82,7 +82,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Фамилия" 
+                <TextBlock Text="Familiyasi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -100,7 +100,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Имя" 
+                <TextBlock Text="Ismi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -118,7 +118,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Отчество" 
+                <TextBlock Text="Otasining ismi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -136,7 +136,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Дата рождения" 
+                <TextBlock Text="Tug'ilgan kuni" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -155,7 +155,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Место рождения" 
+                <TextBlock Text="Tug'ilgan joyi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -186,7 +186,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Дата выдачи" 
+                <TextBlock Text="Berilgan sanasi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -205,7 +205,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Место выдачи" 
+                <TextBlock Text="Berilgan joyi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -223,7 +223,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Срок годности" 
+                <TextBlock Text="Yaroqlilik sanasi" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -232,6 +232,7 @@
                 <TextBox 
                     Margin="2" 
                     Grid.Row="1" 
+                    IsReadOnly="True"
                     Text="{Binding ExpireDate}" FontSize="14"
                     >
                 </TextBox>
@@ -242,7 +243,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Серия и Номер Прав" 
+                <TextBlock Text="Guvohnoma raqami" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -260,7 +261,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="ПНФЛ" 
+                <TextBlock Text="PNFL" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -280,7 +281,7 @@
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="200*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Адрес" 
+            <TextBlock Text="Adres" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -325,35 +326,40 @@
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="0" 
                    Grid.Column="2"
-                   Text="Дата выдачи"
+                   Text="Berilgan sanasi"
                            HorizontalAlignment="Center" FontSize="14"
                    ></TextBlock>
 
                 <TextBlock Grid.Row="0" 
                    Grid.Column="3"
-                   Text="Дата окончания"
+                   Text="Tugash sanasi"
                            HorizontalAlignment="Center" FontSize="14"
                    ></TextBlock>
                 <CheckBox Grid.Row="1" 
                    Grid.Column="4"
                           HorizontalAlignment="Center"
                                   Margin="2"
+                          IsHitTestVisible="false" 
                                   IsChecked="{Binding CheckedA}"></CheckBox>
                 <CheckBox Grid.Row="2" 
                    Grid.Column="4" 
                    Margin="2"
+                          IsHitTestVisible="false" 
                    IsChecked="{Binding CheckedB}"
                           HorizontalAlignment="Center"></CheckBox>
                 <CheckBox Grid.Row="3" 
                    Grid.Column="4" Margin="2"
+                          IsHitTestVisible="false" 
                           HorizontalAlignment="Center"
                                   IsChecked="{Binding CheckedC}"></CheckBox>
                 <CheckBox Grid.Row="4" 
                           HorizontalAlignment="Center"
+                          IsHitTestVisible="false" 
                    Grid.Column="4" Margin="2"
                                   IsChecked="{Binding CheckedD}"></CheckBox>
                 <CheckBox Grid.Row="5" 
                           HorizontalAlignment="Center"
+                          IsHitTestVisible="false" 
                    Grid.Column="4" Margin="2"
                                   IsChecked="{Binding CheckedE}"></CheckBox>
 
@@ -412,7 +418,7 @@
                 </TextBox>
                 <TextBlock Grid.Row="1" 
                    Grid.Column="1"
-                   Text="Мотоцикл"
+                   Text="Motosikl"
                    HorizontalAlignment="Center"
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="2" 
@@ -422,7 +428,7 @@
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="2" 
                    Grid.Column="1"
-                   Text="Легковой автомобиль"
+                   Text="Engil avtomobil"
                    HorizontalAlignment="Center"
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="3" 
@@ -432,7 +438,7 @@
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="3" 
                    Grid.Column="1"
-                   Text="Грузовой автомобиль"
+                   Text="Yuk Mashinasi"
                    HorizontalAlignment="Center"
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="4" 
@@ -442,7 +448,7 @@
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="4" 
                    Grid.Column="1"
-                   Text="Перевозка пассажира"
+                   Text="Yo'lovchi tashish"
                    HorizontalAlignment="Center"
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="5" 
@@ -452,7 +458,7 @@
                    Margin="5" FontSize="14"></TextBlock>
                 <TextBlock Grid.Row="5" 
                    Grid.Column="1"
-                   Text="Прицеп"
+                   Text="Shatak"
                    HorizontalAlignment="Center"
                    Margin="5" FontSize="14"></TextBlock>
             </Grid>
@@ -471,6 +477,10 @@
                     Name="txbStatus"
                     Margin="10,0,0,0"
                     Text="{Binding StatusText}"></TextBlock>
+                <Button Width="20" 
+                        Content="X"
+                        Command ="{Binding StopProcess}"
+                        IsEnabled="{Binding StopReadingProc}"></Button>
             </StackPanel>
         </Border>
     </Grid>

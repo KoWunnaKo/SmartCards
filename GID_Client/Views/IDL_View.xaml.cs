@@ -36,5 +36,6 @@ namespace GID_Client.Views
         {
             _model.Release();
         }
+
     }
 }

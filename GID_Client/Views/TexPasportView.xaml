@@ -42,7 +42,7 @@
 
             <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
-                   Text="Тип владельца"
+                   Text="Egasini turi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -54,7 +54,7 @@
 
             <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
-                   Text="Адрес"
+                   Text="Adres"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -65,7 +65,7 @@
 
             <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
-                   Text="Вилоят"
+                   Text="Viloyat"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -76,7 +76,7 @@
 
             <TextBlock Grid.Row="3" 
                    Grid.Column="0" 
-                   Text="Туман"
+                   Text="Tuman"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -87,7 +87,7 @@
 
             <TextBlock Grid.Row="4" 
                    Grid.Column="0" 
-                   Text="Номи"
+                   Text="Nomi"
                    HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
@@ -110,7 +110,7 @@
             
             <TextBlock Grid.Row="5" 
                    Grid.Column="0" 
-                   Text="Фамилия"
+                   Text="Sharifi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -122,7 +122,7 @@
 
             <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
-                   Text="Исми"
+                   Text="Ismi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -133,7 +133,7 @@
 
             <TextBlock Grid.Row="7" 
                    Grid.Column="0" 
-                   Text="Отасининг Исми"
+                   Text="Otasining nomi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -145,7 +145,7 @@
 
             <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
-                   Text="ПНФЛ"
+                   Text="PNFL"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -156,7 +156,7 @@
 
             <TextBlock Grid.Row="9" 
                    Grid.Column="0" 
-                   Text="ИНН"
+                   Text="INN"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -167,7 +167,7 @@
 
             <TextBlock Grid.Row="0" 
                    Grid.Column="2" 
-                   Text="Давлат рақами белгиси"
+                   Text="Davlat raqami belgisi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -178,7 +178,7 @@
 
             <TextBlock Grid.Row="1" 
                    Grid.Column="2" 
-                   Text="Русуми"
+                   Text="Rusumi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -189,7 +189,7 @@
 
             <TextBlock Grid.Row="2" 
                    Grid.Column="2" 
-                   Text="Маркаси"
+                   Text="Markasi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -200,7 +200,7 @@
 
             <TextBlock Grid.Row="3" 
                    Grid.Column="2" 
-                   Text="Ранги"
+                   Text="Rangi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -211,7 +211,7 @@
 
             <TextBlock Grid.Row="4" 
                    Grid.Column="2" 
-                   Text="Ишлаб чиқарилган йили"
+                   Text="Ishlab qigarilgan yili"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -223,7 +223,7 @@
 
             <TextBlock Grid.Row="5" 
                    Grid.Column="2" 
-                   Text="Тури"
+                   Text="Turi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -234,7 +234,7 @@
 
             <TextBlock Grid.Row="6" 
                    Grid.Column="2" 
-                   Text="Кузов номери"
+                   Text="Kuzov nomeri"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -245,7 +245,7 @@
 
             <TextBlock Grid.Row="7" 
                    Grid.Column="2" 
-                   Text="Шасси номери"
+                   Text="Shassi nomeri"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -257,7 +257,7 @@
 
             <TextBlock Grid.Row="8" 
                    Grid.Column="2" 
-                   Text="Тўла вазни КГ"
+                   Text="To'la vazni KG"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -268,7 +268,7 @@
 
             <TextBlock Grid.Row="9" 
                    Grid.Column="2" 
-                   Text="Юксиз вазни КГ"
+                   Text="Yuksiz vazni KG"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -279,7 +279,7 @@
 
             <TextBlock Grid.Row="10" 
                    Grid.Column="2" 
-                   Text="Двигатель рақами"
+                   Text="Dvigatel raqami"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -290,7 +290,7 @@
 
             <TextBlock Grid.Row="11" 
                    Grid.Column="2" 
-                   Text="Двигатель қуввати"
+                   Text="Dvigatel quvvati"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -301,7 +301,7 @@
 
             <TextBlock Grid.Row="12" 
                    Grid.Column="2" 
-                   Text="Ёқилғи тури"
+                   Text="Yoqilg'i turi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -312,7 +312,7 @@
 
             <TextBlock Grid.Row="13" 
                    Grid.Column="2" 
-                   Text="Двигатель кучи улчови"
+                   Text="Dvigatel kuchi o'lchovi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -324,7 +324,7 @@
 
             <TextBlock Grid.Row="14" 
                    Grid.Column="2" 
-                   Text="Ўринлар сони"
+                   Text="O'rinlar soni"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -335,7 +335,7 @@
 
             <TextBlock Grid.Row="15" 
                    Grid.Column="2" 
-                   Text="Турувчилар сони"
+                   Text="Turuvchilar soni"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -346,7 +346,7 @@
 
             <TextBlock Grid.Row="16" 
                    Grid.Column="2" 
-                   Text="Алохида белгилар"
+                   Text="Alohida belgilar"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -359,7 +359,7 @@
 
             <TextBlock Grid.Row="11" 
                    Grid.Column="0" 
-                   Text="Берилган вакти"
+                   Text="Berilgan vaqti"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -370,7 +370,7 @@
 
             <TextBlock Grid.Row="12" 
                    Grid.Column="0" 
-                   Text="ДАН бошқармаси бўлими"
+                   Text="DAN boshqarmasi bo'limi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -382,7 +382,7 @@
 
             <TextBlock Grid.Row="13" 
                    Grid.Column="0" 
-                   Text="Лицензия раками"
+                   Text="Lisenziya raqami"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -394,7 +394,7 @@
 
             <TextBlock Grid.Row="14" 
                    Grid.Column="0" 
-                   Text="Тугаш санаси"
+                   Text="Tugash sanasi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 

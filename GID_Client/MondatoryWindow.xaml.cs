@@ -1,22 +1,11 @@
 ﻿using CardAPILib.CardAPI;
-using Iso18013Lib;
 using SmartCardApi.MRZ;
 using SmartCardApi.SmartCardReader;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GID_Client
 {
@@ -33,13 +22,9 @@ namespace GID_Client
         {
             InitializeComponent();
 
-            //this.Owner = App.Current.MainWindow;
-
             DataContext = this;
 
             _controller = new CardApiController(false);
-
-            
 
             txbDocNum.Focus();
         }
@@ -53,14 +38,14 @@ namespace GID_Client
                 return;
             }
 
-            if (fDpBirthDate == null)
+            if (string.IsNullOrEmpty(fDpBirthDate))
             {
                 this.DialogResult = false;
 
                 return;
             }
 
-            if (fDpExpireDate == null)
+            if (string.IsNullOrEmpty(fDpExpireDate))
             {
                 this.DialogResult = false;
 
@@ -77,64 +62,22 @@ namespace GID_Client
             this.DialogResult = true;
         }
 
-        DateTime BirthDate;
-
-        DateTime ExpireDate;
-
-        string LicenseNumber;
-
         private bool fReadCard()
         {
-            byte[] DG1 = null;
-
-            byte[] DG2 = null;
-
-            byte[] DG3 = null;
-
-            byte[] DG4 = null;
-
-            byte[] DG5 = null;
-
-            byte[] DGCommon = null;
-
             try
             {
-                //var result = _controller.ReadIDLCardNext(ref DG1, ref DG2, ref DG3, ref DG4, ref DG5, ref DGCommon);
-
-                //if (result != 0)
-                //{
-                //    return false;
-                //}
+                fDpBirthDate = fDpBirthDate.Replace(',', '.');
+                fDpExpireDate = fDpExpireDate.Replace(',', '.');
 
                 var mrzInfo = new MRZInfo(
                     ftxbDocNum,
-                    fDpBirthDate.Value,
-                    fDpExpireDate.Value
+                    DateTime.ParseExact(fDpBirthDate, "dd.MM.yyyy", CultureInfo.CurrentCulture),
+                    DateTime.ParseExact(fDpExpireDate, "dd.MM.yyyy", CultureInfo.CurrentCulture)
                 );
 
                 var str = string.Format("{0}{1}", "1", mrzInfo.ToString()).Substring(0, 16);
 
-                SecuredReaderTest dd = new SecuredReaderTest();
-
                 InpetString = str;
-                //1
-
-                //DG1 = dd.IDL_ReaderDG1(InpetString);
-                //DG2 = dd.IDL_ReaderDG2(InpetString);
-
-                //DG4 = dd.IDL_ReaderDG4(InpetString);
-                //DG5 = dd.IDL_ReaderDG5(InpetString);
-
-                //DrivingLicense DrL = new DrivingLicense("");
-
-                //var dl = DrL.ParseReadMaterial(DG1, DG2, DG3, DG4, DG5, DGCommon);
-
-                //BirthDate = DateTime.ParseExact(dl._driver._date_of_birth, "yyyyMMdd", CultureInfo.InvariantCulture);
-
-                //ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-
-                //LicenseNumber = dl._license_number;
-
             }
             catch (Exception ex)
             {
@@ -151,7 +94,6 @@ namespace GID_Client
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //[NotifyPropertyChangedInvocator]
         protected void OnPropertyChanged(string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -175,9 +117,9 @@ namespace GID_Client
             }
         }
 
-        private DateTime? _DpBirthDate;
+        private string _DpBirthDate;
 
-        public DateTime? fDpBirthDate
+        public string fDpBirthDate
         {
             get
             {
@@ -192,9 +134,9 @@ namespace GID_Client
             }
         }
 
-        private DateTime? _DpExpireDate;
+        private string _DpExpireDate;
 
-        public DateTime? fDpExpireDate
+        public string fDpExpireDate
         {
             get
             {

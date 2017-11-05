@@ -40,7 +40,7 @@ namespace GID_Client
                 return;
             }
 
-            if (fDpIssueDate == null)
+            if (string.IsNullOrEmpty(fDpIssueDate))
             {
                 this.DialogResult = false;
 
@@ -70,8 +70,9 @@ namespace GID_Client
 
             try
             {
+                fDpIssueDate = fDpIssueDate.Replace(',', '.');
 
-                var str = string.Format("{0}{1}{2}{3}", "1", ftxbDocNum, fDpIssueDate.Value.ToString("yyyyMMdd"), ftxbDocNum2).Substring(0, 16);
+                var str = string.Format("{0}{1}{2}{3}", "1", ftxbDocNum, DateTime.ParseExact(fDpIssueDate, "dd.MM.yyyy", CultureInfo.CurrentCulture).ToString("yyyyMMdd"), ftxbDocNum2).Substring(0, 16);
 
                 InpetString = str;
 
@@ -140,9 +141,9 @@ namespace GID_Client
             }
         }
 
-        private DateTime? _DpIssueDate;
+        private string _DpIssueDate;
 
-        public DateTime? fDpIssueDate
+        public string fDpIssueDate
         {
             get
             {

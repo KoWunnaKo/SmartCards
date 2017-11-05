@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:GID_Client"
         mc:Ignorable="d"
         Title="Tekshiruv" Height="200" Width="450">
@@ -23,15 +24,17 @@
                    HorizontalAlignment="Right"
                    Margin="5" FontWeight="Bold" FontSize="16"></TextBlock>
 
-        <TextBox Grid.Row="0" 
+        <xctk:MaskedTextBox  Grid.Row="0" 
                  Grid.Column="1" 
                  Margin="5"
+                 Mask="LL0000000" 
                  Name="txbDocNum"
+                 MaxLength="9"
                  CharacterCasing="Upper"
                  KeyboardNavigation.TabIndex="0"
                  
                  Text="{Binding ftxbDocNum}" FontSize="16"
-            ></TextBox>
+            ></xctk:MaskedTextBox>
 
         <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
@@ -39,24 +42,17 @@
                    HorizontalAlignment="Right"
                    Margin="5" FontWeight="Bold" FontSize="16"></TextBlock>
 
-        <DatePicker Grid.Row="1" 
+        <xctk:MaskedTextBox Grid.Row="1" 
                     Grid.Column="1" 
                     Margin="5"
+                    Mask="00.00.0000" 
                     Name="DpBirthDate"
                     KeyboardNavigation.TabIndex="1"
-                    SelectedDate="{Binding fDpBirthDate, StringFormat= dd.MM.yyyy}"
-                    SelectedDateFormat="Short"
-                    TextBoxBase.TextChanged="DatePicker_TextChanged"
-                    TextBoxBase.TextInput="DpBirthDate_TextInput"
-                    TextBoxBase.GotFocus="DpBirthDate_GotFocus"
-                    TextBoxBase.KeyDown="DpBirthDate_KeyDown" FontSize="16"
+                    Text="{Binding fDpBirthDate}"
+                         FontSize="16"
             >
-            <DatePicker.Resources>
-                <Style TargetType="DatePickerTextBox">
-                    <Setter Property="Text" Value="01.01.2000"/>
-                </Style>
-            </DatePicker.Resources>
-        </DatePicker>
+
+        </xctk:MaskedTextBox>
 
         <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
@@ -64,20 +60,15 @@
                    HorizontalAlignment="Right"
                    Margin="5" FontWeight="Bold" FontSize="16"></TextBlock>
 
-        <DatePicker Grid.Row="2" 
+        <xctk:MaskedTextBox Grid.Row="2" 
                     Grid.Column="1" 
                     Margin="5"
+                    Mask="00.00.0000" 
                     Name="DpExpireDate"
                     KeyboardNavigation.TabIndex="2"
-                    SelectedDateFormat="Short"
-                    SelectedDate="{Binding fDpExpireDate, StringFormat= dd.MM.yyyy}" FontSize="16"
+                    Text="{Binding fDpExpireDate}" FontSize="16"
             >
-            <DatePicker.Resources>
-                <Style TargetType="DatePickerTextBox">
-                    <Setter Property="Text" Value="01.01.2027"/>
-                </Style>
-            </DatePicker.Resources>
-        </DatePicker>
+        </xctk:MaskedTextBox>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

@@ -681,6 +681,18 @@
             
             </summary>
         </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannelV2(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.CheckValidityOfKey(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+        </member>
         <member name="P:Advanced_Device_Programming.Apdu.instructionClass">
             <summary>
             The T=0 instruction class.

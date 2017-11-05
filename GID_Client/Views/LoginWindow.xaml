@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartCardDesc.Secirity"
         mc:Ignorable="d"
-        Title="Авторизация" Height="208.834" Width="320" WindowStyle="ToolWindow"
+        Title="Avtorizasiya" Height="208.834" Width="320" WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
         <TextBlock
             Grid.Row="0"
             Grid.Column="0"
-            Text="Логин"
+            Text="Login"
             Margin="20,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -37,7 +37,7 @@
             Grid.Column="1"/>
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
-                   Text="Пароль"
+                   Text="Parol"
                    HorizontalAlignment="Left"
                    Margin="20,0,0,0"
                     VerticalAlignment="Center"></TextBlock>
@@ -70,7 +70,7 @@
                    />
             
             <Button 
-            Content="ОК" 
+            Content="Kirish" 
             HorizontalAlignment="Center" 
             Height="25" 
             VerticalAlignment="Center" 
@@ -80,7 +80,7 @@
             Grid.Row="2" IsDefault="True" />
 
             <Button 
-            Content="Закрыть" 
+            Content="Bekor qilish" 
             HorizontalAlignment="Center" 
             Height="25" 
             VerticalAlignment="Center" 

@@ -16,6 +16,7 @@ using GemCard;
 using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel;
+using CardAPILib.InterfaceCL;
 
 namespace GID_Client.ViewModel
 {
@@ -31,6 +32,8 @@ namespace GID_Client.ViewModel
 
         public RelayCommand SaveCard { get; private set; }
 
+        public RelayCommand StopProcess { get; private set; }
+
         private string readJson { get; set; }
 
         private SQLiteDataCommands dbDataSet { get; set; }
@@ -42,6 +45,8 @@ namespace GID_Client.ViewModel
             ReadCard = new RelayCommand(_ => fReadCard());
 
             SaveCard = new RelayCommand(_ => fSaveCard());
+
+            StopProcess = new RelayCommand(_ => fStopProcess());
 
             try
             {
@@ -83,6 +88,21 @@ namespace GID_Client.ViewModel
             CheckedC = false;
             CheckedD = false;
             CheckedE = false;
+        }
+
+        private void fStopProcess()
+        {
+            try
+            {
+                worker.CancelAsync();
+            }
+            catch
+            {
+                //
+            }
+
+            IsIntermadiate = false;
+            StopReadingProc = false;
 
         }
 
@@ -94,10 +114,10 @@ namespace GID_Client.ViewModel
 
         private void _card_OnCardInserted(string reader)
         {
-            fReadCard();
+            
         }
 
-        private void _card_OnCardRemoved(string reader)
+        private void ClearFields()
         {
             LastName = string.Empty;
 
@@ -144,6 +164,13 @@ namespace GID_Client.ViewModel
             Base64ImageData = null;
 
             Base64ImageData2 = null;
+        }
+
+        private void _card_OnCardRemoved(string reader)
+        {
+            ClearFields();
+
+            fReadCard();
         }
 
         private string GetUUid()
@@ -377,6 +404,7 @@ namespace GID_Client.ViewModel
         }
 
         private string InputString = string.Empty;
+        private BackgroundWorker worker = new BackgroundWorker();
 
         private async void fReadCard()
         {
@@ -384,7 +412,8 @@ namespace GID_Client.ViewModel
 
             MondatoryWindow mon = new MondatoryWindow();
 
-            mon.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            //mon.Owner = App.Current.MainWindow;
+            mon.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             //mon.Owner = App.Current.MainWindow;
 
@@ -392,11 +421,11 @@ namespace GID_Client.ViewModel
 
             if (!result1.Value)
             {
-                StatusText = "Введенные данные не верны";
+                StatusText = "Ma'lumot to'liq kiritilmagan";
 
-                _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
+                _logService.Error(string.Format("{0} ", "Ma'lumot to'liq kiritilmagan"));
 
-                var result = MessageBox.Show("Введенные данные не верны. Попробовать снова?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                var result = MessageBox.Show("Ma'lumot to'liq kiritilmagan. Ya harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -408,11 +437,45 @@ namespace GID_Client.ViewModel
 
             InputString = mon.InpetString;
 
-            
+            var sc = new SecureMessaging();
+
+            bool dataCheck = false;
+
+            for(int i = 0; i <= 3; i++)
+            {
+                int res = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
+
+                if (res == 0)
+                {
+                    dataCheck = true;
+                    break;
+                }
+                else if (res == -99)
+                {
+                    dataCheck = false;
+                    break;
+                }
+            }
+
+            if (!dataCheck)
+            {
+                StatusText = "Ma'lumot xato kiritilgan";
+
+                _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
+
+                var result = MessageBox.Show("Ma'lumot xato kiritilgan. Ya harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    fReadCard();
+                }
+
+                return;
+            }
+
+
 
             StatusText = "O'qimoqda...";
-
-            BackgroundWorker worker = new BackgroundWorker();
 
             worker.DoWork += (o, ea) =>
             {
@@ -434,13 +497,14 @@ namespace GID_Client.ViewModel
             {
                 //work has completed. you can now interact with the UI
                 IsIntermadiate = false;
+                StopReadingProc = false;
             };
             //set the IsBusy before you start the thread
             IsIntermadiate = true;
+            StopReadingProc = true;
             worker.RunWorkerAsync();
 
             //Mouse.OverrideCursor = null;
-
         }
 
         private void fSaveCard()
@@ -900,6 +964,20 @@ namespace GID_Client.ViewModel
                 _expireE = value;
 
                 OnPropertyChanged("ExpireE");
+            }
+        }
+
+        private bool _stopReadingProc;
+
+        public bool StopReadingProc
+        {
+            get { return _stopReadingProc; }
+
+            set
+            {
+                _stopReadingProc = value;
+
+                OnPropertyChanged("StopReadingProc");
             }
         }
 

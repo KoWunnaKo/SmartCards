@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Closed="Window_Closed"
-        Title="АРМ Карт Мастер 2.3" Height="710" Width="1015"
+        Title="Avtomatlashtirilgan ish joyi Kart Master 2.5" Height="710" Width="1015"
         WindowStartupLocation="CenterScreen"
-        MinHeight="800" MinWidth="1015" MaxHeight="850" MaxWidth="1100">
+        WindowState="Maximized" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -48,7 +48,7 @@
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
             <!-- Ribbon Tab #1: Home -->
-            <RibbonTab Header=" Цех" KeyTip="H" Name="Tsex" >
+            <RibbonTab Header=" Tsex" KeyTip="H" Name="Tsex" >
                 <!-- Home  group-->
                 <RibbonGroup x:Name="ClipboardGroup" Margin="0,1" Header="Операции производимые в Цеху" >
                     <StackPanel Orientation="Horizontal">
@@ -58,11 +58,11 @@
                                        LargeImageSource="ResourcesPic/document.ico"
                                        Name="btnEditCard"
                                        Click="btnEditCard_Click"/>-->
-                        <RibbonRadioButton  Label="Водительские Права"  
+                        <RibbonRadioButton  Label="Haydovchilik guvohnomasi"  
                                        LargeImageSource="ResourcesPic/driver1600.png"
                                        Name="btnUserInfolist2"
                                             Click="btnUserInfolist2_Click"/>
-                        <RibbonRadioButton  Label="Технический Паспорт"  
+                        <RibbonRadioButton  Label="Avtotransport guvohnomasi"  
                                        LargeImageSource="ResourcesPic/car.png" 
                                        Name="btnCardInfolist2"
                                             Click="btnCardInfolist2_Click"/>
@@ -139,14 +139,14 @@
                 </RibbonGroup>-->
             </RibbonTab>
             <!-- Ribbon Tab #2: -->
-            <RibbonTab Header="Верификация и Активация" KeyTip="I"  Name="Verification">
-                <RibbonGroup x:Name="ExchangeLists" Margin="0,1" Header="Данные водителя и Тех. Паспорта">
+            <RibbonTab Header="Guvohnoma Chipini tekshirish" KeyTip="I"  Name="Verification">
+                <RibbonGroup x:Name="ExchangeLists" Margin="0,1" Header="">
                     <StackPanel Orientation="Horizontal">
-                        <RibbonRadioButton  Label="Водительские Права"  
+                        <RibbonRadioButton  Label="Haydovchilik guvohnomasi"  
                                        LargeImageSource="ResourcesPic/driver1600.png"
                                        Name="btnUserInfolist"
                                             Click="btnUserInfolist_Click"/>
-                        <RibbonRadioButton  Label="Технический Паспорт"  
+                        <RibbonRadioButton  Label="Avtotransport guvohnomasi"  
                                        LargeImageSource="ResourcesPic/car.png" 
                                        Name="btnCardInfolist"
                                             Click="btnCardInfolist_Click"/>

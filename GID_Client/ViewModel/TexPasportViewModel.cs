@@ -1,4 +1,5 @@
 ﻿using CardAPILib.CardAPI;
+using CardAPILib.InterfaceCL;
 using Epigov.Log;
 using GemCard;
 using GID_Client.ServerApi;
@@ -78,7 +79,7 @@ namespace GID_Client.ViewModel
 
         private void _card_OnCardInserted(string reader)
         {
-            fReadCard();
+            
         }
 
         private void _card_OnCardRemoved(string reader)
@@ -146,6 +147,8 @@ namespace GID_Client.ViewModel
             License_number = string.Empty;
 
             Expire_date = string.Empty;
+
+            fReadCard();
         }
 
         private string GetUUid()
@@ -325,6 +328,42 @@ namespace GID_Client.ViewModel
             }
 
             InputString = mon.InpetString;
+
+            var sc = new SecureMessaging();
+
+            bool dataCheck = false;
+
+            for (int i = 0; i <= 10; i++)
+            {
+                int res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
+
+                if (res1 == 0)
+                {
+                    dataCheck = true;
+                    break;
+                }
+                else if (res1 == -99)
+                {
+                    dataCheck = false;
+                    break;
+                }
+            }
+
+            if (!dataCheck)
+            {
+                StatusText = "Ma'lumot xato kiritilgan";
+
+                _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
+
+                var result = MessageBox.Show("Ma'lumot xato kiritilgan. Ya harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    fReadCard();
+                }
+
+                return;
+            }
 
             IsIntermadiate = true;
 
