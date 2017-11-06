@@ -4,14 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GID_Client.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              Background="White"
              xmlns:l="clr-namespace:GID_Client.ViewModel" 
              FontSize="11"
-             d:DesignHeight="540" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <l:Base64ImageConverter x:Key="Base64ImageConverter"/>
     </UserControl.Resources>
+    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="O'qilmoqda..." >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -29,7 +31,7 @@
                 <RowDefinition Height="250"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="170"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
                     <Image 
                    Name="PortraitPhoto"
@@ -261,7 +263,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="PNFL" 
+                <TextBlock Text="JSHIR" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -279,9 +281,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="200"/>
-                <RowDefinition Height="200*"/>
+                <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Adres" 
+            <TextBlock Text="Manzili" 
                            Grid.Row="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
@@ -296,11 +298,12 @@
                 IsReadOnly="True" FontSize="14"></TextBox>
 
         </Grid>
+        
         <Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
                 HorizontalAlignment="Left"
                 Grid.Column="1"
-                    Margin="0,100,0,100"
+                 Margin="5"
                 Grid.ColumnSpan="2"
                 Grid.Row="0"  >
             <Grid  >
@@ -469,9 +472,9 @@
             <StackPanel  HorizontalAlignment="Left"
                              VerticalAlignment="Bottom"
 				Orientation="Horizontal">
-                <ProgressBar Height="20" Width="500"
+                <ProgressBar Height="20" Width="100"
                             Name="prStatus"
-                             IsIndeterminate="{Binding IsIntermadiate}"
+                             
                              />
                 <TextBlock
                     Name="txbStatus"
@@ -479,9 +482,11 @@
                     Text="{Binding StatusText}"></TextBlock>
                 <Button Width="20" 
                         Content="X"
+                        Visibility="Hidden"
                         Command ="{Binding StopProcess}"
                         IsEnabled="{Binding StopReadingProc}"></Button>
             </StackPanel>
         </Border>
     </Grid>
+    </xctk:BusyIndicator>
 </UserControl>

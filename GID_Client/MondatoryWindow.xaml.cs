@@ -37,6 +37,16 @@ namespace GID_Client
 
                 return;
             }
+            else
+            {
+                if (ftxbDocNum.Length != 9)
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+            }
+
 
             if (string.IsNullOrEmpty(fDpBirthDate))
             {
@@ -44,12 +54,30 @@ namespace GID_Client
 
                 return;
             }
+            else
+            {
+                if (fDpBirthDate.Length != 10)
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+            }
 
             if (string.IsNullOrEmpty(fDpExpireDate))
             {
                 this.DialogResult = false;
 
                 return;
+            }
+            else
+            {
+                if (fDpExpireDate.Length != 10)
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
             }
 
             if (!fReadCard())
@@ -100,6 +128,10 @@ namespace GID_Client
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private bool ftxbDocNumValidate = false;
+        private bool fDpBirthDateValidate = false;
+        private bool fDpExpireDateValidate = false;
+
         private string _txbDocNum;
 
         public string ftxbDocNum
@@ -112,6 +144,10 @@ namespace GID_Client
             set
             {
                 _txbDocNum = value;
+
+                ftxbDocNumValidate = txbDocNum.IsMaskFull;
+
+                CheckReadyness();
 
                 OnPropertyChanged("ftxbDocNum");
             }
@@ -130,6 +166,16 @@ namespace GID_Client
             {
                 _DpBirthDate = value;
 
+                if (!string.IsNullOrEmpty(_DpBirthDate))
+                {
+                    if (_DpBirthDate.Length == 8)
+                        _DpBirthDate = _DpBirthDate.Insert(2, ",").Insert(5, ",");
+                }
+
+                fDpBirthDateValidate = DpBirthDate.IsMaskFull;
+
+                CheckReadyness();
+
                 OnPropertyChanged("fDpBirthDate");
             }
         }
@@ -147,7 +193,47 @@ namespace GID_Client
             {
                 _DpExpireDate = value;
 
+                if (!string.IsNullOrEmpty(_DpExpireDate))
+                {
+                    if (_DpExpireDate.Length == 8)
+                        _DpExpireDate = _DpExpireDate.Insert(2, ",").Insert(5, ",");
+                }
+
+                fDpExpireDateValidate = DpExpireDate.IsMaskFull;
+
+                CheckReadyness();
+
                 OnPropertyChanged("fDpExpireDate");
+            }
+        }
+
+        private void CheckReadyness()
+        {
+            if (ftxbDocNumValidate && fDpBirthDateValidate && fDpExpireDateValidate)
+            {
+                Ready2Read = true;
+                btnStart.IsEnabled = true;
+            }
+            else
+            {
+                Ready2Read = false;
+            }
+        }
+
+        private bool _ready2read;
+
+        public bool Ready2Read
+        {
+            get
+            {
+                return _ready2read;
+            }
+
+            set
+            {
+                _ready2read = value;
+
+                OnPropertyChanged("Ready2Read");
             }
         }
 
@@ -198,6 +284,76 @@ namespace GID_Client
         {
             //DatePicker dp = (sender as DatePicker);
             //dp.Text = string.Empty;
+        }
+
+        private void txbDocNum_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (txbDocNum.IsMaskFull)
+                {
+                    DpBirthDate.Focus();
+                }
+            }
+
+        }
+
+        private void DpBirthDate_KeyDown_1(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (DpBirthDate.IsMaskFull)
+                {
+                    DpExpireDate.Focus();
+                }
+            }
+
+        }
+
+        private void DpExpireDate_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (DpExpireDate.IsMaskFull && ftxbDocNumValidate && fDpBirthDateValidate)
+                {
+                    txbDocNum.Focus();
+                }
+            }
+
+        }
+
+        private void txbDocNum_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //var check = txbDocNum.Text.TrimEnd('_');
+
+            //if (check.Length < 9)
+            //{
+            //    e.Handled = true;
+            //}
+        }
+
+        private void DpExpireDate_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (DpExpireDate.IsMaskFull && ftxbDocNumValidate && fDpBirthDateValidate)
+            {
+                btnStart.IsEnabled = true;
+            }
+        }
+
+        private void txbDocNum_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (fDpExpireDateValidate && txbDocNum.IsMaskFull && fDpBirthDateValidate)
+            {
+                btnStart.IsEnabled = true;
+            }
+        }
+
+        private void DpBirthDate_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (fDpExpireDateValidate && ftxbDocNumValidate && DpBirthDate.IsMaskFull)
+            {
+                btnStart.IsEnabled = true;
+            }
         }
     }
 }

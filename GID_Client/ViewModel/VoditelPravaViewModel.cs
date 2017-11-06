@@ -405,12 +405,40 @@ namespace GID_Client.ViewModel
 
         private string InputString = string.Empty;
         private BackgroundWorker worker = new BackgroundWorker();
+        private BackgroundWorker worker2 = new BackgroundWorker();
+
+        private string _txbDocNum;
+        private string _DpBirthDate;
+        private string _DpExpireDate;
 
         private async void fReadCard()
         {
             StatusText = string.Empty;
 
             MondatoryWindow mon = new MondatoryWindow();
+
+            if ((!string.IsNullOrEmpty(_txbDocNum)) && (!string.IsNullOrEmpty(_DpBirthDate)) &&
+                (!string.IsNullOrEmpty(_DpExpireDate)))
+            {
+                mon.ftxbDocNum = _txbDocNum;
+                mon.fDpBirthDate = _DpBirthDate.Remove(2, 1).Remove(4, 1);
+                mon.fDpExpireDate = _DpExpireDate.Remove(2, 1).Remove(4, 1);
+
+                mon.Ready2Read = true;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(_txbDocNum))
+                {
+                    mon.ftxbDocNum = _txbDocNum;
+                }
+
+                if (!string.IsNullOrEmpty(_DpBirthDate))
+                    mon.fDpBirthDate = _DpBirthDate.Remove(2, 1).Remove(4, 1);
+
+                if (!string.IsNullOrEmpty(_DpExpireDate))
+                    mon.fDpExpireDate = _DpExpireDate.Remove(2, 1).Remove(4, 1);
+            }
 
             //mon.Owner = App.Current.MainWindow;
             mon.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -423,9 +451,13 @@ namespace GID_Client.ViewModel
             {
                 StatusText = "Ma'lumot to'liq kiritilmagan";
 
+                _txbDocNum = mon.ftxbDocNum;
+                _DpBirthDate = mon.fDpBirthDate;
+                _DpExpireDate = mon.fDpExpireDate;
+
                 _logService.Error(string.Format("{0} ", "Ma'lumot to'liq kiritilmagan"));
 
-                var result = MessageBox.Show("Ma'lumot to'liq kiritilmagan. Ya harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                var result = MessageBox.Show("Ma'lumot to'liq kiritilmagan. Yana harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -441,7 +473,7 @@ namespace GID_Client.ViewModel
 
             bool dataCheck = false;
 
-            for(int i = 0; i <= 3; i++)
+            for(int i = 0; i <= 2; i++)
             {
                 int res = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
 
@@ -449,6 +481,10 @@ namespace GID_Client.ViewModel
                 {
                     dataCheck = true;
                     break;
+                }
+                else if (res == -1)
+                {
+                    MessageBox.Show("Kartani Riderning ustiga qo'ying. Davom ettirish...", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else if (res == -99)
                 {
@@ -460,6 +496,10 @@ namespace GID_Client.ViewModel
             if (!dataCheck)
             {
                 StatusText = "Ma'lumot xato kiritilgan";
+
+                _txbDocNum = mon.ftxbDocNum;
+                _DpBirthDate = mon.fDpBirthDate;
+                _DpExpireDate = mon.fDpExpireDate;
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 

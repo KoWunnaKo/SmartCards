@@ -6,7 +6,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:GID_Client"
         mc:Ignorable="d"
-        Title="Tekshiruv" Height="200" Width="450">
+        Title="Tekshiruv" Height="200" Width="450"
+        MinHeight="200" MinWidth="450" MaxHeight="200" MaxWidth="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -32,7 +33,9 @@
                  MaxLength="9"
                  CharacterCasing="Upper"
                  KeyboardNavigation.TabIndex="0"
-                 
+                 KeyDown="txbDocNum_KeyDown"
+                 KeyUp="txbDocNum_KeyUp"
+                 LostFocus="txbDocNum_LostFocus"
                  Text="{Binding ftxbDocNum}" FontSize="16"
             ></xctk:MaskedTextBox>
 
@@ -47,6 +50,8 @@
                     Margin="5"
                     Mask="00.00.0000" 
                     Name="DpBirthDate"
+                    KeyDown="DpBirthDate_KeyDown_1"
+                            KeyUp="DpBirthDate_KeyUp"
                     KeyboardNavigation.TabIndex="1"
                     Text="{Binding fDpBirthDate}"
                          FontSize="16"
@@ -65,6 +70,8 @@
                     Margin="5"
                     Mask="00.00.0000" 
                     Name="DpExpireDate"
+                    KeyDown="DpExpireDate_KeyDown"
+                    KeyUp="DpExpireDate_KeyUp"
                     KeyboardNavigation.TabIndex="2"
                     Text="{Binding fDpExpireDate}" FontSize="16"
             >
@@ -76,13 +83,16 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Row="16" Grid.Column="0"
                     Margin="10"
+                    Name="btnStart"
                     IsDefault="True" 
+                    IsEnabled="{Binding Ready2Read , Mode=TwoWay}"
                     Content="Boshlash"
                 Command="{Binding ReadCard}" Click="Button_Click">
             </Button>
 
             <Button Grid.Row="16" Grid.Column="1"
                     Margin="10"
+                    Name="btnCancel"
                     IsCancel="True"
                     Content="Bekor qilish" Click="Button_Click_1" >
             </Button>

@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GID_Client.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              Background="White"
-             d:DesignHeight="610" d:DesignWidth="600">
+             d:DesignHeight="530" d:DesignWidth="600">
+    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="O'qilmoqda..." >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -30,8 +32,6 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -54,7 +54,7 @@
 
             <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
-                   Text="Adres"
+                   Text="Manzili"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -87,7 +87,7 @@
 
             <TextBlock Grid.Row="4" 
                    Grid.Column="0" 
-                   Text="Nomi"
+                   Text="Tashkilot nomi"
                    HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
@@ -110,7 +110,7 @@
             
             <TextBlock Grid.Row="5" 
                    Grid.Column="0" 
-                   Text="Sharifi"
+                   Text="Familiya"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -122,7 +122,7 @@
 
             <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
-                   Text="Ismi"
+                   Text="Ism"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -133,7 +133,7 @@
 
             <TextBlock Grid.Row="7" 
                    Grid.Column="0" 
-                   Text="Otasining nomi"
+                   Text="Otasining ismi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -145,7 +145,7 @@
 
             <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
-                   Text="PNFL"
+                   Text="JSHIR"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -156,7 +156,7 @@
 
             <TextBlock Grid.Row="9" 
                    Grid.Column="0" 
-                   Text="INN"
+                   Text="STIR"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -211,7 +211,7 @@
 
             <TextBlock Grid.Row="4" 
                    Grid.Column="2" 
-                   Text="Ishlab qigarilgan yili"
+                   Text="Ishlab chiqarilgan yili"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -234,7 +234,7 @@
 
             <TextBlock Grid.Row="6" 
                    Grid.Column="2" 
-                   Text="Kuzov nomeri"
+                   Text="Kuzov raqami"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -245,7 +245,7 @@
 
             <TextBlock Grid.Row="7" 
                    Grid.Column="2" 
-                   Text="Shassi nomeri"
+                   Text="Shassi raqami"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -257,7 +257,7 @@
 
             <TextBlock Grid.Row="8" 
                    Grid.Column="2" 
-                   Text="To'la vazni KG"
+                   Text="To'liq vazni (kg)"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -268,7 +268,7 @@
 
             <TextBlock Grid.Row="9" 
                    Grid.Column="2" 
-                   Text="Yuksiz vazni KG"
+                   Text="Yuksiz vazni (kg)"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -344,14 +344,14 @@
                  Margin="5"
                  Text="{Binding Vehicle1_number_of_standees}" FontSize="14"></TextBox>
 
-            <TextBlock Grid.Row="16" 
-                   Grid.Column="2" 
+            <TextBlock Grid.Row="15" 
+                   Grid.Column="0" 
                    Text="Alohida belgilar"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
-            <TextBox Grid.Row="16" 
-                   Grid.Column="3" 
+            <TextBox Grid.Row="15" 
+                   Grid.Column="1" 
                  Margin="5"
                  Text="{Binding Vehicle1_special_marks}" FontSize="14"></TextBox>
 
@@ -370,7 +370,7 @@
 
             <TextBlock Grid.Row="12" 
                    Grid.Column="0" 
-                   Text="DAN boshqarmasi bo'limi"
+                   Text="RIB/TRIB bo'limi"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -382,7 +382,7 @@
 
             <TextBlock Grid.Row="13" 
                    Grid.Column="0" 
-                   Text="Lisenziya raqami"
+                   Text="Hujjat raqami"
                    HorizontalAlignment="Right"
                    Margin="5" FontSize="14"></TextBlock>
 
@@ -433,7 +433,6 @@
 				Orientation="Horizontal">
                 <ProgressBar Height="20" Width="100"
                             Name="prStatus"
-                             IsIndeterminate="{Binding IsIntermadiate}"
                              />
                 <TextBlock
                     Name="txbStatus"
@@ -442,4 +441,5 @@
             </StackPanel>
         </Border>
     </Grid>
+    </xctk:BusyIndicator>
 </UserControl>

@@ -39,6 +39,15 @@ namespace GID_Client
 
                 return;
             }
+            else
+            {
+                if (ftxbDocNum.Length != 8)
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+            }
 
             if (string.IsNullOrEmpty(fDpIssueDate))
             {
@@ -46,12 +55,30 @@ namespace GID_Client
 
                 return;
             }
+            else
+            {
+                if (fDpIssueDate.Length != 10)
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+            }
 
             if (string.IsNullOrEmpty(ftxbDocNum2))
             {
                 this.DialogResult = false;
 
                 return;
+            }
+            else
+            {
+                if (ftxbDocNum2.Length != 9)
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
             }
 
             if (!fReadCard())
@@ -76,31 +103,6 @@ namespace GID_Client
 
                 InpetString = str;
 
-                SecuredReaderTest dd = new SecuredReaderTest();
-
-                Vr = dd.VR_Reader(str);
-
-                VehicleRegistration vl = new VehicleRegistration("");
-
-                var vll = vl.ParseReadMaterial(Vr);
-
-                var Issue_date = DateTime.ParseExact(vl._vehicleRegistration._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);  //************
-
-
-                var Vehicle1_reg_number = vl._vehicleRegistration._vehicle._reg_number; //*******
-
-
-                var Vehicle1_special_marks = vl._vehicleRegistration._license_number; //************
-
-
-                if (ftxbDocNum.Equals(Vehicle1_reg_number) && fDpIssueDate.Equals(Issue_date) && Vehicle1_special_marks.Equals(ftxbDocNum2))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
             }
             catch (Exception ex)
             {
@@ -124,6 +126,10 @@ namespace GID_Client
             this.DialogResult = false;
         }
 
+        private bool ftxbDocNumValidate = false;
+        private bool fDpIssueDateValidate = false;
+        private bool ftxbDocNum2Validate = false;
+
         private string _txbDocNum;
 
         public string ftxbDocNum
@@ -136,6 +142,10 @@ namespace GID_Client
             set
             {
                 _txbDocNum = value;
+
+                ftxbDocNumValidate = txbDocNum.IsMaskFull;
+
+                CheckReadyness();
 
                 OnPropertyChanged("ftxbDocNum");
             }
@@ -153,6 +163,16 @@ namespace GID_Client
             set
             {
                 _DpIssueDate = value;
+
+                if (!string.IsNullOrEmpty(_DpIssueDate))
+                {
+                    if (_DpIssueDate.Length == 8)
+                        _DpIssueDate = _DpIssueDate.Insert(2, ",").Insert(5, ",");
+                }
+
+                fDpIssueDateValidate = DpBirthDate.IsMaskFull;
+
+                CheckReadyness();
 
                 OnPropertyChanged("fDpIssueDate");
             }
@@ -172,7 +192,75 @@ namespace GID_Client
             {
                 _txbDocNum2 = value;
 
+                ftxbDocNum2Validate = txbGuvohnoma.IsMaskFull;
+
+                CheckReadyness();
+
                 OnPropertyChanged("ftxbDocNum2");
+            }
+        }
+
+        private void CheckReadyness()
+        {
+            if (ftxbDocNumValidate && fDpIssueDateValidate && ftxbDocNum2Validate)
+            {
+                Ready2Read = true;
+                btnStart.IsEnabled = true;
+            }
+            else
+            {
+                Ready2Read = false;
+            }
+        }
+
+
+        private bool _ready2read;
+
+        public bool Ready2Read
+        {
+            get
+            {
+                return _ready2read;
+            }
+
+            set
+            {
+                _ready2read = value;
+
+                OnPropertyChanged("Ready2Read");
+            }
+        }
+
+        private void txbDocNum_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (txbDocNum.IsMaskFull)
+                {
+                    DpBirthDate.Focus();
+                }
+            }
+        }
+
+        private void DpBirthDate_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (DpBirthDate.IsMaskFull)
+                {
+                    txbGuvohnoma.Focus();
+                }
+            }
+        }
+
+        private void txbGuvohnoma_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                if (txbGuvohnoma.IsMaskFull && ftxbDocNumValidate && fDpIssueDateValidate)
+                {
+                    txbDocNum.Focus();
+                }
             }
         }
     }

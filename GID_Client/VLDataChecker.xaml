@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GID_Client"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Tekshiruv" Height="200" Width="450">
+        Title="Tekshiruv" Height="200" Width="450"
+        MinHeight="200" MinWidth="450" MaxHeight="200" MaxWidth="450">
     <Grid>
         
         <Grid.RowDefinitions>
@@ -31,6 +32,7 @@
                  Mask="AAAAAAAA" 
                  Name="txbDocNum"
                  MaxLength="8"
+                 KeyDown="txbDocNum_KeyDown"
                  CharacterCasing="Upper"
                  Text="{Binding ftxbDocNum}" FontSize="16"
             ></xctk:MaskedTextBox>
@@ -46,6 +48,7 @@
                     Margin="5"
                     Mask="00.00.0000" 
                     Name="DpBirthDate"
+                    KeyDown="DpBirthDate_KeyDown"
                     Text="{Binding fDpIssueDate}"
                      FontSize="16"
             >
@@ -60,7 +63,9 @@
         <xctk:MaskedTextBox Grid.Row="2" 
                  Grid.Column="1" 
                  Margin="5"
+                 Name="txbGuvohnoma"
                  Mask="LL0000000" 
+                 KeyDown="txbGuvohnoma_KeyDown"
                  MaxLength="9"
                  CharacterCasing="Upper"
                  Text="{Binding ftxbDocNum2}" FontSize="16"
@@ -72,13 +77,16 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Row="16" Grid.Column="0"
                     Margin="10"
+                    Name="btnStart"
                     IsDefault="True"
+                    IsEnabled="{Binding Ready2Read , Mode=TwoWay}"
                     Content="Boshlash"
                 Command="{Binding ReadCard}" Click="Button_Click">
             </Button>
 
             <Button Grid.Row="16" Grid.Column="1"
                     Margin="10"
+                    Name="btnCancel"
                     IsCancel="True"
                     Content="Bekor qilish" Click="Button_Click_1">
             </Button>

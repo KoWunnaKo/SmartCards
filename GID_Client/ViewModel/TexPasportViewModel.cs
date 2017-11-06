@@ -299,6 +299,10 @@ namespace GID_Client.ViewModel
         private string InputString = string.Empty;
         private CardNative _card;
 
+        private string _txbDocNum;
+        private string _DpIssueDate;
+        private string _txbDocNum2;
+
         private async void fReadCard()
         {
             StatusText = string.Empty;
@@ -309,15 +313,42 @@ namespace GID_Client.ViewModel
 
             mon.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
+            if ((!string.IsNullOrEmpty(_txbDocNum)) && (!string.IsNullOrEmpty(_DpIssueDate)) &&
+            (!string.IsNullOrEmpty(_txbDocNum2)))
+            {
+                mon.ftxbDocNum = _txbDocNum;
+                mon.fDpIssueDate = _DpIssueDate.Remove(2, 1).Remove(4, 1);
+                mon.ftxbDocNum2 = _txbDocNum2;
+
+                mon.Ready2Read = true;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(_txbDocNum))
+                {
+                    mon.ftxbDocNum = _txbDocNum;
+                }
+
+                if (!string.IsNullOrEmpty(_DpIssueDate))
+                    mon.fDpIssueDate = _DpIssueDate.Remove(2, 1).Remove(4, 1);
+
+                if (!string.IsNullOrEmpty(_txbDocNum2))
+                    mon.ftxbDocNum2 = _txbDocNum2;
+            }
+
             var result1 = mon.ShowDialog();
 
             if (!result1.Value)
             {
-                StatusText = "Введенные данные не верны";
+                StatusText = "Ma'lumot to'liq kiritilmagan.";
+
+                _txbDocNum = mon.ftxbDocNum;
+                _DpIssueDate = mon.fDpIssueDate;
+                _txbDocNum2 = mon.ftxbDocNum2;
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 
-                var result = MessageBox.Show("Введенные данные не верны. Попробовать снова?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                var result = MessageBox.Show("Ma'lumot to'liq kiritilmagan. Yana harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -333,7 +364,7 @@ namespace GID_Client.ViewModel
 
             bool dataCheck = false;
 
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 int res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
 
@@ -341,6 +372,10 @@ namespace GID_Client.ViewModel
                 {
                     dataCheck = true;
                     break;
+                }
+                else if (res1 == -1)
+                {
+                    MessageBox.Show("Kartani Riderning ustiga qo'ying. Davom ettirish...", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else if (res1 == -99)
                 {
@@ -352,6 +387,10 @@ namespace GID_Client.ViewModel
             if (!dataCheck)
             {
                 StatusText = "Ma'lumot xato kiritilgan";
+
+                _txbDocNum = mon.ftxbDocNum;
+                _DpIssueDate = mon.fDpIssueDate;
+                _txbDocNum2 = mon.ftxbDocNum2;
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 
@@ -367,7 +406,7 @@ namespace GID_Client.ViewModel
 
             IsIntermadiate = true;
 
-            StatusText = "Считка...";
+            StatusText = "O'qimoqda...";
 
             Mouse.OverrideCursor = Cursors.Wait;
 
@@ -375,11 +414,11 @@ namespace GID_Client.ViewModel
 
             if (res == 0)
             {
-                StatusText = "Удачная Считка!!!";
+                StatusText = "Ma'lumot to'liq o'qildi.";
             }
             else
             {
-                StatusText = "Error...";
+                StatusText = "Xatolik yuz berdi...";
             }
 
             IsIntermadiate = false;
