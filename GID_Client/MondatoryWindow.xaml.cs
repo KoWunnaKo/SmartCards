@@ -18,8 +18,6 @@ namespace GID_Client
     {
         public string InpetString = string.Empty;
 
-        private CardApiController _controller;
-
         private DispatcherTimer timer;
         private DispatcherTimer timer2;
 
@@ -28,8 +26,6 @@ namespace GID_Client
             InitializeComponent();
 
             DataContext = this;
-
-            _controller = new CardApiController(false);
 
             txbDocNum.Focus();
         }
@@ -262,25 +258,6 @@ namespace GID_Client
 
         private void DatePicker_TextChanged(object sender, RoutedEventArgs e)
         {
-            //DateTime dt;
-            //DatePicker dp = (sender as DatePicker);
-            //string currentText = (e.OriginalSource as TextBox).Text;
-            //if (!DateTime.TryParse(currentText, out dt))
-            //{
-            //    try
-            //    {
-            //        string month = currentText.Substring(0, 2);
-            //        string day = currentText.Substring(2, 2);
-            //        string year = currentText.Substring(4, 4);
-
-            //        dt = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
-            //        dp.SelectedDate = dt;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        dp.SelectedDate = null;
-            //    }
-            //}
 
             DatePicker dp = (sender as DatePicker);
             

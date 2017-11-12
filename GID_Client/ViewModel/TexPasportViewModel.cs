@@ -368,6 +368,22 @@ namespace GID_Client.ViewModel
 
                 if (res1 == 0)
                 {
+                    byte[] Vr = null;
+
+                    SecuredReaderTest dd = new SecuredReaderTest();
+
+                    Vr = dd.VR_Reader(InputString);
+
+                    VehicleRegistration vl = new VehicleRegistration("");
+
+                    var vll = vl.ParseReadMaterial(Vr);
+
+                    if (!vll._license_number.Equals(mon.ftxbDocNum2))
+                    {
+                        dataCheck = false;
+                        break;
+                    }
+
                     dataCheck = true;
                     break;
                 }

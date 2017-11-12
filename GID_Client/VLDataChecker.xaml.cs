@@ -17,8 +17,6 @@ namespace GID_Client
 
         public string InpetString = string.Empty;
 
-        private CardApiController _controller;
-
         private DispatcherTimer timer;
         private DispatcherTimer timer2;
 
@@ -56,11 +54,7 @@ namespace GID_Client
         {
             InitializeComponent();
 
-            //this.Owner = App.Current.MainWindow;
-
             DataContext = this;
-
-            _controller = new CardApiController(false);
 
             txbDocNum.Focus();
         }
