@@ -233,33 +233,45 @@ namespace GID_Client
 
         private void txbDocNum_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
                 if (txbDocNum.IsMaskFull)
                 {
                     DpBirthDate.Focus();
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
         }
 
         private void DpBirthDate_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
                 if (DpBirthDate.IsMaskFull)
                 {
                     txbGuvohnoma.Focus();
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
         }
 
         private void txbGuvohnoma_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
                 if (txbGuvohnoma.IsMaskFull && ftxbDocNumValidate && fDpIssueDateValidate)
                 {
                     txbDocNum.Focus();
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
         }

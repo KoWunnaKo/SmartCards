@@ -22,19 +22,25 @@ namespace GID_Client
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
 
-            Window LoginWindow = new LoginWindow();
-            LoginWindow.Show();
-            ((LoginViewModel)LoginWindow.DataContext).LoginCompleted += (s, ev) =>
+            if (GID_Client.Properties.Settings.Default.BackEndMode.Equals("2"))
             {
                 MainWindow MainWindow = new MainWindow();
                 MainWindow.SetAccessRules();
-                LoginWindow.Hide();
-                LoginWindow.Close();
-                MainWindow.Show();
-            }; //06.10.2017
-
-            //MainWindow MainWindow = new MainWindow();
-            //MainWindow.Show(); //10.10.2017
+                MainWindow.Show(); //10.10.2017
+            }
+            else
+            {
+                Window LoginWindow = new LoginWindow();
+                LoginWindow.Show();
+                ((LoginViewModel)LoginWindow.DataContext).LoginCompleted += (s, ev) =>
+                {
+                    MainWindow MainWindow = new MainWindow();
+                    MainWindow.SetAccessRules();
+                    LoginWindow.Hide();
+                    LoginWindow.Close();
+                    MainWindow.Show();
+                }; //06.10.2017
+            }
         }
 
         static void MyHandler(object sender, UnhandledExceptionEventArgs args)

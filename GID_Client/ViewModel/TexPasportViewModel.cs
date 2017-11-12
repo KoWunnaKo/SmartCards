@@ -6,7 +6,6 @@ using GID_Client.ServerApi;
 using Iso18013Lib;
 using SmartCardApi.SmartCardReader;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -57,8 +56,8 @@ namespace GID_Client.ViewModel
 
                 if (SpecReaders.Length == 0)
                 {
-                    MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством");
+                    MessageBox.Show("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!!", "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw new ApplicationException("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!! Uskuna bilan bog'liq muammolar");
                 }
 
                 _card_OnCardRemoved(SpecReaders[0]);
@@ -66,8 +65,8 @@ namespace GID_Client.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством " + ex.Message);
+                MessageBox.Show("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!!", "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw new ApplicationException("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!! Uskuna bilan bog'liq muammolar " + ex.Message);
             }
         }
 
@@ -394,7 +393,7 @@ namespace GID_Client.ViewModel
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 
-                var result = MessageBox.Show("Ma'lumot xato kiritilgan. Ya harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                var result = MessageBox.Show("Ma'lumot xato kiritilgan. Yana harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -414,6 +413,9 @@ namespace GID_Client.ViewModel
 
             if (res == 0)
             {
+                _txbDocNum = string.Empty;
+                _DpIssueDate = string.Empty;
+                _txbDocNum2 = string.Empty;
                 StatusText = "Ma'lumot to'liq o'qildi.";
             }
             else

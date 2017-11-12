@@ -1,10 +1,8 @@
 ﻿using Epigov.Log;
 using CardAPILib.CardAPI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Iso18013Lib;
 using System.Globalization;
 using System.IO;
@@ -14,7 +12,6 @@ using SmartCardApi.SmartCardReader;
 using GID_Client.DB;
 using GemCard;
 using System.Windows;
-using System.Windows.Input;
 using System.ComponentModel;
 using CardAPILib.InterfaceCL;
 
@@ -69,8 +66,8 @@ namespace GID_Client.ViewModel
 
                 if (SpecReaders.Length == 0)
                 {
-                    MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством");
+                    MessageBox.Show("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!!", "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+                    throw new ApplicationException("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!! Uskuna bilan bog'liq muammolar");
                 }
 
                 _card_OnCardRemoved(SpecReaders[0]);
@@ -78,8 +75,8 @@ namespace GID_Client.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Отсуствует ридер или не установленны драйвера!!!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством " + ex.Message);
+                MessageBox.Show("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!!", "Xatolik", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw new ApplicationException("Kompyuterga rider ulanmagan yoki drayverlar o'rnatilmagan!!! Uskuna bilan bog'liq muammolar " + ex.Message);
             }
 
             
@@ -87,7 +84,9 @@ namespace GID_Client.ViewModel
             CheckedB = false;
             CheckedC = false;
             CheckedD = false;
-            CheckedE = false;
+            CheckedBE = false;
+            CheckedCE = false;
+            CheckedDE = false;
         }
 
         private void fStopProcess()
@@ -155,9 +154,17 @@ namespace GID_Client.ViewModel
             IssueD = string.Empty;
             ExpireD = string.Empty;
 
-            CheckedE = false;
-            IssueE = string.Empty;
-            ExpireE = string.Empty;
+            CheckedBE = false;
+            IssueBE = string.Empty;
+            ExpireBE = string.Empty;
+
+            CheckedCE = false;
+            IssueCE = string.Empty;
+            ExpireCE = string.Empty;
+
+            CheckedDE = false;
+            IssueDE = string.Empty;
+            ExpireDE = string.Empty;
 
             BirthPlace = string.Empty;
 
@@ -260,9 +267,9 @@ namespace GID_Client.ViewModel
 
                         IssueDate = DateTime.ParseExact(dl._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
 
-                    ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                        ExpireDate = DateTime.ParseExact(dl._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
 
-                    GivenPlace = dl._issue_region_name;
+                        GivenPlace = dl._issue_region_name;
 
                         LicenseNumber = dl._license_number;
 
@@ -278,93 +285,138 @@ namespace GID_Client.ViewModel
 
                         foreach (Category cat in dl._categories)
                         {
-                            if (cat._name.Contains("A"))
-                            {
-                                CheckedA = true;
-                                
-                                var IssueAx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
 
-                                IssueA = IssueAx.ToString("dd.MM.yyyy");
+                                    if (cat._name.Contains("BE"))
+                                    {
+                                        CheckedBE = true;
+            
+                                        var IssueEx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                        IssueBE = IssueEx.ToString("dd.MM.yyyy");
+            
+                                        if (string.IsNullOrEmpty(cat._expiry_date))
+                                        {
+                                            ExpireBE = IssueEx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                        else
+                                        {
+                                            ExpireBE = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+            
+                                        continue;
+                                    }
+            
+                                    if (cat._name.Contains("CE"))
+                                    {
+                                        CheckedCE = true;
+            
+                                        var IssueEx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                        IssueCE = IssueEx.ToString("dd.MM.yyyy");
+            
+                                        if (string.IsNullOrEmpty(cat._expiry_date))
+                                        {
+                                            ExpireCE = IssueEx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                        else
+                                        {
+                                            ExpireCE = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+            
+                                        continue;
+                                    }
+            
+                                    if (cat._name.Contains("DE"))
+                                    {
+                                        CheckedDE = true;
+            
+                                        var IssueEx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                        IssueDE = IssueEx.ToString("dd.MM.yyyy");
+            
+                                        if (string.IsNullOrEmpty(cat._expiry_date))
+                                        {
+                                            ExpireDE = IssueEx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                        else
+                                        {
+                                            ExpireDE = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+            
+                                        continue;
+                                    }
+            
+                                    if (cat._name.Contains("A"))
+                                        {
+                                            CheckedA = true;
+                                            
+                                            var IssueAx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                            IssueA = IssueAx.ToString("dd.MM.yyyy");
+            
+                                            if (string.IsNullOrEmpty(cat._expiry_date))
+                                            {
+                                                ExpireA = IssueAx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                            else
+                                            {
+                                                ExpireA = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+                                            
+                                        }
+                                        if (cat._name.Contains("B"))
+                                        {
+                                            CheckedB = true;
+            
+                                            var IssueBx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                            IssueB = IssueBx.ToString("dd.MM.yyyy");
+            
+            
+                                            if (string.IsNullOrEmpty(cat._expiry_date))
+                                            {
+                                                ExpireB = IssueBx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                            else
+                                            {
+                                                ExpireB = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+                                        }
+                                        if (cat._name.Contains("C"))
+                                        {
+                                            CheckedC = true;
+            
+                                            var IssueCx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                            IssueC = IssueCx.ToString("dd.MM.yyyy");
+            
+                                            if (string.IsNullOrEmpty(cat._expiry_date))
+                                            {
+                                                ExpireC = IssueCx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                            else
+                                            {
+                                                ExpireC = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+                                        }
+                                        if (cat._name.Contains("D"))
+                                        {
+                                            CheckedD = true;
+            
+                                            var IssueDx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
+            
+                                            IssueD = IssueDx.ToString("dd.MM.yyyy");
+                                            
+                                            if (string.IsNullOrEmpty(cat._expiry_date))
+                                            {
+                                                ExpireD = IssueDx.AddYears(10).ToString("dd.MM.yyyy");
+                                        }
+                                            else
+                                            {
+                                                ExpireD = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                                        }
+                                        }
 
-                                if (string.IsNullOrEmpty(cat._expiry_date))
-                                {
-                                    ExpireA = IssueAx.AddYears(10).ToString("dd.MM.yyyy");
-                            }
-                                else
-                                {
-                                    ExpireA = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
-                            }
-                                
-                            }
-                            if (cat._name.Contains("B"))
-                            {
-                                CheckedB = true;
-
-                                var IssueBx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-
-                                IssueB = IssueBx.ToString("dd.MM.yyyy");
-
-
-                                if (string.IsNullOrEmpty(cat._expiry_date))
-                                {
-                                    ExpireB = IssueBx.AddYears(10).ToString("dd.MM.yyyy");
-                            }
-                                else
-                                {
-                                    ExpireB = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
-                            }
-                            }
-                            if (cat._name.Contains("C"))
-                            {
-                                CheckedC = true;
-
-                                var IssueCx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-
-                                IssueC = IssueCx.ToString("dd.MM.yyyy");
-
-                                if (string.IsNullOrEmpty(cat._expiry_date))
-                                {
-                                    ExpireC = IssueCx.AddYears(10).ToString("dd.MM.yyyy");
-                            }
-                                else
-                                {
-                                    ExpireC = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
-                            }
-                            }
-                            if (cat._name.Contains("D"))
-                            {
-                                CheckedD = true;
-
-                                var IssueDx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-
-                                IssueD = IssueDx.ToString("dd.MM.yyyy");
-                                
-                                if (string.IsNullOrEmpty(cat._expiry_date))
-                                {
-                                    ExpireD = IssueDx.AddYears(10).ToString("dd.MM.yyyy");
-                            }
-                                else
-                                {
-                                    ExpireD = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
-                            }
-                            }
-                            if (cat._name.Contains("E"))
-                            {
-                                CheckedE = true;
-
-                                var IssueEx = DateTime.ParseExact(cat._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture);
-
-                                IssueE = IssueEx.ToString("dd.MM.yyyy");
-
-                                if (string.IsNullOrEmpty(cat._expiry_date))
-                                {
-                                    ExpireE = IssueEx.AddYears(10).ToString("dd.MM.yyyy");
-                            }
-                                else
-                                {
-                                    ExpireE = DateTime.ParseExact(cat._expiry_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
-                            }
-                            }
                         }
 
                         BirthPlace = dl._driver._region_name_birth;
@@ -385,14 +437,14 @@ namespace GID_Client.ViewModel
                 }
                 catch (Exception ex)
                     {
-                        StatusText = "Ошибка при прочтении карты. Попробуйте еще раз";
+                        StatusText = "Kartani o'qishda muammo yuz berdi. Yana harakat qilib ko'ring";
 
-                        _logService.Error(string.Format("{0} {1}", "Ошибка при прочтении карты", ex.Message));
+                        _logService.Error(string.Format("{0} {1}", "Kartani o'qishda xatolik yuz berdi", ex.Message));
 
                         return -1;
                     }
 
-                    StatusText = StatusText + " -  " + "Карта удачно прочитанно";
+                    StatusText = StatusText + " -  " + "Karta muvaffaqiyatli o'qildi";
                 }
                 catch (Exception ex)
                 {
@@ -503,7 +555,7 @@ namespace GID_Client.ViewModel
 
                 _logService.Error(string.Format("{0} ", "Введенные данные не верны"));
 
-                var result = MessageBox.Show("Ma'lumot xato kiritilgan. Ya harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                var result = MessageBox.Show("Ma'lumot xato kiritilgan. Yana harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.OK)
                 {
@@ -512,8 +564,6 @@ namespace GID_Client.ViewModel
 
                 return;
             }
-
-
 
             StatusText = "O'qimoqda...";
 
@@ -526,6 +576,9 @@ namespace GID_Client.ViewModel
 
                 if (res == 0)
                 {
+                    _txbDocNum = string.Empty;
+                    _DpBirthDate = string.Empty;
+                    _DpExpireDate = string.Empty;
                     StatusText = "O'qish yakunlandi";
                 }
                 else
@@ -557,14 +610,14 @@ namespace GID_Client.ViewModel
             }
             catch (Exception ex)
             {
-                StatusText = "Ошибка при сохранении карты. Попробуйте еще раз";
+                StatusText = "Kartani ma'lumotlarini saqlashda xatolik yuz berdi";
 
-                _logService.Error(string.Format("{0} {1}", "Ошибка при сохранении карты", ex.Message));
+                _logService.Error(string.Format("{0} {1}", "Kartaning ma'lumotlarini saqlashda xatolik yuz berdi", ex.Message));
 
                 return;
             }
 
-            StatusText = "Карта удачно сохранена";
+            StatusText = "Karta ma'lumotlari saqlandi";
         }
 
         private string _lastName;
@@ -793,7 +846,9 @@ namespace GID_Client.ViewModel
         private bool _checkedB;
         private bool _checkedC;
         private bool _checkedD;
-        private bool _checkedE;
+        private bool _checkedBE;
+        private bool _checkedCE;
+        private bool _checkedDE;
 
         public bool CheckedA
         {
@@ -855,18 +910,48 @@ namespace GID_Client.ViewModel
             }
         }
 
-        public bool CheckedE
+        public bool CheckedBE
         {
             get
             {
-                return _checkedE;
+                return _checkedBE;
             }
 
             set
             {
-                _checkedE = value;
+                _checkedBE = value;
 
-                OnPropertyChanged("CheckedE");
+                OnPropertyChanged("CheckedBE");
+            }
+        }
+
+        public bool CheckedCE
+        {
+            get
+            {
+                return _checkedCE;
+            }
+
+            set
+            {
+                _checkedCE = value;
+
+                OnPropertyChanged("CheckedCE");
+            }
+        }
+
+        public bool CheckedDE
+        {
+            get
+            {
+                return _checkedDE;
+            }
+
+            set
+            {
+                _checkedDE = value;
+
+                OnPropertyChanged("CheckedDE");
             }
         }
 
@@ -874,13 +959,17 @@ namespace GID_Client.ViewModel
         private string _issuedB;
         private string _issuedC;
         private string _issuedD;
-        private string _issuedE;
+        private string _issuedBE;
+        private string _issuedCE;
+        private string _issuedDE;
 
         private string _expireA;
         private string _expireB;
         private string _expireC;
         private string _expireD;
-        private string _expireE;
+        private string _expireBE;
+        private string _expireCE;
+        private string _expireDE;
 
         public string IssueA
         {
@@ -932,15 +1021,39 @@ namespace GID_Client.ViewModel
         }
 
 
-        public string IssueE
+        public string IssueBE
         {
-            get { return _issuedE; }
+            get { return _issuedBE; }
 
             set
             {
-                _issuedE = value;
+                _issuedBE = value;
 
-                OnPropertyChanged("IssueE");
+                OnPropertyChanged("IssueBE");
+            }
+        }
+
+        public string IssueCE
+        {
+            get { return _issuedCE; }
+
+            set
+            {
+                _issuedCE = value;
+
+                OnPropertyChanged("IssueCE");
+            }
+        }
+
+        public string IssueDE
+        {
+            get { return _issuedDE; }
+
+            set
+            {
+                _issuedDE = value;
+
+                OnPropertyChanged("IssueDE");
             }
         }
 
@@ -995,15 +1108,39 @@ namespace GID_Client.ViewModel
         }
 
 
-        public string ExpireE
+        public string ExpireBE
         {
-            get { return _expireE; }
+            get { return _expireBE; }
 
             set
             {
-                _expireE = value;
+                _expireBE = value;
 
-                OnPropertyChanged("ExpireE");
+                OnPropertyChanged("ExpireBE");
+            }
+        }
+
+        public string ExpireCE
+        {
+            get { return _expireCE; }
+
+            set
+            {
+                _expireCE = value;
+
+                OnPropertyChanged("ExpireCE");
+            }
+        }
+
+        public string ExpireDE
+        {
+            get { return _expireDE; }
+
+            set
+            {
+                _expireDE = value;
+
+                OnPropertyChanged("ExpireDE");
             }
         }
 

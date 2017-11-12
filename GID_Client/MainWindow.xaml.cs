@@ -1,20 +1,7 @@
-﻿using GID_Client.ViewModel;
-using GID_Client.Views;
+﻿using GID_Client.Views;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GID_Client
 {
@@ -131,6 +118,24 @@ namespace GID_Client
             foreach (var process in Process.GetProcessesByName("GID_Client"))
             {
                 process.Kill();
+            }
+        }
+
+        private void RibbonButton_Click(object sender, RoutedEventArgs e)
+        {
+            var strCurrentPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+            var currentExecutableFolder = System.IO.Path.GetDirectoryName(strCurrentPath);
+
+            var helpFilePath = System.IO.Path.Combine(currentExecutableFolder, "help.pdf");
+
+            if (System.IO.File.Exists(helpFilePath))
+            {
+                Process.Start(helpFilePath);
+            }
+            else
+            {
+                MessageBox.Show("Foydalanuvchi uchun yordam faylini: " + helpFilePath + " dan topilmadi" );
             }
         }
     }

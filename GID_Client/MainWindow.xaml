@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Closed="Window_Closed"
-        Title="Avtomatlashtirilgan ish joyi Kart Master 2.6" Height="710" Width="1015"
+        Title="Avtomatlashtirilgan ish joyi Kart Master 2.7" Height="710" Width="1015"
         WindowStartupLocation="CenterScreen"
+        Icon="ResourcesPic/car.png"
         WindowState="Maximized" >
     <Grid>
         <Grid.RowDefinitions>
@@ -19,7 +20,8 @@
         <Ribbon x:Name="RibbonWin"  SelectedIndex="0">
             <!-- Help Pane, located at the right-hand side -->
             <Ribbon.HelpPaneContent>
-                <RibbonButton  SmallImageSource="ResourcesPic/Help.bmp"/>
+                <RibbonButton  SmallImageSource="ResourcesPic/Help.bmp"
+                               Click="RibbonButton_Click"/>
                 <!--SmallImageSource="Images\help.png"-->
             </Ribbon.HelpPaneContent>
             <!-- Quick Access Toolbar - located at the upper-left corner -->
@@ -40,10 +42,10 @@
             <!-- Application Menu, located at the left-hand side (down arrow) -->
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu KeyTip="F">
-                    <RibbonApplicationMenuItem Header="Настройки"  />
+                    <!--<RibbonApplicationMenuItem Header="Настройки"  />-->
                     <!--ImageSource="Images\options.png"-->
                     <!--<RibbonApplicationMenuItem Header="Изменить Пароль"  />-->
-                    <RibbonApplicationMenuItem Header="Выход" />
+                    <RibbonApplicationMenuItem Header="Chiqish" />
                     <!--ImageSource="Images\quit.png"-->
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
@@ -145,10 +147,12 @@
                         <RibbonRadioButton  Label="Haydovchilik guvohnomasi"  
                                        LargeImageSource="ResourcesPic/driver1600.png"
                                        Name="btnUserInfolist"
+                                            KeyTip="G"
                                             Click="btnUserInfolist_Click"/>
                         <RibbonRadioButton  Label="Avtotransport guvohnomasi"  
                                        LargeImageSource="ResourcesPic/car.png" 
                                        Name="btnCardInfolist"
+                                            KeyTip="A"
                                             Click="btnCardInfolist_Click"/>
                         <!--<RibbonRadioButton  Label="Список Добпалений"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 

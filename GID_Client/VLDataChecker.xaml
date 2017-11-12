@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GID_Client"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        Icon="ResourcesPic/car.png"
         Title="Tekshiruv" Height="200" Width="450"
         MinHeight="200" MinWidth="450" MaxHeight="200" MaxWidth="450">
     <Grid>

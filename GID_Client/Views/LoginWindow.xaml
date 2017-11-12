@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SmartCardDesc.Secirity"
         mc:Ignorable="d"
         Title="Avtorizasiya" Height="208.834" Width="320" WindowStyle="ToolWindow"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="/GID_Client;component/ResourcesPic/car.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>

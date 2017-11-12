@@ -4,8 +4,10 @@ using SmartCardApi.SmartCardReader;
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace GID_Client
 {
@@ -18,6 +20,9 @@ namespace GID_Client
 
         private CardApiController _controller;
 
+        private DispatcherTimer timer;
+        private DispatcherTimer timer2;
+
         public MondatoryWindow()
         {
             InitializeComponent();
@@ -29,7 +34,7 @@ namespace GID_Client
             txbDocNum.Focus();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void StartReading()
         {
             if (string.IsNullOrEmpty(ftxbDocNum))
             {
@@ -88,6 +93,11 @@ namespace GID_Client
             }
 
             this.DialogResult = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StartReading();
         }
 
         private bool fReadCard()
@@ -288,11 +298,15 @@ namespace GID_Client
 
         private void txbDocNum_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
                 if (txbDocNum.IsMaskFull)
                 {
                     DpBirthDate.Focus();
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
 
@@ -300,11 +314,15 @@ namespace GID_Client
 
         private void DpBirthDate_KeyDown_1(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
                 if (DpBirthDate.IsMaskFull)
                 {
                     DpExpireDate.Focus();
+                }
+                else
+                {
+                    e.Handled = true;
                 }
             }
 
@@ -312,12 +330,16 @@ namespace GID_Client
 
         private void DpExpireDate_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
                 if (DpExpireDate.IsMaskFull && ftxbDocNumValidate && fDpBirthDateValidate)
                 {
                     txbDocNum.Focus();
                 }
+                else
+                {
+                    e.Handled = true;
+                } 
             }
 
         }
@@ -332,11 +354,42 @@ namespace GID_Client
             //}
         }
 
+        private void ActivateTimer()
+        {
+            timer = new DispatcherTimer(DispatcherPriority.SystemIdle);
+            timer.Tick += new EventHandler(OnTimedEvent);
+            timer.Interval = TimeSpan.FromMilliseconds(7000);
+            timer.Start();
+
+            timer2 = new DispatcherTimer(DispatcherPriority.SystemIdle);
+            timer2.Tick += new EventHandler(OnTimedEvent2);
+            timer2.Interval = TimeSpan.FromMilliseconds(1000);
+            timer2.Start();
+        }
+
+        private void OnTimedEvent(object sender, EventArgs e)
+        {
+            timer.Stop();
+            timer2.Stop();
+            StartReading();
+        }
+
+        private int counter = 0;
+
+        private void OnTimedEvent2(object sender, EventArgs e)
+        {
+            counter++;
+            btnStart.Content = string.Format("Boshlash ({0})", counter);
+        }
+
         private void DpExpireDate_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (DpExpireDate.IsMaskFull && ftxbDocNumValidate && fDpBirthDateValidate)
             {
+                txbDocNum.Focus();
                 btnStart.IsEnabled = true;
+                ActivateTimer();
+
             }
         }
 
@@ -344,7 +397,9 @@ namespace GID_Client
         {
             if (fDpExpireDateValidate && txbDocNum.IsMaskFull && fDpBirthDateValidate)
             {
+                DpBirthDate.Focus();
                 btnStart.IsEnabled = true;
+                ActivateTimer();
             }
         }
 
@@ -352,7 +407,9 @@ namespace GID_Client
         {
             if (fDpExpireDateValidate && ftxbDocNumValidate && DpBirthDate.IsMaskFull)
             {
+                DpExpireDate.Focus();
                 btnStart.IsEnabled = true;
+                ActivateTimer();
             }
         }
     }
