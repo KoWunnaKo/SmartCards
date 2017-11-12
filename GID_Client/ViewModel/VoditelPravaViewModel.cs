@@ -531,6 +531,24 @@ namespace GID_Client.ViewModel
 
                 if (res == 0)
                 {
+                    byte[] DG1 = null;
+
+                    SecuredReaderTest dd = new SecuredReaderTest();
+
+                    DG1 = dd.IDL_ReaderDG1(InputString);
+
+                    DrivingLicense DrL = new DrivingLicense("");
+
+                    var dlExpired = DrL.ParseDG1Expired(DG1);
+
+                    var ExpireDate = DateTime.ParseExact(dlExpired, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+
+                    if (!ExpireDate.Equals(mon.fDpExpireDate))
+                    {
+                        dataCheck = false;
+                        break;
+                    }
+
                     dataCheck = true;
                     break;
                 }

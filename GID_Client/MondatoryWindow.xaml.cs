@@ -36,63 +36,71 @@ namespace GID_Client
 
         private void StartReading()
         {
-            if (string.IsNullOrEmpty(ftxbDocNum))
+            try
             {
-                this.DialogResult = false;
-
-                return;
-            }
-            else
-            {
-                if (ftxbDocNum.Length != 9)
+                if (string.IsNullOrEmpty(ftxbDocNum))
                 {
                     this.DialogResult = false;
 
                     return;
                 }
-            }
+                else
+                {
+                    if (ftxbDocNum.Length != 9)
+                    {
+                        this.DialogResult = false;
+
+                        return;
+                    }
+                }
 
 
-            if (string.IsNullOrEmpty(fDpBirthDate))
-            {
-                this.DialogResult = false;
-
-                return;
-            }
-            else
-            {
-                if (fDpBirthDate.Length != 10)
+                if (string.IsNullOrEmpty(fDpBirthDate))
                 {
                     this.DialogResult = false;
 
                     return;
                 }
-            }
+                else
+                {
+                    if (fDpBirthDate.Length != 10)
+                    {
+                        this.DialogResult = false;
 
-            if (string.IsNullOrEmpty(fDpExpireDate))
-            {
-                this.DialogResult = false;
+                        return;
+                    }
+                }
 
-                return;
-            }
-            else
-            {
-                if (fDpExpireDate.Length != 10)
+                if (string.IsNullOrEmpty(fDpExpireDate))
                 {
                     this.DialogResult = false;
 
                     return;
                 }
-            }
+                else
+                {
+                    if (fDpExpireDate.Length != 10)
+                    {
+                        this.DialogResult = false;
 
-            if (!fReadCard())
+                        return;
+                    }
+                }
+
+                if (!fReadCard())
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+
+                this.DialogResult = true;
+            }
+            catch
             {
-                this.DialogResult = false;
-
-                return;
+                //
             }
 
-            this.DialogResult = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

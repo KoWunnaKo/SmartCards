@@ -34,6 +34,7 @@
                  Name="txbDocNum"
                  MaxLength="8"
                  KeyDown="txbDocNum_KeyDown"
+                 KeyUp="txbDocNum_KeyUp"
                  CharacterCasing="Upper"
                  Text="{Binding ftxbDocNum}" FontSize="16"
             ></xctk:MaskedTextBox>
@@ -49,6 +50,7 @@
                     Margin="5"
                     Mask="00.00.0000" 
                     Name="DpBirthDate"
+                    KeyUp="DpBirthDate_KeyUp"
                     KeyDown="DpBirthDate_KeyDown"
                     Text="{Binding fDpIssueDate}"
                      FontSize="16"
@@ -67,6 +69,7 @@
                  Name="txbGuvohnoma"
                  Mask="LL0000000" 
                  KeyDown="txbGuvohnoma_KeyDown"
+                 KeyUp="txbGuvohnoma_KeyUp"
                  MaxLength="9"
                  CharacterCasing="Upper"
                  Text="{Binding ftxbDocNum2}" FontSize="16"

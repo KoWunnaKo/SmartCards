@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace GID_Client
 {
@@ -17,6 +18,39 @@ namespace GID_Client
         public string InpetString = string.Empty;
 
         private CardApiController _controller;
+
+        private DispatcherTimer timer;
+        private DispatcherTimer timer2;
+
+        private void ActivateTimer()
+        {
+            timer = new DispatcherTimer(DispatcherPriority.SystemIdle);
+            timer.Tick += new EventHandler(OnTimedEvent);
+            timer.Interval = TimeSpan.FromMilliseconds(7000);
+            timer.Start();
+
+            timer2 = new DispatcherTimer(DispatcherPriority.SystemIdle);
+            timer2.Tick += new EventHandler(OnTimedEvent2);
+            timer2.Interval = TimeSpan.FromMilliseconds(1000);
+            timer2.Start();
+        }
+
+        private void OnTimedEvent(object sender, EventArgs e)
+        {
+            timer.Stop();
+            timer.IsEnabled = false;
+            timer2.Stop();
+            timer2.IsEnabled = false;
+            StartReading();
+        }
+
+        private int counter = 0;
+
+        private void OnTimedEvent2(object sender, EventArgs e)
+        {
+            counter++;
+            btnStart.Content = string.Format("Boshlash ({0})", counter);
+        }
 
         public VLDataChecker()
         {
@@ -31,64 +65,77 @@ namespace GID_Client
             txbDocNum.Focus();
         }
 
+        private void StartReading()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(ftxbDocNum))
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+                else
+                {
+                    if (ftxbDocNum.Length != 8)
+                    {
+                        this.DialogResult = false;
+
+                        return;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(fDpIssueDate))
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+                else
+                {
+                    if (fDpIssueDate.Length != 10)
+                    {
+                        this.DialogResult = false;
+
+                        return;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(ftxbDocNum2))
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+                else
+                {
+                    if (ftxbDocNum2.Length != 9)
+                    {
+                        this.DialogResult = false;
+
+                        return;
+                    }
+                }
+
+                if (!fReadCard())
+                {
+                    this.DialogResult = false;
+
+                    return;
+                }
+
+                this.DialogResult = true;
+            }
+            catch
+            {
+
+            }
+
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ftxbDocNum))
-            {
-                this.DialogResult = false;
-
-                return;
-            }
-            else
-            {
-                if (ftxbDocNum.Length != 8)
-                {
-                    this.DialogResult = false;
-
-                    return;
-                }
-            }
-
-            if (string.IsNullOrEmpty(fDpIssueDate))
-            {
-                this.DialogResult = false;
-
-                return;
-            }
-            else
-            {
-                if (fDpIssueDate.Length != 10)
-                {
-                    this.DialogResult = false;
-
-                    return;
-                }
-            }
-
-            if (string.IsNullOrEmpty(ftxbDocNum2))
-            {
-                this.DialogResult = false;
-
-                return;
-            }
-            else
-            {
-                if (ftxbDocNum2.Length != 9)
-                {
-                    this.DialogResult = false;
-
-                    return;
-                }
-            }
-
-            if (!fReadCard())
-            {
-                this.DialogResult = false;
-
-                return;
-            }
-
-            this.DialogResult = true;
+            StartReading();
         }
 
         private bool fReadCard()
@@ -273,6 +320,36 @@ namespace GID_Client
                 {
                     e.Handled = true;
                 }
+            }
+        }
+
+        private void txbDocNum_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (txbDocNum.IsMaskFull && ftxbDocNum2Validate && fDpIssueDateValidate)
+            {
+                DpBirthDate.Focus();
+                btnStart.IsEnabled = true;
+                ActivateTimer();
+            }
+        }
+
+        private void DpBirthDate_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (DpBirthDate.IsMaskFull && ftxbDocNum2Validate && ftxbDocNumValidate)
+            {
+                txbGuvohnoma.Focus();
+                btnStart.IsEnabled = true;
+                ActivateTimer();
+            }
+        }
+
+        private void txbGuvohnoma_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (txbGuvohnoma.IsMaskFull && fDpIssueDateValidate && ftxbDocNumValidate)
+            {
+                txbDocNum.Focus();
+                btnStart.IsEnabled = true;
+                ActivateTimer();
             }
         }
     }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Closed="Window_Closed"
-        Title="Avtomatlashtirilgan ish joyi Kart Master 2.7" Height="710" Width="1015"
+        Title="Avtomatlashtirilgan ish joyi Kart Master 2.8" Height="710" Width="1015"
         WindowStartupLocation="CenterScreen"
         Icon="ResourcesPic/car.png"
         WindowState="Maximized" >

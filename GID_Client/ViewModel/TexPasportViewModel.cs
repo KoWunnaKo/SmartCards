@@ -12,7 +12,6 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace GID_Client.ViewModel
 {
@@ -407,7 +406,7 @@ namespace GID_Client.ViewModel
 
             StatusText = "O'qimoqda...";
 
-            Mouse.OverrideCursor = Cursors.Wait;
+            //Mouse.OverrideCursor = Cursors.Wait;
 
             var res = await PfReadCard();
 
@@ -425,7 +424,7 @@ namespace GID_Client.ViewModel
 
             IsIntermadiate = false;
 
-            Mouse.OverrideCursor = null;
+            //Mouse.OverrideCursor = null;
 
         }
 
