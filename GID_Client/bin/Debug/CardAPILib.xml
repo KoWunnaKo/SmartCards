@@ -15,6 +15,13 @@
             </summary>
             <param name="isConnct">Allow Create Class with opened or not opened connection</param>
         </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.#ctor(GemCard.CardNative,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="card"></param>
+            <param name="isConnct"></param>
+        </member>
         <member name="M:CardAPILib.CardAPI.CardApiController.getUUId(System.String@)">
             <summary>
             This command queries the smart card for the 20 byte UUID which is derived by using SHA256 to derive a 32 byte hash from the RSA Public

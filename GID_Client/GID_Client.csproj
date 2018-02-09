@@ -184,6 +184,15 @@
       <DependentUpon>MondatoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerApi\ServerApiController.cs" />
+    <Compile Include="TsexLogic\CardProcess.cs" />
+    <Compile Include="TsexLogic\CardValidation.cs" />
+    <Compile Include="TsexLogic\CertificateProcess.cs" />
+    <Compile Include="TsexLogic\ICardProcess.cs" />
+    <Compile Include="TsexLogic\ICardValidation.cs" />
+    <Compile Include="TsexLogic\ICertificateProcess.cs" />
+    <Compile Include="TsexLogic\IPkiProcess.cs" />
+    <Compile Include="TsexLogic\PkiProcess.cs" />
+    <Compile Include="TsexLogic\TsexController.cs" />
     <Compile Include="ViewModel\Base64ImageConverter.cs" />
     <Compile Include="ViewModel\CardActionTracker.cs" />
     <Compile Include="ViewModel\CardTracker.cs" />
@@ -292,7 +301,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResourcesPic\Help.bmp">

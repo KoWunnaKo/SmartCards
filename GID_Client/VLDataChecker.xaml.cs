@@ -103,7 +103,7 @@ namespace GID_Client
                 }
                 else
                 {
-                    if (ftxbDocNum2.Length != 9)
+                    if (ftxbDocNum2.Length != 10)
                     {
                         this.DialogResult = false;
 

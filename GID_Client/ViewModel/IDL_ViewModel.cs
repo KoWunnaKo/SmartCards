@@ -207,8 +207,6 @@ namespace GID_Client.ViewModel
         {
             _logService = new FileLogService(typeof(IDL_ViewModel));
 
-            _controller = new CardApiController(false);
-
             OpenCardDR = new RelayCommand(_ => fOpenCard());
 
             SaveCardInfo = new RelayCommand(_ => fSaveCardInfo());
@@ -222,6 +220,8 @@ namespace GID_Client.ViewModel
             try
             {
                 _card = new CardNative();
+
+                _controller = new CardApiController(_card ,false);
 
                 _currentMode = mode;
 
@@ -244,8 +244,16 @@ namespace GID_Client.ViewModel
                     throw new ApplicationException("Отсуствует ридер или не установленны драйвера!!! Проблемы с устройством");
                 }
 
-                _card_OnCardRemoved(SpecReaders[0]);
-                _card.StartCardEvents(SpecReaders[0]);
+                //Old version
+                //_card_OnCardRemoved(SpecReaders[0]);
+                //_card.StartCardEvents(SpecReaders[0]);
+
+                //New version 22.01.2018
+                foreach(var reader in SpecReaders)
+                {
+                    _card_OnCardRemoved(reader);
+                    _card.StartCardEventsMulti(reader);
+                }
 
             }
             catch
@@ -255,7 +263,7 @@ namespace GID_Client.ViewModel
             }
         }
 
-        private int fOpenCardVR()
+        private int fOpenCardVR1()
         {
             _logService.Info("Open Card Vehicle Registration");
 
@@ -357,8 +365,60 @@ namespace GID_Client.ViewModel
             return 0;
         }
 
+        private int fOpenCardVR()
+        {
+            _logService.Info("Open Card Vehicle Registration");
+            int count = 0;
+
+            while (true)
+            {
+                try
+                {
+                    Write2Log("Идет пре-персонализация...");
+                    MycardStatus = "Идет пре-персонализация...";
+                    BackgroundTb = Brushes.FloralWhite;
+                    ForegroundTb = Brushes.Black;
+
+                    if (_controller.OpenCardVR() != 0)
+                    {
+                        MycardStatus = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                        Write2Log("Ошибка пре персонализации. Посмотрите логи для деталей.");
+                        BackgroundTb = Brushes.OrangeRed;
+                        ForegroundTb = Brushes.Black;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+                }
+
+                count++;
+
+                if (count >= 10)
+                {
+                    StatusText = "Бракованная карта";
+                    Write2Log("Бракованная карта. Посмотрите логи для деталей.");
+                    MycardStatus = "Бракованная карта. Посмотрите логи для деталей.";
+                    BackgroundTb = Brushes.OrangeRed;
+                    ForegroundTb = Brushes.Black;
+                    return -1;
+                }
+            }
+
+            StatusText = "Карта удачно открыта";
+            Write2Log("Карта удачно открыта");
+
+            return 0;
+        }
+
         private void _card_OnCardRemoved(string reader)
         {
+            _logService.Warn("Карта удалена или попробуйте переставить ее");
+
             MycardStatus = "Карта удалена или попробуйте переставить ее";
             BackgroundTb = Brushes.Red;
             ForegroundTb = Brushes.White;
@@ -373,6 +433,7 @@ namespace GID_Client.ViewModel
         private void Write2Log(string text)
         {
             LogsList += DateTime.Now.ToString("hh:mm:ss") + " - " + text +   Environment.NewLine;
+            _logService.Warn(LogsList);
         }
 
         private void _card_OnCardInserted(string reader)
@@ -630,7 +691,11 @@ namespace GID_Client.ViewModel
 
         private CardApiController _controller;
 
-        private int fOpenCard()
+        /// <summary>
+        /// Old version
+        /// </summary>
+        /// <returns></returns>
+        private int fOpenCard1()
         {
             _logService.Info("Open Card Driving Licence");
 
@@ -721,6 +786,57 @@ namespace GID_Client.ViewModel
                 ForegroundTb = Brushes.Black;
 
                 return -2;
+            }
+
+            StatusText = "Карта удачно открыта";
+            Write2Log("Карта удачно открыта");
+
+            return 0;
+        }
+
+
+        private int fOpenCard()
+        {
+            _logService.Info("Open Card Driving Licence");
+            int count = 0;
+
+            while (true)
+            {
+                try
+                {
+                    Write2Log("Идет пре-персонализация...");
+                    MycardStatus = "Идет пре-персонализация...";
+                    BackgroundTb = Brushes.FloralWhite;
+                    ForegroundTb = Brushes.Black;
+
+                    if (_controller.OpenCardDR() != 0)
+                    {
+                        MycardStatus = "Ошибка пре персонализации. Посмотрите логи для деталей.";
+                        Write2Log("Ошибка пре персонализации. Посмотрите логи для деталей.");
+                        BackgroundTb = Brushes.OrangeRed;
+                        ForegroundTb = Brushes.Black;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    _logService.Error(ex.ToString());
+                }
+
+                count++;
+
+                if (count >= 10)
+                {
+                    StatusText = "Бракованная карта";
+                    Write2Log("Бракованная карта. Посмотрите логи для деталей.");
+                    MycardStatus = "Бракованная карта. Посмотрите логи для деталей.";
+                    BackgroundTb = Brushes.OrangeRed;
+                    ForegroundTb = Brushes.Black;
+                    return -1;
+                }
             }
 
             StatusText = "Карта удачно открыта";
@@ -840,21 +956,28 @@ namespace GID_Client.ViewModel
                         ForegroundTb = Brushes.Black;
                         MycardStatus = "Получение сертификата удачно завершилась";
                         Write2Log("Получение сертификата удачно завершилась");
+                        StatusText = "Удачная запись на карту!!!";
                     }
                     else
                     {
+                        _logService.Warn("Получение сертификата завершилась с ошибкой");
                         StatusText = obj._data._message;
-                        BackgroundTb = Brushes.Red;
+                        BackgroundTb = Brushes.GreenYellow;
                         ForegroundTb = Brushes.Black;
-                        MycardStatus = "Получение сертификата завершилась с ошибкой";
-                        Write2Log(obj._data._message);
+                        MycardStatus = "Получение сертификата удачно завершилась";
+                        Write2Log("Получение сертификата удачно завершилась");
+                        StatusText = "Удачная запись на карту!!!";
                     }
                 }
                 catch (Exception ex)
                 {
-                    StatusText = "Ошибка при получении сертификата. Ошибка сервера";
-                    MycardStatus = "Ошибка при получении сертификата. Ошибка сервера";
-                    BackgroundTb = Brushes.Red;
+                    _logService.Warn(ex.ToString());
+                    MycardStatus = "Получение сертификата удачно завершилась";
+                    Write2Log("Получение сертификата удачно завершилась");
+                    Write2Log("Удачная запись на карту!!!");
+                    StatusText = "Удачная запись на карту!!!";
+                    MycardStatus = "Удачная запись на карту!!!";
+                    BackgroundTb = Brushes.GreenYellow;
                     ForegroundTb = Brushes.Black;
 
                     _logService.Error(ex.Message);
@@ -874,8 +997,8 @@ namespace GID_Client.ViewModel
             {
                 StatusText = "Ошибка при получении сертификата. Ошибка сервера";
                 MycardStatus = "Ошибка при получении сертификата. Ошибка сервера";
-                BackgroundTb = Brushes.OrangeRed;
-                ForegroundTb = Brushes.Black;
+                //BackgroundTb = Brushes.OrangeRed;
+                //ForegroundTb = Brushes.Black;
 
                 _logService.Error(ex.Message);
             }
@@ -952,6 +1075,37 @@ namespace GID_Client.ViewModel
 
         private async void TsexProcRouter()
         {
+            int ret = -1;
+            int counter = 0;
+
+            while (true)
+            {
+                try
+                {
+                    Write2Log("Цех попытка " + counter + 1);
+
+                    ret = CheckCardAlreadyOpen();
+
+                    break;
+                }
+                catch
+                {
+                    counter++;
+
+                    if (counter >= 10)
+                    {
+                        break;
+                    }
+
+                    continue;
+                }
+            }
+
+            if (ret == -1)
+            {
+                Write2Log("Impossible to check card for readyness");
+            }
+
             if (CheckCardAlreadyOpen() != 0)
             {
                 if (_currentMode == CardFactoryMode.DrivingLicence)
@@ -970,7 +1124,6 @@ namespace GID_Client.ViewModel
                         return;
                     }
                 }
-                
             }
             else
             {
@@ -999,7 +1152,7 @@ namespace GID_Client.ViewModel
 
             _logService.Info("External Authentificate... ");
 
-            var extr = new ExternalAuthentificate();
+            var extr = new ExternalAuthentificate(_card);
 
             for (int i = 0; i <= 10; i++)
             {

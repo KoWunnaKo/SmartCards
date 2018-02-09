@@ -9,11 +9,11 @@
              Background="White"
              xmlns:l="clr-namespace:GID_Client.ViewModel" 
              FontSize="11"
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="540" d:DesignWidth="800">
     <UserControl.Resources>
         <l:Base64ImageConverter x:Key="Base64ImageConverter"/>
     </UserControl.Resources>
-    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="O'qilmoqda..." >
+    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="{Binding StatusText}" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -306,7 +306,7 @@
         </Grid>
             </Grid>
                 <TextBlock
-                    Margin="10,10,10,5"
+                    Margin="5,5,5,3"
                     Text="Haydovchilik Kategoriyalari:" FontWeight="Bold" FontSize="14"></TextBlock>
             <Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
@@ -318,13 +318,13 @@
             <Grid  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30*"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0"/>

@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="530" d:DesignWidth="600">
-    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="O'qilmoqda..." >
+    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="{Binding StatusText}" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

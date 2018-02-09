@@ -10,8 +10,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace GID_Client.ViewModel
 {
@@ -147,6 +149,14 @@ namespace GID_Client.ViewModel
             Expire_date = string.Empty;
 
             fReadCard();
+
+            //Application.Current.Dispatcher.BeginInvoke(
+            //DispatcherPriority.Input, new DispatcherOperationCallback(delegate (object param)
+            //{
+            //    fReadCard();
+            
+            //    return null;
+            //}), this);
         }
 
         private string GetUUid()
@@ -301,6 +311,33 @@ namespace GID_Client.ViewModel
         private string _DpIssueDate;
         private string _txbDocNum2;
 
+        private Task<bool> CheckExpiredDate(string enteredDate)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                byte[] Vr = null;
+
+                SecuredReaderTest dd = new SecuredReaderTest();
+
+                Vr = dd.VR_Reader(InputString);
+
+                VehicleRegistration vl = new VehicleRegistration("");
+
+                var vll = vl.ParseReadMaterial(Vr);
+
+                if (!vll._license_number.Equals(enteredDate))
+                {
+                    return false;
+                }
+
+                return true;
+
+            });
+
+            return resultTask;
+
+        }
+
         private async void fReadCard()
         {
             StatusText = string.Empty;
@@ -348,10 +385,22 @@ namespace GID_Client.ViewModel
 
                 var result = MessageBox.Show("Ma'lumot to'liq kiritilmagan. Yana harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.OK)
+                //if (result == MessageBoxResult.OK)
+                //{
+                //    fReadCard();
+                //}
+                //else
+                //{
+                //    fReadCard();
+                //}
+
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Input, new DispatcherOperationCallback(delegate (object param)
                 {
                     fReadCard();
-                }
+                
+                    return null;
+                }), this);
 
                 return;
             }
@@ -368,17 +417,33 @@ namespace GID_Client.ViewModel
 
                 if (res1 == 0)
                 {
-                    byte[] Vr = null;
+                    //byte[] Vr = null;
 
-                    SecuredReaderTest dd = new SecuredReaderTest();
+                    //SecuredReaderTest dd = new SecuredReaderTest();
 
-                    Vr = dd.VR_Reader(InputString);
+                    //Vr = dd.VR_Reader(InputString);
 
-                    VehicleRegistration vl = new VehicleRegistration("");
+                    //VehicleRegistration vl = new VehicleRegistration("");
 
-                    var vll = vl.ParseReadMaterial(Vr);
+                    //var vll = vl.ParseReadMaterial(Vr);
 
-                    if (!vll._license_number.Equals(mon.ftxbDocNum2))
+                    //if (!vll._license_number.Equals(mon.ftxbDocNum2))
+                    //{
+                    //    dataCheck = false;
+                    //    break;
+                    //}
+
+                    IsIntermadiate = true;
+                    StatusText = "Kiritilgan ma'lumot tekshirilmoqda...";
+
+                    string guvohnomaRaqami = mon.ftxbDocNum2;
+
+                    var reslit = await CheckExpiredDate(guvohnomaRaqami);
+
+                    IsIntermadiate = false;
+                    StatusText = string.Empty;
+
+                    if (!reslit)
                     {
                         dataCheck = false;
                         break;
@@ -412,7 +477,15 @@ namespace GID_Client.ViewModel
 
                 if (result == MessageBoxResult.OK)
                 {
-                    fReadCard();
+                    //fReadCard();
+
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Input, new DispatcherOperationCallback(delegate (object param)
+                    {
+                        fReadCard();
+                    
+                        return null;
+                    }), this);
                 }
 
                 return;

@@ -67,7 +67,7 @@
                  Grid.Column="1" 
                  Margin="5"
                  Name="txbGuvohnoma"
-                 Mask="LL0000000" 
+                 Mask="LLL0000000" 
                  KeyDown="txbGuvohnoma_KeyDown"
                  KeyUp="txbGuvohnoma_KeyUp"
                  MaxLength="9"

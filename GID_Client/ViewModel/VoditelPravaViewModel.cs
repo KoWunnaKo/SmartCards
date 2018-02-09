@@ -14,6 +14,9 @@ using GemCard;
 using System.Windows;
 using System.ComponentModel;
 using CardAPILib.InterfaceCL;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace GID_Client.ViewModel
 {
@@ -178,6 +181,14 @@ namespace GID_Client.ViewModel
             ClearFields();
 
             fReadCard();
+
+            //Application.Current.Dispatcher.BeginInvoke(
+            //DispatcherPriority.Input, new DispatcherOperationCallback(delegate (object param)
+            //{
+            //    fReadCard();
+
+            //    return null;
+            //}), this);
         }
 
         private string GetUUid()
@@ -463,6 +474,58 @@ namespace GID_Client.ViewModel
         private string _DpBirthDate;
         private string _DpExpireDate;
 
+        private Task<bool> CheckExpiredDate(string enteredDate)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                
+                byte[] DG1 = null;
+
+                SecuredReaderTest dd = new SecuredReaderTest();
+
+                DG1 = dd.IDL_ReaderDG1(InputString);
+
+                DrivingLicense DrL = new DrivingLicense("");
+
+                var dlExpired = DrL.ParseDG1Expired(DG1);
+
+                var ExpireDate = DateTime.ParseExact(dlExpired, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+
+                if (!ExpireDate.Equals(enteredDate))
+                {
+                    return false;
+                }
+
+                return true;
+            });
+
+            return resultTask;
+
+        }
+
+
+        private async void fReadCardAsync()
+        {
+            var done = false;
+
+            while (!done)
+            {
+                var customViewModel = new { };
+
+                var task = Task.Factory.StartNew(() => 
+                {
+                    if ((!string.IsNullOrEmpty(_txbDocNum)) && (!string.IsNullOrEmpty(_DpBirthDate)) &&
+               (!string.IsNullOrEmpty(_DpExpireDate)))
+                    {
+                        //customViewModel.ftxbDocNum = _txbDocNum;
+                        //customViewModel.fDpBirthDate = _DpBirthDate.Remove(2, 1).Remove(4, 1);
+                        //customViewModel.fDpExpireDate = _DpExpireDate.Remove(2, 1).Remove(4, 1);
+
+                        //customViewModel.Ready2Read = true;
+                    }
+                });
+            }
+        }
         private async void fReadCard()
         {
             StatusText = string.Empty;
@@ -511,11 +574,23 @@ namespace GID_Client.ViewModel
 
                 var result = MessageBox.Show("Ma'lumot to'liq kiritilmagan. Yana harakat qilib ko'rasizmi?", "", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.OK)
-                {
-                    fReadCard();
-                }
+                //if (result == MessageBoxResult.OK)
+                //{
+                //    fReadCard();
+                //}
+                //else
+                //{
+                //    fReadCard();
+                //}
 
+                Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Input, new DispatcherOperationCallback(delegate(object param) 
+                    {
+                        fReadCard();
+
+                        return null;
+                    }), this);
+                
                 return;
             }
 
@@ -531,19 +606,35 @@ namespace GID_Client.ViewModel
 
                 if (res == 0)
                 {
-                    byte[] DG1 = null;
+                    //byte[] DG1 = null;
 
-                    SecuredReaderTest dd = new SecuredReaderTest();
+                    //SecuredReaderTest dd = new SecuredReaderTest();
 
-                    DG1 = dd.IDL_ReaderDG1(InputString);
+                    //DG1 = dd.IDL_ReaderDG1(InputString);
 
-                    DrivingLicense DrL = new DrivingLicense("");
+                    //DrivingLicense DrL = new DrivingLicense("");
 
-                    var dlExpired = DrL.ParseDG1Expired(DG1);
+                    //var dlExpired = DrL.ParseDG1Expired(DG1);
 
-                    var ExpireDate = DateTime.ParseExact(dlExpired, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                    //var ExpireDate = DateTime.ParseExact(dlExpired, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
 
-                    if (!ExpireDate.Equals(mon.fDpExpireDate))
+                    //if (!ExpireDate.Equals(mon.fDpExpireDate))
+                    //{
+                    //    dataCheck = false;
+                    //    break;
+                    //}
+
+                    IsIntermadiate = true;
+                    StatusText = "Kiritilgan ma'lumot tekshirilmoqda...";
+
+                    string expiredDate = mon.fDpExpireDate;
+
+                    var reslit = await CheckExpiredDate(expiredDate);
+
+                    IsIntermadiate = false;
+                    StatusText = string.Empty;
+
+                    if (!reslit)
                     {
                         dataCheck = false;
                         break;
@@ -577,7 +668,15 @@ namespace GID_Client.ViewModel
 
                 if (result == MessageBoxResult.OK)
                 {
-                    fReadCard();
+                    //fReadCard();
+
+                    Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Input, new DispatcherOperationCallback(delegate (object param)
+                    {
+                        fReadCard();
+
+                        return null;
+                    }), this);
                 }
 
                 return;
