@@ -498,63 +498,71 @@ namespace GemCard
 			EstablishContext(SCOPE.User);
 
 			string[]	sListReaders = null;
-            UInt32 pchReaders = 0;
-			IntPtr	szListReaders = IntPtr.Zero;
 
-			m_nLastError = SCardListReaders(m_hContext, null, szListReaders, out pchReaders);
-			if (m_nLastError == 0)
-			{
-				szListReaders = Marshal.AllocHGlobal((int) pchReaders);
-				m_nLastError = SCardListReaders(m_hContext, null, szListReaders, out pchReaders);
-				if (m_nLastError == 0)
-				{
-					char[] caReadersData = new char[pchReaders];
-					int	nbReaders = 0;
-					for (int nI = 0; nI < pchReaders; nI++)
-					{
-						caReadersData[nI] = (char) Marshal.ReadByte(szListReaders, nI);
+            try
+            {
+                UInt32 pchReaders = 0;
+			    IntPtr	szListReaders = IntPtr.Zero;
 
-						if (caReadersData[nI] == 0)
-							nbReaders++;
-					}
+			    m_nLastError = SCardListReaders(m_hContext, null, szListReaders, out pchReaders);
+			    if (m_nLastError == 0)
+			    {
+			    	szListReaders = Marshal.AllocHGlobal((int) pchReaders);
+			    	m_nLastError = SCardListReaders(m_hContext, null, szListReaders, out pchReaders);
+			    	if (m_nLastError == 0)
+			    	{
+			    		char[] caReadersData = new char[pchReaders];
+			    		int	nbReaders = 0;
+			    		for (int nI = 0; nI < pchReaders; nI++)
+			    		{
+			    			caReadersData[nI] = (char) Marshal.ReadByte(szListReaders, nI);
 
-					// Remove last 0
-					--nbReaders;
+			    			if (caReadersData[nI] == 0)
+			    				nbReaders++;
+			    		}
 
-					if (nbReaders != 0)
-					{
-						sListReaders = new string[nbReaders];
-						char[] caReader = new char[pchReaders];
-						int	nIdx = 0;
-						int	nIdy = 0;
-						int	nIdz = 0;
-						// Get the nJ string from the multi-string
+			    		// Remove last 0
+			    		--nbReaders;
 
-						while(nIdx < pchReaders - 1)
-						{
-							caReader[nIdy] = caReadersData[nIdx];
-							if (caReader[nIdy] == 0)
-							{
-								sListReaders[nIdz] = new string(caReader, 0, nIdy);
-								++nIdz;
-								nIdy = 0;
-								caReader = new char[pchReaders];
-							}
-							else
-								++nIdy;
+			    		if (nbReaders != 0)
+			    		{
+			    			sListReaders = new string[nbReaders];
+			    			char[] caReader = new char[pchReaders];
+			    			int	nIdx = 0;
+			    			int	nIdy = 0;
+			    			int	nIdz = 0;
+			    			// Get the nJ string from the multi-string
 
-							++nIdx;
-						}
-					}
+			    			while(nIdx < pchReaders - 1)
+			    			{
+			    				caReader[nIdy] = caReadersData[nIdx];
+			    				if (caReader[nIdy] == 0)
+			    				{
+			    					sListReaders[nIdz] = new string(caReader, 0, nIdy);
+			    					++nIdz;
+			    					nIdy = 0;
+			    					caReader = new char[pchReaders];
+			    				}
+			    				else
+			    					++nIdy;
 
-				}
+			    				++nIdx;
+			    			}
+			    		}
 
-				Marshal.FreeHGlobal(szListReaders);
-			}
+			    	}
 
-			ReleaseContext();
+			    	Marshal.FreeHGlobal(szListReaders);
+			    }
 
-			return sListReaders;
+			    ReleaseContext();
+            }
+            catch
+            {
+
+            }
+
+            return sListReaders;
 		}
 
 		/// <summary>
@@ -569,20 +577,28 @@ namespace GemCard
 		/// <param name="Scope"></param>
 		public void EstablishContext(SCOPE Scope)
 		{
-			IntPtr hContext = Marshal.AllocHGlobal(Marshal.SizeOf(m_hContext));
+            try
+            {
+                IntPtr hContext = Marshal.AllocHGlobal(Marshal.SizeOf(m_hContext));
 
-			m_nLastError = SCardEstablishContext((uint) Scope, IntPtr.Zero, IntPtr.Zero, hContext);
-			if (m_nLastError != 0)
-			{
-				string msg = "SCardEstablishContext error: " + m_nLastError;
+                m_nLastError = SCardEstablishContext((uint)Scope, IntPtr.Zero, IntPtr.Zero, hContext);
+                if (m_nLastError != 0)
+                {
+                    string msg = "SCardEstablishContext error: " + m_nLastError;
 
-				Marshal.FreeHGlobal(hContext);
-				throw new Exception(msg);
-			}
+                    Marshal.FreeHGlobal(hContext);
+                    throw new Exception(msg);
+                }
 
-            m_hContext = Marshal.ReadIntPtr(hContext);
+                m_hContext = Marshal.ReadIntPtr(hContext);
 
-			Marshal.FreeHGlobal(hContext);
+                Marshal.FreeHGlobal(hContext);
+            }
+            catch
+            {
+
+            }
+
 		}
 
 
@@ -594,18 +610,25 @@ namespace GemCard
 		/// </summary>
 		public void ReleaseContext()
 		{
-			if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
-			{
-				m_nLastError = SCardReleaseContext(m_hContext);
+            try
+            {
+                if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
+                {
+                    m_nLastError = SCardReleaseContext(m_hContext);
 
-				if (m_nLastError != 0)
-				{
-					string	msg = "SCardReleaseContext error: " + m_nLastError;
-					throw new Exception(msg);
-				}
+                    if (m_nLastError != 0)
+                    {
+                        string msg = "SCardReleaseContext error: " + m_nLastError;
+                        throw new Exception(msg);
+                    }
 
-                m_hContext = IntPtr.Zero;
-			}
+                    m_hContext = IntPtr.Zero;
+                }
+            }
+            catch
+            {
+
+            }
 		}
 
 		/// <summary>
@@ -624,32 +647,39 @@ namespace GemCard
 		/// <param name="PreferredProtocols"></param>
 		public override void Connect(string Reader, SHARE ShareMode, PROTOCOL PreferredProtocols)
 		{
-			EstablishContext(SCOPE.User);
+            try
+            {
+                EstablishContext(SCOPE.User);
 
-			IntPtr	hCard = Marshal.AllocHGlobal(Marshal.SizeOf(m_hCard));
-			IntPtr	pProtocol = Marshal.AllocHGlobal(Marshal.SizeOf(m_nProtocol));
+                IntPtr hCard = Marshal.AllocHGlobal(Marshal.SizeOf(m_hCard));
+                IntPtr pProtocol = Marshal.AllocHGlobal(Marshal.SizeOf(m_nProtocol));
 
-			m_nLastError = SCardConnect(m_hContext, 
-				Reader, 
-				(uint) ShareMode, 
-				(uint) PreferredProtocols, 
-				hCard,
-				pProtocol);
+                m_nLastError = SCardConnect(m_hContext,
+                    Reader,
+                    (uint)ShareMode,
+                    (uint)PreferredProtocols,
+                    hCard,
+                    pProtocol);
 
-			if (m_nLastError != 0)
-			{
-				string msg = "SCardConnect error: " + m_nLastError;
+                if (m_nLastError != 0)
+                {
+                    string msg = "SCardConnect error: " + m_nLastError;
 
-				Marshal.FreeHGlobal(hCard);
-				Marshal.FreeHGlobal(pProtocol);
-				throw new Exception(msg);
-			}
+                    Marshal.FreeHGlobal(hCard);
+                    Marshal.FreeHGlobal(pProtocol);
+                    throw new Exception(msg);
+                }
 
-            m_hCard = Marshal.ReadIntPtr(hCard);
-			m_nProtocol = (uint) Marshal.ReadInt32(pProtocol);
+                m_hCard = Marshal.ReadIntPtr(hCard);
+                m_nProtocol = (uint)Marshal.ReadInt32(pProtocol);
 
-			Marshal.FreeHGlobal(hCard);
-			Marshal.FreeHGlobal(pProtocol);
+                Marshal.FreeHGlobal(hCard);
+                Marshal.FreeHGlobal(pProtocol);
+            }
+            catch
+            {
+
+            }
 		}
 
 		/// <summary>
@@ -662,19 +692,26 @@ namespace GemCard
 		/// <param name="Disposition"></param>
 		public override void Disconnect(DISCONNECT Disposition)
 		{
-            if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
-			{
-				m_nLastError = SCardDisconnect(m_hCard, (uint) Disposition);
-                m_hCard = IntPtr.Zero;
+            try
+            {
+                if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
+                {
+                    m_nLastError = SCardDisconnect(m_hCard, (uint)Disposition);
+                    m_hCard = IntPtr.Zero;
 
-				if (m_nLastError != 0)
-				{
-					string msg = "SCardDisconnect error: " + m_nLastError;
-					throw new Exception(msg);
-				}
+                    if (m_nLastError != 0)
+                    {
+                        string msg = "SCardDisconnect error: " + m_nLastError;
+                        throw new Exception(msg);
+                    }
 
-				ReleaseContext();
-			}
+                    ReleaseContext();
+                }
+            }
+            catch
+            {
+
+            }
 		}
 
 		/// <summary>
@@ -693,49 +730,59 @@ namespace GemCard
 		/// <returns>An APDUResponse object with the response from the card</returns>
 		public override APDUResponse Transmit(APDUCommand ApduCmd)
 		{
-			uint	RecvLength = (uint) (ApduCmd.Le + APDUResponse.SW_LENGTH);
-			byte[]	ApduBuffer = null;
-			byte[]	ApduResponse = new byte[ApduCmd.Le + APDUResponse.SW_LENGTH];
-			SCard_IO_Request	ioRequest = new SCard_IO_Request();
-			ioRequest.m_dwProtocol = m_nProtocol;
-			ioRequest.m_cbPciLength = 8;
+            try
+            {
+                uint RecvLength = (uint)(ApduCmd.Le + APDUResponse.SW_LENGTH);
+                byte[] ApduBuffer = null;
+                byte[] ApduResponse = new byte[ApduCmd.Le + APDUResponse.SW_LENGTH];
+                SCard_IO_Request ioRequest = new SCard_IO_Request();
+                ioRequest.m_dwProtocol = m_nProtocol;
+                ioRequest.m_cbPciLength = 8;
 
-			// Build the command APDU
-			if (ApduCmd.Data == null)
-			{
-				ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + ((ApduCmd.Le != 0) ? 1 : 0)];
+                // Build the command APDU
+                if (ApduCmd.Data == null)
+                {
+                    ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + ((ApduCmd.Le != 0) ? 1 : 0)];
 
-				if (ApduCmd.Le != 0)
-					ApduBuffer[4] = (byte) ApduCmd.Le;
-			}
-			else
-			{
-				ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 1 + ApduCmd.Data.Length];
+                    if (ApduCmd.Le != 0)
+                        ApduBuffer[4] = (byte)ApduCmd.Le;
+                }
+                else
+                {
+                    ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 1 + ApduCmd.Data.Length];
 
-				for (int nI = 0; nI < ApduCmd.Data.Length; nI++)
-					ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1 + nI] = ApduCmd.Data[nI];
+                    for (int nI = 0; nI < ApduCmd.Data.Length; nI++)
+                        ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1 + nI] = ApduCmd.Data[nI];
 
-				ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = (byte) ApduCmd.Data.Length;
-			}
+                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = (byte)ApduCmd.Data.Length;
+                }
 
-			ApduBuffer[0] = ApduCmd.Class;
-			ApduBuffer[1] = ApduCmd.Ins;
-			ApduBuffer[2] = ApduCmd.P1;
-			ApduBuffer[3] = ApduCmd.P2;
+                ApduBuffer[0] = ApduCmd.Class;
+                ApduBuffer[1] = ApduCmd.Ins;
+                ApduBuffer[2] = ApduCmd.P1;
+                ApduBuffer[3] = ApduCmd.P2;
 
-			m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint) ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength); 
-			if (m_nLastError != 0)
-			{
-				string msg = "SCardTransmit error: " + m_nLastError;
-				throw new Exception(msg);
-			}
-			
-			byte[] ApduData = new byte[RecvLength];
+                m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint)ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength);
+                if (m_nLastError != 0)
+                {
+                    string msg = "SCardTransmit error: " + m_nLastError;
+                    throw new Exception(msg);
+                }
 
-			for (int nI = 0; nI < RecvLength; nI++)
-				ApduData[nI] = ApduResponse[nI];
+                byte[] ApduData = new byte[RecvLength];
 
-			return new APDUResponse(ApduData);
+                for (int nI = 0; nI < RecvLength; nI++)
+                    ApduData[nI] = ApduResponse[nI];
+
+                return new APDUResponse(ApduData);
+            }
+            catch
+            {
+
+            }
+
+            return null;
+
 		}
 
         /// <summary>
@@ -754,53 +801,62 @@ namespace GemCard
         /// <returns>An APDUResponse object with the response from the card</returns>
         public APDUResponse TransmitLe(APDUCommand ApduCmd, uint _RecvLength = 0, bool isInstall= false)
         {
-            uint RecvLength = (uint)(_RecvLength + APDUResponse.SW_LENGTH);
-            byte[] ApduBuffer = null;
-            byte[] ApduResponse = new byte[_RecvLength + APDUResponse.SW_LENGTH];
-            SCard_IO_Request ioRequest = new SCard_IO_Request();
-            ioRequest.m_dwProtocol = m_nProtocol;
-            ioRequest.m_cbPciLength = 8;
-
-            // Build the command APDU
-            if (ApduCmd.Data == null)
+            try
             {
-                ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 1];
+                uint RecvLength = (uint)(_RecvLength + APDUResponse.SW_LENGTH);
+                byte[] ApduBuffer = null;
+                byte[] ApduResponse = new byte[_RecvLength + APDUResponse.SW_LENGTH];
+                SCard_IO_Request ioRequest = new SCard_IO_Request();
+                ioRequest.m_dwProtocol = m_nProtocol;
+                ioRequest.m_cbPciLength = 8;
 
-                ApduBuffer[4] = (byte)ApduCmd.Le;
+                // Build the command APDU
+                if (ApduCmd.Data == null)
+                {
+                    ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 1];
+
+                    ApduBuffer[4] = (byte)ApduCmd.Le;
+                }
+                else
+                {
+                    ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 2 + ApduCmd.Data.Length];
+
+                    int nI = 0;
+
+                    for (nI = 0; nI < ApduCmd.Data.Length; nI++)
+                        ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1 + nI] = ApduCmd.Data[nI];
+
+                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = (byte)ApduCmd.Data.Length;
+
+                    if (!isInstall)
+                        ApduBuffer[APDUCommand.APDU_MIN_LENGTH + ApduCmd.Data.Length + 1] = (byte)ApduCmd.Le;
+                }
+
+                ApduBuffer[0] = ApduCmd.Class;
+                ApduBuffer[1] = ApduCmd.Ins;
+                ApduBuffer[2] = ApduCmd.P1;
+                ApduBuffer[3] = ApduCmd.P2;
+
+                m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint)ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength);
+                if (m_nLastError != 0)
+                {
+                    string msg = "SCardTransmit error: " + m_nLastError;
+                    throw new Exception(msg);
+                }
+
+                byte[] ApduData = new byte[RecvLength];
+
+                for (int nI = 0; nI < RecvLength; nI++)
+                    ApduData[nI] = ApduResponse[nI];
+
+                return new APDUResponse(ApduData);
             }
-            else
+            catch
             {
-                ApduBuffer = new byte[APDUCommand.APDU_MIN_LENGTH + 2 + ApduCmd.Data.Length];
 
-                int nI = 0;
-
-                for (nI = 0; nI < ApduCmd.Data.Length; nI++)
-                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH + 1 + nI] = ApduCmd.Data[nI];
-
-                ApduBuffer[APDUCommand.APDU_MIN_LENGTH] = (byte)ApduCmd.Data.Length;
-
-                if (!isInstall)
-                    ApduBuffer[APDUCommand.APDU_MIN_LENGTH + ApduCmd.Data.Length+1] = (byte)ApduCmd.Le;
             }
 
-            ApduBuffer[0] = ApduCmd.Class;
-            ApduBuffer[1] = ApduCmd.Ins;
-            ApduBuffer[2] = ApduCmd.P1;
-            ApduBuffer[3] = ApduCmd.P2;
-
-            m_nLastError = SCardTransmit(m_hCard, ref ioRequest, ApduBuffer, (uint)ApduBuffer.Length, IntPtr.Zero, ApduResponse, out RecvLength);
-            if (m_nLastError != 0)
-            {
-                string msg = "SCardTransmit error: " + m_nLastError;
-                throw new Exception(msg);
-            }
-
-            byte[] ApduData = new byte[RecvLength];
-
-            for (int nI = 0; nI < RecvLength; nI++)
-                ApduData[nI] = ApduResponse[nI];
-
-            return new APDUResponse(ApduData);
+            return null;
         }
 
 
@@ -927,14 +983,21 @@ namespace GemCard
         /// </summary>
         public override void BeginTransaction()
         {
-            if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
+            try
             {
-                m_nLastError = SCardBeginTransaction(m_hCard);
-                if (m_nLastError != 0)
+                if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
                 {
-                    string msg = "SCardBeginTransaction error: " + m_nLastError;
-                    throw new Exception(msg);
+                    m_nLastError = SCardBeginTransaction(m_hCard);
+                    if (m_nLastError != 0)
+                    {
+                        string msg = "SCardBeginTransaction error: " + m_nLastError;
+                        throw new Exception(msg);
+                    }
                 }
+            }
+            catch
+            {
+
             }
         }
 
@@ -948,14 +1011,21 @@ namespace GemCard
         /// <param name="Disposition">A value from DISCONNECT enum</param>
         public override void EndTransaction(DISCONNECT Disposition)
         {
-            if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
+            try
             {
-                m_nLastError = SCardEndTransaction(m_hCard, (UInt32)Disposition);
-                if (m_nLastError != 0)
+                if (SCardIsValidContext(m_hContext) == SCARD_S_SUCCESS)
                 {
-                    string msg = "SCardEndTransaction error: " + m_nLastError;
-                    throw new Exception(msg);
+                    m_nLastError = SCardEndTransaction(m_hCard, (UInt32)Disposition);
+                    if (m_nLastError != 0)
+                    {
+                        string msg = "SCardEndTransaction error: " + m_nLastError;
+                        throw new Exception(msg);
+                    }
                 }
+            }
+            catch
+            {
+
             }
         }
 
@@ -966,30 +1036,40 @@ namespace GemCard
         /// <returns>Attribute content</returns>
         public override byte[] GetAttribute(UInt32 AttribId)
         {
-            byte[] attr = null;
-            UInt32 attrLen = 0;
-
-            m_nLastError = SCardGetAttrib(m_hCard, AttribId, attr, out attrLen);
-            if (m_nLastError == 0)
+            try
             {
-                if (attrLen != 0)
+                byte[] attr = null;
+                UInt32 attrLen = 0;
+
+                m_nLastError = SCardGetAttrib(m_hCard, AttribId, attr, out attrLen);
+                if (m_nLastError == 0)
                 {
-                    attr = new byte[attrLen];
-                    m_nLastError = SCardGetAttrib(m_hCard, AttribId, attr, out attrLen);
-                    if (m_nLastError != 0)
+                    if (attrLen != 0)
                     {
-                        string msg = "SCardGetAttr error: " + m_nLastError;
-                        throw new Exception(msg);
+                        attr = new byte[attrLen];
+                        m_nLastError = SCardGetAttrib(m_hCard, AttribId, attr, out attrLen);
+                        if (m_nLastError != 0)
+                        {
+                            string msg = "SCardGetAttr error: " + m_nLastError;
+                            throw new Exception(msg);
+                        }
                     }
                 }
+                else
+                {
+                    string msg = "SCardGetAttr error: " + m_nLastError;
+                    throw new Exception(msg);
+                }
+
+                return attr;
             }
-            else
+            catch
             {
-                string msg = "SCardGetAttr error: " + m_nLastError;
-                throw new Exception(msg);
+
             }
 
-            return attr;
+            return null;
+
         }
         #endregion
 
@@ -1002,79 +1082,93 @@ namespace GemCard
         /// </summary>
         protected override void RunCardDetection(object Reader)
         {
-            bool bFirstLoop = true;
-            IntPtr hContext = IntPtr.Zero;    // Local context
-            IntPtr phContext;
-
-            phContext = Marshal.AllocHGlobal(Marshal.SizeOf(hContext));
-
-            if (SCardEstablishContext((uint) SCOPE.User, IntPtr.Zero, IntPtr.Zero, phContext) == 0)
+            try
             {
-                hContext = Marshal.ReadIntPtr(phContext);
-                Marshal.FreeHGlobal(phContext);
+                bool bFirstLoop = true;
+                IntPtr hContext = IntPtr.Zero;    // Local context
+                IntPtr phContext;
 
-                UInt32 nbReaders = 1;
-                SCard_ReaderState[] readerState = new SCard_ReaderState[nbReaders];
+                phContext = Marshal.AllocHGlobal(Marshal.SizeOf(hContext));
 
-                readerState[0].m_dwCurrentState = (UInt32) CARD_STATE.UNAWARE;
-                readerState[0].m_szReader = (string)Reader;
-
-                UInt32 eventState;
-                UInt32 currentState = readerState[0].m_dwCurrentState;
-
-                // Card detection loop
-                do
+                if (SCardEstablishContext((uint)SCOPE.User, IntPtr.Zero, IntPtr.Zero, phContext) == 0)
                 {
-                    if (SCardGetStatusChange(hContext, WAIT_TIME
-                        , readerState, nbReaders) == 0)
+                    hContext = Marshal.ReadIntPtr(phContext);
+                    Marshal.FreeHGlobal(phContext);
+
+                    UInt32 nbReaders = 1;
+                    SCard_ReaderState[] readerState = new SCard_ReaderState[nbReaders];
+
+                    readerState[0].m_dwCurrentState = (UInt32)CARD_STATE.UNAWARE;
+                    readerState[0].m_szReader = (string)Reader;
+
+                    UInt32 eventState;
+                    UInt32 currentState = readerState[0].m_dwCurrentState;
+
+                    // Card detection loop
+                    do
                     {
-                        eventState = readerState[0].m_dwEventState;
-                        currentState = readerState[0].m_dwCurrentState;
-
-                        // Check state
-                        if (((eventState & (uint) CARD_STATE.CHANGED) == (uint) CARD_STATE.CHANGED) && !bFirstLoop)    
+                        try
                         {
-                            // State has changed
-                            if ((eventState & (uint) CARD_STATE.EMPTY) == (uint) CARD_STATE.EMPTY)
+                            if (SCardGetStatusChange(hContext, WAIT_TIME
+                            , readerState, nbReaders) == 0)
                             {
-                                // There is no card, card has been removed -> Fire CardRemoved event
-                                CardRemoved((string)Reader);
+                                eventState = readerState[0].m_dwEventState;
+                                currentState = readerState[0].m_dwCurrentState;
+
+                                // Check state
+                                if (((eventState & (uint)CARD_STATE.CHANGED) == (uint)CARD_STATE.CHANGED) && !bFirstLoop)
+                                {
+                                    // State has changed
+                                    if ((eventState & (uint)CARD_STATE.EMPTY) == (uint)CARD_STATE.EMPTY)
+                                    {
+                                        // There is no card, card has been removed -> Fire CardRemoved event
+                                        CardRemoved((string)Reader);
+                                    }
+
+                                    if (((eventState & (uint)CARD_STATE.PRESENT) == (uint)CARD_STATE.PRESENT) &&
+                                        ((eventState & (uint)CARD_STATE.PRESENT) != (currentState & (uint)CARD_STATE.PRESENT)))
+                                    {
+                                        // There is a card in the reader -> Fire CardInserted event
+                                        CardInserted((string)Reader);
+                                    }
+
+                                    if ((eventState & (uint)CARD_STATE.ATRMATCH) == (uint)CARD_STATE.ATRMATCH)
+                                    {
+                                        // There is a card in the reader and it matches the ATR we were expecting-> Fire CardInserted event
+                                        CardInserted((string)Reader);
+                                    }
+                                }
+
+                                // The current stateis now the event state
+                                readerState[0].m_dwCurrentState = eventState;
+
+                                bFirstLoop = false;
                             }
 
-                            if (((eventState & (uint)CARD_STATE.PRESENT) == (uint)CARD_STATE.PRESENT) && 
-                                ((eventState & (uint) CARD_STATE.PRESENT) != (currentState & (uint) CARD_STATE.PRESENT)))
-                            {
-                                // There is a card in the reader -> Fire CardInserted event
-                                CardInserted((string)Reader);
-                            }
+                            Thread.Sleep(1000);
 
-                            if ((eventState & (uint) CARD_STATE.ATRMATCH) == (uint) CARD_STATE.ATRMATCH)
-                            {
-                                // There is a card in the reader and it matches the ATR we were expecting-> Fire CardInserted event
-                                CardInserted((string)Reader);
-                            }
+                            if (m_bRunCardDetection == false)
+                                break;
                         }
+                        catch(Exception ex)
+                        {
 
-                        // The current stateis now the event state
-                        readerState[0].m_dwCurrentState = eventState;
-
-                        bFirstLoop = false;
+                        }
                     }
-
-                    Thread.Sleep(100);
-
-                    if (m_bRunCardDetection == false)
-                        break;
+                    while (true);    // Exit on request
                 }
-                while (true);    // Exit on request
-            }
-            else
-            {
-                Marshal.FreeHGlobal(phContext);
-                throw new Exception("PC/SC error");
-            }
+                else
+                {
+                    Marshal.FreeHGlobal(phContext);
+                    throw new Exception("PC/SC error");
+                }
 
-            SCardReleaseContext(hContext);
+                SCardReleaseContext(hContext);
+            }
+            catch
+            {
+
+            }
         }
 	}
 }

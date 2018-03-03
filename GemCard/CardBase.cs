@@ -105,7 +105,46 @@ namespace GemCard
                 m_bRunCardDetection = true;
 
                 m_thread = new Thread(new ParameterizedThreadStart(RunCardDetection));
+                //m_thread.IsBackground = true;
+                m_thread.SetApartmentState(ApartmentState.STA);
                 m_thread.Start(Reader);
+            }
+        }
+
+
+        public void StartCardEventsMulti(string Reader)
+        {
+            m_bRunCardDetection = true;
+
+            //m_thread = new Thread(new ParameterizedThreadStart(RunCardDetection));
+            //Exception exception = null;
+            //m_thread = new Thread(() => SafeExecute(() => RunCardDetection(Reader), out exception));
+            m_thread = new Thread(new ParameterizedThreadStart(RunCardDetection));
+            //m_thread.IsBackground = true;
+            m_thread.SetApartmentState(ApartmentState.STA);
+            m_thread.Start(Reader);
+
+            //if (m_thread == null)
+            //{
+            //    m_bRunCardDetection = true;
+
+            //    m_thread = new Thread(new ParameterizedThreadStart(RunCardDetection));
+            //    m_thread.SetApartmentState(ApartmentState.STA);
+            //    m_thread.Start(Reader);
+            //}
+        }
+
+        private void SafeExecute(Action test, out Exception exception)
+        {
+            exception = null;
+
+            try
+            {
+                test.Invoke();
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
             }
         }
 
