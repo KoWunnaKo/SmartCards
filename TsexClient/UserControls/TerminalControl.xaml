@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="TsexClient.UserControls.TerminalControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TsexClient.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="220" d:DesignWidth="300">
+    <Grid>
+        <Border Background="Plum" BorderBrush="BlueViolet"
+                BorderThickness="1" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="150*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="62*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Name="txtNumber" Grid.ColumnSpan="2" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Margin="5" Text="Название" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"></TextBlock>
+                <TextBox  Name="tbxName" Grid.Row="1" Grid.Column="1" Margin="5" ></TextBox>
+
+                <TextBlock Margin="5"  Text="Статус" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"></TextBlock>
+                <TextBox  Name="txbStatus" Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>
+
+                <TextBlock Margin="5"  Text="Ключи" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"></TextBlock>
+                <TextBox  Name="txbKeys"  Grid.Row="3" Grid.Column="1" Margin="5"></TextBox>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

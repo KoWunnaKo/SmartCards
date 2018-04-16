@@ -1,0 +1,8 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\bin\Debug\TsexTestApp1.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\bin\Debug\TsexTestApp1.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\bin\Debug\TsexTestApp1.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\bin\Debug\GemCard.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\bin\Debug\GemCard.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\obj\Debug\TsexTestApp1.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\obj\Debug\TsexTestApp1.exe
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TsexTestApp1\obj\Debug\TsexTestApp1.pdb

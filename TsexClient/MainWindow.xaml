@@ -1,0 +1,29 @@
+﻿<Window x:Class="TsexClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TsexClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="443.486" Width="620.765">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="303*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Azure" Margin="2"></Grid>
+        <Border  Margin="2" Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="2">
+            <StackPanel 
+            Name="sp_general" Background="Bisque"
+            Orientation="Horizontal" Grid.RowSpan="3">
+        </StackPanel>
+        </Border>
+        <Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" Margin="2"
+                BorderThickness="2">
+        <StackPanel Grid.Column="0" Background="AliceBlue"
+                    ></StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

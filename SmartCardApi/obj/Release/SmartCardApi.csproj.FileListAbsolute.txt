@@ -1,0 +1,17 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\SmartCardApi.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\SmartCardApi.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\BouncyCastle.Crypto.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\nunit.framework.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\pcsc-sharp.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.Core.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.Interfaces.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.Linq.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.PlatformServices.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\nunit.framework.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\pcsc-sharp.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.Core.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.Interfaces.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.Linq.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\bin\Release\System.Reactive.PlatformServices.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\obj\Release\SmartCardApi.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardApi\obj\Release\SmartCardApi.pdb
