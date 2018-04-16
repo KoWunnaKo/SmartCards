@@ -1109,8 +1109,9 @@ namespace GemCard
                     {
                         try
                         {
-                            if (SCardGetStatusChange(hContext, WAIT_TIME
-                            , readerState, nbReaders) == 0)
+                            var cardState = SCardGetStatusChange(hContext, WAIT_TIME, readerState, nbReaders);
+
+                            if (cardState == 0)
                             {
                                 eventState = readerState[0].m_dwEventState;
                                 currentState = readerState[0].m_dwCurrentState;
@@ -1145,7 +1146,7 @@ namespace GemCard
                                 bFirstLoop = false;
                             }
 
-                            Thread.Sleep(1000);
+                            Thread.Sleep(100);
 
                             if (m_bRunCardDetection == false)
                                 break;

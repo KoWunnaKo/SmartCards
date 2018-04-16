@@ -30,6 +30,13 @@ namespace CardAPILib.InterfaceCL
             iCard = new CardNative();
         }
 
+        public CardApiMessages(CardNative card)
+        {
+            log.Info("Card Terminal Initialization");
+
+            iCard = card;
+        }
+
         private APDUResponse apduResp;
 
         private CardNative iCard;
@@ -48,8 +55,8 @@ namespace CardAPILib.InterfaceCL
                 string[] readers = iCard.ListReaders();
 
                 string[] SpecReaders = (from reader in readers
-                                       where reader.Contains("CL")
-                                       select reader).ToArray();
+                                       where reader.Contains("CK") || reader.Contains("CL")
+                                        select reader).ToArray();
 
 
                 foreach (string readerInfo in SpecReaders)

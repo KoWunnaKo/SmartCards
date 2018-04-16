@@ -70,6 +70,115 @@ namespace Iso18013Lib
 
         public byte[] GetDG1x()
         {
+            string FamilyName = _DL._driver._last_name.Length >= 36 ? _DL._driver._last_name.Substring(0, 36) : _DL._driver._last_name;
+            string GivenNames = string.Format("{0}_{1}_{2}", _DL._driver._last_name, _DL._driver._first_name, _DL._driver._middle_name).Length >= 36 ?
+                string.Format("{0}_{1}_{2}", _DL._driver._last_name, _DL._driver._first_name, _DL._driver._middle_name).Substring(0, 36) :
+                string.Format("{0}_{1}_{2}", _DL._driver._last_name, _DL._driver._first_name, _DL._driver._middle_name);
+
+            string DateOfBirth = _DL._driver._date_of_birth;
+            string Dateofissue = _DL._issue_date;
+            string Dateofexpiry = _DL._expire_date;
+            string IssuingCountry = "UZB";
+            string IssuingAuthority = _DL._issue_region_name.Length >= 65 ? _DL._issue_region_name.Substring(0, 65) :
+                _DL._issue_region_name;
+
+            string LicenceNumber = _DL._license_number.Length >= 25 ? _DL._license_number.Substring(0, 25) : _DL._license_number;
+
+            DriverDemographicInfo dg = new DriverDemographicInfo(FamilyName, GivenNames, DateOfBirth, Dateofissue, Dateofexpiry, IssuingCountry,
+                IssuingAuthority, LicenceNumber);
+
+            var degraf = dg.getEncoded();
+
+            byte[] demografWithTag = new byte[degraf.Length + 4];
+
+            demografWithTag[0] = 0x5F;
+            demografWithTag[1] = 0x1F;
+            demografWithTag[2] = 0x81;
+            demografWithTag[3] = (byte)degraf.Length;
+
+            Array.Copy(degraf, 0, demografWithTag, 4, degraf.Length);
+
+            List<byte> DemografList = new List<byte>();
+
+            DemografList.AddRange(demografWithTag);
+
+            List<byte> RowsAll = new List<byte>();
+
+
+            foreach (Category cat in _DL._categories) //_DL._categories
+            {
+                if (string.IsNullOrEmpty(cat._expiry_date))
+                {
+                    cat._expiry_date = "";
+                }
+
+                if (string.IsNullOrEmpty(cat._additional_information))
+                {
+                    cat._additional_information = "";
+                }
+
+                string temp = string.Format("{0};{1};{2};{3};;", cat._name, cat._issue_date, cat._expiry_date, cat._additional_information);
+
+                byte[] rows1 = Encoding.UTF8.GetBytes(temp);
+
+                byte[] rows2 = new byte[rows1.Length + 2];
+
+                rows2[0] = 0x87;
+                rows2[1] = (byte)rows1.Length;
+
+                Array.Copy(rows1, 0, rows2, 2, rows1.Length);
+
+                RowsAll.AddRange(rows2);
+            }
+
+            RowsAll.Insert(0, (byte)(_DL._categories.Length)); //_DL._categories.Length
+            RowsAll.Insert(0, 0x01);
+            RowsAll.Insert(0, 0x02);
+
+            RowsAll.Insert(0, (byte)RowsAll.Count);
+
+            RowsAll.Insert(0, 0x63);
+            RowsAll.Insert(0, 0x7F);
+
+
+            List<byte> TotalList = new List<byte>();
+
+            TotalList.AddRange(DemografList);
+            TotalList.AddRange(RowsAll);
+            
+            TotalList.Insert(0, (byte)TotalList.Count);
+            TotalList.Insert(0, 0x81);
+            TotalList.Insert(0, 0x61);
+
+
+
+            if (TotalList.Count < 128)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+            }
+            else if (TotalList.Count > 127 && TotalList.Count < 256)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+                TotalList.Insert(0, 0x81);
+                
+            }
+            else if ((TotalList.Count > 255 && TotalList.Count < 65536))
+            {
+                TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+            }
+
+            TotalList.Insert(0, 0x53);
+            TotalList.Insert(0, 0x00);
+            TotalList.Insert(0, 0x01);
+            TotalList.Insert(0, 0x54);
+
+            var ResultinStr = ByteArrayToString(TotalList.ToArray());
+
+            return TotalList.ToArray();
+        }
+
+        public byte[] GetDG1x_back()
+        {
             //Category[] ctList = new Category[2];
 
             //ctList[0] = new Category();
@@ -152,12 +261,12 @@ namespace Iso18013Lib
             {
                 if (string.IsNullOrEmpty(cat._expiry_date))
                 {
-                    cat._expiry_date = "99999999";
+                    cat._expiry_date = "20171003";
                 }
 
                 if (string.IsNullOrEmpty(cat._additional_information))
                 {
-                    cat._additional_information = "TEST";
+                    cat._additional_information = "Data";
                 }
 
                 string temp = string.Format("{0};{1};{2};{3};;", cat._name, cat._issue_date, cat._expiry_date, cat._additional_information);
@@ -175,7 +284,7 @@ namespace Iso18013Lib
             }
 
             {
-                string temp = string.Format("{0};{1};{2};{3};;", "X", "88888888", "99999999", "XXXX");
+                string temp = string.Format("{0};{1};{2};{3};;", "D", "20171003", "20171003", "DDDD");
 
                 byte[] rows1 = Encoding.UTF8.GetBytes(temp);
 
@@ -187,7 +296,7 @@ namespace Iso18013Lib
                 Array.Copy(rows1, 0, rows2, 2, rows1.Length);
 
                 RowsAll.AddRange(rows2);
-            }
+            } //Commented Category
 
             RowsAll.Insert(0, (byte)_DL._categories.Length); //_DL._categories.Length
             RowsAll.Insert(0, 0x01);
@@ -203,13 +312,15 @@ namespace Iso18013Lib
 
             TotalList.AddRange(DemografList);
             TotalList.AddRange(RowsAll);
-            
+            //TotalList.AddRange(GetDG2xxs()); //Added 02.10.2017
+
             TotalList.Insert(0, (byte)TotalList.Count);
             TotalList.Insert(0, 0x81);
             TotalList.Insert(0, 0x61);
 
-            TotalList.Insert(0, (byte)TotalList.Count);
-            TotalList.Insert(0, 0x81);
+            TotalList.Insert(0, (byte)TotalList.Count); //Added 02.10.2017
+            //TotalList.InsertRange(0, Int2ByteArray(TotalList.Count)); //Added for Address
+            TotalList.Insert(0, 0x81); //Added 02.10.2017
             TotalList.Insert(0, 0x53);
             TotalList.Insert(0, 0x00);
             TotalList.Insert(0, 0x01);
@@ -589,7 +700,8 @@ namespace Iso18013Lib
         {
             string _residencePlace = string.Format("{0};{1};{2};{3};{4};{5}", _DL._driver._address._address, _DL._driver._address._address, _DL._driver._address._region_name, _DL._driver._address._rayon_name, "1000", "UZB");
 
-            string PlaceofBirth = string.Format("{0};{1};{2}", _DL._driver._region_name_birth, _DL._driver._pinfl, "UZB");
+            string PlaceofBirth = string.Format("{0};{1};{2}", _DL._driver._region_name_birth.Length > 15 ? _DL._driver._region_name_birth.Substring(0, 15) 
+                : _DL._driver._region_name_birth, _DL._driver._pinfl.Length > 14 ? _DL._driver._pinfl.Substring(0, 14): _DL._driver._pinfl, "UZB");
 
             int gender = 1;
             int Height = 172;
@@ -611,7 +723,7 @@ namespace Iso18013Lib
             List<byte> totalList = new List<byte>();
 
             #region genderhList
-            genderhList.Add((byte)gender);//.AddRange(Encoding.UTF8.GetBytes(gender.ToString().PadLeft(2,'0')));
+            genderhList.Add(0x01);//.AddRange(Encoding.UTF8.GetBytes(gender.ToString().PadLeft(2,'0')));
 
             genderhList.Insert(0, (byte)genderhList.Count);
 
@@ -621,8 +733,8 @@ namespace Iso18013Lib
             #endregion
 
             #region HeightList
-            HeightList.Add((byte)(Height / 100));//AddRange(Encoding.UTF8.GetBytes(Height.ToString()));
-            HeightList.Add((byte)(Height % 100));
+            HeightList.Add(0x01);//AddRange(Encoding.UTF8.GetBytes(Height.ToString()));
+            HeightList.Add(0x80);
 
             HeightList.Insert(0, (byte)HeightList.Count);
 
@@ -632,8 +744,8 @@ namespace Iso18013Lib
             #endregion
 
             #region WeightList
-            WeightList.Add((byte)(Weight / 100));//AddRange(Encoding.UTF8.GetBytes(Weight.ToString()));
-            WeightList.Add((byte)(Weight % 100));
+            WeightList.Add(0x00);//AddRange(Encoding.UTF8.GetBytes(Weight.ToString()));
+            WeightList.Add(0x70);
 
             WeightList.Insert(0, (byte)WeightList.Count);
 
@@ -643,7 +755,7 @@ namespace Iso18013Lib
             #endregion
 
             #region EyeColourList
-            EyeColourList.AddRange(Encoding.UTF8.GetBytes(EyeColour.ToString()));
+            EyeColourList.AddRange(new byte[] { 0x42, 0x4C , 0x4B });
 
             EyeColourList.Insert(0, (byte)EyeColourList.Count);
 
@@ -653,7 +765,7 @@ namespace Iso18013Lib
             #endregion
 
             #region HairColourList
-            HairColourList.AddRange(Encoding.UTF8.GetBytes(HairColour.ToString()));
+            HairColourList.AddRange(new byte[] { 0x42, 0x4C, 0x4B });
 
             HairColourList.Insert(0, (byte)HairColourList.Count);
 
@@ -708,15 +820,33 @@ namespace Iso18013Lib
             totalList.AddRange(birthList);
             totalList.AddRange(residenceList);
             totalList.Insert(0, (byte)totalList.Count);
-            //totalList.Insert(0, 0x81);
+            totalList.Insert(0, 0x81);
             totalList.Insert(0, 0x6B);
 
-            totalList.Insert(0, (byte)totalList.Count);
-            totalList.Insert(0, 0x81);
-            totalList.Insert(0, 0x53);
-            totalList.Insert(0, 0x00);
-            totalList.Insert(0, 0x01);
-            totalList.Insert(0, 0x54);
+            //
+            var ResultinStr02 = ByteArrayToString(totalList.ToArray());
+
+            //totalList.Insert(0, (byte)totalList.Count);
+            //totalList.Insert(0, 0x81);
+            //totalList.Insert(0, 0x53);
+            //totalList.Insert(0, 0x00);
+            //totalList.Insert(0, 0x01);
+            //totalList.Insert(0, 0x54); Changing Address 03.10.2017
+
+
+
+            //0x6b ,0x69 ,0x5c ,0x0e ,0x5f ,0x35 ,0x5f ,0x64 ,0x5f ,0x65 ,0x5f ,0x66 ,0x5f ,0x67 ,0x5f ,0x11 ,0x5f ,0x42 ,0x5f ,0x35 ,0x01 ,0x01 ,0x5f ,0x64 ,0x02 ,0x01 ,0x80 ,0x5f ,0x65 ,0x02 ,0x00 ,0x70 ,0x5f ,0x66 ,0x03 ,0x42 ,0x4c ,0x4b ,0x5f ,0x67 ,0x03 ,0x42 ,0x4c ,0x4b ,0x5f ,0x11 ,0x11 ,0x42 ,0x65 ,0x72 ,0x6c ,0x69 ,0x6e ,0x3b ,0x42 ,0x65 ,0x72 ,0x6c ,0x69 ,0x6e ,0x3b ,0x44 ,0x45 ,0x55 ,0x5f ,0x42 ,0x28 ,0x4b ,0x75 ,0x72 ,0x66 ,0x75 ,0x65 ,0x72 ,0x73 ,0x74 ,0x65 ,0x6e ,0x64 ,0x61 ,0x6d ,0x6d ,0x20 ,0x31 ,0x30 ,0x3b ,0x3b ,0x4e ,0x52 ,0x57 ,0x3b ,0x31 ,0x30 ,0x37 ,0x31 ,0x39 ,0x3b ,0x42 ,0x65 ,0x72 ,0x6c ,0x69 ,0x6e ,0x3b ,0x44 ,0x45 ,0x55
+
+            List<byte> testLL = new List<byte>();
+
+            testLL.AddRange(new byte[] { 0x6B, 0x69, 0x5C, 0x0E, 0x5F, 0x35, 0x5F, 0x64, 0x5F, 0x65, 0x5F, 0x66, 0x5F, 0x67, 0x5F, 0x11, 0x5F, 0x42, 0x5F, 0x35, 0x01, 0x01, 0x5F, 0x64, 0x02, 0x01, 0x80, 0x5F, 0x65, 0x02, 0x00, 0x70, 0x5F, 0x66, 0x03, 0x42, 0x4C, 0x4B, 0x5F, 0x67, 0x03, 0x42, 0x4C, 0x4B, 0x5F, 0x11, 0x11, 0x42, 0x65, 0x72, 0x6C, 0x69, 0x6E, 0x3B, 0x42, 0x65, 0x72, 0x6C, 0x69, 0x6E, 0x3B, 0x44, 0x45, 0x55, 0x5F, 0x42, 0x28, 0x4B, 0x75, 0x72, 0x66, 0x75, 0x65, 0x72, 0x73, 0x74, 0x65, 0x6E, 0x64, 0x61, 0x6D, 0x6D, 0x20, 0x31, 0x30, 0x3B, 0x3B, 0x4E, 0x52, 0x57, 0x3B, 0x31, 0x30, 0x37, 0x31, 0x39, 0x3B, 0x42, 0x65, 0x72, 0x6C, 0x69, 0x6E, 0x3B, 0x44, 0x45, 0x55 });
+
+            //testLL.Insert(0, (byte)testLL.Count);
+            //testLL.Insert(0, 0x81);
+            //testLL.Insert(0, 0x53);
+            //testLL.Insert(0, 0x00);
+            //testLL.Insert(0, 0x01);
+            //testLL.Insert(0, 0x54);
 
             var ResultinStr = ByteArrayToString(totalList.ToArray());
 
@@ -1374,7 +1504,7 @@ namespace Iso18013Lib
 
             ParseDG2(DG2);
 
-            ParseDG3(DG3);
+            //ParseDG3(DG3);
 
             ParseDG4(DG4);
 
@@ -1426,6 +1556,10 @@ namespace Iso18013Lib
             {
                 _driverLicense._driver._first_name = splitted[1];
                 _driverLicense._driver._middle_name = splitted[2];
+            }
+            else if (splitted.Length == 2)
+            {
+                _driverLicense._driver._first_name = splitted[1];
             }
 
             int currectPos = 8 + iNameLenth + 1 + iFullLenth;
@@ -1560,19 +1694,203 @@ namespace Iso18013Lib
 
         }
 
+
+        public string ParseDG1Expired(byte[] DG1)
+        {
+            string Hex2Str = ByteArrayToString(DG1);
+
+            byte[] demografLenth = new byte[4];
+
+            demografLenth[0] = DG1[6]; //6 in Correct mode
+
+            int idemografLenth = BitConverter.ToInt32(demografLenth, 0);
+
+            byte[] NameLenth = new byte[4];
+
+            NameLenth[0] = DG1[7]; //7 in Correct mode
+
+
+            int iNameLenth = BitConverter.ToInt32(NameLenth, 0);
+
+            byte[] Name = new byte[iNameLenth];
+
+            Array.Copy(DG1, 8, Name, 0, iNameLenth); // 8 in correct mode
+
+            string resultLastName = Encoding.UTF8.GetString(Name);
+
+            _driverLicense._driver._last_name = resultLastName;
+
+            byte[] FullNameLength = new byte[4];
+
+            FullNameLength[0] = DG1[8 + iNameLenth];
+
+            int iFullLenth = BitConverter.ToInt32(FullNameLength, 0);
+
+            byte[] FullName = new byte[iFullLenth];
+
+            Array.Copy(DG1, 8 + iNameLenth + 1, FullName, 0, iFullLenth);
+
+            string resultFullName = Encoding.UTF8.GetString(FullName);
+
+            var splitted = resultFullName.Split('_');
+
+            if (splitted.Length >= 3)
+            {
+                _driverLicense._driver._first_name = splitted[1];
+                _driverLicense._driver._middle_name = splitted[2];
+            }
+            else if (splitted.Length == 2)
+            {
+                _driverLicense._driver._first_name = splitted[1];
+            }
+
+            int currectPos = 8 + iNameLenth + 1 + iFullLenth;
+
+            byte[] dateOfBirth = new byte[4];
+
+            dateOfBirth[0] = DG1[currectPos + 0];
+            dateOfBirth[1] = DG1[currectPos + 1];
+            dateOfBirth[2] = DG1[currectPos + 2];
+            dateOfBirth[3] = DG1[currectPos + 3];
+
+            var dateOfBirthStr = ByteArrayToString(dateOfBirth);
+
+
+            _driverLicense._driver._date_of_birth = dateOfBirthStr;
+
+            byte[] dateOfIssue = new byte[4];
+
+            dateOfIssue[0] = DG1[currectPos + 4];
+            dateOfIssue[1] = DG1[currectPos + 5];
+            dateOfIssue[2] = DG1[currectPos + 6];
+            dateOfIssue[3] = DG1[currectPos + 7];
+
+            var dateOfIssueStr = ByteArrayToString(dateOfIssue);
+
+            _driverLicense._issue_date = dateOfIssueStr;
+
+            byte[] dateOfExpire = new byte[4];
+
+            dateOfExpire[0] = DG1[currectPos + 8];
+            dateOfExpire[1] = DG1[currectPos + 9];
+            dateOfExpire[2] = DG1[currectPos + 10];
+            dateOfExpire[3] = DG1[currectPos + 11];
+
+            var dateOfExpireStr = ByteArrayToString(dateOfExpire);
+
+            _driverLicense._expire_date = dateOfExpireStr;
+
+            currectPos += 11;
+
+            byte[] Country = new byte[3];
+
+            Country[0] = DG1[currectPos + 1];
+            Country[1] = DG1[currectPos + 2];
+            Country[2] = DG1[currectPos + 3];
+
+            string CountryName = Encoding.UTF8.GetString(Country);
+
+            //IA get Data
+
+            byte[] IALenth = new byte[4];
+
+            IALenth[0] = DG1[currectPos + 4];
+
+            int IALenthLenthL = BitConverter.ToInt32(IALenth, 0);
+
+            currectPos += 4;
+
+            byte[] IAFullName = new byte[IALenthLenthL];
+
+            Array.Copy(DG1, currectPos + 1, IAFullName, 0, IALenthLenthL);
+
+            string IAFullName1 = Encoding.UTF8.GetString(IAFullName);
+
+            _driverLicense._issue_region_name = IAFullName1;
+
+            //Licesnse Number Get
+            currectPos += IALenthLenthL;
+
+            byte[] LicenseNumberLenth = new byte[4];
+
+            LicenseNumberLenth[0] = DG1[currectPos + 1];
+
+            int LicenseNumLL = BitConverter.ToInt32(LicenseNumberLenth, 0);
+
+            byte[] LicenseNumName = new byte[LicenseNumLL];
+
+            Array.Copy(DG1, currectPos + 2, LicenseNumName, 0, LicenseNumLL);
+
+            string LicenseN = Encoding.UTF8.GetString(LicenseNumName);
+
+            _driverLicense._license_number = LicenseN;
+
+            currectPos += 2;
+            currectPos += LicenseNumLL;
+
+            ///////////////////////////////////////////////////////////
+            /// Category
+            /// ///////////////////////////////////////////////////////
+
+            byte[] CategorySiklLenth = new byte[4];
+
+            CategorySiklLenth[0] = DG1[currectPos + 5];
+
+            int CategorySiklLenthLL = BitConverter.ToInt32(CategorySiklLenth, 0);
+
+            currectPos += 5;
+
+            _driverLicense._categories = new Category[CategorySiklLenthLL];
+
+            for (int j = 0; j < CategorySiklLenthLL; j++)
+            {
+                currectPos += 2;
+
+                byte[] FirstCategoryLen = new byte[4];
+
+                FirstCategoryLen[0] = DG1[currectPos];
+
+                int FirstCategoryLenhLL = BitConverter.ToInt32(FirstCategoryLen, 0);
+
+                byte[] FirstCategoryData = new byte[FirstCategoryLenhLL];
+
+                Array.Copy(DG1, currectPos + 1, FirstCategoryData, 0, FirstCategoryLenhLL);
+
+                string FirstCategoryDataStr = Encoding.UTF8.GetString(FirstCategoryData);
+
+                var FirstCategoryItems = FirstCategoryDataStr.Split(';');
+
+                if (FirstCategoryItems.Length == 6)
+                {
+                    _driverLicense._categories[j] = new Category();
+
+                    _driverLicense._categories[j]._name = FirstCategoryItems[0];
+                    _driverLicense._categories[j]._issue_date = FirstCategoryItems[1];
+                    _driverLicense._categories[j]._expiry_date = FirstCategoryItems[2];
+                    _driverLicense._categories[j]._additional_information = FirstCategoryItems[3];
+
+                }
+
+                currectPos += FirstCategoryLenhLL;
+            }
+
+            return _driverLicense._expire_date;
+
+        }
+
         private void ParseDG2(byte[] DG2)
         {
             string Hex2Str = ByteArrayToString(DG2);
 
             byte[] brthPlsLenth = new byte[4];
 
-            brthPlsLenth[0] = DG2[46]; 
+            brthPlsLenth[0] = DG2[47]; 
 
             int birthPlaceLenth = BitConverter.ToInt32(brthPlsLenth, 0);
 
             byte[] Name = new byte[birthPlaceLenth];
 
-            Array.Copy(DG2, 47, Name, 0, birthPlaceLenth); 
+            Array.Copy(DG2, 48, Name, 0, birthPlaceLenth); 
 
             string resultLastName = Encoding.UTF8.GetString(Name);
 
@@ -1582,7 +1900,7 @@ namespace Iso18013Lib
 
             _driverLicense._driver._pinfl = splitted[1];
 
-            int currentPos = 47 + birthPlaceLenth + 2;
+            int currentPos = 48 + birthPlaceLenth + 2;
 
             byte[] resPlsLenth = new byte[4];
 
@@ -1626,23 +1944,29 @@ namespace Iso18013Lib
 
         private void ParseDG4(byte[] DG4)
         {
+            string Hex2Str = ByteArrayToString(DG4);
+
             var Trimmed = Decode(DG4);
 
-             byte[] ImageBytes = new byte[Trimmed.Length - 30];
+             byte[] ImageBytes = new byte[Trimmed.Length - 28];
 
-            Array.Copy(Trimmed, 30, ImageBytes, 0, Trimmed.Length - 30);
+            Array.Copy(Trimmed, 28, ImageBytes, 0, Trimmed.Length - 28);
 
+
+            string Hex2Str2 = ByteArrayToString(ImageBytes);
 
             _driverLicense._driver._Photo = Convert.ToBase64String(ImageBytes);
         }
 
         private void ParseDG5(byte[] DG5)
         {
+            string Hex2Str = ByteArrayToString(DG5);
+
             var Trimmed = Decode(DG5);
 
-            byte[] ImageBytes = new byte[Trimmed.Length - 14];
+            byte[] ImageBytes = new byte[Trimmed.Length - 12];
 
-            Array.Copy(Trimmed, 14, ImageBytes, 0, Trimmed.Length - 14);
+            Array.Copy(Trimmed, 12, ImageBytes, 0, Trimmed.Length - 12);
 
 
             _driverLicense._driver._Signature = Convert.ToBase64String(ImageBytes);
@@ -1743,7 +2067,7 @@ namespace Iso18013Lib
         [DataMember(Name = "issue_date")]
         public string _issue_date { get; set; }
 
-        [DataMember(Name = "expiry_date")]
+        [DataMember(Name = "expire_date")]
         public string _expiry_date { get; set; }
 
         [DataMember(Name = "additional_information")]

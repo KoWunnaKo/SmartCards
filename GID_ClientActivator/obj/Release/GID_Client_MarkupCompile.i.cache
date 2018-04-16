@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\obj\Release\
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\Release\
 GID_Client
 none
 false
 TRACE
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\App.xaml
-9-1233218201
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\App.xaml
+8-1592297220
 
-34-1366375857
-331074154140
-MainWindow.xaml;MondatoryWindow.xaml;Views\CertificateMngView.xaml;Views\IDL_View.xaml;Views\InitCardView.xaml;Views\LoginWindow.xaml;Views\TexPasportView.xaml;Views\VoditelPravaView.xaml;VLDataChecker.xaml;
+34300993824
+39-1389967612
+MainWindow.xaml;MondatoryWindow.xaml;Views\CertificateMngView.xaml;Views\IDL_View.xaml;Views\LoginWindow.xaml;Views\TexPasportView.xaml;Views\VoditelPravaView.xaml;VLDataChecker.xaml;
 
 True
 

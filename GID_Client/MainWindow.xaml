@@ -60,11 +60,11 @@
                                        LargeImageSource="ResourcesPic/document.ico"
                                        Name="btnEditCard"
                                        Click="btnEditCard_Click"/>-->
-                        <RibbonRadioButton  Label="Haydovchilik guvohnomasi"  
+                        <RibbonRadioButton  Label="Водительские права"  
                                        LargeImageSource="ResourcesPic/driver1600.png"
                                        Name="btnUserInfolist2"
                                             Click="btnUserInfolist2_Click"/>
-                        <RibbonRadioButton  Label="Avtotransport guvohnomasi"  
+                        <RibbonRadioButton  Label="Технический паспорт"  
                                        LargeImageSource="ResourcesPic/car.png" 
                                        Name="btnCardInfolist2"
                                             Click="btnCardInfolist2_Click"/>
@@ -144,12 +144,12 @@
             <RibbonTab Header="Guvohnoma Chipini tekshirish" KeyTip="I"  Name="Verification">
                 <RibbonGroup x:Name="ExchangeLists" Margin="0,1" Header="">
                     <StackPanel Orientation="Horizontal">
-                        <RibbonRadioButton  Label="Haydovchilik guvohnomasi"  
+                        <RibbonRadioButton  Label="Водительские права"  
                                        LargeImageSource="ResourcesPic/driver1600.png"
                                        Name="btnUserInfolist"
                                             KeyTip="G"
                                             Click="btnUserInfolist_Click"/>
-                        <RibbonRadioButton  Label="Avtotransport guvohnomasi"  
+                        <RibbonRadioButton  Label="Технический паспорт"  
                                        LargeImageSource="ResourcesPic/car.png" 
                                        Name="btnCardInfolist"
                                             KeyTip="A"
@@ -198,8 +198,8 @@
             <!-- Ribbon Tab #3: -->
             
         </Ribbon>
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Orientation="Vertical" Name="spPanel"></StackPanel>
+        <ScrollViewer Grid.Row="1" Background="White">
+            <StackPanel Background="White" Orientation="Vertical" HorizontalAlignment="Center" Name="spPanel"></StackPanel>
         </ScrollViewer>
         <DockPanel Grid.Row="2" 
                     HorizontalAlignment="Stretch"

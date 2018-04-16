@@ -593,6 +593,40 @@
             <param name="uuid"></param>
             <returns></returns>
         </member>
+        <member name="T:CardAPILib.InterfaceCL.ExternalAuthentificate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CardAPILib.InterfaceCL.ExternalAuthentificate.LastOperationStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.#ctor(GemCard.CardNative)">
+            <summary>
+            
+            </summary>
+            <param name="card"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.ExternalAuth">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.ExternalAuth(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyValue"></param>
+            <returns></returns>
+        </member>
         <member name="T:CardAPILib.InterfaceCL.CardFactoryMode">
             <summary>
             
@@ -667,6 +701,12 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV3(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="KeyValue"></param>
         </member>
         <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV5">
             <summary>

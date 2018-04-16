@@ -84,6 +84,83 @@ namespace GID_Client.ViewModel
             iCard = new CardNative();
         }
 
+        public string ReadCardNumber()
+        {
+            string cardNumber = string.Empty;
+
+            string[] readers = iCard.ListReaders();
+
+            string[] SpecReaders = (from reader in readers
+                                    where reader.Contains("CK") || reader.Contains("CL")
+                                    select reader).ToArray();
+
+            if (SpecReaders.Any())
+            {
+                cardNumber = GetCardNumber(iCard, SpecReaders.First());
+            }
+
+            return cardNumber;
+        }
+
+        private string GetCardNumber(CardNative _cardx, string m_reader)
+        {
+            _cardx.Disconnect(DISCONNECT.Reset);
+
+            _cardx.Connect(m_reader, SHARE.Shared, PROTOCOL.T0orT1);
+
+            var AtrBytes = CallApduCommandLeData(0xFF, 0xCA, 0x00, 0x00, null, 5, _cardx, m_reader);
+
+            StringBuilder hex1 = new StringBuilder((5) * 2);
+            foreach (byte b in AtrBytes)
+                hex1.AppendFormat("{0:X2}", b);
+            var uid_temp = hex1.ToString();
+
+            return uid_temp;
+        }
+
+        private byte[] CallApduCommandLeData(byte Cla, byte Ins, byte P1, byte P2, byte[] data, uint _recieveLength, CardNative _cardx, string readerInfo)
+        {
+
+            APDUResponse apduResp;
+
+            const ushort SC_OK = 0x9000;
+            const byte SC_PENDING = 0x9F;
+            const ushort SC_FileEnd = 0x6282;
+
+            APDUCommand apduSize5 = new APDUCommand(Cla, Ins, P1, P2, null, 0);
+
+            APDUParam apduParam5 = new APDUParam();
+
+            apduParam5.Data = data;
+
+            apduSize5.Update(apduParam5);
+
+            _cardx.Disconnect(DISCONNECT.Reset);
+
+            _cardx.Connect(readerInfo, SHARE.Shared, PROTOCOL.T0orT1);
+
+            //_logService.Info(apduSize5.ToString());
+
+            apduResp = _cardx.TransmitLe(apduSize5, _recieveLength);
+
+            if (apduResp == null)
+            {
+                _cardx.Disconnect(DISCONNECT.Reset);
+
+                _cardx.Connect(readerInfo, SHARE.Shared, PROTOCOL.T0orT1);
+
+                return null;
+            }
+
+            if (apduResp.Status != SC_OK && apduResp.SW1 != SC_PENDING && apduResp.Status != SC_FileEnd)
+            {
+                return null;
+            }
+
+            return apduResp.Data;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -903,7 +980,7 @@ namespace GID_Client.ViewModel
         /// 
         /// </summary>
         /// <param name="mrzInfo"></param>
-        public int CheckValidityOfKey(byte[] mrzInfo)
+        public int CheckValidityOfKey(byte[] mrzInfo, string keyValue)
         {
             byte[] get_challenge = new byte[8];
 
@@ -915,7 +992,7 @@ namespace GID_Client.ViewModel
 
             ExternalAuthentificate ext = new ExternalAuthentificate();
 
-            if (ext.ExternalAuth() != 0)
+            if (ext.ExternalAuth(keyValue) != 0)
             {
                 log.Info("Connect to Card failed");
                 return -2;

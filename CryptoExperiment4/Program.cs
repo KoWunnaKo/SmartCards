@@ -21,16 +21,39 @@ namespace CryptoExperiment4
         {
             RunBurun();
 
+            //var key = "404142434445464748494A4B4C4D4E4F";
+
+            //var keyByte = Enumerable.Range(0, key.Length)
+            //         .Where(x => x % 2 == 0)
+            //         .Select(x => Convert.ToByte(key.Substring(x, 2), 16))
+            //         .ToArray();
+
+            //Console.ReadKey();
+
         }
 
         static  void RunBurun()
         {
-            InstallCardIDL();
-            //CardProcIDL();
+            //InstallCardIDL();
+
+            //var res = CardApi.WriteVehilcleInfo(LoadJsonVR_Private()).Result;
+
             var res = CardApi.WriteDriverInfo(LoadJsonIDL()).Result;
-        } 
+
+            Console.WriteLine(res);
+
+
+
+           // var res = CardApi.WriteDriverInfo(LoadJsonIDL()).Result;
+
+        }
 
         #region Comment
+
+        ////CardProcIDL();
+        //var res = CardApi.WriteDriverInfo(LoadJsonIDL()).Result;
+
+        //WriteCerfificate();
         //OpenCard();
         //var mrzInfo = new MRZInfo(
         //        "123456789",
@@ -95,13 +118,34 @@ namespace CryptoExperiment4
         {
             string json = string.Empty;
 
-            using (StreamReader r = new StreamReader(@"C:\RADSOFT\LOG\json dl.json"))
+            using (StreamReader r = new StreamReader(@"C:\RADSOFT\LOG\json vl111.json"))
             {
                 json = r.ReadToEnd();
                 
             }
 
             return json;
+        }
+
+
+        public static string LoadCertificate()
+        {
+            string json = string.Empty;
+
+            using (StreamReader r = new StreamReader(@"C:\RADSOFT\LOG\Certificate.txt"))
+            {
+                json = r.ReadToEnd();
+
+            }
+
+            return json;
+        }
+
+        private static void WriteCerfificate()
+        {
+            CardApiMessages cc = new CardApiMessages();
+
+            cc.SaveCertificate(LoadCertificate());
         }
 
         public static async void GetUUID()
@@ -127,7 +171,7 @@ namespace CryptoExperiment4
         {
             string json = string.Empty;
 
-            using (StreamReader r = new StreamReader(@"C:\RADSOFT\LOG\VRPrivate.json"))
+            using (StreamReader r = new StreamReader(@"C:\RADSOFT\LOG\vl private.json"))
             {
                 json = r.ReadToEnd();
 
@@ -224,7 +268,7 @@ namespace CryptoExperiment4
 
             var ret2= cc.SaveeVr2Card(dR.GetVehicleData());
 
-            var ret3 =  cc.SaveeVr2Card2(dR.GetVehicleData());
+            //var ret3 =  cc.SaveeVr2Card2(dR.GetVehicleData());
         }
 
         private static void InstallCardIDL()
@@ -240,6 +284,8 @@ namespace CryptoExperiment4
 
             sc.InstallAppletV1();
         }
+
+
 
         private static void InstallCardVR()
         {

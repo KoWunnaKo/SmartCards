@@ -11,12 +11,12 @@ FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Operatio
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\OperationLists\UcWriteCertList.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcBlockCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcCertificate.xaml;;
-FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcChangePinNumber.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcDeleteCard.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcGenCardRSA.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcKeyGen.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcNewUser.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcPrintCard.xaml;;
+FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcUserPinChange.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\UcWriteCert.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Warehouse\UcCurrentWarehouse.xaml;;
 FC:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\SmartCardDesc\Controls\Warehouse\UcPrixodsList.xaml;;

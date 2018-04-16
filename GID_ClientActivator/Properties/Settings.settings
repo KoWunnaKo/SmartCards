@@ -24,10 +24,16 @@
       <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/login</Value>
     </Setting>
     <Setting Name="WorkMode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="BackEndMode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="GetKeyApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/cards/{0}/key</Value>
+    </Setting>
+    <Setting Name="LoginPswd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">baxodir:baxodir</Value>
     </Setting>
   </Settings>
 </SettingsFile>

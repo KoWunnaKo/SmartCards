@@ -14,6 +14,7 @@ using System.Windows;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using System.Configuration;
 
 namespace GID_Client.ViewModel
 {
@@ -683,7 +684,7 @@ namespace GID_Client.ViewModel
 
             var result1 = mon.ShowDialog();
 
-            if (!result1.Value)
+            if ((!result1.Value) && (!mon.isClosed))
             {
                 StatusText = "Ma'lumot to'liq kiritilmagan";
 
@@ -714,6 +715,10 @@ namespace GID_Client.ViewModel
                 
                 return;
             }
+            else if (mon.isClosed)
+            {
+                return;
+            }
 
             InputString = mon.InpetString;
 
@@ -723,7 +728,38 @@ namespace GID_Client.ViewModel
 
             for(int i = 0; i <= 2; i++)
             {
-                int res = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
+                var loginAndPasw = ConfigurationManager.AppSettings["LoginPswd"];
+
+                if (!string.IsNullOrEmpty(loginAndPasw))
+                {
+                    string[] log_pas = loginAndPasw.Split(':');
+
+                    if (log_pas.Any())
+                    {
+                        if (log_pas.Length == 2)
+                        {
+                            var reqRes = ServerApiController.LoginReqRes(log_pas[0], log_pas[1]);
+
+                            if (reqRes != null)
+                                ServerApiController.token = reqRes.data.Token;
+                        }
+                    }
+                }
+
+                var CardNUmber = sc.ReadCardNumber();
+
+                var KeyValue = ServerApiController.GetKey(CardNUmber);
+
+                string kKeyValue = string.Empty;
+
+                if (!string.IsNullOrEmpty(KeyValue._data._message))
+                {
+                    kKeyValue = KeyValue._data._message;
+                }
+
+                int res= sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
+
+                //int res = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
 
                 if (res == 0)
                 {

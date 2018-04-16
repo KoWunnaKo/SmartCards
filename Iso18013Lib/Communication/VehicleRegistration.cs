@@ -11,7 +11,7 @@ namespace Iso18013Lib
     {
         private string _Json { get; set; }
 
-        private VehicleRegistrationCL _VR { get; set; }
+        public VehicleRegistrationCL _VR { get; set; }
 
         private bool IsJsonParsed = false;
 
@@ -95,65 +95,110 @@ namespace Iso18013Lib
                           	"special_marks":null
                      */
 
-                    TotalList.Add(0xA5);
-                    TotalList.Add((byte)_VR._vehicle._reg_number.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._reg_number));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._reg_number))
+                    {
+                        TotalList.Add(0xA5);
+                        TotalList.Add((byte)_VR._vehicle._reg_number.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._reg_number));
+                    }
 
-                    TotalList.Add(0xA6);
-                    TotalList.Add((byte)_VR._vehicle._model_name.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._model_name));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._model_name))
+                    {
+                        TotalList.Add(0xA6);
+                        TotalList.Add((byte)_VR._vehicle._model_name.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._model_name));
+                    }
 
-                    TotalList.Add(0xC9);
-                    TotalList.Add((byte)_VR._vehicle._mark_name.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._mark_name));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._mark_name))
+                    {
+                        TotalList.Add(0xC9);
+                        TotalList.Add((byte)_VR._vehicle._mark_name.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._mark_name));
+                    }
 
-                    TotalList.Add(0xA7);
-                    TotalList.Add((byte)_VR._vehicle._color_name.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._color_name));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._color_name))
+                    {
+                        TotalList.Add(0xA7);
+                        TotalList.Add((byte)_VR._vehicle._color_name.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._color_name));
+                    }
 
-                    TotalList.Add(0xA8);
-                    TotalList.Add((byte)_VR._vehicle._vehicle_manufacture_year.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._vehicle_manufacture_year));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._vehicle_manufacture_year))
+                    {
+                        TotalList.Add(0xA8);
+                        TotalList.Add((byte)_VR._vehicle._vehicle_manufacture_year.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._vehicle_manufacture_year));
+                    }
 
-                    TotalList.Add(0xD1);
-                    TotalList.Add((byte)_VR._vehicle._type.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._type.ToString()));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._type))
+                    {
+                        TotalList.Add(0xD1);
+                        TotalList.Add((byte)_VR._vehicle._type.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._type.ToString()));
+                    }
 
-                    TotalList.Add(0xD2);
-                    TotalList.Add((byte)_VR._vehicle._vehicle_identification_number_kuzov.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._vehicle_identification_number_kuzov.ToString()));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._vehicle_identification_number_kuzov))
+                    {
+                        TotalList.Add(0xD2);
+                        TotalList.Add((byte)_VR._vehicle._vehicle_identification_number_kuzov.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._vehicle_identification_number_kuzov.ToString()));
+                    }
 
-                    TotalList.Add(0xD3);
-                    TotalList.Add((byte)_VR._vehicle._vehicle_identification_number_shassi.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._vehicle_identification_number_shassi.ToString()));
+                    if (_VR._vehicle._vehicle_identification_number_shassi != null)
+                    {
+                        TotalList.Add(0xD3);
+                        TotalList.Add((byte)_VR._vehicle._vehicle_identification_number_shassi.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._vehicle_identification_number_shassi.ToString()));
+                    }
 
-                    TotalList.Add(0xA9);
-                    TotalList.Add((byte)_VR._vehicle._gross_weight.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._gross_weight.ToString()));
+                    if (_VR._vehicle._gross_weight >= 0)
+                    {
+                        TotalList.Add(0xA9);
+                        TotalList.Add((byte)_VR._vehicle._gross_weight.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._gross_weight.ToString()));
+                    }
 
-                    TotalList.Add(0xB1);
-                    TotalList.Add((byte)_VR._vehicle._curb_weight.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._curb_weight.ToString()));
+                    if (_VR._vehicle._curb_weight >= 0)
+                    {
+                        TotalList.Add(0xB1);
+                        TotalList.Add((byte)_VR._vehicle._curb_weight.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._curb_weight.ToString()));
+                    }
 
-                    TotalList.Add(0xB2);
-                    TotalList.Add((byte)_VR._vehicle._engine_number.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._engine_number));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._engine_number))
+                    {
+                        TotalList.Add(0xB2);
+                        TotalList.Add((byte)_VR._vehicle._engine_number.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._engine_number));
+                    }
 
-                    TotalList.Add(0xB3);
-                    TotalList.Add((byte)_VR._vehicle._engine_power.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._engine_power));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._engine_power))
+                    {
+                        TotalList.Add(0xB3);
+                        TotalList.Add((byte)_VR._vehicle._engine_power.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._engine_power));
+                    }
 
-                    TotalList.Add(0xB4);
-                    TotalList.Add((byte)_VR._vehicle._fuel_type.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._fuel_type));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._fuel_type))
+                    {
+                        TotalList.Add(0xB4);
+                        TotalList.Add((byte)_VR._vehicle._fuel_type.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._fuel_type));
+                    }
 
-                    TotalList.Add(0xD4);
-                    TotalList.Add((byte)_VR._vehicle._engine_measurement.Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._engine_measurement));
+                    if (!string.IsNullOrEmpty(_VR._vehicle._engine_measurement))
+                    {
+                        TotalList.Add(0xD4);
+                        TotalList.Add((byte)_VR._vehicle._engine_measurement.Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._engine_measurement));
+                    }
 
-                    TotalList.Add(0xB5);
-                    TotalList.Add((byte)_VR._vehicle._number_of_seats.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._number_of_seats.ToString()));
+                    if (_VR._vehicle._number_of_seats >= 0)
+                    {
+                        TotalList.Add(0xB5);
+                        TotalList.Add((byte)_VR._vehicle._number_of_seats.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._vehicle._number_of_seats.ToString()));
+                    }
 
                     if (_VR._vehicle._number_of_standees != null)
                     {
@@ -190,23 +235,35 @@ namespace Iso18013Lib
                  */
                 if (_VR._company != null)
                  {
-                    TotalList.Add(0xC5);
-                    TotalList.Add((byte)_VR._company._type.ToString().Length);
-                    TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._type.ToString()));
+                    if (_VR._company._type >= 0)
+                    {
+                        TotalList.Add(0xC5);
+                        TotalList.Add((byte)_VR._company._type.ToString().Length);
+                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._type.ToString()));
+                    }
 
                     if (_VR._company._address != null)
                     {
-                        TotalList.Add(0xC1);
-                        TotalList.Add((byte)_VR._company._address._address.ToString().Length);
-                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._address._address.ToString()));
+                        if (!string.IsNullOrEmpty(_VR._company._address._address))
+                        {
+                            TotalList.Add(0xC1);
+                            TotalList.Add((byte)_VR._company._address._address.ToString().Length);
+                            TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._address._address.ToString()));
+                        }
 
-                        TotalList.Add(0xC2);
-                        TotalList.Add((byte)_VR._company._address._region_name.ToString().Length);
-                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._address._region_name.ToString()));
+                        if (!string.IsNullOrEmpty(_VR._company._address._region_name))
+                        {
+                            TotalList.Add(0xC2);
+                            TotalList.Add((byte)_VR._company._address._region_name.ToString().Length);
+                            TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._address._region_name.ToString()));
+                        }
 
-                        TotalList.Add(0xC3);
-                        TotalList.Add((byte)_VR._company._address._rayon_name.ToString().Length);
-                        TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._address._rayon_name.ToString()));
+                        if (!string.IsNullOrEmpty(_VR._company._address._rayon_name))
+                        {
+                            TotalList.Add(0xC3);
+                            TotalList.Add((byte)_VR._company._address._rayon_name.ToString().Length);
+                            TotalList.AddRange(Encoding.UTF8.GetBytes(_VR._company._address._rayon_name.ToString()));
+                        }
                     }
 
                     TotalList.Add(0xB8);
@@ -359,16 +416,36 @@ namespace Iso18013Lib
                     lenArray[0] = TrimmedVr[j + 4]; 
 
                     length = BitConverter.ToInt32(lenArray, 0);
+
+                    if (length == 0)
+                    {
+                        lengthGetting = false;
+                        tagGetting = false;
+                        valueCountingBegin = false;
+                        valueCountingFinished = true;
+                    }
+               
                 }
                 else if (valueCountingBegin)
                 {
-                    value = new byte[length];
 
-                    Array.Copy(TrimmedVr, j + 4, value, 0, length);
+                     value = new byte[length];
 
-                    SetData(tag, value);
+                     if (((j + 4) + length) > TrimmedVr.Length)
+                     {
+                         //
+                         length = TrimmedVr.Length - (j + 4);
 
-                    endOfValue = j+ 4 + length - 1;
+                         Array.Copy(TrimmedVr, j + 4, value, 0, length);
+                     }
+                     else
+                     {
+                         Array.Copy(TrimmedVr, j + 4, value, 0, length);
+                     }
+
+                     SetData(tag, value);
+
+                     endOfValue = j + 4 + length - 1;
 
                     if ((j + 4) >= endOfValue)
                     {

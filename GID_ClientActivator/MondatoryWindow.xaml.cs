@@ -2,7 +2,9 @@
 using SmartCardApi.SmartCardReader;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +27,7 @@ namespace GID_Client
             InitializeComponent();
 
             DataContext = this;
+            isClosed = false;
 
             txbDocNum.Focus();
         }
@@ -404,6 +407,30 @@ namespace GID_Client
                 btnStart.IsEnabled = true;
                 ActivateTimer();
             }
+        }
+
+        public bool isClosed = false;
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            //bool wasCodeClosed = new StackTrace().GetFrames().FirstOrDefault(x => x.GetMethod() == typeof(MondatoryWindow).GetMethod("Close")) != null;
+            //if (wasCodeClosed)
+            //{
+            //    isClosed = true;
+            //    this.DialogResult = false;
+            //}
+            //else
+            //{
+            //    // Closed some other way.
+            //}
+
+            //base.OnClosing(e);
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            isClosed = true;
+            this.DialogResult = false;
         }
     }
 }

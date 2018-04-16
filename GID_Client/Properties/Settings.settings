@@ -20,14 +20,14 @@
     <Setting Name="ActivationVRApi" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/activate/vl</Value>
     </Setting>
-    <Setting Name="LoginApi" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/login</Value>
-    </Setting>
     <Setting Name="WorkMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="BackEndMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="LoginApi" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://cardapi.dlvl.uz/api/v1/login</Value>
     </Setting>
   </Settings>
 </SettingsFile>

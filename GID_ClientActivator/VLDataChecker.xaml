@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GID_Client"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Icon="ResourcesPic/car.png"
         Title="Tekshiruv" Height="200" Width="450"
         MinHeight="200" MinWidth="450" MaxHeight="200" MaxWidth="450">
@@ -32,7 +33,7 @@
                  Margin="5"
                  Mask="AAAAAAAA" 
                  Name="txbDocNum"
-                 MaxLength="8"
+                 MaxLength="10"
                  KeyDown="txbDocNum_KeyDown"
                  KeyUp="txbDocNum_KeyUp"
                  CharacterCasing="Upper"
@@ -78,6 +79,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="16" Grid.Column="0"
                     Margin="10"
@@ -93,6 +95,13 @@
                     Name="btnCancel"
                     IsCancel="False"
                     Content="Tozalash" Click="Button_Click_1">
+            </Button>
+
+            <Button Grid.Row="16" Grid.Column="2"
+                    Margin="10"
+                    Name="btnClose"
+                    IsCancel="True"
+                    Content="Yopmoq" Click="btnClose_Click">
             </Button>
         </Grid>
 

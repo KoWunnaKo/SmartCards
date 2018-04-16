@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -53,6 +55,8 @@ namespace GID_Client
 
             DataContext = this;
 
+            isClosed = false;
+
             txbDocNum.Focus();
         }
 
@@ -68,12 +72,12 @@ namespace GID_Client
                 }
                 else
                 {
-                    if (ftxbDocNum.Length != 8)
-                    {
-                        this.DialogResult = false;
+                    //if (ftxbDocNum.Length != 8)
+                    //{
+                    //    this.DialogResult = false;
 
-                        return;
-                    }
+                    //    return;
+                    //}
                 }
 
                 if (string.IsNullOrEmpty(fDpIssueDate))
@@ -192,7 +196,11 @@ namespace GID_Client
             {
                 _txbDocNum = value;
 
-                ftxbDocNumValidate = txbDocNum.IsMaskFull;
+                if (txbDocNum.Text.Length >= 8 && txbDocNum.Text.Length <=10)
+                {
+                    ftxbDocNumValidate = true;
+                }
+                //ftxbDocNumValidate = txbDocNum.IsMaskFull;
 
                 CheckReadyness();
 
@@ -284,7 +292,7 @@ namespace GID_Client
         {
             if ((e.Key == System.Windows.Input.Key.Enter) || (e.Key == System.Windows.Input.Key.Tab))
             {
-                if (txbDocNum.IsMaskFull)
+                if (true)
                 {
                     DpBirthDate.Focus();
                 }
@@ -353,6 +361,30 @@ namespace GID_Client
                 btnStart.IsEnabled = true;
                 ActivateTimer();
             }
+        }
+
+        public bool isClosed = false;
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            //bool wasCodeClosed = new StackTrace().GetFrames().FirstOrDefault(x => x.GetMethod() == typeof(Window).GetMethod("Close")) != null;
+            //if (wasCodeClosed)
+            //{
+            //    isClosed = true;
+            //    this.DialogResult = false;
+            //}
+            //else
+            //{
+            //    // Closed some other way.
+            //}
+
+            //base.OnClosing(e);
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            isClosed = true;
+            this.DialogResult = false;
         }
     }
 }

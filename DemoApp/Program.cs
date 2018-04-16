@@ -27,7 +27,7 @@ namespace DemoApp
                                 new DateTime(2007, 09, 30)
                           );
 
-            var mrzInfo2 = new Symbols("123456");
+            var mrzInfo2 = new Symbols("1A123XZ20170917A");
 
             //var cardContext = ContextFactory.Instance.Establish(SCardScope.System);
 
@@ -50,9 +50,13 @@ namespace DemoApp
 
             SecuredReaderTest dd = new SecuredReaderTest();
 
-            dd.TestReader();
+            //1
 
+            dd.IDL_ReaderDG1("123456");
+            dd.IDL_ReaderDG2("123456");
 
+            dd.IDL_ReaderDG4("123456");
+            dd.IDL_ReaderDG5("123456");
 
             //Console.WriteLine(
             //            dgsContent

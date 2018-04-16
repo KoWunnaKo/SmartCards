@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Icon="ResourcesPic/car.png"
         Title="Tekshiruv" Height="200" Width="450"
+        Closing="Window_Closing"
         MinHeight="200" MinWidth="450" MaxHeight="200" MaxWidth="450">
     <Grid>
         <Grid.RowDefinitions>
@@ -81,6 +82,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="16" Grid.Column="0"
                     Margin="10"
@@ -96,6 +98,13 @@
                     Name="btnCancel"
                     IsCancel="False"
                     Content="Tozalash" Click="Button_Click_1" >
+            </Button>
+
+            <Button Grid.Row="16" Grid.Column="2"
+                    Margin="10"
+                    Name="btnClose"
+                    IsCancel="True"
+                    Content="Yopmoq" Click="btnClose_Click" >
             </Button>
         </Grid>
 

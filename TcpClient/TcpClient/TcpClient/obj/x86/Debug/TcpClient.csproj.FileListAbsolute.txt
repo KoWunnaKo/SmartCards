@@ -7,3 +7,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\bi
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\obj\x86\Debug\TcpClient.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\obj\x86\Debug\TcpClient.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\bin\Debug\TcpClient.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\TcpClient\TcpClient\TcpClient\obj\x86\Debug\TcpClient.csprojResolveAssemblyReference.cache

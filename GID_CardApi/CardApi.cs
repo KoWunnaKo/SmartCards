@@ -31,7 +31,7 @@ namespace GID_CardApi
                 string[] readers = iCard.ListReaders();
 
                 string[] SpecReaders = (from reader in readers
-                                        where reader.Contains("CL")
+                                        where reader.Contains("CK") || reader.Contains("CL")
                                         select reader).ToArray();
 
 
@@ -79,8 +79,6 @@ namespace GID_CardApi
 
                 if (dl.ParseInputJson() == 0)
                 {
-                    CardApiMessages cc = new CardApiMessages();
-
                     var mrzInfo = new MRZInfo(
                         dl._DL._license_number,
                         DateTime.ParseExact(dl._DL._driver._date_of_birth, "yyyyMMdd", CultureInfo.InvariantCulture),
@@ -105,11 +103,9 @@ namespace GID_CardApi
                     kMacLL.Add(0x83); kMacLL.Add(0x02); kMacLL.Add(0x20); kMacLL.Add(0x03); kMacLL.Add(0x8F);
                     kMacLL.Add(0x10); kMacLL.AddRange(kMac);
 
-                    //First Step
-                    result = _controller.SaveIDL2Card3(dl.GetDG1x(), dl.GetDG2x(), dl.GetDG3x(), dl.GetDG4xx(), dl.GetDG5xx(), dl.GetCommon(), kencLL.ToArray(), kMacLL.ToArray());
+                    //First Step 3
+                    result = _controller.SaveIDL2Card6(dl.GetDG1x(), dl.GetDG2x(), dl.GetDG3x(), dl.GetDG4xx(), dl.GetDG5xx(), dl.GetCommon(), kencLL.ToArray(), kMacLL.ToArray(), butes);
 
-                    //Second Step
-                    result = _controller.SaveIDL2Card4(dl.GetDG1x(), dl.GetDG2x(), dl.GetDG3x(), dl.GetDG4xx(), dl.GetDG5xx(), dl.GetCommon(), kencLL.ToArray(), kMacLL.ToArray());
                 }
 
                 return result;
@@ -156,9 +152,31 @@ namespace GID_CardApi
 
                 if (dR.ParseInputJson() == 0)
                 {
-                    result = _controller.SaveeVr2Card(dR.GetVehicleData());
+                    var Vehicle1_reg_number = dR._VR._vehicle._reg_number; //*******
 
-                    result = _controller.SaveeVr2Card2(dR.GetVehicleData());
+                    var Issue_date = dR._VR._issue_date;  //************
+
+                    var Vehicle1__license_number = dR._VR._license_number; //************
+
+                    var str = string.Format("{0}{1}{2}{3}", "1", Vehicle1_reg_number, Issue_date, Vehicle1__license_number).Substring(0, 16);
+
+                    var butes = Encoding.ASCII.GetBytes(str);
+
+                    var hexMRZ = ByteArrayToString(butes);
+
+                    var kenc = BAC_Calculate.calculateKENC(butes); //Encoding.ASCII.GetBytes("123456")
+
+                    var kMac = BAC_Calculate.calculateKMAC(butes); //Encoding.ASCII.GetBytes("123456")
+
+                    List<byte> kencLL = new List<byte>();
+                    kencLL.Add(0x83); kencLL.Add(0x02); kencLL.Add(0x20); kencLL.Add(0x01); kencLL.Add(0x8F);
+                    kencLL.Add(0x10); kencLL.AddRange(kenc);
+
+                    List<byte> kMacLL = new List<byte>();
+                    kMacLL.Add(0x83); kMacLL.Add(0x02); kMacLL.Add(0x20); kMacLL.Add(0x03); kMacLL.Add(0x8F);
+                    kMacLL.Add(0x10); kMacLL.AddRange(kMac);
+
+                    result = _controller.SaveVL2Card3(dR.GetVehicleData(), kencLL.ToArray(), kMacLL.ToArray(), butes);
                 }
 
                 return result;

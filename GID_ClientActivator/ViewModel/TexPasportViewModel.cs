@@ -4,6 +4,8 @@ using GID_Client.ServerApi;
 using Iso18013Lib;
 using SmartCardApi.SmartCardReader;
 using System;
+using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -329,7 +331,22 @@ namespace GID_Client.ViewModel
 
                         Pinfl = vl._vehicleRegistration._company._pinfl;
 
-                        Issue_date = vl._vehicleRegistration._issue_date;
+                        //
+                        if (!string.IsNullOrEmpty(vl._vehicleRegistration._issue_date))
+                        {
+                            if (vl._vehicleRegistration._issue_date.Length == 8)
+                            {
+                                Issue_date = DateTime.ParseExact(vl._vehicleRegistration._issue_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
+                            else
+                            {
+                                Issue_date = vl._vehicleRegistration._issue_date;
+                            }
+                        }
+                        else
+                        {
+                            Issue_date = vl._vehicleRegistration._issue_date;
+                        }
 
                         Ubdd_name = vl._vehicleRegistration._ubdd_name;
 
@@ -395,7 +412,22 @@ namespace GID_Client.ViewModel
 
                         License_number = vl._vehicleRegistration._license_number;
 
-                        Expire_date = vl._vehicleRegistration._expire_date;
+                        if (!string.IsNullOrEmpty(vl._vehicleRegistration._expire_date))
+                        {
+                            if (vl._vehicleRegistration._expire_date.Length == 8)
+                            {
+                                Expire_date = DateTime.ParseExact(vl._vehicleRegistration._expire_date, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                            }
+                            else
+                            {
+                                Expire_date = vl._vehicleRegistration._expire_date;
+                            }
+                        }
+                        else
+                        {
+                            Expire_date = vl._vehicleRegistration._expire_date;
+                        }
+                        
 
                         readJson = GetStrFromVR(vl._vehicleRegistration);
 
@@ -494,7 +526,7 @@ namespace GID_Client.ViewModel
 
             var result1 = mon.ShowDialog();
 
-            if (!result1.Value)
+            if ((!result1.Value) && (!mon.isClosed))
             {
                 StatusText = "Ma'lumot to'liq kiritilmagan.";
 
@@ -525,6 +557,10 @@ namespace GID_Client.ViewModel
 
                 return;
             }
+            else if (mon.isClosed)
+            {
+                return;
+            }
 
             InputString = mon.InpetString;
 
@@ -534,7 +570,36 @@ namespace GID_Client.ViewModel
 
             for (int i = 0; i <= 2; i++)
             {
-                int res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
+                var loginAndPasw = ConfigurationManager.AppSettings["LoginPswd"];
+
+                if (!string.IsNullOrEmpty(loginAndPasw))
+                {
+                    string[] log_pas = loginAndPasw.Split(':');
+
+                    if (log_pas.Any())
+                    {
+                        if (log_pas.Length == 2)
+                        {
+                            var reqRes = ServerApiController.LoginReqRes(log_pas[0], log_pas[1]);
+
+                            if (reqRes != null)
+                                ServerApiController.token = reqRes.data.Token;
+                        }
+                    }
+                }
+
+                var CardNUmber = sc.ReadCardNumber();
+
+                var KeyValue = ServerApiController.GetKey(CardNUmber);
+
+                string kKeyValue = string.Empty;
+
+                if (!string.IsNullOrEmpty(KeyValue._data._message))
+                {
+                    kKeyValue = KeyValue._data._message;
+                }
+
+                int res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
 
                 if (res1 == 0)
                 {

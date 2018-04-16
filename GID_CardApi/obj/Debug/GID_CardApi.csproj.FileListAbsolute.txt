@@ -2,15 +2,11 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\GID_CardAp
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\GID_CardApi.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\GemCard.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\GemCard.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\GemCard.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\obj\Debug\GID_CardApi.csprojResolveAssemblyReference.cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\obj\Debug\GID_CardApi.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\obj\Debug\GID_CardApi.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\CardAPILib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\Iso18013Lib.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\log4net.dll
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\CardAPILib.pdb
-C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\CardAPILib.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\Iso18013Lib.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\Iso18013LibV2.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\Iso18013LibV2.pdb
@@ -29,3 +25,6 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\System.Rea
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\System.Reactive.PlatformServices.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\System.Reactive.Interfaces.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\System.Reactive.Core.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\CardAPINoKey.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\CardAPINoKey.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_CardApi\bin\Debug\CardAPINoKey.dll.config

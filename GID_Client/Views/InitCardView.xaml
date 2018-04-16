@@ -5,46 +5,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GID_Client.Views"
              mc:Ignorable="d" 
-             Background="White"
-             d:DesignHeight="600" d:DesignWidth="400">
+             Background="{Binding BackgroundTb}"
+             
+             d:DesignHeight="600" d:DesignWidth="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="2">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="450"/>
                 <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="2"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="2"/>
                 <RowDefinition Height="243*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
                    Text="Ридер"
-                       HorizontalAlignment="Right"
+                   HorizontalAlignment="Right"
+                   FontSize="16"
                    Margin="5"></TextBlock>
             <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
                    Text="Статус Карты"
+                       FontSize="16"
                        HorizontalAlignment="Right"
                    Margin="5"
             ></TextBlock>
             <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
                    Text="Уникальный Ид"
+                       FontSize="16"
                        HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
 
@@ -55,6 +60,8 @@
             <TextBox Grid.Row="1" 
                    Grid.Column="1" 
                    Margin="5"
+                     FontSize="16"
+                     FontStyle="Normal"
                      Text="{Binding MycardStatus}"
                      Background="{Binding BackgroundTb}"
                      Foreground="{Binding ForegroundTb}"
@@ -73,10 +80,12 @@
                    Grid.Column="0"
                     Content="Открыть Водительские Права"
                     Margin="5"
+                        Visibility="Hidden"
                     Command="{Binding OpenCardDR}"></Button>
 
                 <Button Grid.Row="1" 
                     Grid.Column="0"
+                        Visibility="Hidden"
                     Content="Открыть Тех. Паспорт"
                     Margin="5"
                     Command="{Binding OpenCardVR}"></Button>
@@ -89,6 +98,7 @@
             <Button Grid.Row="4" 
                    Grid.Column="1"
                 Content="Сохранить на сервере"
+                    Visibility="Hidden"
                 Margin="5"
                     Command="{Binding SaveCardInfo}"></Button>
 
@@ -96,9 +106,11 @@
                    Grid.Column="0" 
                        HorizontalAlignment="Right"
                    Text="Закрытый ключ"
+                       FontSize="16"
                    Margin="5"></TextBlock>
             <TextBlock Grid.Row="6" 
                    Grid.Column="0" 
+                       FontSize="16"
                    Text="Открытый ключ"
                        HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
@@ -123,11 +135,13 @@
                    Grid.Column="1"
                 Content="Получить сертификат"
                 Margin="5"
+                    Visibility="Hidden"
                     IsEnabled="{Binding CertificateButton}"
                     Command="{Binding GetCertificate}"></Button>
 
             <TextBlock Grid.Row="8" 
                    Grid.Column="0" 
+                       FontSize="16"
                    Text="Сертификат"
                        HorizontalAlignment="Right"
                    Margin="5"></TextBlock>
@@ -143,12 +157,14 @@
 
             <Button Grid.Row="9" 
                    Grid.Column="1"
+                    Visibility="Hidden"
                 Content="Сохранить на Карту"
                 Margin="5"
                     Command="{Binding Apply2Card}"></Button>
 
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="2"
+        </Border>
+        <!--<Border BorderBrush="Black" BorderThickness="2"
                         VerticalAlignment="Bottom"
                 Grid.Row="2">
             <StackPanel  HorizontalAlignment="Left"
@@ -163,6 +179,6 @@
                     Margin="10,0,0,0"
                     Text="{Binding StatusText}"></TextBlock>
             </StackPanel>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

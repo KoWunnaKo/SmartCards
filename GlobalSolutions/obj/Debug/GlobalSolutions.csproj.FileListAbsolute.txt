@@ -1,0 +1,57 @@
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\GlobalSolutions.exe.config
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\GlobalSolutions.exe
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\GlobalSolutions.pdb
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.csprojResolveAssemblyReference.cache
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\MainWindow.g.cs
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\App.g.cs
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions_MarkupCompile.cache
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions_MarkupCompile.lref
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\App.baml
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\MainWindow.baml
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\Buttons.baml
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.g.resources
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.Properties.Resources.resources
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.csproj.GenerateResource.Cache
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.exe
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.pdb
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\Colors.baml
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\Fonts.baml
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\TextBoxes.baml
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\GeneratedInternalTypeHelper.g.cs
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardControl.g.cs
+c:\users\dracolich\documents\visual studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardControl.baml
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardsList.g.cs
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardsList.baml
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\PropertyChanged.dll
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\PropertyChanged.xml
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\Popup.g.cs
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\Popup.baml
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\GemCard.dll
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\GemCard.pdb
+C:\Users\DracoLich\Documents\Visual Studio 2015\Projects\GlobalSolutions\GlobalSolutions\bin\Debug\GemCard.xml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\bin\Debug\GlobalSolutions.exe.config
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.exe
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.pdb
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\bin\Debug\GlobalSolutions.exe
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\bin\Debug\GlobalSolutions.pdb
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\MainWindow.g.cs
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardControl.g.cs
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardsList.g.cs
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\Popup.g.cs
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\App.g.cs
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions_MarkupCompile.cache
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions_MarkupCompile.lref
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\App.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\MainWindow.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\Buttons.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\Colors.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\Fonts.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\Styles\TextBoxes.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardControl.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\CardsList.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\UserControls\Popup.baml
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.g.resources
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.Properties.Resources.resources
+C:\RADSOFT\Projects\AutoTest\GlobalSolutions\GlobalSolutions\GlobalSolutions\obj\Debug\GlobalSolutions.csproj.GenerateResource.Cache

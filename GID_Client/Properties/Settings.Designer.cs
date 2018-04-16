@@ -97,18 +97,6 @@ namespace GID_Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/login")]
-        public string LoginApi {
-            get {
-                return ((string)(this["LoginApi"]));
-            }
-            set {
-                this["LoginApi"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string WorkMode {
             get {
@@ -128,6 +116,18 @@ namespace GID_Client.Properties {
             }
             set {
                 this["BackEndMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://cardapi.dlvl.uz/api/v1/login")]
+        public string LoginApi {
+            get {
+                return ((string)(this["LoginApi"]));
+            }
+            set {
+                this["LoginApi"] = value;
             }
         }
     }

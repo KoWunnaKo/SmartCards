@@ -15,6 +15,13 @@
             </summary>
             <param name="isConnct">Allow Create Class with opened or not opened connection</param>
         </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.#ctor(GemCard.CardNative,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="card"></param>
+            <param name="isConnct"></param>
+        </member>
         <member name="M:CardAPILib.CardAPI.CardApiController.getUUId(System.String@)">
             <summary>
             This command queries the smart card for the 20 byte UUID which is derived by using SHA256 to derive a 32 byte hash from the RSA Public
@@ -447,6 +454,48 @@
             <param name="DGCommon"></param>
             <returns></returns>
         </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card5(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card6(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveVL2Card3(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
         <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveeVr2Card(System.Byte[])">
             <summary>
             
@@ -544,6 +593,40 @@
             <param name="uuid"></param>
             <returns></returns>
         </member>
+        <member name="T:CardAPILib.InterfaceCL.ExternalAuthentificate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CardAPILib.InterfaceCL.ExternalAuthentificate.LastOperationStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.#ctor(GemCard.CardNative)">
+            <summary>
+            
+            </summary>
+            <param name="card"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.ExternalAuth">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.ExternalAuth(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyValue"></param>
+            <returns></returns>
+        </member>
         <member name="T:CardAPILib.InterfaceCL.CardFactoryMode">
             <summary>
             
@@ -619,6 +702,12 @@
             
             </summary>
         </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV3(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="KeyValue"></param>
+        </member>
         <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV5">
             <summary>
             
@@ -638,6 +727,18 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannelV2(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.CheckValidityOfKey(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
         </member>
         <member name="P:Advanced_Device_Programming.Apdu.instructionClass">
             <summary>

@@ -1,4 +1,5 @@
 ﻿using CardAPILib.InterfaceCL;
+using GemCard;
 using System;
 using System.Text;
 
@@ -14,6 +15,22 @@ namespace CardAPILib.CardAPI
         /// </summary>
         /// <param name="isConnct">Allow Create Class with opened or not opened connection</param>
         public CardApiController(bool isConnct = false)
+        {
+            if (isConnct)
+            {
+                if (Connect2Card() != 0)
+                {
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="isConnct"></param>
+        public CardApiController(CardNative card ,bool isConnct = false):base(card)
         {
             if (isConnct)
             {
@@ -359,6 +376,7 @@ namespace CardAPILib.CardAPI
         {
             try
             {
+
                 if (OpenCardCommands(CardFactoryMode.DrivingLicence) != 0)
                 {
                     throw new ApplicationException(LastOperationStatus);

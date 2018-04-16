@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -32,6 +33,20 @@ namespace GID_Client.ServerApi
             //var cardJson = GetStrFromCardNumber(obj);
 
             //client.PostData = cardJson;
+            var xmlresult = client.MakeRequest(token);
+
+            return ParseInputRequest(xmlresult);
+        }
+
+        public static getResponceCardInsert GetKey(string CardNumber)
+        {
+            string apiString = ConfigurationManager.AppSettings["GetKeyApi"];
+            var _url = string.Format(apiString, CardNumber);
+
+            var client = new RestClient();
+            client.EndPoint = _url;
+            client.Method = HttpVerb.GET;
+
             var xmlresult = client.MakeRequest(token);
 
             return ParseInputRequest(xmlresult);
