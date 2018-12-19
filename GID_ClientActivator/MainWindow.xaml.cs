@@ -138,5 +138,33 @@ namespace GID_Client
                 MessageBox.Show("Foydalanuvchi uchun yordam faylini: " + helpFilePath + " dan topilmadi" );
             }
         }
+
+        private void btnDXXInfolist_Click(object sender, RoutedEventArgs e)
+        {
+            if (spPanel.Children.Count > 0)
+            {
+                if (spPanel.Children[0] is TexPasportView)
+                {
+                    TexPasportView obj = (TexPasportView)spPanel.Children[0];
+                    obj.Release();
+                }
+
+                if (spPanel.Children[0] is IDL_View)
+                {
+                    IDL_View obj = (IDL_View)spPanel.Children[0];
+                    obj.Release();
+                }
+
+                if (spPanel.Children[0] is DXX_View)
+                {
+                    DXX_View obj = (DXX_View)spPanel.Children[0];
+                    obj.Release();
+                }
+            }
+
+            spPanel.Children.Clear();
+            var uObject = new DXX_View();
+            spPanel.Children.Add(uObject);
+        }
     }
 }

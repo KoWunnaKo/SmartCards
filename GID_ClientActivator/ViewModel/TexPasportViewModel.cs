@@ -314,6 +314,7 @@ namespace GID_Client.ViewModel
 
                         Vr = dd.VR_Reader(InputString);
 
+                        _logService.Info("PfReadCard");
                         //if (result != 0)
                         //{
                         //    StatusText = "Ошибка при прочтении карты";
@@ -325,12 +326,13 @@ namespace GID_Client.ViewModel
 
                         VehicleRegistration vl = new VehicleRegistration("");
 
+                        _logService.Info("PfReadCard111");
                         var vll = vl.ParseReadMaterial(Vr);
 
                         vl._vehicleRegistration._card_number = GetUUid();
 
                         Pinfl = vl._vehicleRegistration._company._pinfl;
-
+                        _logService.Info("PfReadCard112");
                         //
                         if (!string.IsNullOrEmpty(vl._vehicleRegistration._issue_date))
                         {
@@ -347,71 +349,71 @@ namespace GID_Client.ViewModel
                         {
                             Issue_date = vl._vehicleRegistration._issue_date;
                         }
-
+                        _logService.Info("PfReadCard113");
                         Ubdd_name = vl._vehicleRegistration._ubdd_name;
-
+                        _logService.Info("PfReadCard4");
                         Issue_region_name = vl._vehicleRegistration._license_number;
-
+                        _logService.Info("PfReadCard5");
                         Vehicle1_reg_number = vl._vehicleRegistration._vehicle._reg_number;
-
+                        _logService.Info("PfReadCard6");
                         Vehicle1_model_name = vl._vehicleRegistration._vehicle._model_name;
-
+                        _logService.Info("PfReadCard7");
                         Vehicle1_color_name = vl._vehicleRegistration._vehicle._color_name;
-
+                        _logService.Info("PfReadCard8");
                         Vehicle1_vehicle_manufacture_year = vl._vehicleRegistration._vehicle._vehicle_manufacture_year;
-
+                        _logService.Info("PfReadCard9");
                         Vehicle1_gross_weight = vl._vehicleRegistration._vehicle._gross_weight.ToString();
-
+                        _logService.Info("PfReadCard10");
                         Vehicle1_curb_weight = vl._vehicleRegistration._vehicle._curb_weight.ToString();
-
+                        _logService.Info("PfReadCard1131");
                         Vehicle1_engine_number = vl._vehicleRegistration._vehicle._engine_number;
-
+                        _logService.Info("PfReadCard1132");
                         Vehicle1_engine_power = vl._vehicleRegistration._vehicle._engine_power;
-
+                        _logService.Info("PfReadCard1134");
                         Vehicle1_fuel_type = vl._vehicleRegistration._vehicle._fuel_type;
-
+                        _logService.Info("PfReadCard1135");
                         Vehicle1_number_of_seats = vl._vehicleRegistration._vehicle._number_of_seats.ToString();
-
+                        _logService.Info("PfReadCard1136");
                         Vehicle1_number_of_standees = vl._vehicleRegistration._vehicle._number_of_standees;
-
+                        _logService.Info("PfReadCard1137");
                         Vehicle1_special_marks = vl._vehicleRegistration._vehicle._special_marks;
-
+                        _logService.Info("PfReadCard1138");
                         Company1_name = vl._vehicleRegistration._company._name;
-
+                        _logService.Info("PfReadCard1139");
                         Company1_inn = vl._vehicleRegistration._company._inn;
-
+                        _logService.Info("PfReadCard11310");
                         Company1_address2_address = vl._vehicleRegistration._company._address._address;
-
+                        _logService.Info("PfReadCard11311");
                         Company1_address2_region_name = vl._vehicleRegistration._company._address._region_name;
-
+                        _logService.Info("PfReadCard11312");
                         Company1_address2_rayon_name = vl._vehicleRegistration._company._address._rayon_name;
-
+                        _logService.Info("PfReadCard11313");
                         vl._vehicleRegistration._company._address._address = string.Empty;
-
+                        _logService.Info("PfReadCard11314");
                         vl._vehicleRegistration._company._address._region_name = string.Empty;
-
+                        _logService.Info("PfReadCard11315");
                         vl._vehicleRegistration._company._address._rayon_name = string.Empty;
-
+                        _logService.Info("PfReadCard11316");
                         Owner_type = vl._vehicleRegistration._company._type;
-
+                        _logService.Info("PfReadCard11317");
                         Owner_last_name = vl._vehicleRegistration._company._last_name;
-
+                        _logService.Info("PfReadCard11318");
                         Owner_first_name = vl._vehicleRegistration._company._first_name;
-
+                        _logService.Info("PfReadCard11319");
                         Owner_middle_name = vl._vehicleRegistration._company._middle_name;
-
+                        _logService.Info("PfReadCard11320");
                         Mark_name = vl._vehicleRegistration._vehicle._mark_name;
-
+                        _logService.Info("PfReadCard11321");
                         Vehicle_type = vl._vehicleRegistration._vehicle._type;
-
+                        _logService.Info("PfReadCard11322");
                         Vehicle_identification_number_kuzov = vl._vehicleRegistration._vehicle._vehicle_identification_number_kuzov;
-
+                        _logService.Info("PfReadCard11323");
                         Vehicle_identification_number_shassi = vl._vehicleRegistration._vehicle._vehicle_identification_number_shassi;
-
+                        _logService.Info("PfReadCard11324");
                         Engine_measurement = vl._vehicleRegistration._vehicle._engine_measurement;
-
+                        _logService.Info("PfReadCard11325");
                         License_number = vl._vehicleRegistration._license_number;
-
+                        _logService.Info("PfReadCard11326");
                         if (!string.IsNullOrEmpty(vl._vehicleRegistration._expire_date))
                         {
                             if (vl._vehicleRegistration._expire_date.Length == 8)
@@ -427,8 +429,8 @@ namespace GID_Client.ViewModel
                         {
                             Expire_date = vl._vehicleRegistration._expire_date;
                         }
-                        
 
+                        _logService.Info("PfReadCard113");
                         readJson = GetStrFromVR(vl._vehicleRegistration);
 
                         if (Properties.Settings.Default.BackEndMode.Equals("1"))
@@ -442,13 +444,14 @@ namespace GID_Client.ViewModel
                     }
                     catch (Exception ex)
                     {
-
+                        _logService.Info(ex.ToString());
                     }
 
                 }
                 catch (Exception ex)
                 {
                     StatusText = ex.Message;
+                    _logService.Info(ex.ToString());
                 }
 
                 return 0;
@@ -468,23 +471,40 @@ namespace GID_Client.ViewModel
         {
             var resultTask = Task.Factory.StartNew(() =>
             {
-                byte[] Vr = null;
-
-                SecuredReaderTest dd = new SecuredReaderTest();
-
-                Vr = dd.VR_Reader(InputString);
-
-                VehicleRegistration vl = new VehicleRegistration("");
-
-                var vll = vl.ParseReadMaterial(Vr);
-
-                if (!vll._license_number.Equals(enteredDate))
+                try
                 {
+                    byte[] Vr = null;
+
+                    SecuredReaderTest dd = new SecuredReaderTest();
+
+                    Vr = dd.VR_Reader(InputString);
+
+                    _logService.Info(InputString);
+
+                    string hex = BitConverter.ToString(Vr);
+
+                    _logService.Info("--------------------------------------------");
+                    _logService.Info(hex);
+                    _logService.Info("--------------------------------------------");
+
+                    VehicleRegistration vl = new VehicleRegistration("");
+
+                    var vll = vl.ParseReadMaterial(Vr);
+
+                    if (!vll._license_number.Equals(enteredDate))
+                    {
+                        return false;
+                    }
+
+                    
+                }
+                catch(Exception ex)
+                {
+                    _logService.Info(ex.ToString());
                     return false;
                 }
 
                 return true;
-
             });
 
             return resultTask;

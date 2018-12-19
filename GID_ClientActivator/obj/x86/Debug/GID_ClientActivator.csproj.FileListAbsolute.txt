@@ -74,3 +74,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\x86\Debu
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\x86\Debug\GID_ClientActivator.csproj.GenerateResource.Cache
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\x86\Debug\GID_Client.exe
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\x86\Debug\GID_Client.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\bin\x86\Debug\System.Json.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\bin\x86\Debug\System.Json.xml
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\x86\Debug\Views\DXX_View.g.cs
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_ClientActivator\obj\x86\Debug\Views\DXX_View.baml

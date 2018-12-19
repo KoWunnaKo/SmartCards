@@ -118,6 +118,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
@@ -197,10 +201,14 @@
     <Compile Include="ViewModel\TexPasportViewModel.cs" />
     <Compile Include="ViewModel\UserInfo.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\DXXViewModel.cs" />
     <Compile Include="ViewModel\VoditelPravaViewModel.cs" />
     <Compile Include="ViewModel\VRL_ViewModel.cs" />
     <Compile Include="Views\CertificateMngView.xaml.cs">
       <DependentUpon>CertificateMngView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DXX_View.xaml.cs">
+      <DependentUpon>DXX_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IDL_View.xaml.cs">
       <DependentUpon>IDL_View.xaml</DependentUpon>
@@ -236,6 +244,10 @@
     <Page Include="Views\CertificateMngView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DXX_View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\IDL_View.xaml">
       <SubType>Designer</SubType>
@@ -276,6 +288,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="CardAPINoKey.dll.config" />
     <None Include="DB\Activator.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -374,6 +387,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Untitled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ResourcesPic\shield-checkmark-512.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

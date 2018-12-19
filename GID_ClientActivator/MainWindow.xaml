@@ -144,16 +144,21 @@
             <RibbonTab Header="Guvohnoma Chipini tekshirish" KeyTip="I"  Name="Verification">
                 <RibbonGroup x:Name="ExchangeLists" Margin="0,1" Header="">
                     <StackPanel Orientation="Horizontal">
-                        <RibbonRadioButton  Label="Haydovchilik guvohnomasi"  
+                        <RibbonRadioButton  Visibility="Collapsed" Label="Haydovchilik guvohnomasi"  
                                        LargeImageSource="ResourcesPic/driver1600.png"
                                        Name="btnUserInfolist"
                                             KeyTip="G"
                                             Click="btnUserInfolist_Click"/>
-                        <RibbonRadioButton  Label="Avtotransport guvohnomasi"  
+                        <RibbonRadioButton Visibility="Collapsed"  Label="Avtotransport guvohnomasi"  
                                        LargeImageSource="ResourcesPic/car.png" 
                                        Name="btnCardInfolist"
                                             KeyTip="A"
                                             Click="btnCardInfolist_Click"/>
+                        <RibbonRadioButton  Label="DXX Guvoxnomasi"  
+                                       LargeImageSource="ResourcesPic/shield-checkmark-512.png" 
+                                       Name="btnDXXInfolist"
+                                            KeyTip="A"
+                                            Click="btnDXXInfolist_Click"/>
                         <!--<RibbonRadioButton  Label="Список Добпалений"  
                                        LargeImageSource="/SmartCardDesc;component/Resources/077_AddFile.ico" 
                                        Name="btnAddCardList"
