@@ -1,0 +1,552 @@
+﻿<UserControl x:Class="GID_Client.Views.IDL_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GID_Client.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             Background="White"
+             xmlns:l="clr-namespace:GID_Client.ViewModel" 
+             FontSize="11"
+             d:DesignHeight="540" d:DesignWidth="800">
+    <UserControl.Resources>
+        <l:Base64ImageConverter x:Key="Base64ImageConverter"/>
+    </UserControl.Resources>
+    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="{Binding StatusText}" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" 
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+                    <Image 
+                   Name="PortraitPhoto"
+                        Height="Auto"
+                        Width="Auto"
+                   Grid.Row="0"
+                        Margin="10"
+                   Source="{Binding Base64ImageData, Converter={StaticResource Base64ImageConverter}}" ></Image>
+
+            <Image  
+                   Height="Auto"
+                   Grid.Row="2"
+                   Width="Auto"
+                   Margin="10"
+                   Name="SignPhoto" 
+                   Source="{Binding Base64ImageData2, Converter={StaticResource Base64ImageConverter}}"
+                   ></Image>
+
+            <StackPanel  Grid.Row="3">
+                <Button 
+                    Height="50"
+                    Margin="5"
+                    Content="Прочитать с карты"
+                        Command="{Binding ReadCard}"
+                    Visibility="Hidden">
+                </Button>
+                <Button 
+                    Margin="5"
+                    Height="50"
+                    Content="Сохранить"
+                    Command="{Binding SaveCard}"
+                    Visibility="Hidden">
+                </Button>
+
+            </StackPanel>
+        </Grid>
+            <StackPanel Grid.Column="1" 
+              Grid.Row="0">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="260"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" 
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0"
+                        Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Familiyasi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding LastName}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Ismi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding FirstName}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Otasining ismi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding MiddleName}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Tug'ilgan kuni" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox Margin="2" 
+                            Grid.Row="1" 
+                            Text="{Binding BirthDate}"
+                            IsReadOnly="True" FontSize="14"
+                            >
+                </TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Tug'ilgan joyi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding BirthPlace}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+            
+        </Grid>
+                <Grid Grid.Column="1" 
+              Grid.Row="0"
+              Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0"
+                        Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Berilgan sanasi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding IssueDate}"
+                    IsReadOnly="True" FontSize="14">
+                </TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Berilgan joyi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding GivenPlace}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Yaroqlilik sanasi" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    IsReadOnly="True"
+                    Text="{Binding ExpireDate}" FontSize="14"
+                    >
+                </TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Guvohnoma raqami" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding LicenseNumber}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+            <Grid Grid.Column="0"
+                        Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="JSHIR" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+                </TextBlock>
+                <TextBox 
+                    Margin="2" 
+                    Grid.Row="1" 
+                    Text="{Binding PNFL}"
+                    IsReadOnly="True" FontSize="14"></TextBox>
+            </Grid>
+        </Grid>
+                <Grid Grid.Column="2" 
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Manzili" 
+                           Grid.Row="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="2,0,0,0" FontSize="14">
+            </TextBlock>
+            <TextBox 
+                Margin="2" 
+                Grid.Row="1" 
+                TextWrapping="Wrap"
+                AcceptsReturn="True"
+                Text="{Binding FullAdress}"
+                IsReadOnly="True" FontSize="14"></TextBox>
+
+        </Grid>
+            </Grid>
+                <TextBlock
+                    Margin="5,5,5,3"
+                    Text="Haydovchilik Kategoriyalari:" FontWeight="Bold" FontSize="14"></TextBlock>
+            <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Grid.Column="1"
+                 Margin="5,5,5,5"
+                Grid.ColumnSpan="2"
+                Grid.Row="0"  >
+            <Grid  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="1" 
+                   Grid.Column="0"
+                   Text="A"
+                                   HorizontalAlignment="Center"
+                   Margin="5" FontSize="14"></TextBlock>
+                <TextBlock Grid.Row="0" 
+                   Grid.Column="2"
+                   Text="Berilgan sanasi"
+                           HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"
+                   ></TextBlock>
+
+                <TextBlock Grid.Row="0" 
+                   Grid.Column="3"
+                   Text="Tugash sanasi"
+                           HorizontalAlignment="Center" FontSize="14" FontWeight="Bold"
+                   ></TextBlock>
+                <CheckBox Grid.Row="1" 
+                   Grid.Column="4"
+                          HorizontalAlignment="Center"
+                                  Margin="2"
+                          IsHitTestVisible="false" 
+                                  IsChecked="{Binding CheckedA}"></CheckBox>
+                <CheckBox Grid.Row="2" 
+                   Grid.Column="4" 
+                   Margin="2"
+                          IsHitTestVisible="false" 
+                   IsChecked="{Binding CheckedB}"
+                          HorizontalAlignment="Center"></CheckBox>
+                <CheckBox Grid.Row="3" 
+                   Grid.Column="4" Margin="2"
+                          IsHitTestVisible="false" 
+                          HorizontalAlignment="Center"
+                                  IsChecked="{Binding CheckedC}"></CheckBox>
+                <CheckBox Grid.Row="4" 
+                          HorizontalAlignment="Center"
+                          IsHitTestVisible="false" 
+                   Grid.Column="4" Margin="2"
+                                  IsChecked="{Binding CheckedD}"></CheckBox>
+                <CheckBox Grid.Row="5" 
+                          HorizontalAlignment="Center"
+                          IsHitTestVisible="false" 
+                   Grid.Column="4" Margin="2"
+                                  IsChecked="{Binding CheckedBE}"></CheckBox>
+
+                    <CheckBox Grid.Row="6" 
+                          HorizontalAlignment="Center"
+                          IsHitTestVisible="false" 
+                   Grid.Column="4" Margin="2"
+                                  IsChecked="{Binding CheckedCE}"></CheckBox>
+
+                    <CheckBox Grid.Row="7" 
+                          HorizontalAlignment="Center"
+                          IsHitTestVisible="false" 
+                   Grid.Column="4" Margin="2"
+                                  IsChecked="{Binding CheckedDE}"></CheckBox>
+                    <TextBox Grid.Row="1" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireA}" FontSize="14">
+
+                </TextBox>
+                <TextBox Grid.Row="2" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireB}" FontSize="14">
+
+                </TextBox>
+                <TextBox Grid.Row="3" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireC}" FontSize="14">
+
+                </TextBox>
+                <TextBox Grid.Row="4" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireD}" FontSize="14">
+
+                </TextBox>
+                <TextBox Grid.Row="5" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireBE}" FontSize="14">
+
+                </TextBox>
+
+                    <TextBox Grid.Row="6" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireCE}" FontSize="14">
+
+                    </TextBox>
+
+                    <TextBox Grid.Row="7" 
+                   Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding ExpireDE}" FontSize="14">
+
+                    </TextBox>
+
+
+                    <TextBox Grid.Row="1" 
+                   Grid.Column="2"
+                    Text="{Binding IssueA}"
+                         IsReadOnly="True" FontSize="14">
+                </TextBox>
+                <TextBox Grid.Row="2" 
+                   Grid.Column="2"
+                                    Text="{Binding IssueB}"
+                         IsReadOnly="True" FontSize="14">
+
+                </TextBox>
+                <TextBox Grid.Row="3" 
+                   Grid.Column="2"
+                         IsReadOnly="True"
+                                    Text="{Binding IssueC}" FontSize="14">
+                </TextBox>
+                <TextBox Grid.Row="4" 
+                   Grid.Column="2"
+                         IsReadOnly="True"
+                                    Text="{Binding IssueD}" FontSize="14">
+                </TextBox>
+                <TextBox Grid.Row="5" 
+                   Grid.Column="2"
+                         IsReadOnly="True"
+                                    Text="{Binding IssueBE}" FontSize="14">
+                </TextBox>
+
+                    <TextBox Grid.Row="6" 
+                   Grid.Column="2"
+                         IsReadOnly="True"
+                                    Text="{Binding IssueCE}" FontSize="14">
+                    </TextBox>
+
+                    <TextBox Grid.Row="7" 
+                   Grid.Column="2"
+                         IsReadOnly="True"
+                                    Text="{Binding IssueDE}" FontSize="14">
+                    </TextBox>
+
+                    <Image Grid.Row="1" 
+                   Grid.Column="1"
+                   Source="/Resources/A Category.png"
+                   HorizontalAlignment="Center"
+                   Margin="5" Stretch="Fill" ></Image>
+                <TextBlock Grid.Row="2" 
+                   Grid.Column="0"
+                   Text="B"
+                    HorizontalAlignment="Center"
+                   Margin="5" FontSize="14"></TextBlock>
+                <Image Grid.Row="2" 
+                   Grid.Column="1"
+                       Source="/Resources/B Category.png"
+                   HorizontalAlignment="Center"
+                   Margin="5" Stretch="Fill" ></Image>
+                <TextBlock Grid.Row="3" 
+                   Grid.Column="0"
+                   Text="C"
+                            HorizontalAlignment="Center"       
+                   Margin="5" FontSize="14"></TextBlock>
+                <Image Grid.Row="3" 
+                   Grid.Column="1"
+                   Source="/Resources/C Category.png"
+                   HorizontalAlignment="Center"
+                   Margin="15, 0,0,0" Stretch="Fill" ></Image>
+                <TextBlock Grid.Row="4" 
+                   Grid.Column="0"
+                   Text="D"
+                                   HorizontalAlignment="Center"
+                   Margin="5" FontSize="14"></TextBlock>
+                <Image Grid.Row="4" 
+                   Grid.Column="1"
+                   Source="/Resources/Untitled.png"
+                   HorizontalAlignment="Center"
+                   Margin="15,0,0,0" Stretch="Fill" ></Image>
+                <TextBlock Grid.Row="5" 
+                   Grid.Column="0"
+                   Text="BE"
+                                   HorizontalAlignment="Center"
+                   Margin="5" FontSize="14"></TextBlock>
+                <Image Grid.Row="5" 
+                   Grid.Column="1"
+                   Source="/Resources/BE.png"
+                   HorizontalAlignment="Center"
+                   Margin="5" Stretch="Fill" ></Image>
+
+                    <Image Grid.Row="6" 
+                   Grid.Column="1"
+                   Source="/Resources/CE.png"
+                   HorizontalAlignment="Center"
+                   Margin="5" Stretch="Fill" ></Image>
+
+                    <Image Grid.Row="7" 
+                   Grid.Column="1"
+                   Source="/Resources/DE.png"
+                   HorizontalAlignment="Center"
+                   Margin="5" Stretch="Fill" ></Image>
+                </Grid>
+        </Border>
+            </StackPanel>
+            <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2" Grid.ColumnSpan="3">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+                <Button Width="20" 
+                        Content="X"
+                        Visibility="Hidden"
+                        Command ="{Binding StopProcess}"
+                        IsEnabled="{Binding StopReadingProc}"></Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+    </xctk:BusyIndicator>
+</UserControl>

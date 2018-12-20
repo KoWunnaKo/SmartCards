@@ -1,0 +1,445 @@
+﻿<UserControl x:Class="GID_Client.Views.TexPasportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GID_Client.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="530" d:DesignWidth="600">
+    <xctk:BusyIndicator x:Name="_busyIndicator" IsBusy="{Binding IsIntermadiate}" BusyContent="{Binding StatusText}" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
+                   Grid.Column="0" 
+                   Text="Egasini turi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="0" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Owner_type}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="1" 
+                   Grid.Column="0" 
+                   Text="Manzili"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="1" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_address2_address}"></TextBox>
+
+            <TextBlock Grid.Row="2" 
+                   Grid.Column="0" 
+                   Text="Viloyat"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="2" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_address2_region_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="3" 
+                   Grid.Column="0" 
+                   Text="Tuman"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="3" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_address2_rayon_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="4" 
+                   Grid.Column="0" 
+                   Text="Tashkilot nomi"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="4" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_name}"></TextBox>
+            
+            
+                        <TextBlock Grid.Row="4" 
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"/>
+
+            <TextBox Grid.Row="4" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_name}" FontSize="14"></TextBox>
+            
+            
+            <TextBlock Grid.Row="5" 
+                   Grid.Column="0" 
+                   Text="Familiya"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="5" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Owner_last_name}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="6" 
+                   Grid.Column="0" 
+                   Text="Ism"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="6" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Owner_first_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="7" 
+                   Grid.Column="0" 
+                   Text="Otasining ismi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="7" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Owner_middle_name}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="8" 
+                   Grid.Column="0" 
+                   Text="JSHIR"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="8" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Pinfl}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="9" 
+                   Grid.Column="0" 
+                   Text="STIR"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="9" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_inn}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="0" 
+                   Grid.Column="2" 
+                   Text="Davlat raqami belgisi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="0" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_reg_number}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="1" 
+                   Grid.Column="2" 
+                   Text="Rusumi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="1" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_model_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="2" 
+                   Grid.Column="2" 
+                   Text="Markasi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="2" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Mark_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="3" 
+                   Grid.Column="2" 
+                   Text="Rangi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="3" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_color_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="4" 
+                   Grid.Column="2" 
+                   Text="Ishlab chiqarilgan yili"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="4" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_vehicle_manufacture_year}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="5" 
+                   Grid.Column="2" 
+                   Text="Turi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="5" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle_type}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="6" 
+                   Grid.Column="2" 
+                   Text="Kuzov raqami"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="6" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle_identification_number_kuzov}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="7" 
+                   Grid.Column="2" 
+                   Text="Shassi raqami"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="7" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle_identification_number_shassi}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="8" 
+                   Grid.Column="2" 
+                   Text="To'liq vazni (kg)"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="8" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_gross_weight}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="9" 
+                   Grid.Column="2" 
+                   Text="Yuksiz vazni (kg)"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="9" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_curb_weight}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="10" 
+                   Grid.Column="2" 
+                   Text="Dvigatel raqami"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="10" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_engine_number}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="11" 
+                   Grid.Column="2" 
+                   Text="Dvigatel quvvati"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="11" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_engine_power}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="12" 
+                   Grid.Column="2" 
+                   Text="Yoqilg'i turi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="12" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_fuel_type}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="13" 
+                   Grid.Column="2" 
+                   Text="Dvigatel kuchi o'lchovi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="13" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Engine_measurement}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="14" 
+                   Grid.Column="2" 
+                   Text="O'rinlar soni"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="14" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_number_of_seats}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="15" 
+                   Grid.Column="2" 
+                   Text="Turuvchilar soni"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="15" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_number_of_standees}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="15" 
+                   Grid.Column="0" 
+                   Text="Alohida belgilar"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="15" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Vehicle1_special_marks}" FontSize="14"></TextBox>
+
+
+
+            <TextBlock Grid.Row="11" 
+                   Grid.Column="0" 
+                   Text="Berilgan vaqti"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="11" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Issue_date}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="12" 
+                   Grid.Column="0" 
+                   Text="RIB/TRIB bo'limi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="12" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Ubdd_name}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="13" 
+                   Grid.Column="0" 
+                   Text="Hujjat raqami"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="13" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding License_number}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="14" 
+                   Grid.Column="0" 
+                   Text="Tugash sanasi"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="14" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Expire_date}" FontSize="14"></TextBox>
+
+
+            <Grid Grid.Row="17" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+        <Button Grid.Row="16" Grid.Column="0"
+                    Margin="5"
+                Height="50"
+                    Content="Прочитать с карты"
+                Visibility="Hidden"
+                Command="{Binding ReadCard}">
+        </Button>
+
+        <Button Grid.Row="16" Grid.Column="1"
+                    Margin="5"
+                Height="50"
+                Visibility="Hidden"
+                    Content="Сохранить на сервере">
+                </Button>
+            </Grid>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+    </xctk:BusyIndicator>
+</UserControl>
