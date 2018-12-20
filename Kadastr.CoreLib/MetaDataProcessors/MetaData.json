@@ -1,0 +1,116 @@
+{
+  "list": [
+    {
+      "Code": "A1",
+      "Desc": "Объект тури",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "Yakka tartibdagi turar joy"
+    },
+    {
+      "Code": "A2",
+      "Desc": "Ер участкасининг кадастр раками",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "17:01:01:01:01:234"
+    },
+    {
+      "Code": "A3",
+      "Desc": "Бино ва иншоотнинг кадастр раками",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "17:01:01:01:01:234"
+    },
+    {
+      "Code": "A4",
+      "Desc": "Жойлашган жойи",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "Andijon viloyati, Oltinko'l tumani, Yakkabog' MFY, Bobur ko'chasi 10 uy"
+    },
+    {
+      "Code": "A5",
+      "Desc": "майдони, м2",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "145 m2"
+    },
+    {
+      "Code": "A6",
+      "Desc": "Кадастр киймати холатига",
+      "Type": "N",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "27456000"
+    },
+    {
+      "Code": "A7",
+      "Desc": "Руйхатдан утказилган сана ва раками",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "AA 00822/23"
+    },
+    {
+      "Code": "A8",
+      "Desc": "Мулк эгаси",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "Abdullaev Abdulla Azizovich"
+    },
+    {
+      "Code": "A9",
+      "Desc": "Паспорт серия ва раками",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "AA1238830"
+    },
+    {
+      "Code": "B1",
+      "Desc": "СТИР",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "231838830"
+    },
+    {
+      "Code": "B2",
+      "Desc": "Бино-иншоотга булган хукукни тасдикловчи хужжатлар",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+      "Default": "12.01.2011 yildagi N 123456/22 sonli shartnomasi"
+    },
+    {
+      "Code": "B3",
+      "Desc": "хукук тури",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "mulk"
+    },
+    {
+      "Code": "B4",
+      "Desc": "мулк хукукининг улуши",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "100 %"
+    },
+    {
+      "Code": "B5",
+      "Desc": "Объектга нисбатан таъкик мавжуд/мавжуд эмас",
+      "Type": "C",
+      "Format": "",
+      "Chk": "M",
+	  "Default": "Mavjud emas"
+    }
+
+  ]}

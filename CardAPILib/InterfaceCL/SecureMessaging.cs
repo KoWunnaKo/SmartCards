@@ -489,6 +489,44 @@ namespace CardAPILib.InterfaceCL
             }
 
 
+            {
+                log.Info("80 E4 00 00 [09] 4F|07<A0000002480500>");
+
+                Console.WriteLine("Start Metka Applet delete");
+
+                #region 80 E4 00 00 [09] 4F|07<A0000002480200>
+
+                APDUCommand apduSize5 = new APDUCommand(0x80, 0xE4, 0x00, 0x00, null, 0);
+
+                APDUParam apduParam5 = new APDUParam();
+
+                apduParam5.Data = new byte[] { 0x4F, 0x07, 0xA0, 0x00, 0x00, 0x02, 0x48, 0x05, 0x00 };
+
+                apduSize5.Update(apduParam5);
+
+                apduResp = iCard.TransmitLe(apduSize5, 1, true);
+                if (apduResp.Status != SC_OK && apduResp.SW1 != SC_PENDING)
+                {
+                    if (apduResp.ToString().Contains("6A82"))
+                    {
+                        string code = "File Not Found";
+                        LastOperationStatus = code;
+                        log.Error(code);
+
+                        //return;
+                    }
+
+                    Console.WriteLine("Metka Applet delete failed");
+
+                    //return;
+                }
+                #endregion
+
+                log.Info(apduResp.Status);
+                log.Info(apduResp.ToString());
+            }
+
+
 
             if (ext.ExternalAuth() != 0)
             {
@@ -606,7 +644,42 @@ namespace CardAPILib.InterfaceCL
                 log.Info(apduResp.ToString());
             }
 
+            {
+                log.Info("80 E4 00 00 [09] 4F|07<A0000002480500>");
 
+                Console.WriteLine("Start Metka Applet delete");
+
+                #region 80 E4 00 00 [09] 4F|07<A0000002480200>
+
+                APDUCommand apduSize5 = new APDUCommand(0x80, 0xE4, 0x00, 0x00, null, 0);
+
+                APDUParam apduParam5 = new APDUParam();
+
+                apduParam5.Data = new byte[] { 0x4F, 0x07, 0xA0, 0x00, 0x00, 0x02, 0x48, 0x05, 0x00 };
+
+                apduSize5.Update(apduParam5);
+
+                apduResp = iCard.TransmitLe(apduSize5, 1, true);
+                if (apduResp.Status != SC_OK && apduResp.SW1 != SC_PENDING)
+                {
+                    if (apduResp.ToString().Contains("6A82"))
+                    {
+                        string code = "File Not Found";
+                        LastOperationStatus = code;
+                        log.Error(code);
+
+                        //return;
+                    }
+
+                    Console.WriteLine("Metka Applet delete failed");
+
+                    //return;
+                }
+                #endregion
+
+                log.Info(apduResp.Status);
+                log.Info(apduResp.ToString());
+            }
 
             if (ext.ExternalAuth(KeyValue) != 0)
             {

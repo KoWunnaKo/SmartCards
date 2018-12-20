@@ -86,6 +86,10 @@
       <Project>{58b50b8c-7903-4334-8969-9a47575622de}</Project>
       <Name>CardAPILib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DXX_CardApi\DXX_CardApi.csproj">
+      <Project>{bc8298d2-85b9-4b7b-8629-62a2dc23a0d0}</Project>
+      <Name>DXX_CardApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GID_CardApi\GID_CardApi.csproj">
       <Project>{b982acf6-f7b6-4bec-85ac-67a8f67e6f7a}</Project>
       <Name>GID_CardApi</Name>

@@ -311,12 +311,41 @@ namespace Iso18013Lib
 
             }
 
-            TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+            //TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+
+            if (TotalList.Count < 128)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+            }
+            else if (TotalList.Count > 127 && TotalList.Count < 256)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+                TotalList.Insert(0, 0x81);
+
+            }
+            else if ((TotalList.Count > 255 && TotalList.Count < 65536))
+            {
+                TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+            }
 
             var ResultinStr02 = ByteArrayToString(Int2ByteArray(TotalList.Count));
             TotalList.Insert(0, 0x65);
 
-            TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+            if (TotalList.Count < 128)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+            }
+            else if (TotalList.Count > 127 && TotalList.Count < 256)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+                TotalList.Insert(0, 0x81);
+
+            }
+            else if ((TotalList.Count > 255 && TotalList.Count < 65536))
+            {
+                TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+            }
+            //TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
             var ResultinStr03 = ByteArrayToString(Int2ByteArray(TotalList.Count));
             TotalList.Insert(0, 0x53);
             TotalList.Insert(0, 0x00);
@@ -387,10 +416,24 @@ namespace Iso18013Lib
         /// <returns></returns>
         public void ParseVR(byte[] Vr)
         {
-
             var TrimmedVr = Decode(Vr);
 
             var ResultinStr = ByteArrayToString(TrimmedVr);
+
+            int StartReadNumber = 4;
+
+            if (TrimmedVr[1] == 0x81)
+            {
+                StartReadNumber = 3;
+            }
+            else if (TrimmedVr[1] == 0x82)
+            {
+                StartReadNumber = 4;
+            }
+            else
+            {
+                StartReadNumber = 2;
+            }
 
             bool valueCountingBegin = false;
             bool tagGetting = true;
@@ -402,18 +445,18 @@ namespace Iso18013Lib
             int length = 0;
             int endOfValue = 0;
 
-            for (int j = 0; j < TrimmedVr.Length-4; j++)
+            for (int j = 0; j < TrimmedVr.Length- StartReadNumber; j++)
             {
                 //Action
                 if (tagGetting)
                 {
-                    tag = TrimmedVr[j+4];
+                    tag = TrimmedVr[j+ StartReadNumber];
                 }
                 else if (lengthGetting)
                 {
                     byte[] lenArray = new byte[4];
 
-                    lenArray[0] = TrimmedVr[j + 4]; 
+                    lenArray[0] = TrimmedVr[j + StartReadNumber]; 
 
                     length = BitConverter.ToInt32(lenArray, 0);
 
@@ -431,23 +474,23 @@ namespace Iso18013Lib
 
                      value = new byte[length];
 
-                     if (((j + 4) + length) > TrimmedVr.Length)
+                     if (((j + StartReadNumber) + length) > TrimmedVr.Length)
                      {
                          //
-                         length = TrimmedVr.Length - (j + 4);
+                         length = TrimmedVr.Length - (j + StartReadNumber);
 
-                         Array.Copy(TrimmedVr, j + 4, value, 0, length);
+                         Array.Copy(TrimmedVr, j + StartReadNumber, value, 0, length);
                      }
                      else
                      {
-                         Array.Copy(TrimmedVr, j + 4, value, 0, length);
+                         Array.Copy(TrimmedVr, j + StartReadNumber, value, 0, length);
                      }
 
                      SetData(tag, value);
 
-                     endOfValue = j + 4 + length - 1;
+                     endOfValue = j + StartReadNumber + length - 1;
 
-                    if ((j + 4) >= endOfValue)
+                    if ((j + StartReadNumber) >= endOfValue)
                     {
                         lengthGetting = false;
                         tagGetting = true;
@@ -465,13 +508,8 @@ namespace Iso18013Lib
                 }
                 else if (valueCountingFinished)
                 {
-                    if ((j + 4) >= endOfValue)
+                    if ((j + StartReadNumber) >= endOfValue)
                     {
-                        //lengthGetting = false;
-                        //tagGetting = true;
-                        //valueCountingBegin = false;
-                        //valueCountingFinished = false;
-
                         tag = 0x00;
                         value = null;
                         length = 0;

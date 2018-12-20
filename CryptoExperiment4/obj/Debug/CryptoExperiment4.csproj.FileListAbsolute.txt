@@ -34,3 +34,6 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\Card
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\CardAPINoKey.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\App.config
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\CryptoExperiment4.exe.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\DXX_CardApi.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\DXX_CardApi.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Debug\CardAPINoKey.dll.config

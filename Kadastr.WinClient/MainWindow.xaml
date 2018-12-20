@@ -1,0 +1,74 @@
+﻿<Window x:Class="Kadastr.WinClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kadastr.WinClient"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Closed="Window_Closed"
+        Title="Kadastr Card Master 1.0" Height="730" Width="1015"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Ribbon x:Name="RibbonWin"  SelectedIndex="0">
+            <!-- Help Pane, located at the right-hand side -->
+            <Ribbon.HelpPaneContent>
+                <RibbonButton  SmallImageSource="ResourcesPic/Help.bmp"
+                               Click="RibbonButton_Click"/>
+                <!--SmallImageSource="Images\help.png"-->
+            </Ribbon.HelpPaneContent>
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="Chiqish" />
+                    <!--ImageSource="Images\quit.png"-->
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <!-- Ribbon Tab #1: Home -->
+            <RibbonTab Header="Kadastr Ma'lumoti" KeyTip="H" Name="Kadastr" >
+                <!-- Home  group-->
+                <RibbonGroup x:Name="ClipboardGroup" Margin="0,1" Header="Kadastr Kartasi bilan amallar" >
+                    <StackPanel Orientation="Horizontal">
+                        <RibbonRadioButton  Label="Ma'lumotni olish"  
+                                       LargeImageSource="ResourcesPic/cottage-icon.png"
+                                       Name="btnUserInfolist2"
+                                            Click="btnGetKadastrInfo"/>
+                        <RibbonRadioButton  Label="Test ma'lumot"  
+                                       LargeImageSource="ResourcesPic/Tests-icon.png"
+                                       Name="btnUserInfolist23"
+                                            Click="btnGetMockDataInfo"/>
+                        <RibbonRadioButton  Label="Pechat qilish"  
+                                       LargeImageSource="ResourcesPic/Credit-Card-icon.png" 
+                                       Name="btnCardInfolist2"
+                                            Click="btnPrint2Card"/>
+                        <RibbonRadioButton  Label="O'qib olish"  
+                                       LargeImageSource="ResourcesPic/RSS-Reader-Green-icon.png" 
+                                       Name="btnCardInfolist21"
+                                            Click="btnReadFromCard"/>
+                        <RibbonRadioButton  Label="Tozalab yuborish"  
+                                       LargeImageSource="ResourcesPic/Clear-icon (1).png" 
+                                       Name="btnCardInfolist22"
+                                            Click="btnResetTool"/>
+                     </StackPanel>
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Vertical" Name="spPanel"></StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="2" 
+                    HorizontalAlignment="Stretch"
+                    Background="AliceBlue">
+
+            <TextBlock Margin="10,0,10,0"
+                       DockPanel.Dock="Left"
+                       Text="{Binding FullName}"></TextBlock>
+
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Kadastr.WinClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MetaDataFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLib\bin\Debug\MetaData.json</Value>
+    </Setting>
+    <Setting Name="Card_Reset_Tool" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.WinClient\bin\Debug\Card_Reset_Tool\Card_Reset_Tool.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

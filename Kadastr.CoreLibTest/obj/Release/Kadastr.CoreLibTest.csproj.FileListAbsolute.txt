@@ -1,0 +1,9 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\bin\Release\Kadastr.CoreLibTest.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\bin\Release\Kadastr.CoreLibTest.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\obj\Release\Kadastr.CoreLibTest.csprojResolveAssemblyReference.cache
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\obj\Release\Kadastr.CoreLibTest.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\obj\Release\Kadastr.CoreLibTest.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\bin\Release\Kadastr.CoreLib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\bin\Release\Kadastr.CoreLib.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\bin\Release\Newtonsoft.Json.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLibTest\bin\Release\Newtonsoft.Json.xml

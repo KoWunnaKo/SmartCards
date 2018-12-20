@@ -31,3 +31,7 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\Sm
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\nunit.framework.xml
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\CardAPINoKey.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\CardAPINoKey.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\CardAPINoKey.dll.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\App.config
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\DXX_CardApi.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\CryptoExperiment4\bin\Release\DXX_CardApi.pdb

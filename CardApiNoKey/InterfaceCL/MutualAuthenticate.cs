@@ -78,39 +78,10 @@ namespace CardAPILib.InterfaceCL
         /// <returns></returns>
         public static byte[] CalcBAC_Res(byte[] _rndIcc, byte[] key)
         {
-            //byte[] key = new byte[16];
-            // K seed = ‘23 9A B9 CB 28 2D AF 66 23 1D C5 A4 DF 6B FB AE’  ICAO
-            // ic document keying material: Kdoc = ‘31239AB9CB282DAF66231DC5A4DF6BFBAE’
-
-            //40 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F
-
-            #region Keys
-
-            //key[0] = 0x40;
-            //key[1] = 0x41;
-            //key[2] = 0x42;
-            //key[3] = 0x43;
-            //key[4] = 0x44;
-            //key[5] = 0x45;
-            //key[6] = 0x46;
-            //key[7] = 0x47;
-            //key[8] = 0x48;
-            //key[9] = 0x49;
-            //key[10] = 0x4A;
-            //key[11] = 0x4B;
-            //key[12] = 0x4C;
-            //key[13] = 0x4D;
-            //key[14] = 0x4E;
-            //key[15] = 0x4F;
-
-            #endregion
-
-            //byte[] key = new byte[6] { 0x31, 0x32, 0x33, 0x34, 0x35 , 0x36 };
             if (key == null)
             {
                 key = Encoding.UTF8.GetBytes("A290654395164273X970030110709303");
             }
-            //var key = Encoding.UTF8.GetBytes("A290654395164273X970030110709303");
 
             log.Info(string.Format("key = {0}", ByteArrayToString(key)));
 

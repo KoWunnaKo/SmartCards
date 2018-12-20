@@ -1,0 +1,442 @@
+﻿<UserControl x:Class="Kadastr.WinClient.View.KadastrInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kadastr.WinClient.View"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="530" d:DesignWidth="1000">
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" 
+                   Grid.Column="0" 
+                   Text="Уникальный номер запроса"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="0" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding id}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="1" 
+                   Grid.Column="0" 
+                   Text="Уникальный номер ответа запроса"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="1" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding id_req}"></TextBox>
+
+            <TextBlock Grid.Row="2" 
+                   Grid.Column="0" 
+                   Text="Кадастровый номер объекта"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="2" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding kadastr_number}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="3" 
+                   Grid.Column="0" 
+                   Text="Регион"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="3" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding region_name}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="4" 
+                   Grid.Column="0" 
+                   Text="Код региона"
+                   HorizontalAlignment="Right"
+                   Margin="5"></TextBlock>
+
+            <TextBox Grid.Row="4" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding region_id}"></TextBox>
+
+
+            <TextBlock Grid.Row="4" 
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"/>
+
+            <TextBox Grid.Row="4" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding Company1_name}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="5" 
+                   Grid.Column="0" 
+                   Text="Код района"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="5" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding area_id}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="6" 
+                   Grid.Column="0" 
+                   Text="Наименование юридического лица"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="6" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding name_yur_liso}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="7" 
+                   Grid.Column="0" 
+                   Text="ИНН юридического лица"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="7" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding inn_yur_liso}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="8" 
+                   Grid.Column="0" 
+                   Text="Фамилия, имя и отчество граждан"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="8" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding fio_grajdan}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="9" 
+                   Grid.Column="0" 
+                   Text="Паспорт серия и номер граждан"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="9" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding passport_seria_nomer}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="0" 
+                   Grid.Column="2" 
+                   Text="ПИНФЛ граждан"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="0" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding pnfl_fizliso}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="1" 
+                   Grid.Column="2" 
+                   Text="Кадастровый номер земельного участка"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="1" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding kad_no}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="2" 
+                   Grid.Column="2" 
+                   Text="Площадь, га"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="2" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding area}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="3" 
+                   Grid.Column="2" 
+                   Text="Местоположение"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="3" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding location}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="4" 
+                   Grid.Column="2" 
+                   Text="Вид права на землю"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="4" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding own_type}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="5" 
+                   Grid.Column="2" 
+                   Text="Документы, подтверждающие права на земельный участок"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="5" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding land_doc}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="6" 
+                   Grid.Column="2" 
+                   Text="Целевое назначение земельного участка"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="6" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding land_purp}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="7" 
+                   Grid.Column="2" 
+                   Text="Ограничения прав на земельный участок"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="7" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding land_restr}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="8" 
+                   Grid.Column="2" 
+                   Text="Кадастровая оценка, тыс. сум."
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="8" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding est_price}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="9" 
+                   Grid.Column="2" 
+                   Text="Дата и номер регистрации"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="9" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding reg_d_n}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="10" 
+                   Grid.Column="2" 
+                   Text="Серия и номер свидетельства"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="10" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding cert_s_n}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="11" 
+                   Grid.Column="2" 
+                   Text="Сервитуты (постоянное использование, аренда и т.д.)"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="11" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding servitudes}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="12" 
+                   Grid.Column="2" 
+                   Text="Кадастровый номер здания и сооружения"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="12" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding b_kad_no}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="13" 
+                   Grid.Column="2" 
+                   Text="Площадь, м2"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="13" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding b_area_total}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="14" 
+                   Grid.Column="2" 
+                   Text="Площадь, обитая"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="14" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding b_area_obsh}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="15" 
+                   Grid.Column="2" 
+                   Text="Площадь, производственная"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="15" 
+                   Grid.Column="3" 
+                 Margin="5"
+                 Text="{Binding b_area_proizv}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="15" 
+                   Grid.Column="0" 
+                   Text="Площадь, жилая"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="15" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding b_area_jilaya}" FontSize="14"></TextBox>
+
+
+
+            <TextBlock Grid.Row="11" 
+                   Grid.Column="0" 
+                   Text="Вид права на здание"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="11" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding b_own_type}" FontSize="14"></TextBox>
+
+            <TextBlock Grid.Row="12" 
+                   Grid.Column="0" 
+                   Text="Документы, права на земельный участок"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="12" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding b_land_doc}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="13" 
+                   Grid.Column="0" 
+                   Text="Доля собственности в здании и сооружении, часть"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="13" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding b_dolya}" FontSize="14"></TextBox>
+
+
+            <TextBlock Grid.Row="14" 
+                   Grid.Column="0" 
+                   Text="Ограничения прав на здания и сооружения"
+                   HorizontalAlignment="Right"
+                   Margin="5" FontSize="14"></TextBlock>
+
+            <TextBox Grid.Row="14" 
+                   Grid.Column="1" 
+                 Margin="5"
+                 Text="{Binding b_restric}" FontSize="14"></TextBox>
+
+
+            <Grid Grid.Row="17" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="16" Grid.Column="0"
+                    Margin="5"
+                Height="50"
+                    Content="Прочитать с карты"
+                Visibility="Hidden"
+                Command="{Binding ReadCard}">
+                </Button>
+
+                <Button Grid.Row="16" Grid.Column="1"
+                    Margin="5"
+                Height="50"
+                Visibility="Hidden"
+                    Content="Сохранить на сервере">
+                </Button>
+            </Grid>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="2"
+                        VerticalAlignment="Bottom"
+                Grid.Row="2">
+            <StackPanel  HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+				Orientation="Horizontal">
+                <ProgressBar Height="20" Width="100"
+                            Name="prStatus"
+                             />
+                <TextBlock
+                    Name="txbStatus"
+                    Margin="10,0,0,0"
+                    Text="{Binding StatusText}"></TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

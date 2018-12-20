@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GemCard;
-using System.Threading;
 using Iso18013Lib;
 using CardAPILib.CardAPI;
 using SmartCardApi.MRZ;
-using SmartCardApi.SmartCard;
 using System.Globalization;
 using CardAPILib.InterfaceCL;
 
@@ -91,9 +89,9 @@ namespace GID_CardApi
 
                     var hexMRZ = ByteArrayToString(butes);
 
-                    var kenc = BAC_Calculate.calculateKENC(butes); //Encoding.ASCII.GetBytes("123456")
+                    var kenc = BAC_Calculate.calculateKENC(butes); 
 
-                    var kMac = BAC_Calculate.calculateKMAC(butes); //Encoding.ASCII.GetBytes("123456")
+                    var kMac = BAC_Calculate.calculateKMAC(butes); 
 
                     List<byte> kencLL = new List<byte>();
                     kencLL.Add(0x83); kencLL.Add(0x02); kencLL.Add(0x20); kencLL.Add(0x01); kencLL.Add(0x8F);
@@ -205,6 +203,51 @@ namespace GID_CardApi
             var res = await Save2CardVehicleRegistration(jsonFData);
 
             return res;
+        }
+
+        public static async Task<int> WriteKadastrInfo(byte[] contentData, string encKey)
+        {
+            if (iCard == null)
+                iCard = new CardNative();
+
+            if (contentData.Length == 0)
+            {
+                return -2;
+            }
+
+            var res = await Save2CardKadastrRegistration(contentData, encKey);
+
+            return res;
+        }
+
+        private static Task<int> Save2CardKadastrRegistration(byte[] contentData, string encKey)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                int result = 0;
+
+                    var butes = Encoding.ASCII.GetBytes(encKey);
+
+                    var hexMRZ = ByteArrayToString(butes);
+
+                    var kenc = BAC_Calculate.calculateKENC(butes); //Encoding.ASCII.GetBytes("123456")
+
+                    var kMac = BAC_Calculate.calculateKMAC(butes); //Encoding.ASCII.GetBytes("123456")
+
+                    List<byte> kencLL = new List<byte>();
+                    kencLL.Add(0x83); kencLL.Add(0x02); kencLL.Add(0x20); kencLL.Add(0x01); kencLL.Add(0x8F);
+                    kencLL.Add(0x10); kencLL.AddRange(kenc);
+
+                    List<byte> kMacLL = new List<byte>();
+                    kMacLL.Add(0x83); kMacLL.Add(0x02); kMacLL.Add(0x20); kMacLL.Add(0x03); kMacLL.Add(0x8F);
+                    kMacLL.Add(0x10); kMacLL.AddRange(kMac);
+
+                    result = _controller.SaveVL2Card3(contentData, kencLL.ToArray(), kMacLL.ToArray(), butes);
+
+                return result;
+            });
+
+            return resultTask;
         }
 
         private static Task<string> ReadUUid()

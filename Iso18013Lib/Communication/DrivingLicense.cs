@@ -23,8 +23,6 @@ namespace Iso18013Lib
             _Json = Json;
 
             //DrivingLicenseExample DL = ParseInputRequest(Json);
-
-            
         }
 
         public int ParseInputJson()
@@ -145,9 +143,24 @@ namespace Iso18013Lib
 
             TotalList.AddRange(DemografList);
             TotalList.AddRange(RowsAll);
-            
-            TotalList.Insert(0, (byte)TotalList.Count);
-            TotalList.Insert(0, 0x81);
+
+            if (TotalList.Count < 128)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+            }
+            else if (TotalList.Count > 127 && TotalList.Count < 256)
+            {
+                TotalList.Insert(0, (byte)TotalList.Count);
+                TotalList.Insert(0, 0x81);
+
+            }
+            else if ((TotalList.Count > 255 && TotalList.Count < 65536))
+            {
+                TotalList.InsertRange(0, Int2ByteArray(TotalList.Count));
+            }
+
+            //TotalList.Insert(0, (byte)TotalList.Count);
+            //TotalList.Insert(0, 0x81);
             TotalList.Insert(0, 0x61);
 
 
@@ -698,7 +711,7 @@ namespace Iso18013Lib
         /// <returns></returns>
         public byte[] GetDG2x()
         {
-            string _residencePlace = string.Format("{0};{1};{2};{3};{4};{5}", _DL._driver._address._address, _DL._driver._address._address, _DL._driver._address._region_name, _DL._driver._address._rayon_name, "1000", "UZB");
+            string _residencePlace = string.Format("{0};{1};{2};{3};{4};{5}", _DL._driver._address._address, "", _DL._driver._address._region_name, _DL._driver._address._rayon_name, "1000", "UZB");
 
             string PlaceofBirth = string.Format("{0};{1};{2}", _DL._driver._region_name_birth.Length > 15 ? _DL._driver._region_name_birth.Substring(0, 15) 
                 : _DL._driver._region_name_birth, _DL._driver._pinfl.Length > 14 ? _DL._driver._pinfl.Substring(0, 14): _DL._driver._pinfl, "UZB");
@@ -1517,22 +1530,43 @@ namespace Iso18013Lib
         {
             string Hex2Str = ByteArrayToString(DG1);
 
+            int n = 0, m = 0, k = 0;
+
+            if (Hex2Str.Substring(2, 2).Equals("81"))
+            {
+                n = 6;
+                m = 7;
+                k = 8;
+            }
+            else if (Hex2Str.Substring(2, 2).Equals("82"))
+            {
+                n = 7;
+                m = 8;
+                k = 9;
+            }
+            else
+            {
+                n = 5;
+                m = 6;
+                k = 7;
+            }
+
             byte[] demografLenth = new byte[4];
 
-            demografLenth[0] = DG1[6]; //6 in Correct mode
+            demografLenth[0] = DG1[n]; //6 in Correct mode
 
             int idemografLenth = BitConverter.ToInt32(demografLenth, 0);
 
             byte[] NameLenth = new byte[4];
 
-            NameLenth[0] = DG1[7]; //7 in Correct mode
+            NameLenth[0] = DG1[m]; //7 in Correct mode
 
 
             int iNameLenth = BitConverter.ToInt32(NameLenth, 0);
 
             byte[] Name = new byte[iNameLenth];
 
-            Array.Copy(DG1, 8, Name, 0, iNameLenth); // 8 in correct mode
+            Array.Copy(DG1, k, Name, 0, iNameLenth); // k in correct mode
 
             string resultLastName = Encoding.UTF8.GetString(Name);
 
@@ -1540,13 +1574,13 @@ namespace Iso18013Lib
 
             byte[] FullNameLength = new byte[4];
 
-            FullNameLength[0] = DG1[8 + iNameLenth];
+            FullNameLength[0] = DG1[k + iNameLenth];
 
             int iFullLenth = BitConverter.ToInt32(FullNameLength, 0);
 
             byte[] FullName = new byte[iFullLenth];
 
-            Array.Copy(DG1, 8 + iNameLenth + 1, FullName, 0, iFullLenth);
+            Array.Copy(DG1, k + iNameLenth + 1, FullName, 0, iFullLenth);
 
             string resultFullName = Encoding.UTF8.GetString(FullName);
 
@@ -1562,7 +1596,7 @@ namespace Iso18013Lib
                 _driverLicense._driver._first_name = splitted[1];
             }
 
-            int currectPos = 8 + iNameLenth + 1 + iFullLenth;
+            int currectPos = k + iNameLenth + 1 + iFullLenth;
 
             byte[] dateOfBirth = new byte[4];
 
@@ -1699,22 +1733,43 @@ namespace Iso18013Lib
         {
             string Hex2Str = ByteArrayToString(DG1);
 
+            int n = 0, m = 0, k = 0; 
+
+            if (Hex2Str.Substring(2, 2).Equals("81"))
+            {
+                n = 6;
+                m = 7;
+                k = 8;
+            }
+            else if (Hex2Str.Substring(2, 2).Equals("82"))
+            {
+                n = 7;
+                m = 8;
+                k = 9;
+            }
+            else
+            {
+                n = 5;
+                m = 6;
+                k = 7;
+            }
+
             byte[] demografLenth = new byte[4];
 
-            demografLenth[0] = DG1[6]; //6 in Correct mode
+            demografLenth[0] = DG1[n]; //6 in Correct mode
 
             int idemografLenth = BitConverter.ToInt32(demografLenth, 0);
 
             byte[] NameLenth = new byte[4];
 
-            NameLenth[0] = DG1[7]; //7 in Correct mode
+            NameLenth[0] = DG1[m]; //7 in Correct mode
 
 
             int iNameLenth = BitConverter.ToInt32(NameLenth, 0);
 
             byte[] Name = new byte[iNameLenth];
 
-            Array.Copy(DG1, 8, Name, 0, iNameLenth); // 8 in correct mode
+            Array.Copy(DG1, k, Name, 0, iNameLenth); // k in correct mode
 
             string resultLastName = Encoding.UTF8.GetString(Name);
 
@@ -1722,13 +1777,13 @@ namespace Iso18013Lib
 
             byte[] FullNameLength = new byte[4];
 
-            FullNameLength[0] = DG1[8 + iNameLenth];
+            FullNameLength[0] = DG1[k + iNameLenth];
 
             int iFullLenth = BitConverter.ToInt32(FullNameLength, 0);
 
             byte[] FullName = new byte[iFullLenth];
 
-            Array.Copy(DG1, 8 + iNameLenth + 1, FullName, 0, iFullLenth);
+            Array.Copy(DG1, k + iNameLenth + 1, FullName, 0, iFullLenth);
 
             string resultFullName = Encoding.UTF8.GetString(FullName);
 
@@ -1744,7 +1799,7 @@ namespace Iso18013Lib
                 _driverLicense._driver._first_name = splitted[1];
             }
 
-            int currectPos = 8 + iNameLenth + 1 + iFullLenth;
+            int currectPos = k + iNameLenth + 1 + iFullLenth;
 
             byte[] dateOfBirth = new byte[4];
 
@@ -1918,9 +1973,11 @@ namespace Iso18013Lib
 
             _driverLicense._driver._address._address = splittedRes[0];
 
-            _driverLicense._driver._address._region_name = splittedRes[2];
+            if (splittedRes.Count() > 1)
+                _driverLicense._driver._address._region_name = splittedRes[2];
 
-            _driverLicense._driver._address._rayon_name = splittedRes[3];
+            if (splittedRes.Count() > 2)
+                _driverLicense._driver._address._rayon_name = splittedRes[3];
 
 
         }

@@ -11,11 +11,19 @@ namespace Card_Reset_Tool
 {
     class Program
     {
+        public static bool isOldCard = false;
+
         static void Main(string[] args)
         {
             try
             {
                 var loginAndPasw = ConfigurationManager.AppSettings["LoginPswd"];
+                //changed 22.11.2018
+                if (isOldCard)
+                {
+                    loginAndPasw = string.Empty;
+                }
+                //end changed
 
                 if (!string.IsNullOrEmpty(loginAndPasw))
                 {
@@ -36,8 +44,17 @@ namespace Card_Reset_Tool
                 SecureMessaging sc = new SecureMessaging();
 
                 var CardNUmber = sc.ReadCardNumber();
+                //changed 22.11.2018
+                if (isOldCard)
+                {
+                    sc.InstallAppletV3();
 
-                var KeyValue = ServerApiController.GetKey(CardNUmber);
+                    Console.ReadKey();
+
+                    return;
+                }
+                //end changed
+                    var KeyValue = ServerApiController.GetKey(CardNUmber);
 
                 if (!string.IsNullOrEmpty(KeyValue._data._message))
                 {

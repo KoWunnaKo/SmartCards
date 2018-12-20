@@ -1,0 +1,4 @@
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLib\bin\Release\Kadastr.CoreLib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLib\bin\Release\Kadastr.CoreLib.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLib\obj\Release\Kadastr.CoreLib.dll
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Kadastr.CoreLib\obj\Release\Kadastr.CoreLib.pdb

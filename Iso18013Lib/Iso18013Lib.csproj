@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Communication\DrivingLicense.cs" />
+    <Compile Include="Communication\DXX_DataTransformer.cs" />
     <Compile Include="DGs\DataGroup.cs" />
     <Compile Include="DGs\DG1File.cs" />
     <Compile Include="DGs\DriverDemographicInfo.cs" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Communication\CreateDriverLicense.json" />
+    <None Include="Communication\Dxx_Create.json" />
     <None Include="Communication\VehicleRegistration.json" />
     <None Include="Communication\VehicleRegistrationPrivate.json" />
   </ItemGroup>

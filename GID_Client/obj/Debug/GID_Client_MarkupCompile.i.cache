@@ -16,5 +16,5 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\GID_Client\App.xaml
 40284641957
 MainWindow.xaml;MondatoryWindow.xaml;Views\CertificateMngView.xaml;Views\IDL_View.xaml;Views\InitCardView.xaml;Views\LoginWindow.xaml;Views\TexPasportView.xaml;Views\VoditelPravaView.xaml;VLDataChecker.xaml;
 
-False
+True
 

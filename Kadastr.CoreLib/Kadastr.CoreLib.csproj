@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{367B5591-3AAA-4932-8E7B-BCD1234D281F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kadastr.CoreLib</RootNamespace>
+    <AssemblyName>Kadastr.CoreLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\ApiInfoAttribute.cs" />
+    <Compile Include="KadastrApi\IKadastrApi.cs" />
+    <Compile Include="KadastrApi\Kadastr2MetaDataMapper.cs" />
+    <Compile Include="MetaDataProcessors\IMetaDataProcessor.cs" />
+    <Compile Include="KadastrApi\InputKadastrInfo.cs" />
+    <Compile Include="MetaDataProcessors\MetaDataCollection.cs" />
+    <Compile Include="MetaDataProcessors\MetaDataProcessorV1.cs" />
+    <Compile Include="Parsers\Utils.cs" />
+    <Compile Include="PrinterService\InputPrinterInfo.cs" />
+    <Compile Include="Parsers\IParser.cs" />
+    <Compile Include="PrinterService\IPrinterService.cs" />
+    <Compile Include="Readers\IReader.cs" />
+    <Compile Include="KadastrApi\KadastrApiV1.cs" />
+    <Compile Include="MetaDataProcessors\MetaDataContainer.cs" />
+    <Compile Include="KadastrApi\MockDataProvider.cs" />
+    <Compile Include="KadastrApi\OutputKadastrInfo.cs" />
+    <Compile Include="Parsers\ParseDataV1.cs" />
+    <Compile Include="PrinterService\PrintServiceV1.cs" />
+    <Compile Include="Controllers\ProcessControllerBase.cs" />
+    <Compile Include="Controllers\ProcessControllerV1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\ReadDataV1.cs" />
+    <Compile Include="Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MetaDataProcessors\MetaData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GID_CardApi\GID_CardApi.csproj">
+      <Project>{b982acf6-f7b6-4bec-85ac-67a8f67e6f7a}</Project>
+      <Name>GID_CardApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartCardApi\SmartCardApi.csproj">
+      <Project>{3dfc395e-be42-423a-89b0-7a6eb8f18fbe}</Project>
+      <Name>SmartCardApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

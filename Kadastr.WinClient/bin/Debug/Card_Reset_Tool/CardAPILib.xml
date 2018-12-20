@@ -1,0 +1,1170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CardAPILib</name>
+    </assembly>
+    <members>
+        <member name="T:CardAPILib.CardAPI.CardApiController">
+            <summary>
+            Class to Realize Card Operations for SmartCard UzInfocom Library
+            </summary>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.#ctor(System.Boolean)">
+            <summary>
+            Constructor of CardApiController Class
+            </summary>
+            <param name="isConnct">Allow Create Class with opened or not opened connection</param>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.#ctor(GemCard.CardNative,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="card"></param>
+            <param name="isConnct"></param>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.getUUId(System.String@)">
+            <summary>
+            This command queries the smart card for the 20 byte UUID which is derived by using SHA256 to derive a 32 byte hash from the RSA Public
+            Modulus of the card and then extracting the first 20 bytes of the hashed result as the UUID for the smart card. 
+            </summary>
+            <param name="uuid">Out parametr Returns UUID</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.getPubKeyModule(System.String@)">
+            <summary>
+             This command allows the reading of the RSA Public Key Modulus from the card. 
+             No login is required for issuing this command. The RSA Public Key Exponent will always be fixed to 0x010001. 
+            </summary>
+            <param name="module">Out Parametr Returns Module of Public Key</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.userPinCodeLogin(System.String)">
+            <summary>
+            This command is to be issued by the card’s user to login to the smart card before being capable of performing the RSA signature operation and the changing of user’s PIN operation. 
+            Userlogin PIN have a maximum retry of 3 retries before the User PIN becomes blocked. 
+            </summary>
+            <param name="pinCode">Input parametr PIN Code</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.adminPukCodeLogin(System.String)">
+            <summary>
+             This command is to be issued by the card’s administrator to login to the smart card before being capable of performing card administrative operations for resetting and unblocking the User PIN, uploading of card certificate and changing the administrator’s own Admin PIN.
+             Administrative login PIN have a maximum retry of 3 retries before the Admin PIN becomes blocked. 
+            </summary>
+            <param name="pukCode">Input parametr PUK code of Admin</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.userChangePin(System.String)">
+            <summary>
+            This command is for a user to issue for the changing of the User PIN. 
+            The user must already be logged in to proceed to issue this command to change User PIN. 
+            </summary>
+            <param name="newPinCode">Input Parametr New PIN code</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.adminChangePuk(System.String)">
+            <summary>
+            This command is for am administrator to issue for the changing of the PUK. 
+            The administrator must already be logged in to proceed to issue this command to change the PUK 
+            </summary>
+            <param name="newPukCode">Input Parametr New PUK code</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.adminRestoreUserPin">
+            <summary>
+            This command is for the administrator to reset and unblock the User PIN to the default User PIN (123456). 
+            The administrator must already be logged in to proceed to issue this command. 
+            </summary>
+            <param name="newPinCode">Input Parametr New PIN code</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.signToken(System.String,System.String@)">
+            <summary>
+            This command allows the card user to create an RSA digital signature by feeding a 64 byte SHA-512 hash. 
+            The card user must already be logged in to proceed the creation of RSA signature. 
+            </summary>
+            <param name="token">Input parametr Token to sign</param>
+            <param name="signedToken">Out parametr Signed Token</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.LoadCert(System.String@)">
+            <summary>
+            This command allows the traversing and reading of the storage area containing the CA Signed Certificate without the need to login. 
+            The minimum and maximum range of bytes (in 2 byte ‘short’ representation) are fed into the command to allow traversing and read of data stored under the condition that the length of data to be read out should not exceed 256 bytes.
+            </summary>
+            <param name="certificate">Out Parametr return certificate</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiController.WriteCert(System.String)">
+            <summary>
+             This command allows the upload of a CA Signed Certificate. The new CA Signed Certificate will overwrite any old CA Signed Certificate existing in the storage space. 
+             This command requires an administrator to be logged in to proceed to issue this command. 
+            </summary>
+            <param name="certificate">Input parametr certificate to write</param>
+            <returns>Status of Operation 0 - Success</returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.getUUId(System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="uuid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.getPubKeyModule(System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="module"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.userPinCodeLogin(System.String)">
+            <summary>
+            6 charakters , default 123456
+            </summary>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.adminPukCodeLogin(System.String)">
+            <summary>
+            default 12345678
+            </summary>
+            <param name="pinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.userChangePin(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="newPinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.adminChangePuk(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="newPukCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.adminRestoreUserPin">
+            <summary>
+            
+            </summary>
+            <param name="newPinCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.signToken(System.String,System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="signedToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.LoadCert(System.String@)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.WriteCert(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCardDR">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.OpenCardVR">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.CardAPI.CardApiInterface.SaveCertificateCardPKI">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.PerformTransmitAPDUGen(ModWinsCard.APDURec@,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="apdu"></param>
+            <param name="resvLen"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.SelectFile">
+            <summary>
+             This command allows the selecting of the SC-PKI applet 
+             which must be executed before issuing other APDU commands. 
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.getUUID">
+            <summary>
+            This command queries the smart card for the 20 byte UUID which is derived by 
+            using SHA256 to derive a 32 byte hash from the RSA Public Modulus of the card 
+            and then extracting the first 20 bytes of the hashed result as the UUID for the smart card. 
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.userLogin(System.Byte[])">
+            <summary>
+            This command is to be issued by the card’s user to login to the smart card before being capable of 
+            performing the RSA signature operation and the changing of user’s PIN operation. Userlogin 
+            PIN have a maximum retry of 3 retries before the User PIN becomes blocked. 
+            </summary>
+            <param name="pinCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.adminLogin(System.Byte[])">
+            <summary>
+            This command is to be issued by the card’s administrator to login to the smart card before 
+            being capable of performing card administrative operations for resetting and unblocking the User PIN, 
+            uploading of card certificate and changing the administrator’s own Admin PIN. Administrative login 
+            PIN have a maximum retry of 3 retries before the Admin PIN becomes blocked.
+            </summary>
+            <param name="pukCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.userChangePin(System.Byte[])">
+            <summary>
+            This command is for a user to issue for the changing of the User PIN. 
+            The user must already be logged in to proceed to issue this command to change User PIN. 
+            </summary>
+            <param name="newPinCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.adminChangePuk(System.Byte[])">
+            <summary>
+            This command is for am administrator to issue for the changing of the PUK. 
+            The administrator must already be logged in to proceed to issue this command to change the PUK 
+            </summary>
+            <param name="newPinCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.adminResetUserPin">
+            <summary>
+            This command is for the administrator to reset and unblock the User PIN to the default User PIN (123456). 
+            The administrator must already be logged in to proceed to issue this command.
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.readPublicKeyModulus">
+            <summary>
+             This command allows the reading of the RSA Public Key Modulus from the card. 
+             No login is required for issuing this command. 
+             The RSA Public Key Exponent will always be fixed to 0x010001. 
+             256 byte RSA Public Key Modulus
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.signToken(System.Byte[])">
+            <summary>
+            This command allows the card user to create an RSA digital signature by feeding a 64 byte SHA-512 hash. 
+            The card user must already be logged in to proceed the creation of RSA signature. 
+            256 byte RSA digital signature
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.uploadCA(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.uploadCAPart(System.Byte[])">
+            <summary>
+            This command allows the upload of a CA Signed Certificate. 
+            The new CA Signed Certificate will overwrite any old CA Signed Certificate existing in the storage space. 
+            This command requires an administrator to be logged in to proceed to issue this command. 
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.finalizeCA(System.Byte[])">
+            <summary>
+             This commands is issued to finalize the CA Signed Certificate upload. 
+             Once this command has been issued with a proper response (90 00), a certificate is now present in the system for reading. 
+             This command requires an administrator to be logged in to proceed to issue this command. 
+             Administrator may upload the final data fragment (less than 256 bytes) for the CA Signed 
+             Certificate or also choose to upload all data fragments using the ‘Upload CA Signed Certificate’ 
+             command and not have any remaining data fragments to be uploaded. 
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.readCA(System.Byte[]@)">
+            <summary>
+            This command allows the enquiry of the size of the stored CA Signed Certificate without needing login. 
+            The size of the stored CA Signed Certificate will be returned in 2 bytes representing a ‘short’ data type. 
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiAPDUMessages.readCASize(System.Int32@)">
+            <summary>
+            This command allows the traversing and reading of the storage area containing the CA Signed Certificate without the need to login. 
+            The minimum and maximum range of bytes (in 2 byte ‘short’ representation) are fed into the command to allow traversing and read 
+            of data stored under the condition that the length of data to be read out should not exceed 256 bytes. 
+            </summary>
+            <param name="CAsize"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.userLogin(System.Byte[])">
+            <summary>
+            This command is to be issued by the card’s user to login to the smart card before being capable of 
+            performing the RSA signature operation and the changing of user’s PIN operation. Userlogin 
+            PIN have a maximum retry of 3 retries before the User PIN becomes blocked. 
+            </summary>
+            <param name="pinCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.adminLogin(System.Byte[])">
+            <summary>
+            This command is to be issued by the card’s administrator to login to the smart card before 
+            being capable of performing card administrative operations for resetting and unblocking the User PIN, 
+            uploading of card certificate and changing the administrator’s own Admin PIN. Administrative login 
+            PIN have a maximum retry of 3 retries before the Admin PIN becomes blocked.
+            </summary>
+            <param name="pukCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.userChangePin(System.Byte[])">
+            <summary>
+            This command is for a user to issue for the changing of the User PIN. 
+            The user must already be logged in to proceed to issue this command to change User PIN. 
+            </summary>
+            <param name="newPinCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.adminChangePuk(System.Byte[])">
+            <summary>
+            This command is for am administrator to issue for the changing of the PUK. 
+            The administrator must already be logged in to proceed to issue this command to change the PUK 
+            </summary>
+            <param name="newPinCode"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.adminResetUserPin">
+            <summary>
+            This command is for the administrator to reset and unblock the User PIN to the default User PIN (123456). 
+            The administrator must already be logged in to proceed to issue this command.
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.readPublicKeyModulus">
+            <summary>
+             This command allows the reading of the RSA Public Key Modulus from the card. 
+             No login is required for issuing this command. 
+             The RSA Public Key Exponent will always be fixed to 0x010001. 
+             256 byte RSA Public Key Modulus
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.signToken(System.Byte[])">
+            <summary>
+            This command allows the card user to create an RSA digital signature by feeding a 64 byte SHA-512 hash. 
+            The card user must already be logged in to proceed the creation of RSA signature. 
+            256 byte RSA digital signature
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.uploadCA(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.uploadCAPart(System.Byte[])">
+            <summary>
+            This command allows the upload of a CA Signed Certificate. 
+            The new CA Signed Certificate will overwrite any old CA Signed Certificate existing in the storage space. 
+            This command requires an administrator to be logged in to proceed to issue this command. 
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.finalizeCA(System.Byte[])">
+            <summary>
+             This commands is issued to finalize the CA Signed Certificate upload. 
+             Once this command has been issued with a proper response (90 00), a certificate is now present in the system for reading. 
+             This command requires an administrator to be logged in to proceed to issue this command. 
+             Administrator may upload the final data fragment (less than 256 bytes) for the CA Signed 
+             Certificate or also choose to upload all data fragments using the ‘Upload CA Signed Certificate’ 
+             command and not have any remaining data fragments to be uploaded. 
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.readCA(System.Byte[]@)">
+            <summary>
+            This command allows the enquiry of the size of the stored CA Signed Certificate without needing login. 
+            The size of the stored CA Signed Certificate will be returned in 2 bytes representing a ‘short’ data type. 
+            </summary>
+            <param name="CA"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.readCASize(System.Int32@)">
+            <summary>
+            This command allows the traversing and reading of the storage area containing the CA Signed Certificate without the need to login. 
+            The minimum and maximum range of bytes (in 2 byte ‘short’ representation) are fed into the command to allow traversing and read 
+            of data stored under the condition that the length of data to be read out should not exceed 256 bytes. 
+            </summary>
+            <param name="CAsize"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.OpenCardCommands(CardAPILib.InterfaceCL.CardFactoryMode)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveCertificate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="certificate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card2(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card3(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card4(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card5(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveIDL2Card6(System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveVL2Card3(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <param name="Kenc"></param>
+            <param name="Kmac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.SaveeVr2Card(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="DG1"></param>
+            <param name="DG2"></param>
+            <param name="DG3"></param>
+            <param name="DG4"></param>
+            <param name="DG5"></param>
+            <param name="DGCommon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommand(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandLe(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[],System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <param name="_recieveLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandLeData(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[],System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <param name="_recieveLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandLeImageData(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[],System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <param name="_recieveLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.CallApduCommandImage(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="Cla"></param>
+            <param name="Ins"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadIDLCard(System.Byte[]@,System.Byte[]@,System.Byte[]@,System.Byte[]@,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadVRCard(System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="VrBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadVRCardNext(System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="VrBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.CardApiMessages.ReadUniqueId(System.Byte[]@)">
+            <summary>
+            
+            </summary>
+            <param name="uuid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.ExternalAuthentificate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CardAPILib.InterfaceCL.ExternalAuthentificate.LastOperationStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.#ctor(GemCard.CardNative)">
+            <summary>
+            
+            </summary>
+            <param name="card"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.ExternalAuth">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.ExternalAuthentificate.ExternalAuth(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.CardFactoryMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.BAC_CalculateTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CardAPILib.InterfaceCL.BAC_CalculateTest.PARITY">
+            
+                     * Constants that help in determining whether or not a byte array is parity
+            
+                     * adjusted.
+            
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.BAC_CalculateTest.CalcBAC_Res(System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="_rndIcc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.BAC_Calculate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CardAPILib.InterfaceCL.BAC_Calculate.PARITY">
+            
+                     * Constants that help in determining whether or not a byte array is parity
+            
+                     * adjusted.
+            
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.BAC_Calculate.CalcBAC_Res(System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="_rndIcc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.BAC_Calculate.calculateKENC(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CardAPILib.InterfaceCL.SecureMessaging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV3(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="KeyValue"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.InstallAppletV4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannelV1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.EstablishSecureChannelV2(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+        </member>
+        <member name="M:CardAPILib.InterfaceCL.SecureMessaging.CheckValidityOfKey(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="mrzInfo"></param>
+        </member>
+        <member name="P:Advanced_Device_Programming.Apdu.instructionClass">
+            <summary>
+            The T=0 instruction class.
+            </summary>
+        </member>
+        <member name="P:Advanced_Device_Programming.Apdu.instructionCode">
+            <summary>
+            An instruction code in the T=0 instruction class.
+            </summary>        
+        </member>
+        <member name="P:Advanced_Device_Programming.Apdu.parameter1">
+            <summary>
+            Reference codes that complete the instruction code.
+            </summary>
+        </member>
+        <member name="P:Advanced_Device_Programming.Apdu.parameter2">
+            <summary>
+            Reference codes that complete the instruction code.
+            </summary>
+        </member>
+        <member name="P:Advanced_Device_Programming.Apdu.parameter3">
+            <summary>
+            The number of data bytes to be transmitted during the command, per ISO 7816-4, Section 8.2.1.
+            </summary>
+        </member>
+        <member name="P:Advanced_Device_Programming.Apdu.lengthExpected">
+            <summary>
+            Length of data expected from the card
+            </summary>
+        </member>
+        <member name="T:Advanced_Device_Programming.PcscProvider.SCARD_IO_REQUEST">
+            <summary>
+            The SCARD_IO_REQUEST structure begins a protocol control information structure. Any protocol-specific information then immediately follows this structure. The entire length of the structure must be aligned with the underlying hardware architecture word size. For example, in Win32 the length of any PCI information must be a multiple of four bytes so that it aligns on a 32-bit boundary.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_IO_REQUEST.dwProtocol">
+            <summary>
+            Protocol in use. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_IO_REQUEST.cbPciLength">
+            <summary>
+            Length, in bytes, of the SCARD_IO_REQUEST structure plus any following PCI-specific information.
+            </summary>
+        </member>
+        <member name="T:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE">
+            <summary>
+            The SCARD_READERSTATE structure is used by functions for tracking smart cards within readers.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE.szReader">
+            <summary>
+            Pointer to the name of the reader being monitored.
+            </summary>           
+            
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE.pvUserData">
+            <summary>
+            Not used by the smart card subsystem. This member is used by the application.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE.dwCurrentState">
+            <summary>
+            Current state of the reader, as seen by the application. This field can take on any of the following values, in combination, as a bit mask. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE.dwEventState">
+            <summary>
+            Current state of the reader, as known by the smart card resource manager. This field can take on any of the following values, in combination, as a bit mask. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE.cbAtr">
+            <summary>
+            Number of bytes in the returned ATR. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE.rgbAtr">
+            <summary>
+            ATR of the inserted card, with extra alignment bytes. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SCOPE_USER">
+            <summary>
+            The context is a user context, and any database operations 
+            are performed within the domain of the user.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SCOPE_TERMINAL">
+            <summary>
+            The context is that of the current terminal, and any database 
+            operations are performed within the domain of that terminal.  
+            (The calling application must have appropriate access permissions 
+            for any database actions.)
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SCOPE_SYSTEM">
+            <summary>
+            The context is the system context, and any database operations 
+            are performed within the domain of the system.  (The calling
+            application must have appropriate access permissions for any 
+            database actions.)
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_UNAWARE">
+            <summary>
+            The application is unaware of the current state, and would like 
+            to know. The use of this value results in an immediate return
+            from state transition monitoring services. This is represented
+            by all bits set to zero.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_IGNORE">
+            <summary>
+            The application requested that this reader be ignored. No other
+            bits will be set.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_CHANGED">
+            <summary>
+            This implies that there is a difference between the state 
+            believed by the application, and the state known by the Service
+            Manager.When this bit is set, the application may assume a
+            significant state change has occurred on this reader.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_UNKNOWN">
+            <summary>
+            This implies that the given reader name is not recognized by
+            the Service Manager. If this bit is set, then SCARD_STATE_CHANGED
+            and SCARD_STATE_IGNORE will also be set.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_UNAVAILABLE">
+            <summary>
+            This implies that the actual state of this reader is not
+            available. If this bit is set, then all the following bits are
+            clear.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_EMPTY">
+            <summary>
+            This implies that there is not card in the reader.  If this bit
+            is set, all the following bits will be clear.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_PRESENT">
+            <summary>
+            This implies that there is a card in the reader. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_ATRMATCH">
+            <summary>
+            This implies that there is a card in the reader with an ATR
+            matching one of the target cards. If this bit is set,
+            SCARD_STATE_PRESENT will also be set.  This bit is only returned
+            on the SCardLocateCard() service.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_EXCLUSIVE">
+            <summary>
+            This implies that the card in the reader is allocated for 
+            exclusive use by another application. If this bit is set,
+            SCARD_STATE_PRESENT will also be set.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_INUSE">
+            <summary>
+            This implies that the card in the reader is in use by one or 
+            more other applications, but may be connected to in shared mode. 
+            If this bit is set, SCARD_STATE_PRESENT will also be set.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_MUTE">
+            <summary>
+            This implies that the card in the reader is unresponsive or not
+            supported by the reader or software.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_STATE_UNPOWERED">
+            <summary>
+            This implies that the card in the reader has not been powered up. 
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SHARE_EXCLUSIVE">
+            <summary>
+            This application is not willing to share this card with other 
+            applications.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SHARE_SHARED">
+            <summary>
+            This application is willing to share this card with other 
+            applications.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SHARE_DIRECT">
+            <summary>
+            This application demands direct control of the reader, so it 
+            is not available to other applications.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_LEAVE_CARD">
+            <summary>
+            Don't do anything special on close
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_RESET_CARD">
+            <summary>
+            Reset the card on close
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_UNPOWER_CARD">
+            <summary>
+            Power down the card on close
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_EJECT_CARD">
+            <summary>
+            Eject the card on close
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_PROTOCOL_UNDEFINED">
+            <summary>
+            There is no active protocol.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_PROTOCOL_T0">
+            <summary>
+            T=0 is the active protocol.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_PROTOCOL_T1">
+            <summary>
+            T=1 is the active protocol.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_PROTOCOL_RAW">
+            <summary>
+            Raw is the active protocol.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_UNKNOWN">
+            <summary>
+            This value implies the driver is unaware of the current 
+            state of the reader.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_ABSENT">
+            <summary>
+            This value implies there is no card in the reader.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_PRESENT">
+            <summary>
+            This value implies there is a card is present in the reader, 
+            but that it has not been moved into position for use.        
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SWALLOWED">
+            <summary>
+            This value implies there is a card in the reader in position 
+            for use.  The card is not powered.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_POWERED">
+            <summary>
+            This value implies there is power is being provided to the card, 
+            but the Reader Driver is unaware of the mode of the card.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_NEGOTIABLE">
+            <summary>
+            This value implies the card has been reset and is awaiting 
+            PTS negotiation.
+            </summary>
+        </member>
+        <member name="F:Advanced_Device_Programming.PcscProvider.SCARD_SPECIFIC">
+            <summary>
+            This value implies the card has been reset and specific 
+            communication protocols have been established.
+            </summary>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardEstablishContext(System.Int32,System.Int32,System.Int32,System.IntPtr@)">
+            <summary>
+            The SCardEstablishContext function establishes the resource manager context (the scope) within which database operations are performed.
+            </summary>
+            <param name="dwScope">[in] Scope of the resource manager context. This parameter can be one of the following values.</param>
+            <param name="pvReserved1">[in] Reserved for future use and must be NULL. This parameter will allow a suitably privileged management application to act on behalf of another user.</param>
+            <param name="pvReserved2">[in] Reserved for future use and must be NULL. </param>
+            <param name="phContext">[out] Handle to the established resource manager context. This handle can now be supplied to other functions attempting to do work within this context.</param>
+            <returns></returns>       
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardReleaseContext(System.IntPtr)">
+            <summary>
+            The SCardReleaseContext function closes an established resource manager context, freeing any resources allocated under that context, including SCARDHANDLE objects and memory allocated using the SCARD_AUTOALLOCATE length designator.
+            </summary>
+            <param name="phContext">[in] Handle that identifies the resource manager context. The resource manager context is set by a previous call to SCardEstablishContext.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardConnect(System.IntPtr,System.String,System.Int32,System.Int32,System.IntPtr@,System.Int32@)">
+            <summary>
+            The SCardConnect function establishes a connection (using a specific resource manager context) between the calling application and a smart card contained by a specific reader. If no card exists in the specified reader, an error is returned.
+            </summary>
+            <param name="hContext">[in] A handle that identifies the resource manager context. The resource manager context is set by a previous call to SCardEstablishContext.</param>
+            <param name="szReaderName">[in] The name of the reader that contains the target card. </param>
+            <param name="dwShareMode">[in] A flag that indicates whether other applications may form connections to the card.</param>
+            <param name="dwPrefProtocol">[in] A bit mask of acceptable protocols for the connection. Possible values may be combined with the OR operation.</param>
+            <param name="phCard">[out] A handle that identifies the connection to the smart card in the designated reader. </param>
+            <param name="activeProtocol">[out] A flag that indicates the established active protocol.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardBeginTransaction(System.IntPtr)">
+            <summary>
+            The SCardBeginTransaction function starts a transaction, waiting for the completion of all other transactions before it begins.
+            When the transaction starts, all other applications are blocked from accessing the smart card while the transaction is in progress.
+            </summary>
+            <param name="hCard">[in] Reference value obtained from a previous call to SCardConnect.</param>
+            <returns>This function returns different values depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardDisconnect(System.IntPtr,System.Int32)">
+            <summary>
+            The SCardDisconnect function terminates a connection previously opened between the calling application and a smart card in the target reader.
+            </summary>
+            <param name="hCard">[in] Reference value obtained from a previous call to SCardConnect. </param>
+            <param name="Disposition">[in] Action to take on the card in the connected reader on close. </param>
+            <returns>This function returns different values depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardListReaderGroups(System.IntPtr,System.String@,System.Int32@)">
+            <summary>
+            The SCardListReaderGroups function provides the list of reader groups that have previously been introduced to the system.
+            </summary>
+            <param name="hContext">[in] Handle that identifies the resource manager context for the query. The resource manager context can be set by a previous call to SCardEstablishContext. This parameter cannot be NULL.</param>
+            <param name="mzGroups">[out] Multi-string that lists the reader groups defined to the system and available to the current user on the current terminal. If this value is NULL, SCardListReaderGroups ignores the buffer length supplied in pcchGroups, writes the length of the buffer that would have been returned if this parameter had not been NULL to pcchGroups, and returns a success code.</param>
+            <param name="pcchGroups">[in, out] Length of the mszGroups buffer in characters, and receives the actual length of the multi-string structure, including all trailing null characters. If the buffer length is specified as SCARD_AUTOALLOCATE, then mszGroups is converted to a pointer to a byte pointer, and receives the address of a block of memory containing the multi-string structure. This block of memory must be deallocated with SCardFreeMemory. </param>
+            <returns>This function returns different values depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardListReaders(System.IntPtr,System.Byte[],System.Byte[],System.Int32@)">
+            <summary>
+            The SCardListReaders function provides the list of readers within a set of named reader groups, eliminating duplicates.
+            The caller supplies a list of reader groups, and receives the list of readers within the named groups. Unrecognized group names are ignored.
+            </summary>
+            <param name="hContext">[in] Handle that identifies the resource manager context for the query. The resource manager context can be set by a previous call to SCardEstablishContext. This parameter cannot be NULL.</param>
+            <param name="Groups">[in] Names of the reader groups defined to the system, as a multi-string. Use a NULL value to list all readers in the system (that is, the SCard$AllReaders group). </param>
+            <param name="Readers">[out] Multi-string that lists the card readers within the supplied reader groups. If this value is NULL, SCardListReaders ignores the buffer length supplied in pcchReaders, writes the length of the buffer that would have been returned if this parameter had not been NULL to pcchReaders, and returns a success code.</param>
+            <param name="pcchReaders">[in, out] Length of the mszReaders buffer in characters. This parameter receives the actual length of the multi-string structure, including all trailing null characters. If the buffer length is specified as SCARD_AUTOALLOCATE, then mszReaders is converted to a pointer to a byte pointer, and receives the address of a block of memory containing the multi-string structure. This block of memory must be deallocated with SCardFreeMemory.</param>
+            <returns>This function returns different values depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardStatus(System.IntPtr,System.String,System.Int32@,System.Int32@,System.Int32@,System.Byte[],System.Int32@)">
+            <summary>
+            The SCardStatus function provides the current status of a smart card in a reader. You can call it any time after a successful call to SCardConnect and before a successful call to SCardDisconnect. It does not affect the state of the reader or reader driver.
+            </summary>
+            <param name="hCard">[in] Reference value returned from SCardConnect. </param>
+            <param name="szReaderName">[out] List of friendly names (multiple string) by which the currently connected reader is known. </param>
+            <param name="pcchReaderLen">[in, out] On input, supplies the length of the szReaderName buffer. 
+            On output, receives the actual length (in characters) of the reader name list, including the trailing NULL character. If this buffer length is specified as SCARD_AUTOALLOCATE, then szReaderName is converted to a pointer to a byte pointer, and it receives the address of a block of memory that contains the multiple-string structure.</param>
+            <param name="State">[out] Current state of the smart card in the reader. Upon success, it receives one of the following state indicators.</param>
+            <param name="Protocol">[out] Current protocol, if any. The returned value is meaningful only if the returned value of pdwState is SCARD_SPECIFICMODE.</param>
+            <param name="ATR">[out] Pointer to a 32-byte buffer that receives the ATR string from the currently inserted card, if available.</param>
+            <param name="ATRLen">[in, out] On input, supplies the length of the pbAtr buffer. On output, receives the number of bytes in the ATR string (32 bytes maximum). If this buffer length is specified as SCARD_AUTOALLOCATE, then pbAtr is converted to a pointer to a byte pointer, and it receives the address of a block of memory that contains the multiple-string structure.</param>
+            <returns>If the function successfully provides the current status of a smart card in a reader, the return value is SCARD_S_SUCCESS.
+            If the function fails, it returns an error code. For more information, see Smart Card Return Values.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardGetStatusChange(System.IntPtr,System.Int32,Advanced_Device_Programming.PcscProvider.SCARD_READERSTATE@,System.Int32)">
+            <summary>
+            The SCardGetStatusChange function blocks execution until the current availability of the cards in a specific set of readers changes.
+            </summary>
+            <param name="hContext">A handle that identifies the resource manager context. The resource manager context is set by a previous call to the SCardEstablishContext function.</param>
+            <param name="TimeOut">The maximum amount of time, in milliseconds, to wait for an action. A value of zero causes the function to return immediately. A value of INFINITE causes this function never to time out.</param>
+            <param name="ReaderState">
+            An array of SCARD_READERSTATE structures that specify the readers to watch, and that receives the result.
+            To be notified of the arrival of a new smart card reader, set the szReader member of a SCARD_READERSTATE structure to "\\\\?PnP?\\Notification", and set all of the other members of that structure to zero.
+            Important  Each member of each structure in this array must be initialized to zero and then set to specific values as necessary. If this is not done, the function will fail in situations that involve remote card readers.
+            </param>
+            <param name="ReaderCount">The number of elements in the rgReaderStates array.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardEndTransaction(System.IntPtr,System.Int32)">
+            <summary>
+            The SCardEndTransaction function completes a previously declared transaction, allowing other applications to resume interactions with the card.
+            </summary>
+            <param name="hCard">[in] Reference value obtained from a previous call to SCardConnect. This value would also have been used in an earlier call to SCardBeginTransaction.</param>
+            <param name="Disposition">[in] Action to take on the card in the connected reader on close. </param>
+            <returns>This function returns different values depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardTransmit(System.IntPtr,Advanced_Device_Programming.PcscProvider.SCARD_IO_REQUEST@,System.Byte[],System.Int32,Advanced_Device_Programming.PcscProvider.SCARD_IO_REQUEST@,System.Byte[],System.Int32@)">
+            <summary>
+            The SCardTransmit function sends a service request to the smart card and expects to receive data back from the card.
+            </summary>
+            <param name="hCard">[in] A reference value returned from the SCardConnect function.</param>
+            <param name="pioSendRequest">[in] A pointer to the protocol header structure for the instruction. This buffer is in the format of an SCARD_IO_REQUEST structure, followed by the specific protocol control information (PCI).
+            For the T=0, T=1, and Raw protocols, the PCI structure is constant. The smart card subsystem supplies a global T=0, T=1, or Raw PCI structure, which you can reference by using the symbols SCARD_PCI_T0, SCARD_PCI_T1, and SCARD_PCI_RAW respectively.</param>
+            <param name="SendBuff">[in] A pointer to the actual data to be written to the card. </param>
+            <param name="SendBuffLen">[in] The length, in bytes, of the pbSendBuffer parameter. </param>
+            <param name="pioRecvRequest">[in, out] Pointer to the protocol header structure for the instruction, followed by a buffer in which to receive any returned protocol control information (PCI) specific to the protocol in use. This parameter can be NULL if no PCI is returned. </param>
+            <param name="RecvBuff">[out] Pointer to any data returned from the card. </param>
+            <param name="RecvBuffLen">[in, out] Supplies the length, in bytes, of the pbRecvBuffer parameter and receives the actual number of bytes received from the smart card. This value cannot be SCARD_AUTOALLOCATE because SCardTransmit does not support SCARD_AUTOALLOCATE.</param>
+            <returns>If the function successfully sends a service request to the smart card, the return value is SCARD_S_SUCCESS.
+            If the function fails, it returns an error code. For more information, see Smart Card Return Values.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.SCardControl(System.IntPtr,System.UInt32,System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32@)">
+            <summary>
+            The SCardControl function gives you direct control of the reader. You can call it any time after a successful call to SCardConnect and before a successful call to SCardDisconnect. The effect on the state of the reader depends on the control code.
+            </summary>
+            <param name="hCard">[in] Reference value returned from SCardConnect. </param>
+            <param name="dwControlCode">[in] Control code for the operation. This value identifies the specific operation to be performed.</param>
+            <param name="SendBuff">[in] Pointer to a buffer that contains the data required to perform the operation. This parameter can be NULL if the dwControlCode parameter specifies an operation that does not require input data. </param>
+            <param name="SendBuffLen">[in] Size, in bytes, of the buffer pointed to by lpInBuffer. </param>
+            <param name="RecvBuff">[out] Pointer to a buffer that receives the operation's output data. This parameter can be NULL if the dwControlCode parameter specifies an operation that does not produce output data. </param>
+            <param name="RecvBuffLen">[in] Size, in bytes, of the buffer pointed to by lpOutBuffer. </param>
+            <param name="pcbBytesReturned">[out] Pointer to a DWORD that receives the size, in bytes, of the data stored into the buffer pointed to by lpOutBuffer. </param>
+            <returns>This function returns different values depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.GetScardErrMsg(System.Int64)">
+            <summary>
+            Returns the specific error message
+            </summary>
+            <param name="errCode">The error code</param>
+            <returns></returns>
+        </member>
+        <member name="M:Advanced_Device_Programming.PcscProvider.GetTagType(System.Byte)">
+            <summary>
+            Returns the type of card
+            </summary>
+            <param name="sel_Res"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
