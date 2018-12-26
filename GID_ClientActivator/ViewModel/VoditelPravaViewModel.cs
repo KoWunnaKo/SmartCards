@@ -747,19 +747,31 @@ namespace GID_Client.ViewModel
                 }
 
                 var CardNUmber = sc.ReadCardNumber();
-
-                var KeyValue = ServerApiController.GetKey(CardNUmber);
-
                 string kKeyValue = string.Empty;
 
-                if (!string.IsNullOrEmpty(KeyValue._data._message))
+                try
                 {
-                    kKeyValue = KeyValue._data._message;
+                    var KeyValue = ServerApiController.GetKey(CardNUmber);
+
+                    if (!string.IsNullOrEmpty(KeyValue._data._message))
+                    {
+                        kKeyValue = KeyValue._data._message;
+                    }
+                }
+                catch
+                {
+                    kKeyValue = "404142434445464748494A4B4C4D4E4F";
                 }
 
+                
                 int res= sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
 
-                //int res = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString));
+                if (res != 0)
+                {
+                    //Try to check for new key
+                    kKeyValue = "4557594F4F4D4B554C56494E57454731";
+                    res = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
+                }
 
                 if (res == 0)
                 {
@@ -838,7 +850,7 @@ namespace GID_Client.ViewModel
 
                 return;
             }
-
+            worker = new BackgroundWorker();
             StatusText = "O'qimoqda...";
 
             worker.DoWork += (o, ea) =>

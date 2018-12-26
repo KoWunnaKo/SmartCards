@@ -238,6 +238,8 @@ namespace GID_Client.ViewModel
 
         private void _card_OnCardInserted(string reader)
         {
+            ClearFields();
+
             fReadCard();
         }
 
@@ -300,7 +302,7 @@ namespace GID_Client.ViewModel
 
         private void _card_OnCardRemoved(string reader)
         {
-            ClearFields();
+            //ClearFields();
 
             
 
@@ -432,8 +434,8 @@ namespace GID_Client.ViewModel
         }
 
         private string InputString = string.Empty;
-        private BackgroundWorker worker = new BackgroundWorker();
-        private BackgroundWorker worker2 = new BackgroundWorker();
+        private BackgroundWorker worker { get; set; }
+        //private BackgroundWorker worker2 = new BackgroundWorker();
 
         private string _txbDocNum;
         private string _DpBirthDate;
@@ -665,6 +667,8 @@ namespace GID_Client.ViewModel
 
             StatusText = "O'qimoqda...";
 
+            worker = new BackgroundWorker();
+
             worker.DoWork += (o, ea) =>
             {
                 //no direct interaction with the UI is allowed from this method
@@ -689,6 +693,7 @@ namespace GID_Client.ViewModel
                 //work has completed. you can now interact with the UI
                 IsIntermadiate = false;
                 StopReadingProc = false;
+                //worker.DoWork = null;
             };
             //set the IsBusy before you start the thread
             IsIntermadiate = true;

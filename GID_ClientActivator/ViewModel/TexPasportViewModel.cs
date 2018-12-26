@@ -610,35 +610,45 @@ namespace GID_Client.ViewModel
 
                 var CardNUmber = sc.ReadCardNumber();
 
-                var KeyValue = ServerApiController.GetKey(CardNUmber);
+                //var KeyValue = ServerApiController.GetKey(CardNUmber);
+
+                //string kKeyValue = string.Empty;
+
+                //if (!string.IsNullOrEmpty(KeyValue._data._message))
+                //{
+                //    kKeyValue = KeyValue._data._message;
+                //}
+
+                //int res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
 
                 string kKeyValue = string.Empty;
 
-                if (!string.IsNullOrEmpty(KeyValue._data._message))
+                try
                 {
-                    kKeyValue = KeyValue._data._message;
+                    var KeyValue = ServerApiController.GetKey(CardNUmber);
+
+                    if (!string.IsNullOrEmpty(KeyValue._data._message))
+                    {
+                        kKeyValue = KeyValue._data._message;
+                    }
                 }
+                catch
+                {
+                    kKeyValue = "404142434445464748494A4B4C4D4E4F";
+                }
+
 
                 int res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
 
+                if (res1 != 0)
+                {
+                    //Try to check for new key
+                    kKeyValue = "4557594F4F4D4B554C56494E57454731";
+                    res1 = sc.CheckValidityOfKey(Encoding.UTF8.GetBytes(InputString), kKeyValue);
+                }
+
                 if (res1 == 0)
                 {
-                    //byte[] Vr = null;
-
-                    //SecuredReaderTest dd = new SecuredReaderTest();
-
-                    //Vr = dd.VR_Reader(InputString);
-
-                    //VehicleRegistration vl = new VehicleRegistration("");
-
-                    //var vll = vl.ParseReadMaterial(Vr);
-
-                    //if (!vll._license_number.Equals(mon.ftxbDocNum2))
-                    //{
-                    //    dataCheck = false;
-                    //    break;
-                    //}
-
                     IsIntermadiate = true;
                     StatusText = "Kiritilgan ma'lumot tekshirilmoqda...";
 

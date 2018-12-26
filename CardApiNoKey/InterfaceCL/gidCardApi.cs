@@ -2772,22 +2772,158 @@ namespace CardAPILib.InterfaceCL
         /// <returns></returns>
         public int SaveIDL2Card7(byte[] DG1, byte[] DG2, byte[] DG3, byte[] DG4, byte[] DG5, byte[] DGCommon, byte[] Kenc, byte[] Kmac, byte[] mrzInfo)
         {
-            log.Info("SaveIDL2Card");
+            log.Info("SaveIDL2Card7");
 
             var sc = new SecureMessaging();
+            bool isOldCard = false;
 
             try
             {
                 Connect2Card();
 
-                if (IsAlreadyPrinted())
+                var appConfig = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location);
+                string loginAndPasw = appConfig.AppSettings.Settings["LoginPswd"].Value;
+
+                log.Info(loginAndPasw);
+                //var loginAndPasw = ConfigurationManager.AppSettings["LoginPswd"];
+
+                if (!string.IsNullOrEmpty(loginAndPasw))
                 {
-                    return -999;
+                    string[] log_pas = loginAndPasw.Split(':');
+
+                    if (log_pas.Any())
+                    {
+                        if (log_pas.Length == 2)
+                        {
+                            var reqRes = ServerApiController.LoginReqRes(log_pas[0], log_pas[1]);
+
+                            log.Info(log_pas[0]);
+                            log.Info(log_pas[1]);
+
+                            if (reqRes != null)
+                                ServerApiController.token = reqRes.data.Token;
+                        }
+                    }
                 }
 
-                if (RepairmentOfCard())
+
+                var CardNUmber = sc.ReadCardNumber();
+
+                log.Info("ReadCardNumber");
+                log.Info(CardNUmber);
+                string ISD_Key = string.Empty;
+
+                if (isOldCard)
                 {
-                    return -1;
+                    sc.InstallAppletV3();
+                }
+                else
+                {
+                    log.Info("GetKey");
+                    var KeyValue = ServerApiController.GetKey(CardNUmber);
+
+                    ISD_Key = KeyValue._data._message;
+
+                    log.Info(KeyValue);
+
+                    if (!string.IsNullOrEmpty(ISD_Key))
+                    {
+                        log.Info("Reset");
+                        sc.InstallAppletV3(ISD_Key);
+                    }
+                    else
+                    {
+                        sc.InstallAppletV3();
+                    }
+                }
+
+                //sc.InstallAppletV3();
+
+                log.Info("Begin Print");
+
+                iCard.Disconnect(DISCONNECT.Reset);
+
+                Connect2Card();
+
+                iCard.Disconnect(DISCONNECT.Unpower);
+
+                Connect2Card();
+
+                iCard.Disconnect(DISCONNECT.Eject);
+
+                Connect2Card();
+
+                iCard.Disconnect(DISCONNECT.Leave);
+
+                Connect2Card();
+
+                //SendApdu: ISO7816.SelectFileByDFName
+                if (CallApduCommandLe(0x00, 0xA4, 0x04, 0x00, new byte[07] { 0xA0, 0x00, 0x00, 0x02, 0x48, 0x02, 0x00 }, 28) != 0)
+                {
+                    if (RepaireCardCommands(CardFactoryMode.DrivingLicence) == 0)
+                    {
+                        if (isOldCard)
+                        {
+                            sc.InstallAppletV3();
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(ISD_Key))
+                            {
+                                sc.InstallAppletV3(ISD_Key);
+                            }
+                            else
+                            {
+                                sc.InstallAppletV3();
+                            }
+                        }
+
+                    }
+
+                    iCard.Disconnect(DISCONNECT.Reset);
+
+                    Connect2Card();
+
+                    iCard.Disconnect(DISCONNECT.Unpower);
+
+                    Connect2Card();
+
+                    iCard.Disconnect(DISCONNECT.Eject);
+
+                    Connect2Card();
+
+                    iCard.Disconnect(DISCONNECT.Leave);
+
+                    Connect2Card();
+
+                    if (CallApduCommandLe(0x00, 0xA4, 0x04, 0x00, new byte[07] { 0xA0, 0x00, 0x00, 0x02, 0x48, 0x02, 0x00 }, 28) != 0)
+                    {
+                        if (RepaireCardCommands(CardFactoryMode.DrivingLicence) == 0)
+                        {
+                            sc.InstallAppletV3();
+                        }
+
+                        iCard.Disconnect(DISCONNECT.Reset);
+
+                        Connect2Card();
+
+                        iCard.Disconnect(DISCONNECT.Unpower);
+
+                        Connect2Card();
+
+                        iCard.Disconnect(DISCONNECT.Eject);
+
+                        Connect2Card();
+
+                        iCard.Disconnect(DISCONNECT.Leave);
+
+                        Connect2Card();
+
+                        if (CallApduCommandLe(0x00, 0xA4, 0x04, 0x00, new byte[07] { 0xA0, 0x00, 0x00, 0x02, 0x48, 0x02, 0x00 }, 28) != 0)
+                        {
+                            return -1;
+                        }
+                    }
                 }
 
                 /*

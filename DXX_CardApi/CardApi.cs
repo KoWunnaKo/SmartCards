@@ -60,6 +60,45 @@ namespace DXX_CardApi
             return resultTask;
         }
 
+        private static Task<int> Save2CardDXX_Rewrite(string content)
+        {
+            var resultTask = Task.Factory.StartNew(() =>
+            {
+                int result = 0;
+
+                var dl = new DXX_DataTransformer(content);
+
+                if (dl.ParseInputJson() == 0)
+                {
+                    string encKey = "DXX_Encription_Key";
+
+                    var butes = Encoding.ASCII.GetBytes(encKey.Substring(0, 16));
+
+                    var hexMRZ = ByteArrayToString(butes);
+
+                    var kenc = BAC_Calculate.calculateKENC(butes);
+
+                    var kMac = BAC_Calculate.calculateKMAC(butes);
+
+                    List<byte> kencLL = new List<byte>();
+                    kencLL.Add(0x83); kencLL.Add(0x02); kencLL.Add(0x20); kencLL.Add(0x01); kencLL.Add(0x8F);
+                    kencLL.Add(0x10); kencLL.AddRange(kenc);
+
+                    List<byte> kMacLL = new List<byte>();
+                    kMacLL.Add(0x83); kMacLL.Add(0x02); kMacLL.Add(0x20); kMacLL.Add(0x03); kMacLL.Add(0x8F);
+                    kMacLL.Add(0x10); kMacLL.AddRange(kMac);
+
+                    //First Step 3
+                    result = _controller.SaveIDL2Card7(dl.GetDG1x(), dl.GetDG2x(), dl.GetDG3x(), dl.GetDG4xx(), dl.GetDG5xx(), dl.GetCommon(), kencLL.ToArray(), kMacLL.ToArray(), butes);
+
+                }
+
+                return result;
+            });
+
+            return resultTask;
+        }
+
         private static string ByteArrayToString(byte[] ba)
         {
             string hex = BitConverter.ToString(ba);
@@ -77,6 +116,21 @@ namespace DXX_CardApi
             }
 
             var res = await Save2CardDXX(jsonFData);
+
+            return res;
+        }
+
+        public static async Task<int> ReWriteDXXInfo(string jsonFData)
+        {
+            if (iCard == null)
+                iCard = new CardNative();
+
+            if (string.IsNullOrEmpty(jsonFData))
+            {
+                return -2;
+            }
+
+            var res = await Save2CardDXX_Rewrite(jsonFData);
 
             return res;
         }

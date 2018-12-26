@@ -2,3 +2,4 @@ C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\bin\
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\bin\x86\Release\Iso18013LibV2.pdb
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\obj\x86\Release\Iso18013LibV2.dll
 C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\obj\x86\Release\Iso18013LibV2.pdb
+C:\RADSOFT\Projects\SmartCardDesc\SmartCardDesc\Iso18013LibV2\Iso18013LibV2\obj\x86\Release\Iso18013LibV2.csprojResolveAssemblyReference.cache
